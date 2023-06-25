@@ -32,11 +32,11 @@ npx @raycast/api@latest pull-contributions
 
 #### 替代方式
 
-如果您想更好地控制发布过程，您可以手动执行 `npm run publish` 的操作。您需要在我们的 [存储库](https://github.com/raycast/extensions) 中打开 PR。为此，[Fork 我们的存储库](https://docs.github.com/en/get-started/quickstart/fork-a-repo)，将您的扩展添加到您的 fork 中，再推送您的更改，然后[通过 GitHub Web 界面](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) 将 PR 打开到我们的 `main` 中。
+如果您想更好地控制发布过程，您可以手动执行 `npm run publish` 的操作。您需要在我们的 [存储库](https://github.com/raycast/extensions) 中打开 PR。为此，[Fork 我们的存储库](https://docs.github.com/en/get-started/quickstart/fork-a-repo)，将您的扩展添加到您的 fork 中，再推送您的更改，然后 [通过 GitHub Web 界面](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork) 将 PR 打开到我们的 `main` 中。
 
 ### 等待审核
 
-在您打开一个 PR 后，我们将审核您的扩展并在需要时请求更改。一旦接受，PR 将被合并，您的扩展将自动发布到 [Raycast 商店](https://raycast.com/store)[https://raycast.com/store](https://raycast.com/store)。
+在您打开一个 PR 后，我们将审核您的扩展并在需要时请求更改。一旦接受，PR 将被合并，您的扩展将自动发布到 [Raycast 商店](https://raycast.com/store)。
 
 {% hint style="info" %}
 我们仍在修复 bug 并更新我们的指南。如果有任何不清楚的地方，请在我们的 [社区](https://raycast.com/community) 中告诉我们。
