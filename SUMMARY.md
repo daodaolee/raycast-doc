@@ -17,8 +17,8 @@
 * [贡献一个扩展](ji-chu/contribute-to-an-extension.md)
 * [Prepare an Extension for Store](ji-chu/prepare-an-extension-for-store.md)
 * [发布一个扩展](ji-chu/publish-an-extension.md)
-* [Debug an Extension](ji-chu/debug-an-extension.md)
-* [Install an Extension](ji-chu/install-an-extension.md)
+* [调试一个扩展](ji-chu/debug-an-extension.md)
+* [安装一个扩展](ji-chu/install-an-extension.md)
 
 ## Teams
 
