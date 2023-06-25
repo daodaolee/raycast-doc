@@ -4,7 +4,7 @@ description: 了解如何与我们的社区分享您的扩展。
 
 # 发布一个扩展
 
-在发布扩展程序之前，请查看 [如何为应用商店编写扩展程序](https://developers.raycast.com/basics/prepare-an-extension-for-store)。确保遵循指南是帮助您的扩展通过审核的最佳方式。
+在发布扩展程序之前，请查看 [如何为发布做准备](https://developers.raycast.com/basics/prepare-an-extension-for-store)。确保遵循指南是帮助您的扩展通过审核的最佳方式。
 
 ### 验证您的扩展
 
