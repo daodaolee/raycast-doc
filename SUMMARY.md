@@ -15,7 +15,7 @@
 * [起步](ji-chu/getting-started.md)
 * [创建您的第一个扩展](ji-chu/create-your-first-extension.md)
 * [贡献一个扩展](ji-chu/contribute-to-an-extension.md)
-* [Prepare an Extension for Store](ji-chu/prepare-an-extension-for-store.md)
+* [过审一个扩展](ji-chu/prepare-an-extension-for-store.md)
 * [发布一个扩展](ji-chu/publish-an-extension.md)
 * [调试一个扩展](ji-chu/debug-an-extension.md)
 * [安装一个扩展](ji-chu/install-an-extension.md)
