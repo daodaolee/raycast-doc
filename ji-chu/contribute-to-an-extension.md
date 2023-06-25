@@ -1,21 +1,21 @@
 ---
-description: Learn how to import an extension to collaborate with others.
+description: 了解如何导入扩展以与他人协作。
 ---
 
-# Contribute to an Extension
+# 贡献一个扩展
 
-All published extensions are open-source and can be found in [this repository](https://github.com/raycast/extensions). This makes it easy for multiple developers to collaborate. This guide explains how to import an extension in order to fix a bug, add a new feature or otherwise contribute to it.
+所有已发布的扩展都是开源的，可以在 [此存储库](https://github.com/raycast/extensions) 中找到。这使得多个开发人员可以轻松协作。本指南解释了如何导入扩展（包括修复错误、添加新功能或以其他方式做出贡献）。
 
-## Get source code
+## 获取源代码
 
-First, you need to find the source code of the extension. The easiest way to do this is to use the `Fork Extension` action in the Raycast's root search.
+首先，您需要找到扩展的源代码。最简单的方法是在 Raycast 的根搜索中使用 Fork Extension 操作。
 
-![Fork an extension](../.gitbook/assets/fork-extension.png)
+![Fork 一个扩展](../.gitbook/assets/fork-extension.png)
 
-## Develop the extension
+## 修改扩展
 
-After you have the source code locally, open the Terminal and navigate to the extension's folder. Once there, run `npm install && npm run dev` from the extension folder in your Terminal to start developing the extension.
+在本地获得源代码后，打开终端并导航到扩展的文件夹。到达那里后，从终端中的扩展文件夹运行 `npm install && npm run dev` 以便开始修改扩展。
 
-![Open imported extension](../.gitbook/assets/basics-open-command.png) ![Icon list command](../.gitbook/assets/basics-icon-list.png)
+![打开已导入的扩展](../.gitbook/assets/basics-open-command.png) ![图标列表命令](../.gitbook/assets/basics-icon-list.png)
 
-You should see your forked extension at the top of your root search and can open its commands. When you're done editing the extension, make sure to add yourself to the contributors section of its [manifest](../information/manifest.md#extension-properties), and then [run `npx @raycast/api@latest publish`](./publish-an-extension.md).
+您会在根搜索的顶部看到您 fork 出的扩展，并且可以打开其命令。完成编辑扩展后，请确保将自己添加到其 [清单](https://developers.raycast.com/information/manifest#extension-properties) 的贡献者部分，然后运行 `​​npx @raycast/api@latestpublish`。
