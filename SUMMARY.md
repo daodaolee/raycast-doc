@@ -23,7 +23,7 @@
 ## 团队
 
 * [开始](tuan-dui/getting-started.md)
-* [Publish a Private Extension](tuan-dui/publish-a-private-extension.md)
+* [发布私人扩展](tuan-dui/publish-a-private-extension.md)
 * [Collaborate on Private Extensions](tuan-dui/collaborate-on-private-extensions.md)
 
 ## Examples

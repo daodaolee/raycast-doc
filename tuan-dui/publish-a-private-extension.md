@@ -1,15 +1,17 @@
 ---
-description: Learn how to share an extension in your organization's private extension store
+description: 了解如何在组织的私有扩展程序存储中共享扩展程序
 ---
 
-# Publish a Private Extension
+# 发布私人扩展
 
-To publish an extension, run `npm run publish` in the extension directory. The command verifies, builds and publishes the extension to the owner's store. The extension is only available to members of this organization. A link to your extension is copied to your clipboard to share it with your teammates. Happy publishing 🥳
+要发布扩展，请在扩展目录中运行 `npm run publish`。该命令验证、构建扩展并将其发布到所有者的商店。该扩展仅适用于该组织的成员。您的扩展程序的链接将被复制到您的剪贴板，以便与您的队友共享。🥳
 
 To mark an extension as private, you need to set the `owner` field in your `package.json` to your organization handle. If you don't know your handle, open the Manage Organization command, select your organization in the dropdown on the top right and perform the Copy Organization Handle action (`⌘` `⇧` `.`).
 
+要将扩展标记为私有，您需要将 `package.json` 中的所有者字段设置为您的组织 handle。如果您不知道您的 handle，请打开 “Manage Organization” 命令，在右上角的下拉列表中选择您的组织，然后执行 “Copy Organization Handle” 操作  (`⌘` `⇧` `.`)。
+
 {% hint style="info" %}
-Use the Create Extension command to create a private extension for your organization.
+使用 Create Extension 命令为您的组织创建专用扩展。
 {% endhint %}
 
-To be able to publish a private extension to an organization, you need to be logged in. Raycast takes care of logging you in with the CLI as well. In case you aren't logged in or need to switch an account, you can run `npx ray login` and `npx ray logout`.
+为了能够向组织发布私有扩展，您需要登录。Raycast 也会帮助您使用 CLI 登录。如果您尚未登录或需要切换帐户，可以运行 `npx ray login` 和 `npx ray logout`。
