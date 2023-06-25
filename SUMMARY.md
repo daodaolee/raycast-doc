@@ -13,7 +13,7 @@
 ## 基础
 
 * [起步](ji-chu/getting-started.md)
-* [创建你的第一个扩展](ji-chu/create-your-first-extension.md)
+* [创建您的第一个扩展](ji-chu/create-your-first-extension.md)
 * [Contribute to an Extension](ji-chu/contribute-to-an-extension.md)
 * [Prepare an Extension for Store](ji-chu/prepare-an-extension-for-store.md)
 * [Publish an Extension](ji-chu/publish-an-extension.md)
