@@ -1,22 +1,22 @@
 ---
-description: This example uses a simple form to collect data.
+description: 此示例使用简单的表单来收集数据。
 ---
 
-# Doppler Share Secrets
+# Doppler 共享 Secrets
 
 {% hint style="info" %}
-The full source code of the example can be found [here](https://github.com/raycast/extensions/tree/main/extensions/doppler-share-secrets#readme). You can install the extension [here](https://www.raycast.com/thomas/doppler-share-secrets).
+该示例的完整源代码可以在 [这里](https://github.com/raycast/extensions/tree/main/extensions/doppler-share-secrets#readme) 找到。您可以在 [此处](https://www.raycast.com/thomas/doppler-share-secrets) 安装扩展。
 {% endhint %}
 
-In this example we use a form to collect inputs from a user. To make it interesting, we use [Doppler](http://share.doppler.com) which is a service to make it easy to securely share sensitive information such as API keys or passwords.
+在此示例中，我们使用表单来收集用户的输入。为了让它变得有趣，我们使用 [Doppler](http://share.doppler.com/)，这是一项可以轻松安全地共享 API 密钥或密码等敏感信息的服务。
 
-![Example: Safely share secrets with Doppler](../.gitbook/assets/example-doppler-share-secrets.png)
+![示例：与 Doppler 安全共享秘密](../.gitbook/assets/example-doppler-share-secrets.png)
 
-The extension has one command. The command is a simple form with a textfield for the secret, a dropdown for an expiration after views and a second dropdown for an alternate expiration after a maximum of days.
+该扩展有一个命令。该命令是一个简单的表单，其中包含一个用于秘密的文本字段、一个用于查看后到期的下拉列表以及用于在最多天数后备用到期的第二个下拉列表。
 
-## Add form items
+## 添加表单项
 
-First, we render the static form. For this we add all the mentioned form items:
+首先，我们要渲染静态表单。为此，我们添加所有提到的表单项：
 
 ```typescript
 import { Action, ActionPanel, Clipboard, Form, Icon, showToast, Toast } from "@raycast/api";
@@ -50,11 +50,11 @@ export default function Command() {
 }
 ```
 
-Both dropdowns set the `storeValue` to true. This restores the last selected value when the command is opened again. This option is handy when your users select the same options often. In this case, we assume that users want to keep the expiration settings persisted.
+两个下拉列表都将 `storeValue` 设置为 true。当再次打开命令时，会恢复上次选择的值。当您的用户经常选择相同的选项时，此选项非常方便。在这种情况下，我们假设用户希望保留过期设置。
 
-## Submit form values
+## 提交表单值
 
-Now that we have the form, we want to collect the inserted values, send them to Doppler and copy the URL that allows us to share the information securely. For this, we create a new action:
+现在我们有了表单，我们想要收集插入的值，将它们发送到 Doppler 并复制允许我们安全共享信息的 URL。为此，我们创建一个新操作：
 
 ```tsx
 function ShareSecretAction() {
@@ -98,19 +98,19 @@ function ShareSecretAction() {
 }
 ```
 
-Let's break this down:
+让我们来分解一下：
 
-- The `<ShareSecretAction>` returns an [`<Action.SubmitForm>`](../api-reference/user-interface/actions.md#action.submitform).
-- The `handleSubmit()` gets called when the form is submitted with it's values.
-  - First we check if the user entered a secret. If not, we show a toast.
-  - Then we show a toast to hint that there is a network call in progress to share the secret.
-  - We call [Doppler's API](https://docs.doppler.com/reference/share-secret) with the form values
-    - If the network response succeeds, we copy the authenticated URL to the clipboard and show a success toast.
-    - If the network response fails, we show a failure toast with additional information about the failure.
+* `<ShareSecretAction>` 返回一个返回一个 [`<Action.SubmitForm>`](../api-reference/user-interface/actions.md#action.submitform).
+* `handleSubmit()` 函数在表单及其值提交时被调用。
+  * 首先我们检查用户是否输入了密码。如果没有，我们提示一个 toast。
+  * 然后，我们显示一个 toast，暗示正在进行网络调用以共享 Secret。
+  * 我们使用表单值调用  [Doppler's API](https://docs.doppler.com/reference/share-secret)&#x20;
+    * 如果网络响应成功，我们会将经过身份验证的 URL 复制到剪贴板并显示成功消息。
+    * 如果网络响应失败，我们会显示失败消息以及有关失败的其他信息。
 
-## Wire it up
+## 连起来
 
-The last step is to add the `<ShareSecretAction>` to the form:
+最后一步是将  `<ShareSecretAction>`  添加到表单中：
 
 ```typescript
 import { Action, ActionPanel, Clipboard, Form, Icon, showToast, Toast } from "@raycast/api";
@@ -191,3 +191,5 @@ function ShareSecretAction() {
 ```
 
 And there you go. A simple form to enter a secret and get a URL that you can share with others that will "destroy itself" accordingly to your preferences. As next steps, you could use the `<PasteAction>` to paste the link directly to front-most application or add another action that clears the form and let's you create another shareable link.
+
+结束啦。一个简单的表单，用于输入 secret 并获取您可以与其他人共享的 URL，该 URL 将根据您的偏好 “自我销毁”。后续步骤，您可以使用 `<PasteAction>` 将链接直接粘贴到最前面的应用程序，或者添加另一个清除表单的操作，然后让您创建另一个可共享链接。

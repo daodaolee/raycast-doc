@@ -26,12 +26,12 @@
 * [发布私人扩展](tuan-dui/publish-a-private-extension.md)
 * [协作开发私有扩展](tuan-dui/collaborate-on-private-extensions.md)
 
-## Examples
+## 例子
 
-* [Doppler Share Secrets](examples/doppler.md)
-* [Hacker News](examples/hacker-news.md)
-* [Todo List](examples/todo-list.md)
-* [Spotify Controls](examples/spotify-controls.md)
+* [Doppler 共享 Secrets](li-zi/doppler.md)
+* [Hacker News](li-zi/hacker-news.md)
+* [Todo List](li-zi/todo-list.md)
+* [Spotify Controls](li-zi/spotify-controls.md)
 
 ## Information
 
