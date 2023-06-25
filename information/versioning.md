@@ -14,7 +14,7 @@ For **end-users** installing or updating your extension, Raycast automatically c
 
 Optionally, you can provide a `changelog.md` file in your extension, and give detailed changes with every update. These changes can be viewed by the user on the extension details screen, under Version History, as well as on the [raycast.com/store](https://raycast.com/store).
 
-You can learn more about Version History [here](../basics/prepare-an-extension-for-store.md#version-history), how to add it to your extension, and the required format for the best appearance.
+You can learn more about Version History [here](../ji-chu/prepare-an-extension-for-store.md#version-history), how to add it to your extension, and the required format for the best appearance.
 
 ## API Evolution
 

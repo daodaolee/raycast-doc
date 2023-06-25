@@ -2,23 +2,23 @@
 
 * [介绍](README.md)
 
-## Links
+## 链接
 
-* [Community](https://raycast.com/community)
+* [社区](https://raycast.com/community)
 * [GitHub](https://github.com/raycast/extensions)
 * [Store](https://raycast.com/store)
-* [Icon Generator](https://icon.ray.so)
-* [Extension Icon Template](https://www.figma.com/community/file/1030764827259035122)
+* [Icon 生成器](https://icon.ray.so)
+* [扩展图标模板](https://www.figma.com/community/file/1030764827259035122)
 
-## Basics
+## 基础
 
-* [Getting Started](basics/getting-started.md)
-* [Create Your First Extension](basics/create-your-first-extension.md)
-* [Contribute to an Extension](basics/contribute-to-an-extension.md)
-* [Prepare an Extension for Store](basics/prepare-an-extension-for-store.md)
-* [Publish an Extension](basics/publish-an-extension.md)
-* [Debug an Extension](basics/debug-an-extension.md)
-* [Install an Extension](basics/install-an-extension.md)
+* [起步](ji-chu/getting-started.md)
+* [Create Your First Extension](ji-chu/create-your-first-extension.md)
+* [Contribute to an Extension](ji-chu/contribute-to-an-extension.md)
+* [Prepare an Extension for Store](ji-chu/prepare-an-extension-for-store.md)
+* [Publish an Extension](ji-chu/publish-an-extension.md)
+* [Debug an Extension](ji-chu/debug-an-extension.md)
+* [Install an Extension](ji-chu/install-an-extension.md)
 
 ## Teams
 

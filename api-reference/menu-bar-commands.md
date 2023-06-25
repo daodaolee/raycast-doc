@@ -4,8 +4,7 @@ The `MenuBarExtra` component can be used to create commands which populate the [
 
 ## Getting Started
 
-If you don't have an extension yet, follow the [getting started](../basics/getting-started.md) guide and then return to this page.
-Now that your extension is ready, let's open its `package.json` file and add a new entry to its `commands` array, ensuring its `mode` property is set to `menu-bar`. For this guide, let's add the following:
+If you don't have an extension yet, follow the [getting started](../ji-chu/getting-started.md) guide and then return to this page. Now that your extension is ready, let's open its `package.json` file and add a new entry to its `commands` array, ensuring its `mode` property is set to `menu-bar`. For this guide, let's add the following:
 
 ```JSON
 {
@@ -79,8 +78,7 @@ Running it once should activate it to:
 
 ## Lifecycle
 
-Although `menu-bar` commands can result in items permanently showing up in the macOS menu bar, they are not long-lived processes. Instead, as with other commands, Raycast loads them into memory on demand, executes their code and then tries to unload them at the next convenient time.
-There are five distinct events that can result in a `menu-bar`'s item being placed in the menu bar, so let's walk through each one.
+Although `menu-bar` commands can result in items permanently showing up in the macOS menu bar, they are not long-lived processes. Instead, as with other commands, Raycast loads them into memory on demand, executes their code and then tries to unload them at the next convenient time. There are five distinct events that can result in a `menu-bar`'s item being placed in the menu bar, so let's walk through each one.
 
 ### From the root search
 
@@ -95,8 +93,7 @@ If your command returns a `MenuBarExtra`, it _must_ either not set `isLoading` -
 If your `menu-bar` command also makes use of [background refresh](../information/lifecycle/background-refresh.md) _and_ it has background refresh activated, Raycast will run the command at set intervals. In your command, you can use `environment.launchType` to check whether it is launched in the background or by the user.
 
 {% hint style="info" %}
-To ease testing, commands configured to run in the background have an extra action in development mode:
-![Menu Bar Command - Run in Background](../.gitbook/assets/menu-bar-run-in-background.png)
+To ease testing, commands configured to run in the background have an extra action in development mode: ![Menu Bar Command - Run in Background](../.gitbook/assets/menu-bar-run-in-background.png)
 {% endhint %}
 
 ### When the user clicks the command's icon / title in the menu bar
@@ -113,10 +110,10 @@ This case should work the same as when Raycast is restarted.
 
 ## Best practices
 
-- make generous use of the [Cache API](./cache.md) and our [Utilities](../utils-reference/getting-started.md) in order to provide quick feedback and ensure action handlers work as expected
-- make sure you set `isLoading` to false when your command finishes executing
-- avoid setting long titles in `MenuBarExtra`, `MenuBarExtra.Submenu` or `MenuBarExtra.Item`
-- don't put identical `MenuBarExtra.Item`s at the same level (direct children of `MenuBarExtra` or in the same `Submenu`) as their `onAction` handlers will not be executed correctly
+* make generous use of the [Cache API](cache.md) and our [Utilities](../utils-reference/getting-started.md) in order to provide quick feedback and ensure action handlers work as expected
+* make sure you set `isLoading` to false when your command finishes executing
+* avoid setting long titles in `MenuBarExtra`, `MenuBarExtra.Submenu` or `MenuBarExtra.Item`
+* don't put identical `MenuBarExtra.Item`s at the same level (direct children of `MenuBarExtra` or in the same `Submenu`) as their `onAction` handlers will not be executed correctly
 
 ## API Reference
 
@@ -158,24 +155,22 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| children | `MenuBarExtra.Item`s, `MenuBarExtra.Submenu`s, `MenuBarExtra.Separator` or a mix of either. | <code>React.ReactNode</code> | - |
-| icon | The icon that is displayed in the menu bar. | <code>[Image.ImageLike](user-interface/icons-and-images.md#image.imagelike)</code> | - |
-| isLoading | Indicates to Raycast that it should not unload the command, as it is still executing. If you set make use of `isLoading`, you need to make sure you set it to `false` at the end of the task you are executing (such as an API call), so Raycast can then unload the command. | <code>boolean</code> | `false` |
-| title | The string that is displayed in the menu bar. | <code>string</code> | - |
-| tooltip | A tooltip to display when the cursor hovers the item in the menu bar. | <code>string</code> | - |
+| Prop      | Description                                                                                                                                                                                                                                                                   | Type                                                                    | Default |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------- |
+| children  | `MenuBarExtra.Item`s, `MenuBarExtra.Submenu`s, `MenuBarExtra.Separator` or a mix of either.                                                                                                                                                                                   | `React.ReactNode`                                                       | -       |
+| icon      | The icon that is displayed in the menu bar.                                                                                                                                                                                                                                   | [`Image.ImageLike`](user-interface/icons-and-images.md#image.imagelike) | -       |
+| isLoading | Indicates to Raycast that it should not unload the command, as it is still executing. If you set make use of `isLoading`, you need to make sure you set it to `false` at the end of the task you are executing (such as an API call), so Raycast can then unload the command. | `boolean`                                                               | `false` |
+| title     | The string that is displayed in the menu bar.                                                                                                                                                                                                                                 | `string`                                                                | -       |
+| tooltip   | A tooltip to display when the cursor hovers the item in the menu bar.                                                                                                                                                                                                         | `string`                                                                | -       |
 
 ### MenuBarExtra.Item
 
-An item in the [MenuBarExtra](#menubarextra) or in a [MenuBarExtra.Submenu](#menubarextra.submenu).
+An item in the [MenuBarExtra](menu-bar-commands.md#menubarextra) or in a [MenuBarExtra.Submenu](menu-bar-commands.md#menubarextra.submenu).
 
 #### Example
 
 {% tabs %}
-
 {% tab title="ItemWithTitle.tsx" %}
-
 An item that only provides a `title` prop will be rendered as disabled. Use this to create section titles.
 
 ```typescript
@@ -189,11 +184,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
 
 {% tab title="ItemWithTitleAndIcon.tsx" %}
-
 Similarly, an item that provides a `title` and an `icon` prop will also be rendered as disabled.
 
 ```typescript
@@ -207,11 +200,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
 
 {% tab title="ItemWithAction.tsx" %}
-
 An item that provides an `onAction` prop alongside `title` (and optionally `icon`) will _not_ be rendered as disabled. When users click this item in the menu bar, the action handler will be executed.
 
 ```typescript
@@ -225,21 +216,19 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
-
 {% endtabs %}
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The main title displayed for this item. | <code>string</code> | - |
-| icon | An optional icon for this item. | <code>[Image.ImageLike](user-interface/icons-and-images.md#image.imagelike)</code> | - |
-| shortcut | A shortcut used to invoke this item when its parent menu is open. | <code>[Keyboard.Shortcut](keyboard.md#keyboard.shortcut)</code> | - |
-| subtitle | The subtitle displayed for this item. | <code>string</code> | - |
-| tooltip | A tooltip to display when the cursor hovers the item. | <code>string</code> | - |
-| onAction | An action handler called when the user clicks the item. | <code>(event: [MenuBarExtra.ActionEvent](menu-bar-commands.md#menubarextra.actionevent)) => void</code> | - |
+| Prop                                    | Description                                                       | Type                                                                                             | Default |
+| --------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------- |
+| title<mark style="color:red;">\*</mark> | The main title displayed for this item.                           | `string`                                                                                         | -       |
+| icon                                    | An optional icon for this item.                                   | [`Image.ImageLike`](user-interface/icons-and-images.md#image.imagelike)                          | -       |
+| shortcut                                | A shortcut used to invoke this item when its parent menu is open. | [`Keyboard.Shortcut`](keyboard.md#keyboard.shortcut)                                             | -       |
+| subtitle                                | The subtitle displayed for this item.                             | `string`                                                                                         | -       |
+| tooltip                                 | A tooltip to display when the cursor hovers the item.             | `string`                                                                                         | -       |
+| onAction                                | An action handler called when the user clicks the item.           | `(event:` [`MenuBarExtra.ActionEvent`](menu-bar-commands.md#menubarextra.actionevent)`) => void` | -       |
 
 ### MenuBarExtra.Submenu
 
@@ -248,9 +237,7 @@ export default function Command() {
 #### Example
 
 {% tabs %}
-
 {% tab title="Bookmarks.tsx" %}
-
 ```typescript
 import { Icon, MenuBarExtra, open } from "@raycast/api";
 
@@ -267,11 +254,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
 
 {% tab title="DisabledSubmenu.tsx" %}
-
 Submenus with no children will show up as disabled.
 
 ```typescript
@@ -285,18 +270,16 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
-
 {% endtabs %}
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The main title displayed for this submenu. | <code>string</code> | - |
-| children | `MenuBarExtra.Item`s, `MenuBarExtra.Submenu`s, `MenuBarExtra.Separator` or a mix of either. | <code>React.ReactNode</code> | - |
-| icon | An optional icon for this submenu. | <code>[Image.ImageLike](user-interface/icons-and-images.md#image.imagelike)</code> | - |
+| Prop                                    | Description                                                                                 | Type                                                                    | Default |
+| --------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------- |
+| title<mark style="color:red;">\*</mark> | The main title displayed for this submenu.                                                  | `string`                                                                | -       |
+| children                                | `MenuBarExtra.Item`s, `MenuBarExtra.Submenu`s, `MenuBarExtra.Separator` or a mix of either. | `React.ReactNode`                                                       | -       |
+| icon                                    | An optional icon for this submenu.                                                          | [`Image.ImageLike`](user-interface/icons-and-images.md#image.imagelike) | -       |
 
 ### MenuBarExtra.Section
 
@@ -332,10 +315,10 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| children | The item elements of the section. | <code>React.ReactNode</code> | - |
-| title | Title displayed above the section | <code>string</code> | - |
+| Prop     | Description                       | Type              | Default |
+| -------- | --------------------------------- | ----------------- | ------- |
+| children | The item elements of the section. | `React.ReactNode` | -       |
+| title    | Title displayed above the section | `string`          | -       |
 
 ## Types
 
@@ -345,9 +328,9 @@ An interface describing Action events in callbacks.
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| type<mark style="color:red;">*</mark> | A type of the action event | <code>"left-click"</code> or <code>"right-click"</code> |
+| Property                               | Description                | Type                              |
+| -------------------------------------- | -------------------------- | --------------------------------- |
+| type<mark style="color:red;">\*</mark> | A type of the action event | `"left-click"` or `"right-click"` |
 
 #### Example
 

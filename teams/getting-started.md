@@ -2,7 +2,7 @@
 description: This guide sets you up with Raycast for Teams.
 ---
 
-# Getting Started with Raycast for Teams
+# Getting Started
 
 Raycast for Teams allows you to build, share and discover extensions in a private store. The store is only accessible to members of your organization.
 
@@ -33,7 +33,7 @@ After you have created the local repository, navigate into the `getting-started`
 ![Build the Getting Started Extension](../.gitbook/assets/teams-develop-extension.png)
 
 {% hint style="info" %}
-See [Create Your First Extension](../basics/create-your-first-extension.md) for a more detailed guide on how to create an extension.
+See [Create Your First Extension](../ji-chu/create-your-first-extension.md) for a more detailed guide on how to create an extension.
 {% endhint %}
 
 ### Publish The Getting Started Extension
@@ -48,4 +48,4 @@ Now, we share the extension with your organization. Perform `npm run publish` in
 
 Use the Copy Organization Invite Link command in Raycast to share access to your organization. Send the link to your teammates. You'll receive an email when somebody joins your organization. You can use the Manage Organization command to see who's part of your organization, reset the invite link and edit your organization details.
 
-As a next step, follow [this guide](./collaborate-on-private-extensions.md) to push your local repository to a source control system. This allows you to collaborate with your teammates on your extensions.
+As a next step, follow [this guide](collaborate-on-private-extensions.md) to push your local repository to a source control system. This allows you to collaborate with your teammates on your extensions.
