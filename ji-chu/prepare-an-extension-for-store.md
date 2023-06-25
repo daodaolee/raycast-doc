@@ -13,7 +13,6 @@ description: 了解如何快速通过审核流程
   * 确保您在 `license` 字段中使用 `MIT`
   * 确保您使用的是最新的 Raycast API 版本
 * 请使用 `npm` 安装依赖项，并在 PR 中包含 `package-lock.json`。在构建和发布扩展时，我们在持续集成 (CI) 环境中使用 `npm`，因此，通过提供 `package-lock.json` 文件，我们确保服务器上的依赖项与本地依赖项的版本匹配。
-* Please check the terms of service of third-party services that your extension uses. If your extension doesn't comply with their terms, include a warning in your extension's README. The warning should be similar to:
 *   请检查您的扩展使用的第三方服务的服务条款。如果您的扩展程序不符合其条款，请在扩展程序的自述文件中添加警告。警告应该类似于：
 
     > 警告：此扩展不符合\[服务名称]的服务条款。使用风险自负。
@@ -231,51 +230,52 @@ Initial version code
 
 ![打开命令时将显示所需的首选项](../.gitbook/assets/required-preferences-2.png)
 
-* Use the [preferences API](https://developers.raycast.com/api-reference/preferences) to let your users configure your extension or for providing credentials like API tokens
-  * When using `required: true`, Raycast will ask the user to set preferences before continuing with an extension. See the example [here](https://github.com/raycast/extensions/blob/main/extensions/gitlab/package.json#L150).
-* You should not build separate commands for configuring your extension. If you miss some API to achieve the preferences setup you want, please file a [GitHub issue](https://github.com/raycast/extensions/issues) with a feature request.
+* 使用 [首选项API](https://developers.raycast.com/api-reference/preferences) 让您的用户配置您的扩展名或提供诸如API令牌之类的凭据
+  * 当使用 `required: true` 时，Raycast 将要求用户在继续扩展之前设置首选项。请参阅此处的[示例](https://github.com/raycast/extensions/blob/main/extensions/gitlab/package.json#L150)。
+* 您不应该构建单独的命令来配置您的扩展。如果您找不到某些 API 来实现您想要的首选项设置，请提交带有 feature request 的 [GitHub issue](https://github.com/raycast/extensions/issues)。
 
 ### Action Panel
 
-![Raycast Action Panel component](../.gitbook/assets/action-panel.png)
+![Raycast Action Panel 组件](../.gitbook/assets/action-panel.png)
 
-* Actions in the action panel should also follow the **Title Case** naming convention
+* 操作面板中的操作也应遵循**标题大小写**命名约定
   * ✅ `Open in Browser`, `Copy to Clipboard`
   * ❌ `Copy url`, `set project`, `Set priority`
-* Provide icons for actions if there are other actions with icons in the list
-  * Avoid having a list of actions where some have icons and some don't
-* Add ellipses `…` for actions that will have a submenu. Don't repeat parent the action name in the submenu
-  * ✅ `Set Priority…` and submenu would have `Low`, `Medium`, `High`
-  * ❌ `Set Priority` and submenu would have `Set Priority Low`, `Set Priority Medium`, etc
+* 如果列表中还有其他带有图标的操作，请提供操作图标
+  * 避免列出一些带有图标而另一些则没有的操作列表
+* 添加省略号 `...` 用于有子菜单的操作。不要在子菜单中重复父操作名称
+  * ✅ `Set Priority…` 并且子菜单会有 `Low`, `Medium`, `High`
+  * ❌ `Set Priority` 并且子菜单有 `Set Priority Low`, `Set Priority Medium`, 等等
 
-### Navigation
+### 导航
 
 * Use the [Navigation API](https://developers.raycast.com/api-reference/user-interface/navigation) for pushing new screens. This will ensure that a user can navigate within your extension the same way as in the rest of the application.
-* Avoid introducing your own navigation stack. Extensions that just replace the view's content when it's expected to push a new screen will be rejected.
+* 使用 [导航 API](https://developers.raycast.com/api-reference/user-interface/navigation) 跳转新的步骤。这将确保用户可以像在应用程序的其余部分中一样在您的扩展中导航。
+* 避免引入您自己的导航堆栈。当要跳转新步骤时仅替换视图内容的扩展将被拒绝。
 
-### Empty States
+### 空状态
 
-* When you update lists with an empty array of elements, the "No results" view will be shown. Avoid introducing your own UI to achieve a similar effect (e.g. showing list item).
-  * **Known issue:** Sometimes, there is nothing you can show when the search query is empty, and an extension shows "No results" when you open it (often in search commands). We have plans to provide an API that would improve that experience. In the meantime, you might want to consider introducing some sections that could be helpful in an empty state – e.g. suggestions or recently visited items.
-* **Common mistake** – "flickering empty state view" on start
-  * If you try rendering an empty list before real data arrives (e.g. from the network or disk), you might see a flickering "No results" view when opening the extension. To prevent this, make sure not to return an empty list of items before you get the data you want to display. In the meantime, you can show the loading indicator. See [this example](https://developers.raycast.com/information/best-practices#show-loading-indicator).
+* 当您使用空元素数组更新列表时，将显示“无结果”视图。避免引入自己的 UI 来实现类似的效果（例如显示列表项）。
+  * **已知问题：**有时，当搜索查询为空时，您无法显示任何内容，并且当您打开扩展程序时（通常在搜索命令中），扩展程序会显示“No results”。我们计划提供一个 API 来改善这种体验。与此同时，您可能需要考虑引入一些在空状态下可能有用的部分 - 例如建议或最近访问的项目。
+* **常见错误** - 启动时“闪烁空状态视图”
+  * 如果您尝试在真实的数据（例如来自网络或磁盘）获取之前渲染空列表，则在打开扩展时您可能会看到闪烁的“No results”视图。为了防止这种情况，请确保在获取要显示的数据之前不要返回空的项目列表。同时，您可以显示 loading 指示器。请参阅 [此示例](https://developers.raycast.com/information/best-practices#show-loading-indicator)。
 
-### Navigation Title
+### 导航标题
 
-* Don't change the `navigationTitle` in the root command - it will be automatically set to the command name. Use `navigationTitle` only in nested screens to provide additional context. See [Slack Status extension](https://github.com/raycast/extensions/blob/020f2232aa5579b5c63b4b3c08d23ad719bce1f8/extensions/slack-status/src/setStatusForm.tsx#L95) as an example of correct usage of the `navigationTitle` property.
-* Avoid long titles. If you can't predict how long the navigation title string will be, consider using something else. E.g. in the Jira extension, we use the issue key instead of the issue title to keep it short.
-* Avoid updating the navigation title multiple times on one screen depending on some state. If you find yourself doing it, there is a high chance you are misusing it.
+* 不要更改根命令中的 `navigationTitle` - 它会自动设置为命令名称。仅在嵌套步骤中使用 `navigationTitle` 来提供附加上下语境。请参阅 [Slack Status extension](https://github.com/raycast/extensions/blob/020f2232aa5579b5c63b4b3c08d23ad719bce1f8/extensions/slack-status/src/setStatusForm.tsx#L95) 作为正确使用 `navigationTitle` 属性的示例。
+* 避免长标题。如果您无法预测导航标题字符串的长度，请考虑使用其他字符串。例如。在 Jira 扩展中，我们使用问题键而不是问题标题以保持简短。
+* 避免根据某种状态在一个步骤步骤上多次更新导航标题。如果您发现自己这样做，那么您很可能误用了它。
 
-### Placeholders in Text Fields
+### 文本字段中的占位符
 
-* For a better visual experience, add placeholders in text field and text area components. This includes preferences.
-* Don't leave the search bar without a placeholder
+* 为了获得更好的视觉体验，请在文本字段和文本区域组件中添加占位符。这也包括 preferences。
+* 不要在没有占位符的情况下离开搜索栏
 
-### Analytics
+### 分析
 
-* It’s not allowed to include external analytics in extensions. Later on, we will add support to give developers more insights into how their extension is being used.
+* 不允许在扩展中包含外部分析。稍后我们将添加支持，让开发人员更深入地了解其扩展的使用方式。
 
-### Localization / Language
+### 本地化/语言
 
-* At the moment, Raycast doesn't support localization and only supports US English. Therefore, please avoid introducing your custom way to localize your extension. If the locale might affect functionality (e.g. using the correct unit of measurement), please use the preferences API.
-* Use US English spelling (not British)
+* 目前，Raycast 不支持本地化，仅支持美国英语。因此，请避免引入您的自定义方式来本地化您的扩展。如果区域设置可能影响功能（例如使用正确的测量单位），请使用 preferences API。
+* 使用 US 英语拼写（不是 British）
