@@ -1,42 +1,42 @@
 ---
-description: Learn how to build your first extension and use it in Raycast.
+description: 了解如何构建您的第一个扩展并在 Raycast 中使用它。
 ---
 
-# Create Your First Extension
+# 创建你的第一个扩展
 
-## Create a new extension
+## 创建一个新的扩展
 
-Open the Create Extension command, name your extension "Hello World" and select the "Detail" template. Pick a parent folder in the Location field and press `⌘` `↵` to continue.
+打开 “Create Extension” 命令，将扩展命名为 “Hello World”，然后选择  “Detail template”模板。在 Location 字段中选择一个父文件夹，然后按 `⌘` `↵` 继续。
 
-![Create Extension command in Raycast](../.gitbook/assets/hello-world.png)
-
-{% hint style="info" %}
-To create a private extension, select your organization in the first dropdown. You need to be logged in and part of an organization to see the dropdown. Learn more about Raycast for Teams [here](../teams/getting-started.md).
-{% endhint %}
-
-Next, you'll need to follow the on-screen instructions to build the extension.
-
-## Build the extension
-
-Open your terminal, navigate to your extension directory and run `npm install && npm run dev`. Open Raycast, and you'll notice your extension at the top of the root search. Press `↵` to open it.
-
-![Your first extension](../.gitbook/assets/hello-world-2.png)
-
-## Develop your extension
-
-To make changes to your extension, open the `./src/index.tsx` file in your extension directory, change the `markdown` text and save it. Then, open your command in Raycast again and see your changes.
+![在 Raycast 中创建扩展命令](../.gitbook/assets/hello-world.png)
 
 {% hint style="info" %}
-`npm run dev` starts the extension in development mode with hot reloading, error reporting and [more](../information/tools/cli.md#development).
+要创建私人扩展，请在第一个下拉列表中选择您的组织。您需要登录并且是组织的一部分才能查看下拉列表。在 [此处](https://developers.raycast.com/teams/getting-started) 了解有关 Raycast for Teams 的更多信息。
 {% endhint %}
 
-## Use your extension
+接下来，您需要按照屏幕上的说明来构建扩展。
 
-Now, you can press `⌃` `C` in your terminal to stop `npm run dev`. The extension stays in Raycast, and you can find its commands in the root when searching for the extension name "Hello World" or the command name "Render Markdown".
+## 构建您的扩展
 
-![Find your extension in the root search](../.gitbook/assets/hello-world-2.png)
+打开终端，导航到扩展目录并运行 `npm install && npm run dev`。打开 Raycast，您会在根搜索的顶部看到您的扩展。按 `↵` 打开它。
 
-🎉 Congratulations! You built your first extension. Off to many more.
+![您的第一个扩展](../.gitbook/assets/hello-world-2.png)
+
+## 开发您的扩展
+
+要更改扩展，请打开扩展目录中的 `./src/index.tsx` 文件，更改 `markdown` 文本并保存。然后，再次在 Raycast 中打开命令并查看更改。
+
+{% hint style="info" %}
+npm run dev 在开发模式下启动扩展，具有热重载、错误报告和[其他功能](https://developers.raycast.com/information/tools/cli#development)。
+{% endhint %}
+
+## 使用您的扩展
+
+现在，您可以在终端中按 `⌃` `C` 来停止 `npm run dev`。该扩展保留在 Raycast 中，当搜索扩展名称 “Hello World” 或命令名称 “Render Markdown” 时，您可以在根目录中找到其命令。
+
+![在根搜索中找到您的扩展](../.gitbook/assets/hello-world-2.png)
+
+🎉 恭喜！您构建了您的第一个扩展。去做想做的吧！
 
 {% hint style="info" %}
 Don't forget to run [`npm run dev`](../information/tools/cli.md#development) again when you want to change something in your extension.
