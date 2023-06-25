@@ -20,11 +20,11 @@
 * [调试一个扩展](ji-chu/debug-an-extension.md)
 * [安装一个扩展](ji-chu/install-an-extension.md)
 
-## Teams
+## 团队
 
-* [Getting Started](teams/getting-started.md)
-* [Publish a Private Extension](teams/publish-a-private-extension.md)
-* [Collaborate on Private Extensions](teams/collaborate-on-private-extensions.md)
+* [开始](tuan-dui/getting-started.md)
+* [Publish a Private Extension](tuan-dui/publish-a-private-extension.md)
+* [Collaborate on Private Extensions](tuan-dui/collaborate-on-private-extensions.md)
 
 ## Examples
 

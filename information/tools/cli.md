@@ -20,12 +20,12 @@ You can use `npx ray build -e dist` to validate that your extension builds prope
 
 `npx ray develop` starts your extension in development mode. The mode includes the following:
 
-- Extension shows up at the top of the root search for quick access
-- Commands get automatically reloaded when you save your changes (you can toggle auto-reloading via Raycast Preferences > Advanced > "Auto-reload on save")
-- Error overlays include detailed stack traces for faster debugging
-- Log messages are displayed in the terminal
-- Status indicator is visible in the navigation title of the command to signal build errors
-- Imports the extension to Raycast if it wasn't before
+* Extension shows up at the top of the root search for quick access
+* Commands get automatically reloaded when you save your changes (you can toggle auto-reloading via Raycast Preferences > Advanced > "Auto-reload on save")
+* Error overlays include detailed stack traces for faster debugging
+* Log messages are displayed in the terminal
+* Status indicator is visible in the navigation title of the command to signal build errors
+* Imports the extension to Raycast if it wasn't before
 
 ## Lint
 
@@ -33,10 +33,10 @@ You can use `npx ray build -e dist` to validate that your extension builds prope
 
 ## Migrate
 
-`npx ray migrate` [migrates](../../migration/README.md) your extension to the latest version of the `@raycast/api`.
+`npx ray migrate` [migrates](../../migration/) your extension to the latest version of the `@raycast/api`.
 
 ## Publish
 
 `npx ray publish` verifies, builds, and publishes an extension.
 
-If the extension is private (eg. has an `owner` and no public `access`), it will be published to the organization's private store. This command is only available to users that are part of that organization. Learn more about it [here](../../teams/getting-started.md).
+If the extension is private (eg. has an `owner` and no public `access`), it will be published to the organization's private store. This command is only available to users that are part of that organization. Learn more about it [here](../../tuan-dui/getting-started.md).
