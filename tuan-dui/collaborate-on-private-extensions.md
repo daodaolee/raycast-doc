@@ -1,9 +1,9 @@
 ---
-description: This guide explains how to collaborate with your team on extensions.
+description: 本指南介绍了如何与您的团队协作进行扩展。
 ---
 
-# Collaborate on Private Extensions
+# 协作开发私有扩展
 
-Isn't it more fun to work with your colleagues together on your extension? For this, we recommend to share all your extensions in a single repository, similar to how we organize the [public store](https://raycast.com/store). If you follow the [Getting Started guide](getting-started.md), we will set up a local repository for you that is optimized for collaboration.
+与同事一起开发扩展不是更有趣吗？为此，我们建议在单个存储库中共享所有扩展，类似于我们组织 [公共Store](https://raycast.com/store) 的方式。如果您遵循 [入门指南](https://developers.raycast.com/teams/getting-started)，我们将为您设置一个针对协作进行优化的本地存储库。
 
-As next steps, create a [new repository](https://github.com/new) and push the existing local repository. Afterwards, your teammates can check out the code and help you improve your extensions and add new ones.
+接下来的步骤是创建一个 [新存储库](https://github.com/new) 并推送现有的本地存储库。之后，您的队友可以查看代码并帮助您改进扩展并添加新扩展。

@@ -6,8 +6,6 @@ description: 了解如何在组织的私有扩展程序存储中共享扩展程�
 
 要发布扩展，请在扩展目录中运行 `npm run publish`。该命令验证、构建扩展并将其发布到所有者的商店。该扩展仅适用于该组织的成员。您的扩展程序的链接将被复制到您的剪贴板，以便与您的队友共享。🥳
 
-To mark an extension as private, you need to set the `owner` field in your `package.json` to your organization handle. If you don't know your handle, open the Manage Organization command, select your organization in the dropdown on the top right and perform the Copy Organization Handle action (`⌘` `⇧` `.`).
-
 要将扩展标记为私有，您需要将 `package.json` 中的所有者字段设置为您的组织 handle。如果您不知道您的 handle，请打开 “Manage Organization” 命令，在右上角的下拉列表中选择您的组织，然后执行 “Copy Organization Handle” 操作  (`⌘` `⇧` `.`)。
 
 {% hint style="info" %}

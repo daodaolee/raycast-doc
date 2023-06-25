@@ -24,7 +24,7 @@
 
 * [开始](tuan-dui/getting-started.md)
 * [发布私人扩展](tuan-dui/publish-a-private-extension.md)
-* [Collaborate on Private Extensions](tuan-dui/collaborate-on-private-extensions.md)
+* [协作开发私有扩展](tuan-dui/collaborate-on-private-extensions.md)
 
 ## Examples
 
