@@ -1,24 +1,24 @@
 # Toast
 
-When an asynchronous operation is happening or when an error is thrown, it's usually a good idea to keep the user informed about it. Toasts are made for that.
+当发生异步操作或引发错误时，通常最好让用户了解情况。Toast 就是为此而做的。
 
-Additionally, Toasts can have some actions associated to the action they are about. For example, you could provide a way to cancel an asynchronous operation, undo an action, or copy the stack trace of an error.
+此外，Toast 可以有一些与其相关操作相关的操作。例如，您可以提供一种方法来取消异步操作、撤消操作或复制错误的堆栈跟踪。
 
 ![](../../.gitbook/assets/toast.png)
 
-## API Reference
+## API 参考
 
 ### showToast
 
-Creates and shows a Toast with the given [options](toast.md#toast.options).
+创建并显示具有给定 [选项](https://developers.raycast.com/api-reference/feedback/toast#toast.options) 的 Toast。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function showToast(options: Toast.Options): Promise<Toast>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { showToast, Toast } from "@raycast/api";
@@ -38,7 +38,7 @@ export default async function Command() {
 }
 ```
 
-When showing an animated Toast, you can later on update it:
+当显示动画 Toast 时，您可以稍后更新它：
 
 ```typescript
 import { showToast, Toast } from "@raycast/api";
@@ -66,46 +66,46 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                      | Description                         | Type                                      |
-| ----------------------------------------- | ----------------------------------- | ----------------------------------------- |
-| options<mark style="color:red;">\*</mark> | The options to customize the Toast. | [`Alert.Options`](alert.md#alert.options) |
+| 名称                                        | 描述             | 类型                                        |
+| ----------------------------------------- | -------------- | ----------------------------------------- |
+| options<mark style="color:red;">\*</mark> | 自定义 Toast 的选项。 | [`Alert.Options`](alert.md#alert.options) |
 
-#### Return
+#### 返回
 
-A Promise that resolves with the shown Toast. The Toast can be used to change or hide it.
+展示 Toast  状态为 resolves 的 Promise， Toast 可用于更改或隐藏它。
 
-## Types
+## 类型
 
 ### Toast
 
-A Toast with a certain style, title, and message.
+具有特定样式、标题和消息的 Toast。
 
-Use [showToast](toast.md#showtoast) to create and show a Toast.
+使用 [showToast](https://developers.raycast.com/api-reference/feedback/toast#showtoast) 创建并显示 Toast。
 
-#### Properties
+#### 属性
 
-| Property                                          | Description                                                                                                        | Type                                                        |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| message<mark style="color:red;">\*</mark>         | An additional message for the Toast. Useful to show more information, e.g. an identifier of a newly created asset. | `string`                                                    |
-| primaryAction<mark style="color:red;">\*</mark>   | The primary Action the user can take when hovering on the Toast.                                                   | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
-| secondaryAction<mark style="color:red;">\*</mark> | The secondary Action the user can take when hovering on the Toast.                                                 | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
-| style<mark style="color:red;">\*</mark>           | The style of a Toast.                                                                                              | [`Action.Style`](../user-interface/actions.md#action.style) |
-| title<mark style="color:red;">\*</mark>           | The title of a Toast. Displayed on the top.                                                                        | `string`                                                    |
+| 名称                                                | 描述                                   | 类型                                                          |
+| ------------------------------------------------- | ------------------------------------ | ----------------------------------------------------------- |
+| message<mark style="color:red;">\*</mark>         | Toast 的附加消息。有助于显示更多信息，例如新创建的资源的标识符。  | `string`                                                    |
+| primaryAction<mark style="color:red;">\*</mark>   | 用户将鼠标悬停在 Toast 上时可以执行的 primary 操作。   | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| secondaryAction<mark style="color:red;">\*</mark> | 用户将鼠标悬停在 Toast 上时可以执行的 secondary 操作。 | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| style<mark style="color:red;">\*</mark>           | Toast 的样式。                           | [`Action.Style`](../user-interface/actions.md#action.style) |
+| title<mark style="color:red;">\*</mark>           | Toast 的标题，显示在顶部。                     | `string`                                                    |
 
-#### Methods
+#### 方法
 
-| Name | Type                  | Description      |
-| ---- | --------------------- | ---------------- |
-| hide | `() => Promise<void>` | Hides the Toast. |
-| show | `() => Promise<void>` | Shows the Toast. |
+| 名称   | 类型                    | 描述       |
+| ---- | --------------------- | -------- |
+| hide | `() => Promise<void>` | 隐藏 Toast |
+| show | `() => Promise<void>` | 显示 Toast |
 
 ### Toast.Options
 
-The options to create a [Toast](toast.md#toast).
+创建 Toast 的 [选项](https://developers.raycast.com/api-reference/feedback/toast#toast)。
 
-#### Example
+#### 例子
 
 ```typescript
 import { showToast, Toast } from "@raycast/api";
@@ -127,25 +127,25 @@ export default async function Command() {
 }
 ```
 
-#### Properties
+#### 属性
 
-| Property                                | Description                                                                                                        | Type                                                        |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| title<mark style="color:red;">\*</mark> | The title of a Toast. Displayed on the top.                                                                        | `string`                                                    |
-| message                                 | An additional message for the Toast. Useful to show more information, e.g. an identifier of a newly created asset. | `string`                                                    |
-| primaryAction                           | The primary Action the user can take when hovering on the Toast.                                                   | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
-| secondaryAction                         | The secondary Action the user can take when hovering on the Toast.                                                 | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
-| style                                   | The style of a Toast.                                                                                              | [`Action.Style`](../user-interface/actions.md#action.style) |
+| 名称                                      | 描述                                   | 类型                                                          |
+| --------------------------------------- | ------------------------------------ | ----------------------------------------------------------- |
+| title<mark style="color:red;">\*</mark> | Toast 的标题，显示在顶部。                     | `string`                                                    |
+| message                                 | Toast 的附加消息。有助于显示更多信息，例如新创建的资源的标识符。  | `string`                                                    |
+| primaryAction                           | 用户将鼠标悬停在 Toast 上时可以执行的 primary 操作。   | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| secondaryAction                         | 用户将鼠标悬停在 Toast 上时可以执行的 secondary 操作。 | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| style                                   | Toast 的样式。                           | [`Action.Style`](../user-interface/actions.md#action.style) |
 
 ### Toast.Style
 
-Defines the visual style of the Toast.
+定义 Toast 的样式。
 
-Use [Toast.Style.Success](toast.md#toast.style) for confirmations and [Toast.Style.Failure](toast.md#toast.style) for displaying errors. Use [Toast.Style.Animated](toast.md#toast.style) when your Toast should be shown until a process is completed. You can hide it later by using [Toast.hide](toast.md#toast) or update the properties of an existing Toast.
+使用 [Toast.Style.Success](https://developers.raycast.com/api-reference/feedback/toast#toast.style) 进行确认，使用 [Toast.Style.Failure](https://developers.raycast.com/api-reference/feedback/toast#toast.style) 显示错误。当您的 Toast 显示到进程完成时，请使用 [Toast.Style.Animated](https://developers.raycast.com/api-reference/feedback/toast#toast.style)。您可以稍后使用 [Toast.hide](https://developers.raycast.com/api-reference/feedback/toast#toast) 隐藏它或更新现有 Toast 的属性。
 
-#### Enumeration members
+#### 枚举成员
 
-| Name     | Value                                         |
+| 名称       | 值                                             |
 | -------- | --------------------------------------------- |
 | Animated | ![](../../.gitbook/assets/toast-animated.png) |
 | Success  | ![](../../.gitbook/assets/toast-success.png)  |
@@ -153,12 +153,12 @@ Use [Toast.Style.Success](toast.md#toast.style) for confirmations and [Toast.Sty
 
 ### Toast.ActionOptions
 
-The options to create a [Toast](toast.md#toast) Action.
+用于创建 [Toast](https://developers.raycast.com/api-reference/feedback/toast#toast) 操作的选项。
 
-#### Properties
+#### 属性
 
-| Property                                   | Description                                     | Type                                                    |
-| ------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------- |
-| title<mark style="color:red;">\*</mark>    | The title of the action.                        | `string`                                                |
-| onAction<mark style="color:red;">\*</mark> | A callback called when the action is triggered. | `(toast:` [`Toast`](toast.md#toast)`) => void`          |
-| shortcut                                   | The keyboard shortcut for the action.           | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut) |
+| 名称                                         | 描述          | 类型                                                      |
+| ------------------------------------------ | ----------- | ------------------------------------------------------- |
+| title<mark style="color:red;">\*</mark>    | 操作的标题。      | `string`                                                |
+| onAction<mark style="color:red;">\*</mark> | 触发操作时调用的回调。 | `(toast:` [`Toast`](toast.md#toast)`) => void`          |
+| shortcut                                   | 操作的键盘快捷键。   | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut) |

@@ -1,22 +1,22 @@
 # HUD
 
-When the user takes an action that has the side effect of closing Raycast (for example when copying something in the [Clipboard](../clipboard.md)), you can use a HUD to confirm that the action worked properly.
+当用户执行的操作会产生关闭 Raycast 的副作用时（例如在 [Clipboard](https://developers.raycast.com/api-reference/clipboard) 中复制某些内容时），您可以使用 HUD 来确认该操作是否正常工作。
 
 ![](../../.gitbook/assets/hud.png)
 
-## API Reference
+## API 参考
 
 ### showHUD
 
-A HUD will automatically hide the main window and show a compact message at the bottom of the screen.
+HUD 会自动隐藏主窗口并在屏幕底部显示一条简短的消息。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function showHUD(title: string): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { showHUD } from "@raycast/api";
@@ -26,12 +26,12 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                    | Description                                  | Type     |
-| --------------------------------------- | -------------------------------------------- | -------- |
-| title<mark style="color:red;">\*</mark> | The title that will be displayed in the HUD. | `string` |
+| 名称                                      | 描述             | 类型       |
+| --------------------------------------- | -------------- | -------- |
+| title<mark style="color:red;">\*</mark> | 将在 HUD 中显示的标题。 | `string` |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the HUD is shown.
+显示 HUD 时 resolves 的 Promise。
