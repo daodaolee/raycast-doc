@@ -1,19 +1,19 @@
-# Arguments
+# 参数
 
-Raycast supports arguments for your commands so that users can enter values right from Root Search before opening the command.
+Raycast 支持命令传递参数，以便用户可以在打开命令之前直接从根搜索输入值。
 
 ![](../../.gitbook/assets/arguments.png)
 
-Arguments are configured in the [manifest](../manifest.md#argument-properties) per command.
+参数在每个命令的 [mainfest](https://developers.raycast.com/information/manifest#argument-properties) 中配置。
 
 {% hint style="info" %}
-* **Maximum number of arguments:** 3 (if you have a use case that requires more, please let us know via feedback or in the [Slack community](https://www.raycast.com/community))
-* The order of the arguments specified in the manifest is important and is reflected by the fields shown in Root Search. To provide a better UX, put the required arguments before the optional ones.
+* 最大参数数量：3（如果您有需要更多参数的用例，请通过反馈或在 Slack 社区 中告知我们）
+* mainfest 中指定的参数顺序很重要，并且由根搜索中显示的字段作出反馈。为了提供更好的用户体验，请将必需的参数放在可选参数之前。
 {% endhint %}
 
-## Example
+## 例子
 
-Let's say we want a command with two arguments. Its `package.json` will look like this:
+假设我们想要一个带有两个参数的命令。它的 `package.json` 看起来像这样：
 
 ```json
 {
@@ -56,7 +56,7 @@ Let's say we want a command with two arguments. Its `package.json` will look lik
 }
 ```
 
-The command itself will receive the arguments' values via the `arguments` prop:
+命令本身将通过 `arguments` prop 接收参数的值：
 
 ```typescript
 import { Form, LaunchProps } from "@raycast/api";
@@ -74,21 +74,21 @@ export default function Todoist(props: LaunchProps<{ arguments: Arguments.MyComm
 }
 ```
 
-## Types
+## 类型
 
-### Arguments
+### 参数
 
-A command receives the values of its arguments via a top-level prop named `arguments`. It is an object with the arguments' `name` as keys and their values as the property's values.
+命令通过名为 `arguments` 的顶级 prop 接收其参数的值。它是一个对象，其中参数的 `name` 作为键，参数的值作为属性的值。
 
-Depending on the `type` of the argument, the type of its value will be different.
+根据参数的 `type`，其值的类型会有所不同。
 
-| Argument type | Value type |
-| ------------- | ---------- |
-| `text`        | `string`   |
-| `password`    | `string`   |
+| 参数类型       | 值类型      |
+| ---------- | -------- |
+| `text`     | `string` |
+| `password` | `string` |
 
 {% hint style="info" %}
-Raycast provides a global TypeScript namespace called `Arguments` which contains the types of the arguments of all the commands of the extensions.
+Raycast 提供了一个名为 Arguments 的全局 TypeScript 命名空间，其中包含扩展的所有命令的参数类型。
 
-For example, if a command named `show-todos` accepts arguments, its `LaunchProps` can be described as `LaunchProps<{ arguments: Arguments.ShowTodos }>`. This will make sure that the types used in the command stay in sync with the manifest.
+例如，如果名为 show-todos 的命令接受参数，则其 LaunchProps 可以描述为 LaunchProps<{argus: Arguments.ShowTodos }>。这将确保命令中使用的类型与 mainfest 保持同步。
 {% endhint %}
