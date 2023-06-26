@@ -41,13 +41,11 @@ export default function Command() {
 }
 ```
 
-For this we define a TypeScript interface to describe out Todo with a `title` and a `isCompleted` flag that we use later to complete the todo. We use [React's `useState` hook](https://reactjs.org/docs/hooks-state.html) to create a local state of our todos. This allows us to update them later and the list will get re-rendered. Lastly we render a list of all todos.
+为此，我们定义了一个 TypeScript 接口来描述带有 `title` 和 `isCompleted` 标志的 Todo，稍后我们将使用该标志来完成 todo。我们使用 React 的 `useState` 钩子来创建 todo 的本地状态。我们可以稍后更新它们并且列表将被重新渲染，最后我们呈现所有 todo 的列表。
 
-为此，我们定义了一个 TypeScript 接口来描述带有 `title` 和 `isCompleted` 标志的 Todo，稍后我们将使用该标志来完成 todo。我们使用 React 的 `useState` 钩子来创建 todo 的本地状态。我们可以稍后更新它们并且列表将被重新渲染。最后我们呈现所有tdo的列表。
+## 创建一个 todo
 
-## Create a todo
-
-A static list of todos isn't that much fun. Let's create new ones with a form. For this, we create a new React component that renders the form:
+静态的 todo 列表并不是那么有趣，让我们用表单创建一个新的。为此，我们创建一个新的 React 组件来展示表单：
 
 ```typescript
 function CreateTodoForm(props: { onCreate: (todo: Todo) => void }) {
@@ -83,11 +81,11 @@ function CreateTodoAction(props: { onCreate: (todo: Todo) => void }) {
 }
 ```
 
-The `<CreateTodoForm>` shows a single text field for the title. When the form is submitted, it calls the `onCreate` callback and closes itself.
+`<CreateTodoForm>` 显示标题的单个文本字段。提交表单后，它会调用 `onCreate` 回调并自行关闭。
 
-![Create todo form](../.gitbook/assets/example-create-todo.png)
+![创建 todo 表单](../.gitbook/assets/example-create-todo.png)
 
-To use the action, we add it to the `<List>` component. This makes the action available when the list is empty which is exactly what we want to create our first todo.
+要使用该操作，我们将其添加到  `<List>`  组件中。这使得该操作在列表为空时可用，这正是我们想要创建的第一个 todo。
 
 ```typescript
 export default function Command() {
@@ -114,9 +112,9 @@ export default function Command() {
 }
 ```
 
-## Complete a todo
+## 完成一个 todo
 
-Now that we can create new todos, we also want to make sure that we can tick off something on our todo list. For this, we create a `<ToggleTodoAction>` that we assign to the `<List.Item>`:
+现在我们可以创建新的 todo，我们还想确保可以勾选 todo 列表上的某些内容。为此，我们创建一个 `<ToggleTodoAction>` 并将其分配给 `<List.Item>`:
 
 ```typescript
 export default function Command() {
@@ -169,9 +167,11 @@ function ToggleTodoAction(props: { todo: Todo; onToggle: () => void }) {
 
 In this case we added the `<ToggleTodoAction>` to the list item. By doing this we can use the `index` to toggle the appropriate todo. We also added an icon to our todo that reflects the `isCompleted` state.
 
-## Delete a todo
+在本例中，我们将  `<ToggleTodoAction>`  添加到列表项。通过这样做，我们可以使用 `index` 来切换适当的 todo。我们还在 todo 中添加了一个反映 `isCompleted` 状态的图标。
 
-Similar to toggling a todo, we also add the possibility to delete one. You can follow the same steps and create a new `<DeleteTodoAction>` and add it to the `<List.Item>`.
+## 删除一个 todo
+
+与切换 todo 类似，我们还添加了删除 todo 的功能。您可以按照相同的步骤创建一个新的  `<DeleteTodoAction>` 并将其添加到 `<List.Item>`中。
 
 ```typescript
 export default function Command() {
@@ -229,9 +229,9 @@ function DeleteTodoAction(props: { onDelete: () => void }) {
 }
 ```
 
-We also gave the `<DeleteTodoAction>` a keyboard shortcut. This way users can delete todos quicker. Additionally, we also added the `<CreateTodoAction>` to the `<List.Item>`. This makes sure that users can also create new todos when there are some already.
+我们还为 `<DeleteTodoAction>`  提供了键盘快捷键。这样用户可以更快地删除 todo。此外，我们还将 `<CreateTodoAction>`   添加到 `<List.Item>` 中。这确保用户在已有 todo 时也可以创建新的 todo。
 
-Finally, our command looks like this:
+最后，我们的命令如下所示：
 
 ```typescript
 import { Action, ActionPanel, Form, Icon, List, useNavigation } from "@raycast/api";
@@ -349,4 +349,4 @@ function DeleteTodoAction(props: { onDelete: () => void }) {
 }
 ```
 
-And that's a wrap. You created a todo list in Raycast, it's that easy. As next steps, you could extract the `<CreateTodoForm>` into a separate command. Then you can create todos also from the root search of Raycast and can even assign a global hotkey to open the form. Also, the todos aren't persisted. If you close the command and reopen it, they are gone. To persist, you can use the [storage](../api-reference/storage.md) or [write it to disc](../api-reference/environment.md#environment).
+这就是一个示例。您在 Raycast 中创建了一个 todo 列表，就是这么简单。作为后续步骤，您可以将  `<CreateTodoForm>` 提取到单独的命令中。然后，您还可以从 Raycast 的根搜索创建 todo，甚至可以分配全局热键来打开表单。此外，todo 不会保留。如果您关闭命令并重新打开它，它们就会消失。想要保留的话，您可以使用 [storage](https://developers.raycast.com/api-reference/storage) 或将其 [写入光盘](https://developers.raycast.com/api-reference/environment#environment)。
