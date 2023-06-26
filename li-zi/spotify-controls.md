@@ -14,8 +14,6 @@ description: 此示例演示如何将多个脚本绑定到单个扩展中。
 
 ## 控制 Spotify macOS 应用程序
 
-Spotify's macOS app supports AppleScript. This is great to control the app without opening it. For this, we use the [`run-applescript`](https://www.npmjs.com/package/run-applescript) package. Let's start by toggling play pause:
-
 Spotify 的 macOS 应用程序支持 AppleScript。这非常适合在不打开应用程序的情况下控制它。为此，我们使用 [`run-applescript`](https://www.npmjs.com/package/run-applescript) 包。让我们从切换播放暂停开始：
 
 ```typescript

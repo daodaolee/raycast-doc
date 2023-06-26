@@ -33,22 +33,22 @@
 * [Todo 列表](li-zi/todo-list.md)
 * [Spotify Controls](li-zi/spotify-controls.md)
 
-## Information
+## 资料
 
-* [Best Practices](information/best-practices.md)
-* [Tools](information/tools/README.md)
-  * [CLI](information/tools/cli.md)
-  * [ESLint](information/tools/eslint.md)
-  * [VS Code (community tool)](information/tools/vscode.md)
-* [File Structure](information/file-structure.md)
-* [Lifecycle](information/lifecycle/README.md)
-  * [Arguments](information/lifecycle/arguments.md)
-  * [Background Refresh](information/lifecycle/background-refresh.md)
-  * [Deeplinks](information/lifecycle/deeplinks.md)
-* [Manifest](information/manifest.md)
-* [Security](information/security.md)
-* [Terminology](information/terminology.md)
-* [Versioning](information/versioning.md)
+* [最佳实践](zi-liao/best-practices.md)
+* [Tools](zi-liao/tools/README.md)
+  * [CLI](zi-liao/tools/cli.md)
+  * [ESLint](zi-liao/tools/eslint.md)
+  * [VS Code (community tool)](zi-liao/tools/vscode.md)
+* [File Structure](zi-liao/file-structure.md)
+* [Lifecycle](zi-liao/lifecycle/README.md)
+  * [Arguments](zi-liao/lifecycle/arguments.md)
+  * [Background Refresh](zi-liao/lifecycle/background-refresh.md)
+  * [Deeplinks](zi-liao/lifecycle/deeplinks.md)
+* [Manifest](zi-liao/manifest.md)
+* [Security](zi-liao/security.md)
+* [Terminology](zi-liao/terminology.md)
+* [Versioning](zi-liao/versioning.md)
 
 ## API Reference
 

@@ -2,7 +2,7 @@
 description: 了解如何构建您的第一个扩展并在 Raycast 中使用它。
 ---
 
-# 创建你的第一个扩展
+# 创建您的第一个扩展
 
 ## 创建一个新的扩展
 
@@ -39,5 +39,5 @@ npm run dev 在开发模式下启动扩展，具有热重载、错误报告和[�
 🎉 恭喜！您构建了您的第一个扩展。去做想做的吧！
 
 {% hint style="info" %}
-Don't forget to run [`npm run dev`](../information/tools/cli.md#development) again when you want to change something in your extension.
+Don't forget to run [`npm run dev`](../zi-liao/tools/cli.md#development) again when you want to change something in your extension.
 {% endhint %}

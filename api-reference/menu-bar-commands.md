@@ -17,7 +17,7 @@ If you don't have an extension yet, follow the [getting started](../ji-chu/getti
 ```
 
 {% hint style="info" %}
-Check out the [command properties entry](../information/manifest.md#command-properties) in the manifest file documentation for more detailed information on each of those properties.
+Check out the [command properties entry](../zi-liao/manifest.md#command-properties) in the manifest file documentation for more detailed information on each of those properties.
 {% endhint %}
 
 Create `github-pull-requests.tsx` in your extensions `src/` folder and add the following:
@@ -55,7 +55,7 @@ If your development server is running, the command should appear in your root se
 macOS has the final say on whether a given menu bar extra is displayed. If you have a lot of items there, it is possible that the command we just ran doesn't show up. If that's the case, try to clear up some space in the menu bar, either by closing some of the items you don't need or by hiding them using [HiddenBar](https://github.com/dwarvesf/hidden), [Bartender](https://www.macbartender.com/), or similar apps.
 {% endhint %}
 
-Of course, our pull request command wouldn't be of that much use if we had to tell it to update itself every single time. To add [background refresh](../information/lifecycle/background-refresh.md) to our command, we need to open the `package.json` file we modified earlier and add an `interval` key to the command configuration object:
+Of course, our pull request command wouldn't be of that much use if we had to tell it to update itself every single time. To add [background refresh](../zi-liao/lifecycle/background-refresh.md) to our command, we need to open the `package.json` file we modified earlier and add an `interval` key to the command configuration object:
 
 ```JSON
 {
@@ -90,7 +90,7 @@ If your command returns a `MenuBarExtra`, it _must_ either not set `isLoading` -
 
 ### At a set interval
 
-If your `menu-bar` command also makes use of [background refresh](../information/lifecycle/background-refresh.md) _and_ it has background refresh activated, Raycast will run the command at set intervals. In your command, you can use `environment.launchType` to check whether it is launched in the background or by the user.
+If your `menu-bar` command also makes use of [background refresh](../zi-liao/lifecycle/background-refresh.md) _and_ it has background refresh activated, Raycast will run the command at set intervals. In your command, you can use `environment.launchType` to check whether it is launched in the background or by the user.
 
 {% hint style="info" %}
 To ease testing, commands configured to run in the background have an extra action in development mode: ![Menu Bar Command - Run in Background](../.gitbook/assets/menu-bar-run-in-background.png)

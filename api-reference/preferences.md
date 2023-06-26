@@ -2,7 +2,7 @@
 
 Use the Preferences API to make your extension configurable.
 
-Preferences are configured in the [manifest](../information/manifest.md#preference-properties) per command or shared in the context of an extension.
+Preferences are configured in the [manifest](../zi-liao/manifest.md#preference-properties) per command or shared in the context of an extension.
 
 Required preferences need to be set by the user before a command opens. They are a great way to make sure that the user of your extension has everything set up properly.
 
@@ -43,15 +43,15 @@ An object with the preference names as property key and the typed value as prope
 
 Depending on the type of the preference, the type of its value will be different.
 
-| Preference type        | Value type                                             |
-| :--------------------- | :----------------------------------------------------- |
-| <code>textfield</code> | <code>string</code>                                    |
-| <code>password</code>  | <code>string</code>                                    |
-| <code>checkbox</code>  | <code>boolean</code>                                   |
-| <code>dropdown</code>  | <code>string</code>                                    |
-| <code>appPicker</code> | <code>[Application](./utilities.md#application)</code> |
-| <code>file</code>      | <code>string</code>                                    |
-| <code>directory</code> | <code>string</code>                                    |
+| Preference type | Value type                                |
+| --------------- | ----------------------------------------- |
+| `textfield`     | `string`                                  |
+| `password`      | `string`                                  |
+| `checkbox`      | `boolean`                                 |
+| `dropdown`      | `string`                                  |
+| `appPicker`     | [`Application`](utilities.md#application) |
+| `file`          | `string`                                  |
+| `directory`     | `string`                                  |
 
 ### openExtensionPreferences
 
@@ -127,19 +127,19 @@ A Promise that resolves when the command's preferences screen is opened.
 
 ### Preferences
 
-A command receives the values of its preferences via the [`getPreferenceValues`](#getpreferencevalues) function. It is an object with the preferences' `name` as keys and their values as the property's values.
+A command receives the values of its preferences via the [`getPreferenceValues`](preferences.md#getpreferencevalues) function. It is an object with the preferences' `name` as keys and their values as the property's values.
 
 Depending on the type of the preference, the type of its value will be different.
 
-| Preference type        | Value type                                             |
-| :--------------------- | :----------------------------------------------------- |
-| <code>textfield</code> | <code>string</code>                                    |
-| <code>password</code>  | <code>string</code>                                    |
-| <code>checkbox</code>  | <code>boolean</code>                                   |
-| <code>dropdown</code>  | <code>string</code>                                    |
-| <code>appPicker</code> | <code>[Application](./utilities.md#application)</code> |
-| <code>file</code>      | <code>string</code>                                    |
-| <code>directory</code> | <code>string</code>                                    |
+| Preference type | Value type                                |
+| --------------- | ----------------------------------------- |
+| `textfield`     | `string`                                  |
+| `password`      | `string`                                  |
+| `checkbox`      | `boolean`                                 |
+| `dropdown`      | `string`                                  |
+| `appPicker`     | [`Application`](utilities.md#application) |
+| `file`          | `string`                                  |
+| `directory`     | `string`                                  |
 
 {% hint style="info" %}
 Raycast provides a global TypeScript namespace called `Preferences` which contains the types of the preferences of all the commands of the extensions.

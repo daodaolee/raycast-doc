@@ -1,6 +1,6 @@
 # Storage
 
-The storage APIs can be used to store data in Raycast's [local encrypted database](../information/security.md#data-storage).
+The storage APIs can be used to store data in Raycast's [local encrypted database](../zi-liao/security.md#data-storage).
 
 All commands in an extension have shared access to the stored data. Extensions can _not_ access the storage of other extensions.
 
@@ -36,9 +36,9 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| key<mark style="color:red;">*</mark> | The key you want to retrieve the value of. | <code>string</code> |
+| Name                                  | Description                                | Type     |
+| ------------------------------------- | ------------------------------------------ | -------- |
+| key<mark style="color:red;">\*</mark> | The key you want to retrieve the value of. | `string` |
 
 #### Return
 
@@ -68,10 +68,10 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| key<mark style="color:red;">*</mark> | The key you want to create or update the value of. | <code>string</code> |
-| value<mark style="color:red;">*</mark> | The value you want to create or update for the given key. | <code>[LocalStorage.Value](storage.md#localstorage.value)</code> |
+| Name                                    | Description                                               | Type                                                  |
+| --------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
+| key<mark style="color:red;">\*</mark>   | The key you want to create or update the value of.        | `string`                                              |
+| value<mark style="color:red;">\*</mark> | The value you want to create or update for the given key. | [`LocalStorage.Value`](storage.md#localstorage.value) |
 
 #### Return
 
@@ -102,9 +102,9 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| key<mark style="color:red;">*</mark> | The key you want to remove the value of. | <code>string</code> |
+| Name                                  | Description                              | Type     |
+| ------------------------------------- | ---------------------------------------- | -------- |
+| key<mark style="color:red;">\*</mark> | The key you want to remove the value of. | `string` |
 
 #### Return
 
@@ -138,7 +138,7 @@ export default async function Command() {
 
 #### Return
 
-A Promise that resolves with an object containing all [Values](#localstorage.values).
+A Promise that resolves with an object containing all [Values](storage.md#localstorage.values).
 
 ### LocalStorage.clear
 
@@ -174,9 +174,9 @@ For type-safe values, you can define your own interface. Use the keys of the loc
 
 #### Properties
 
-| Name          | Type             | Description                             |
-| :------------ | :--------------- | :-------------------------------------- |
-| [key: string] | <code>any</code> | The local storage value of a given key. |
+| Name           | Type  | Description                             |
+| -------------- | ----- | --------------------------------------- |
+| \[key: string] | `any` | The local storage value of a given key. |
 
 ### LocalStorage.Value
 

@@ -1,16 +1,16 @@
 ---
-description: Tips to guarantee a good user experience for your extensions.
+description: 确保扩展程序获得良好用户体验的提示。
 ---
 
-# Best Practices
+# 最佳实践
 
-## General
+## 一般情况
 
-### Handle errors
+### 错误处理
 
-Network requests can fail, permissions to files can be missing… More generally, errors happen. By default, we handle every unhandled exception or unresolved Promise and show error screens. However, you should handle the "expected" error cases for your command. You should aim not to disrupt the user's flow just because something went wrong. For example, if a network request fails but you can read the cache, show the cache. A user might not need the fresh data straight away. In most cases, it's best to show a `Toast` with information about the error.
+网络请求可能会失败，文件权限可能会丢失……更常见的是，错误随处而见。默认情况下，我们处理每个未处理的异常或未解决的 Promise 并把错误展示出来。但是，您应该自行处理命令的 “预期” 错误。您不应该因为出现问题而中断用户流程。例如，如果网络请求失败但您可以读取缓存，那就显示缓存内容。用户可能不需要立即获得新数据。在大多数情况下，最好显示包含错误信息的 Toast。
 
-Here is an example of how to show a toast for an error:
+以下是如何显示错误提示的示例：
 
 ```typescript
 import { Detail, showToast, Toast } from "@raycast/api";
@@ -39,21 +39,21 @@ export default function Command() {
 }
 ```
 
-### Handle runtime dependencies
+### 处理运行时依赖性
 
-Ideally, your extension doesn't depend on any runtime dependencies. In reality, sometimes locally installed apps or CLIs are required to perform functionality. Here are a few tips to guarantee a good user experience:
+理想情况下，您的扩展不依赖于任何运行时依赖项。实际上，有时需要本地安装的应用程序或 CLI 才能执行功能。以下是一些保证良好用户体验的提示：
 
-- If a command requires a runtime dependency to run (e.g. an app that needs to be installed by the user), show a helpful message.
-  - If your extension is tightly coupled to an app, f.e. searching tabs in Safari or using AppleScript to control Spotify, checks don't always have to be strict because users most likely don't install the extension without having the dependency installed locally.
-- If only some functionality of your extension requires the runtime dependency, consider making this functionality only available if the dependency is installed. Typically, this is the best case for [actions](terminology.md#action), e.g. to open a URL in the desktop app instead of the browser.
+* 如果命令需要运行时依赖项才能运行（例如需要用户安装的应用程序），请展示有用的消息。
+  * 如果您的扩展与应用程序紧密耦合，例如在 Safari 中搜索选项卡或使用 AppleScript 控制 Spotify，代码检查没必要是那么严格，因为用户很可能因为没有本地安装依赖项从而不会安装扩展。
+* 如果扩展中只有某些功能需要运行时依赖项，请考虑仅在安装依赖项后才提供此功能。通常，[这是](https://developers.raycast.com/information/terminology#action) 最佳情况，例如在桌面应用程序而不是浏览器中打开 URL。
 
-### Show loading indicator
+### 显示 loading 指示器
 
-When commands need to load big data sets, it's best to inform the user about this. To keep your command snappy, it's important to render a React component as quickly as possible.
+当命令需要加载大数据集时，最好告知用户这一点。为了让你的命令保持敏捷，尽快渲染 React 组件显得非常重要。
 
-You can start with an empty list or a static form and then load the data to fill the view. To make the user aware of the loading process, you can use the `isLoading` prop on all top-level components, e.g. [`<Detail>`](../api-reference/user-interface/detail.md), [`<Form>`](../api-reference/user-interface/form.md), [`<Grid>`](../api-reference/user-interface/grid.md), or [`<List>`](../api-reference/user-interface/list.md).
+您可以从空列表或静态表单开始，然后加载数据以填充视图。为了让用户了解加载过程，您可以在所有顶级组件上使用 `isLoading` 属性，例如 [`<Detail>`](../api-reference/user-interface/detail.md), [`<Form>`](../api-reference/user-interface/form.md), [`<Grid>`](../api-reference/user-interface/grid.md), 或者 [`<List>`](../api-reference/user-interface/list.md)
 
-Here is an example to show the loading indicator in a list:
+以下是在列表中显示 loading 指示器的示例：
 
 ```typescript
 import { List } from "@raycast/api";
@@ -78,19 +78,18 @@ export default function Command() {
 }
 ```
 
----
+***
 
-## Forms
+## 表单
 
-### Use Forms Validation
+### 使用表单校验
 
-When an end-user enters some data, you can check to see that this input is in a format you expect.
-If the data isn't correctly formatted, you can set the `error` prop on the Form item to show a message explaining what needs to be corrected, and lets them try again.
+当用户最后输入一些数据时，您可以检查该输入是否是您期望的校验。如果数据格式不正确，您可以在 Form 项上设置 `error` 属性以显示一条消息，解释需要更正的内容，并让他们重试。
 
 ![](../.gitbook/assets/form-validation.png)
 
 {% hint style="info" %}
-Keep in mind that if the Form has any errors the [`Action.SubmitForm`](../api-reference/user-interface/actions.md#action.submitform) `onSubmit` callback won't be triggered.
+请记住，如果表单有任何错误，就不会触发 [`Action.SubmitForm`](../api-reference/user-interface/actions.md#action.submitform) 回调。
 {% endhint %}
 
 ```typescript
