@@ -1,16 +1,16 @@
 # Keyboard
 
-The Keyboard APIs are useful to make your actions accessible via the keyboard shortcuts. Shortcuts help users to use your command without touching the mouse.
+Keyboard API 可帮助您通过键盘快捷键执行操作。快捷键可帮助用户无需触摸鼠标即可使用您的命令。
 
-## Types
+## 类型
 
 ### Keyboard.Shortcut
 
-A keyboard shortcut is defined by one or more modifier keys (command, control, etc.) and a single key equivalent (a character or special key).
+键盘快捷键由一个或多个修饰键（command、control等）和一个等效键（字符或特殊键）定义。
 
-See [KeyModifier](keyboard.md#keyboard.keymodifier) and [KeyEquivalent](keyboard.md#keyboard.keyequivalent) for supported values.
+有关支持的值，请参阅 [KeyModifier](https://developers.raycast.com/api-reference/keyboard#keyboard.keymodifier) 和 [KeyEquivalent](https://developers.raycast.com/api-reference/keyboard#keyboard.keyequivalent)。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Action, ActionPanel, Detail } from "@raycast/api";
@@ -44,12 +44,12 @@ export default function Command() {
 }
 ```
 
-#### Properties
+#### 属性
 
-| Property                                    | Description                                 | Type                                                           |
-| ------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------- |
-| key<mark style="color:red;">\*</mark>       | The key of the keyboard shortcut.           | [`Keyboard.KeyEquivalent`](keyboard.md#keyboard.keyequivalent) |
-| modifiers<mark style="color:red;">\*</mark> | The modifier keys of the keyboard shortcut. | [`Keyboard.KeyModifier`](keyboard.md#keyboard.keymodifier)`[]` |
+| 名称                                          | 描述         | 类型                                                             |
+| ------------------------------------------- | ---------- | -------------------------------------------------------------- |
+| key<mark style="color:red;">\*</mark>       | 键盘快捷键的键。   | [`Keyboard.KeyEquivalent`](keyboard.md#keyboard.keyequivalent) |
+| modifiers<mark style="color:red;">\*</mark> | 键盘快捷键的修饰键。 | [`Keyboard.KeyModifier`](keyboard.md#keyboard.keymodifier)`[]` |
 
 ### Keyboard.KeyEquivalent
 
@@ -130,7 +130,7 @@ KeyEquivalent: "a" |
   "backspace";
 ```
 
-KeyEquivalent of a [Shortcut](keyboard.md#keyboard.shortcut)
+[快捷键](https://developers.raycast.com/api-reference/keyboard#keyboard.shortcut) 的等效键
 
 ### Keyboard.KeyModifier
 
@@ -138,4 +138,4 @@ KeyEquivalent of a [Shortcut](keyboard.md#keyboard.shortcut)
 KeyModifier: "cmd" | "ctrl" | "opt" | "shift";
 ```
 
-Modifier of a [Shortcut](keyboard.md#keyboard.shortcut)
+[快捷键](https://developers.raycast.com/api-reference/keyboard#keyboard.shortcut) 修饰符
