@@ -43,7 +43,7 @@
 * [文件结构](zi-liao/file-structure.md)
 * [生命周期](zi-liao/lifecycle/README.md)
   * [参数](zi-liao/lifecycle/arguments.md)
-  * [Background Refresh](zi-liao/lifecycle/background-refresh.md)
+  * [后台刷新](zi-liao/lifecycle/background-refresh.md)
   * [Deeplinks](zi-liao/lifecycle/deeplinks.md)
 * [Manifest](zi-liao/manifest.md)
 * [Security](zi-liao/security.md)

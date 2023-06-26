@@ -1,22 +1,22 @@
-# Background Refresh
+# 后台刷新
 
-Commands of an extension can be configured to be automatically run in the background, without the user manually opening them. Background refresh can be useful for:
+扩展的命令可以配置为在后台自动运行，无需用户手动打开它们。后台刷新可用于：
 
-* dynamically updating the subtitle of a command in Raycast root search
-* refreshing menu bar commands
-* other supporting functionality for your main commands
+* 动态更新 Raycast 根搜索中命令的子标题
+* 刷新菜单栏命令
+* 主要命令的其他支持功能
 
-This guide helps you understand when and how to use background refresh and learn about the constraints.
+本指南可帮助您了解何时以及如何使用后台刷新并了解限制。
 
-## Scheduling Commands
+## 调度命令
 
-Raycast supports scheduling commands with mode `no-view` and `menu-bar` at a configured interval.
+Raycast 支持以配置的时间间隔使用 `no-view` 和 `menu-bar` 的调度命令。
 
 ### Manifest
 
-Add a new property `interval` to a command in the [manifest](../manifest.md#command-properties)
+将新的属性 `interval`  添加到 [manifest](../manifest.md#command-properties) 中的命令
 
-Example:
+例子:
 
 ```json
 {
@@ -28,15 +28,17 @@ Example:
 },
 ```
 
-The interval specifies that the command should be launched in the background every X seconds (s), minutes (m), hours (h) or days (d). Examples: `10m`, `12h`, `1d`. The minimum value is 10 seconds (`10s`), which should be used cautiously, also see the section on best practices.
+间隔指定命令应在后台每 X 秒 (s)、分钟 (m)、小时 (h) 或天 (d) 启动。示例：`10m` 、`12h` 、`1d`。最小值为 10 秒 (`10s`)，应谨慎使用，另请参阅最佳实践部分。
 
-Note that the actual scheduling is not exact and might vary within a tolerance level. macOS determines the best time for running the command in order to optimize energy consumption, and scheduling times can also vary when running on battery. To prevent overlapping background launches of the same command, commands are terminated after a timeout that is dynamically adjusted to the interval.
+请注意，实际调度并不准确，可能会在容差范围内变化。 macOS 确定运行命令的最佳时间以优化能耗，并且在使用电池运行时，调度时间也会有所不同。为了防止同一命令在后台重叠启动，命令会在根据时间间隔动态调整的超时后终止。
 
-## Running in the background
+## 在后台运行
 
-The entry point of your command stays the same when launched from the background. For no-view commands, a command will run until the Promise of the main async function resolves. Menu bar commands render a React component and run until the `isLoading` property is set to `false`.
+从后台启动时，命令的入口点保持不变。对于无视图命令，命令将运行直到主异步函数的 Promise 解析为止。菜单栏命令渲染 React 组件并运行，直到 `isLoading` 属性设置为 `false`。
 
 You can use the global `environment.launchType` in your command to determine whether the command has been launched by the user (`LaunchType.UserInitiated`) or via background refresh (`LaunchType.Background`).
+
+您可以在命令中使用全局 `environment.launchType` 来确定该命令是由用户(`LaunchType.UserInitiated`)启动还是通过后台刷新(`LaunchType.Background`)启动。
 
 ```typescript
 import { environment, updateCommandMetadata } from "@raycast/api";
@@ -52,33 +54,33 @@ export default async function Command() {
 }
 ```
 
-Raycast auto-terminates the command if it exceeds its maximum execution time. If your command saves some state that is shared with other commands, make sure to use defensive programming, i.e. add handling for errors and data races if the stored state is incomplete or inaccessible.
+如果命令超过其最大执行时间，Raycast 会自动终止该命令。如果您的命令保存了与其他命令共享的某些状态，请确保使用防御性编程，即在存储的状态不完整或无法访问时添加对错误和数据抢用的处理。
 
-## Development and Debugging
+## 开发调试
 
-For local commands under development, errors are shown as usual via the console. Two developer actions in root search help you to run and debug scheduled commands:
+对于正在开发的本地命令，错误会像往常一样通过控制台显示。根搜索中的两个开发操作可帮助您运行和调试计划的命令：
 
-* Run in Background: this immediately runs the command with `environment.launchType` set to `LaunchType.Background`.
-* Show Error: if the command could not be loaded or an uncaught runtime exception was thrown, the full error can be shown in the Raycast error overlay for development. This action is also shown to users of the installed Store command and provides actions to copy and report the error on the production error overlay.
+* 在后台运行：这会立即运行命令，并将 `environment.launchType` 设置为`LaunchType.Background`。
+* 显示错误：如果无法加载命令或引发未捕获的运行时异常，则可以在 Raycast 错误叠加中显示完整错误。此操作还会向已安装的 Store 命令的用户显示，并提供复制和报告生产错误覆盖上的错误操作。
 
 ![](../../.gitbook/assets/background-refresh-error.png)
 
-When the background run leads to an error, users will also see a warning icon on the root search command and a tooltip with a hint to show the error via the Action Panel. The tooltip over the subtitle of a command shows the last run time.
+当后台运行导致错误时，用户还将在根搜索命令上看到警告图标，以及通过操作面板显示错误提示的工具提示。命令子标题上的工具可以提示显示上次运行时间。
 
-You can launch the built-in root search command "Extension Diagnostics" to see which of your commands run in background and when they last ran.
+您可以启动内置根搜索命令 “Extension Diagnostics” 来查看哪些命令在后台运行以及它们上次运行的时间。
 
-## Preferences
+## 首选项
 
-For scheduled commands, Raycast automatically adds command preferences that give users the options to enable and disable background refresh. Preferences also show the last run time of the command.
+对于计划命令，Raycast 会自动添加命令首选项，为用户提供启用和禁用后台刷新的选项。首选项还显示命令的上次运行时间。
 
 ![](../../.gitbook/assets/background-refresh-preferences.png)
 
-When a user installs the command via the Store, background refresh is initially _disabled_ and is activated either when the user opens the command for the first time or enables background refresh in preferences. (This is to avoid automatically running commands in the background without the user being aware of it.)
+当用户通过应用商店安装命令时，后台刷新最初是被禁用的，并在用户第一次打开命令或在首选项中启用后台刷新时的激活。 （这是为了避免在用户不知情的情况下在后台自动运行命令。）
 
-## Best Practices
+## 最佳实践
 
-* Make sure the command is useful both when manually launched by the user or when launched in the background
-* Choose the interval value as high as possible - low values mean the command will run more often and consume more energy
-* If your command performs network requests, check the rate limits of the service and handle errors appropriately (e.g. automatically retry later)
-* Make sure the command finishes as quickly as possible; for menu bar commands, ensure `isLoading` is set to false as early as possible
-* Use defensive programming if state is shared between commands of an extension and handle potential data races and inaccessible data
+* 确保该命令在用户手动启动或在后台启动时有用
+* 选择尽可能高的间隔值 - 低值意味着命令将更频繁地运行并消耗更多能量
+* 如果您的命令执行网络请求，请检查服务的速率限制并适当处理错误（例如稍后自动重试）
+* 确保命令尽快完成；对于菜单栏命令，请确保 `isLoading` 尽早设置为 false
+* 如果扩展的命令之间共享状态，则使用防御性编程并处理潜在的数据抢用和不可访问的数据

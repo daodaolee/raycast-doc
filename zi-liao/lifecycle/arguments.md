@@ -7,7 +7,7 @@ Raycast 支持命令传递参数，以便用户可以在打开命令之前直接
 参数在每个命令的 [mainfest](https://developers.raycast.com/information/manifest#argument-properties) 中配置。
 
 {% hint style="info" %}
-* 最大参数数量：3（如果您有需要更多参数的用例，请通过反馈或在 Slack 社区 中告知我们）
+* **最大参数数量：**3（如果您有需要更多参数的用例，请通过反馈或在 Slack 社区 中告知我们）
 * mainfest 中指定的参数顺序很重要，并且由根搜索中显示的字段作出反馈。为了提供更好的用户体验，请将必需的参数放在可选参数之前。
 {% endhint %}
 
