@@ -36,7 +36,7 @@
 ## 资料
 
 * [最佳实践](zi-liao/best-practices.md)
-* [Tools](zi-liao/tools/README.md)
+* [工具](zi-liao/tools/README.md)
   * [CLI](zi-liao/tools/cli.md)
   * [ESLint](zi-liao/tools/eslint.md)
   * [VS Code (community tool)](zi-liao/tools/vscode.md)

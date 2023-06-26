@@ -1,4 +1,4 @@
-# Tools
+# 工具
 
 Raycast provides several tools to smoothen your experience when building extensions:
 
