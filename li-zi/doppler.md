@@ -100,7 +100,7 @@ function ShareSecretAction() {
 
 让我们来分解一下：
 
-* `<ShareSecretAction>` 返回一个返回一个 [`<Action.SubmitForm>`](../api-reference/user-interface/actions.md#action.submitform).
+* `<ShareSecretAction>` 返回一个返回一个 [`<Action.SubmitForm>`](../api-can-kao/user-interface/actions.md#action.submitform).
 * `handleSubmit()` 函数在表单及其值提交时被调用。
   * 首先我们检查用户是否输入了密码。如果没有，我们提示一个 toast。
   * 然后，我们显示一个 toast，暗示正在进行网络调用以共享 Secret。

@@ -1,4 +1,4 @@
-# `getFavicon`
+# getFavicon
 
 Icon showing the favicon of a website.
 
@@ -19,12 +19,12 @@ function getFavicon(
 ): Image.ImageLike;
 ```
 
-- `name` is a string of the subject's name.
-- `options.fallback` is a [Image.Fallback](../../api-reference/user-interface/icons-and-images.md#image.fallback) icon in case the Favicon is not found. By default, the fallback will be `Icon.Link`.
-- `options.size` is the size of the returned favicon. By default, it is 64 pixels.
-- `options.mask` is the size of the [Image.Mask](../../api-reference/user-interface/icons-and-images.md#image.mask) to apply to the favicon.
+* `name` is a string of the subject's name.
+* `options.fallback` is a [Image.Fallback](../../api-can-kao/user-interface/icons-and-images.md#image.fallback) icon in case the Favicon is not found. By default, the fallback will be `Icon.Link`.
+* `options.size` is the size of the returned favicon. By default, it is 64 pixels.
+* `options.mask` is the size of the [Image.Mask](../../api-can-kao/user-interface/icons-and-images.md#image.mask) to apply to the favicon.
 
-Returns an [Image.ImageLike](../../api-reference/user-interface/icons-and-images.md) that can be used where Raycast expects them.
+Returns an [Image.ImageLike](../../api-can-kao/user-interface/icons-and-images.md) that can be used where Raycast expects them.
 
 ## Example
 

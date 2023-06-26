@@ -51,7 +51,7 @@ export default function Command() {
 
 当命令需要加载大数据集时，最好告知用户这一点。为了让你的命令保持敏捷，尽快渲染 React 组件显得非常重要。
 
-您可以从空列表或静态表单开始，然后加载数据以填充视图。为了让用户了解加载过程，您可以在所有顶级组件上使用 `isLoading` 属性，例如 [`<Detail>`](../api-reference/user-interface/detail.md), [`<Form>`](../api-reference/user-interface/form.md), [`<Grid>`](../api-reference/user-interface/grid.md), 或者 [`<List>`](../api-reference/user-interface/list.md)
+您可以从空列表或静态表单开始，然后加载数据以填充视图。为了让用户了解加载过程，您可以在所有顶级组件上使用 `isLoading` 属性，例如 [`<Detail>`](../api-can-kao/user-interface/detail.md), [`<Form>`](../api-can-kao/user-interface/form.md), [`<Grid>`](../api-can-kao/user-interface/grid.md), 或者 [`<List>`](../api-can-kao/user-interface/list.md)
 
 以下是在列表中显示 loading 指示器的示例：
 
@@ -89,7 +89,7 @@ export default function Command() {
 ![](../.gitbook/assets/form-validation.png)
 
 {% hint style="info" %}
-请记住，如果表单有任何错误，就不会触发 [`Action.SubmitForm`](../api-reference/user-interface/actions.md#action.submitform) 回调。
+请记住，如果表单有任何错误，就不会触发 [`Action.SubmitForm`](../api-can-kao/user-interface/actions.md#action.submitform) 回调。
 {% endhint %}
 
 ```typescript

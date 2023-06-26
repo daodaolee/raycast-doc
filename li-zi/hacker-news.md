@@ -152,7 +152,7 @@ function Actions(props: { item: Parser.Item }) {
 }
 ```
 
-该组件采用一个故事并使用我们所需的操作渲染一个 [`<ActionPanel>`](../api-reference/user-interface/action-panel.md)  。我们将操作添加到 `<StoryListItem>`:
+该组件采用一个故事并使用我们所需的操作渲染一个 [`<ActionPanel>`](../api-can-kao/user-interface/action-panel.md)  。我们将操作添加到 `<StoryListItem>`:
 
 ```typescript
 function StoryListItem(props: { item: Parser.Item; index: number }) {

@@ -34,7 +34,7 @@ export default async function Command() {
 
 * 用户在根搜索中搜索该命令并执行它
 * 用户注册该命令的别名并按下它
-* 另一个命令通过 [`launchCommand`](../../api-reference/command.md#launchcommand) 启动该命令
+* 另一个命令通过 [`launchCommand`](../../api-can-kao/command.md#launchcommand) 启动该命令
 * 该命令在 [后台](https://developers.raycast.com/information/lifecycle/background-refresh) 启动
 * [表单的草稿](https://developers.raycast.com/api-reference/user-interface/form#drafts) 已保存并由用户执行
 * 用户将该命令注册为 [fallback 命令](https://manual.raycast.com/fallback-commands)，并在根搜索中没有结果时执行它
@@ -53,13 +53,13 @@ export default function Command(props: LaunchProps) {
 
 ### 启动参数
 
-| 属性                                           | 描述                                                  | 类型                                                                      |
-| -------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
-| arguments<mark style="color:red;">\*</mark>  | 使用这些值来填充命令的初始状态。                                    | [`Arguments`](arguments.md#arguments)                                   |
-| launchType<mark style="color:red;">\*</mark> | 命令的启动类型（用户启动或后台）。                                   | [`LaunchType`](../../api-reference/environment.md#launchtype)           |
-| draftValues                                  | 当用户通过草稿输入命令时，该对象将包含保存为草稿的用户输入。使用它的值来填充表单的初始状态。      | [`Form.Values`](../../api-reference/user-interface/form.md#form.values) |
-| fallbackText                                 | 当该命令作为备用命令启动时，该字符串包含根搜索的文本。                         | `string`                                                                |
-| launchContext                                | 当通过 launchCommand 以编程方式启动命令时，该对象包含传递给  `context`的值。 | [`LaunchContext`](../../api-reference/command.md#launchcontext)         |
+| 属性                                           | 描述                                                  | 类型                                                                    |
+| -------------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------- |
+| arguments<mark style="color:red;">\*</mark>  | 使用这些值来填充命令的初始状态。                                    | [`Arguments`](arguments.md#arguments)                                 |
+| launchType<mark style="color:red;">\*</mark> | 命令的启动类型（用户启动或后台）。                                   | [`LaunchType`](../../api-can-kao/environment.md#launchtype)           |
+| draftValues                                  | 当用户通过草稿输入命令时，该对象将包含保存为草稿的用户输入。使用它的值来填充表单的初始状态。      | [`Form.Values`](../../api-can-kao/user-interface/form.md#form.values) |
+| fallbackText                                 | 当该命令作为备用命令启动时，该字符串包含根搜索的文本。                         | `string`                                                              |
+| launchContext                                | 当通过 launchCommand 以编程方式启动命令时，该对象包含传递给  `context`的值。 | [`LaunchContext`](../../api-can-kao/command.md#launchcontext)         |
 
 ## 卸载
 

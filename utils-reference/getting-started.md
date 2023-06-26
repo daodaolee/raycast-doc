@@ -1,6 +1,6 @@
-# Raycast Utilities
+# Getting Started
 
-In addition to the [Raycast API](../api-reference/cache.md) which is bundled as part of the app, we also provide a sibling package that contains a set of utilities to streamline common patterns and operations used in extensions.
+In addition to the [Raycast API](../api-can-kao/cache.md) which is bundled as part of the app, we also provide a sibling package that contains a set of utilities to streamline common patterns and operations used in extensions.
 
 ![](../.gitbook/assets/utils-illustration.jpg)
 
@@ -18,41 +18,41 @@ npm install --save @raycast/utils
 
 ### v1.8.0
 
-- Add a new [`runAppleScript`](./functions/runAppleScript.md) function.
-- Change the default `options.timeout` of `useExec` to 10s.
+* Add a new [`runAppleScript`](functions/runAppleScript.md) function.
+* Change the default `options.timeout` of `useExec` to 10s.
 
 ### v1.7.1
 
-Change the signature of [`getProgressIcon`](./icons/getProgressIcon.md) to accept a `Color` in addition to a string for the `options.background`.
+Change the signature of [`getProgressIcon`](icons/getProgressIcon.md) to accept a `Color` in addition to a string for the `options.background`.
 
 ### v1.7.0
 
-Change the signature of [`getProgressIcon`](./icons/getProgressIcon.md) to accept a `Color` in addition to a string for the `color`.
+Change the signature of [`getProgressIcon`](icons/getProgressIcon.md) to accept a `Color` in addition to a string for the `color`.
 
 ### v1.6.0
 
-Added the [`useAI`](./react-hooks/useAI.md) hook.
+Added the [`useAI`](react-hooks/useAI.md) hook.
 
 ### v1.4.0
 
-Added the [`useSQL`](./react-hooks/useSQL.md) hook.
+Added the [`useSQL`](react-hooks/useSQL.md) hook.
 
 ### v1.3.1
 
-- Added the `reset` method to `useForm`.
+* Added the `reset` method to `useForm`.
 
 ### v1.3.0
 
-- Added the `focus` method to `useForm`.
-- Added the `input` option to `useExec`.
+* Added the `focus` method to `useForm`.
+* Added the `input` option to `useExec`.
 
 ### v1.2.0
 
-Added [`useExec`](./react-hooks/useExec.md) and [`useForm`](./react-hooks/useForm.md) hooks.
+Added [`useExec`](react-hooks/useExec.md) and [`useForm`](react-hooks/useForm.md) hooks.
 
 ### v1.1.0
 
-Added [`getFavicon`](./icons/getFavicon.md) method.
+Added [`getFavicon`](icons/getFavicon.md) method.
 
 ### v1.0.0
 
