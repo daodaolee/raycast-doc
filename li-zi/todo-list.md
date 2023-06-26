@@ -1,20 +1,20 @@
 ---
-description: This example show how to use lists in combination with forms.
+description: 此示例展示了如何将列表与表单结合使用。
 ---
 
-# Todo List
+# Todo 列表
 
 {% hint style="info" %}
-The source code of the example can be found [here](https://github.com/raycast/extensions/tree/main/examples/todo-list#readme).
+该示例的源代码可以在 [这里](https://github.com/raycast/extensions/tree/main/examples/todo-list#readme) 找到。
 {% endhint %}
 
-What's an example section without a todo list?! Let's put one together in Raycast. This example will show how to render a list, navigate to a form to create a new element and update the list.
+没有 Todo 列表的示例什么也不是！让我们在 Raycast 中将其合在一起。此示例将展示如何展示列表、导航到表单，也包括创建新元素以及更新列表。
 
-![Example: A simple todo list](../.gitbook/assets/example-todo-list.png)
+![示例：一个简单的 Todo 列表](../.gitbook/assets/example-todo-list.png)
 
-## Render todo list
+## 渲染 todo 列表
 
-Let's start with a set of todos and simply render them as a list in Raycast:
+让我们从一组 todo 项开始，并简单地将它们渲染为 Raycast 中的列表：
 
 ```typescript
 import { List } from "@raycast/api";
@@ -42,6 +42,8 @@ export default function Command() {
 ```
 
 For this we define a TypeScript interface to describe out Todo with a `title` and a `isCompleted` flag that we use later to complete the todo. We use [React's `useState` hook](https://reactjs.org/docs/hooks-state.html) to create a local state of our todos. This allows us to update them later and the list will get re-rendered. Lastly we render a list of all todos.
+
+为此，我们定义了一个 TypeScript 接口来描述带有 `title` 和 `isCompleted` 标志的 Todo，稍后我们将使用该标志来完成 todo。我们使用 React 的 `useState` 钩子来创建 todo 的本地状态。我们可以稍后更新它们并且列表将被重新渲染。最后我们呈现所有tdo的列表。
 
 ## Create a todo
 

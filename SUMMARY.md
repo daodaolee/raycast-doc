@@ -30,7 +30,7 @@
 
 * [Doppler 共享 Secrets](li-zi/doppler.md)
 * [Hacker News](li-zi/hacker-news.md)
-* [Todo List](li-zi/todo-list.md)
+* [Todo 列表](li-zi/todo-list.md)
 * [Spotify Controls](li-zi/spotify-controls.md)
 
 ## Information
