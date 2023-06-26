@@ -1,31 +1,31 @@
-# Security
+# 安全性
 
 {% hint style="info" %}
-Note that this is _not_ a guide on how to create secure Raycast extensions but rather an overview of security-related aspects on how extensions are built, distributed and run.
+请注意，这不是关于如何创建安全 Raycast 扩展的指南，而是关于如何构建、分发和运行扩展的安全相关方面的概述。
 {% endhint %}
 
 ## Raycast
 
-Raycast itself runs outside of the App Store as "Developer ID Application", **signed** with the Raycast certificate and verified by Apple's **notarization service** before the app is distributed. Raycast provides various commands that interact with OS-level functionality, some of which prompt the user for granting **permissions** when required. The app is **automatically kept up-to-date** to minimize the risk of running heavily outdated versions and to ship hotfixes quickly. Raycast is a local-first application that stores user data in a local **encrypted database**, makes use of the system **Keychain** where secure data is stored, and generally connects to third-party APIs directly rather than proxying data through Raycast servers.
+Raycast 本身作为“开发者 ID 应用程序”在 App Store 之外运行，在应用程序分发之前使用 Raycast 证书进行**签名**并由 Apple 的**公证服务**进行验证。 Raycast 提供了与操作系统级功能交互的各种命令，其中一些命令会在需要时提示用户授予**权限**。该应用程序会**自动保持最新状态**，以最大限度地降低运行严重过时版本的风险并快速发布修补程序。 Raycast 是一个本地优先的应用程序，它将用户数据存储在本地**加密数据库**中，利用存储安全数据的系统 **Keychain**，并且通常直接连接到第三方 API，而不是通过 Raycast 服务器代理数据。
 
-## Publishing Process
+## 发布流程
 
-All extensions are **open source** so the current source code can be inspected at all times. Before an extension gets merged into the **public repository**, members from Raycast and the community collaboratively **review** extensions, and follow our **store guidelines**. After the code review, the Continuous Integration system performs a set of **validations** to make sure that manifest conforms to the defined schema, required assets have the correct format, the author is valid, and no build and type errors are present. (More CI pipeline tooling for automated static security analysis is planned.) The built extension is then **archived and uploaded** to the Raycast Store, and eventually published for a registered user account. When an extension is installed or updated, the extension is downloaded from the store, unarchived to disk, and a record is updated in the local Raycast database. End-users install extensions through the built-in store or the web store.
+所有扩展都是**开源**的，因此可以随时检查当前的源代码。在扩展程序合并到**公共存储库**之前，Raycast 和社区的成员会协作**审查**扩展程序，并遵循我们的**商店指南**。代码审查后，持续集成系统会执行一组**验证**，以确保清单符合定义的架构、所需资产具有正确的格式、作者有效，并且不存在构建和类型错误。 （计划使用更多用于自动化静态安全分析的 CI 管道工具。）然后将构建的扩展存档并上传到 Raycast Store，并最终为注册用户帐户发布。**安装或更新扩展**时，将从商店下载该扩展，取消存档到磁盘，并在本地 Raycast 数据库中更新记录。最终用户通过内置商店或网上商店安装扩展。
 
-## Runtime Model
+## 运行时模式
 
-In order to run extensions, Raycast launches a **single child Node.js process** where extensions get loaded and unloaded as needed; inter-process communication with Raycast happens through standard file handles and a thin RPC protocol that only exposes a **defined set of APIs**, that is, an extension cannot just perform any Raycast operation. The **Node runtime is managed** by Raycast and automatically downloaded to the user's machine. We use an official version and **verify the Node binary** to ensure it has not been tampered with.
+为了运行扩展，Raycast 启动一个 **Node.js 子进程**，在其中根据需要加载和卸载扩展； Raycast 的进程间通信通过标准文件句柄和小型 RPC 协议进行，该协议仅公开一组**定义的 API**，也就是说，扩展程序不能只执行任何 Raycast 操作。 **Node运行时由Raycast管理**并自动下载到用户的机器上。我们使用官方版本并验证 **Node 二进制文件**以确保它没有被篡改。
 
-An extension runs in its own **v8 isolate** (worker thread) and gets its own event loop, JavaScript engine and Node instance, and limited heap memory. That way, we ensure **isolation between extensions** when future Raycast versions may support background executions of multiple extensions running concurrently.
+扩展在自己的 **v8 isolate**（工作线程）中运行，并获得自己的事件循环、JavaScript 引擎和 Node 实例以及有限的堆内存。这样，当未来的 Raycast 版本可能支持同时运行的多个扩展的后台执行时，我们可以确保**扩展之间的隔离**。
 
-## Permissions
+## 权限
 
-Extensions are **not further sandboxed** as far as policies for file I/O, networking, or other features of the Node runtime are concerned; this might change in the future as we want to carefully balance user/developer experience and security needs. By default and similar to other macOS apps, accessing special directories such as the user Documents directory or performing screen recording first requires users to give **permissions** to Raycast (parent process) via the **macOS Security & Preferences** pane, otherwise programmatic access is not permitted.
+就文件 I/O、网络或 Node 运行时的其他功能的策略而言，扩展**不会进一步沙箱化**；这在未来可能会改变，因为我们希望仔细平衡用户/开发人员体验和安全需求。默认情况下，与其他 macOS 应用程序类似，访问特殊目录（例如用户文档目录）或执行屏幕录制首先需要用户通过 macOS **安全和首选项弹窗**向 Raycast（父进程）授予**权限**，否则不允许进行编程访问。
 
-## Data Storage
+## 数据存储
 
-While extensions can access the file system and use their own methods of storing and accessing data, Raycast provides **APIs for securely storing data**: _password_ preferences can be used to ask users for values such as access tokens, and the local storage APIs provide methods for reading and writing data payloads. In both cases, the data is stored in the local encrypted database and can only accessed by the corresponding extension.
+虽然扩展可以访问文件系统并使用自己的存储和访问数据的方法，但 Raycast 提供了用于**安全存储数据的 API**：密码首选项可用于向用户询问访问令牌等值，本地存储 API 提供了读取方法并写入数据有效负载。在这两种情况下，数据都存储在本地加密数据库中，并且只能由相应的扩展程序访问。
 
-## Automatic Updates
+## 自动更新
 
-Both Raycast itself and extensions are **automatically updated** and we think of this as a security feature since countless exploits have happened due to outdated and vulnerable software. Our goal is that neither developers nor end-users need to worry about versions, and we **minimize the time from update to distribution** to end-users.
+Raycast 本身和扩展都会**自动更新**，我们认为这是一项安全功能，因为过时且易受攻击的软件已经发生了无数的漏洞。我们的目标是开发人员和最终用户都不需要担心版本，并且我们**最大限度地缩短从更新到分发给最终用户的时间**。

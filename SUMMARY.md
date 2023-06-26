@@ -46,9 +46,9 @@
   * [后台刷新](zi-liao/lifecycle/background-refresh.md)
   * [Deeplinks](zi-liao/lifecycle/deeplinks.md)
 * [Manifest](zi-liao/manifest.md)
-* [Security](zi-liao/security.md)
-* [Terminology](zi-liao/terminology.md)
-* [Versioning](zi-liao/versioning.md)
+* [安全性](zi-liao/security.md)
+* [术语](zi-liao/terminology.md)
+* [版本控制](zi-liao/versioning.md)
 
 ## API Reference
 

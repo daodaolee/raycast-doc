@@ -1,21 +1,21 @@
-# Versioning
+# 版本控制
 
-Versioning your extensions is straightforward since we've designed the system in a way that **frees you from having to deal with versioning schemes and compatibility**. The model is similar to that of app stores where there's only one implicit _latest_ version that will be updated when the extension is published in the store. Extensions are automatically updated for end users.
+对扩展进行版本控制非常简单，因为**我们设计系统的方式使您无需处理版本控制方案和兼容性**。该模型类似于应用商店的模型，其中只有一个隐式最新版本，当扩展在商店中发布时，该版本将被更新。扩展会自动为最终用户更新。
 
-## Development
+## 开发
 
-For **development**, this means that you do _not_ declare a version property in the manifest. If you wish to use API features that were added in a later version, you just update your `@raycast/api` npm dependency, start using the feature, and submit an extension update to the store.
+对于**开发**来说，这意味着您无需在 mainfest 中声明版本属性。如果您希望使用更高版本中添加的 API 功能，只需更新您的 `@raycast/api` npm 依赖项，开始使用该功能，并向商店提交扩展更新即可。
 
-## End Users
+## 终端用户
 
-For **end-users** installing or updating your extension, Raycast automatically checks the compatibility between the API version that the extension actually uses and the user's current Raycast app version (which contains the API runtime and also manages the Node version). If there's a compatibility mismatch such as the user not having the required latest Raycast app version, we show a hint and prompt the user to update Raycast so that the next compatibility check succeeds.
+对于安装或更新扩展的**终端用户**，Raycast 会自动检查扩展实际使用的 API 版本与用户当前的 Raycast 应用程序版本（包含 API 运行时并管理 Node 版本）之间的兼容性。如果存在兼容性不匹配的情况，例如用户没有所需的最新 Raycast 应用程序版本，我们会显示提示并提示用户更新 Raycast，以便下一次兼容性检查成功。
 
-## Version History
+## 版本历史
 
-Optionally, you can provide a `changelog.md` file in your extension, and give detailed changes with every update. These changes can be viewed by the user on the extension details screen, under Version History, as well as on the [raycast.com/store](https://raycast.com/store).
+如果您愿意，您可以在扩展中提供一个 `changelog.md` 文件，并在每次更新时提供详细的更改。用户可以在扩展详细信息屏幕、版本历史记录下以及 [raycast.com/store](https://raycast.com/store) 上查看这些更改。
 
-You can learn more about Version History [here](../ji-chu/prepare-an-extension-for-store.md#version-history), how to add it to your extension, and the required format for the best appearance.
+您可以在 [此处](https://developers.raycast.com/basics/prepare-an-extension-for-store#version-history) 了解有关版本历史记录的更多信息、如何将其添加到您的扩展以及最佳外观所需的格式。
 
-## API Evolution
+## API演变
 
-Generally, we follow an **API evolution** process, meaning that we stay backward-compatible and do not introduce breaking changes within the same major API version. We'll 1) add new functionality and 2) we'll mark certain API methods and components as _deprecated_ over time, which signals to you that you should stop using those features and migrate to the new recommended alternatives. At some point in the future, we may introduce a new breaking major release; however, at this time, you will be notified, and there will be a transition period for migrating extensions.
+一般来说，我们遵循 **API 演进**过程，这意味着我们保持向后兼容，并且不会在同一主要 API 版本中引入重大更改。我们将 1) 添加新功能，2) 我们将随着时间的推移将某些 API 方法和组件标记为已弃用，这向您发出提示，表明您应该停止使用这些功能并迁移到新推荐的替代方案。在未来的某个时候，我们可能会推出一个新的重大版本；但是，此时您会收到通知，并且迁移扩展会有一个过渡期。
