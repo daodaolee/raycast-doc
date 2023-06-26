@@ -1,20 +1,20 @@
 ---
-description: This example shows how to show an RSS feed as a List.
+description: 此示例演示如何将 RSS 提要显示为列表。
 ---
 
 # Hacker News
 
 {% hint style="info" %}
-The source code of the example can be found [here](https://github.com/raycast/extensions/tree/main/extensions/hacker-news#readme). You can install it [here](https://www.raycast.com/thomas/hacker-news).
+该示例的源代码可以在 [这里](https://github.com/raycast/extensions/tree/main/extensions/hacker-news#readme) 找到。您可以在 [此处](https://www.raycast.com/thomas/hacker-news) 安装它。
 {% endhint %}
 
-Who doesn't like a good morning read on [Hacker News](https://news.ycombinator.com) with a warm coffee?! In this example, we create a simple list with the top stories on the frontpage.
+谁不喜欢早上喝着热咖啡阅读一下 [Hacker News](https://news.ycombinator.com) ？在此示例中，我们会创建一个简单的列表，其中包含首页上的热门新闻。
 
-![Example: Read frontpage of Hacker News](../.gitbook/assets/example-hacker-news.png)
+![示例：阅读 Hacker News 的头版](../.gitbook/assets/example-hacker-news.png)
 
-## Load top stories
+## 加载热门新闻
 
-First, let's get the latest top stories. For this we use a [RSS feed](https://hnrss.org):
+首先，让我们了解最新的头条新闻。为此，我们使用一个 [RSS feed](https://hnrss.org):&#x20;
 
 ```typescript
 import { Action, ActionPanel, List, showToast, Toast } from "@raycast/api";
@@ -52,17 +52,17 @@ export default function Command() {
 }
 ```
 
-Breaking this down:
+分解一下：
 
-- We use a third-party dependency to parse the RSS feed and intially the parser.
-- We define our command state as a TypeScript interface.
-- We use [React's `useEffect`](https://reactjs.org/docs/hooks-effect.html) hook to parse the RSS feed after the command did mount.
-- We print the top stories to the console.
-- We render a list and show the loading indicator as long as we load the stories.
+* 我们使用第三方依赖项来解析 RSS 提要。
+* 我们将 command state 定义为 TypeScript 接口。
+* 在命令挂载后，我们使用 React 的 [`useEffect`](https://reactjs.org/docs/hooks-effect.html) 来解析 RSS feed。
+* 我们将头条新闻打印到控制台。
+* 只要我们加载新闻，我们就会渲染一个列表并显示 loading 指示器。
 
-## Render stories
+## 渲染新闻
 
-Now that we got the data from Hacker News, we want to render the stories. For this, we create a new React component and a few helper functions that render a story:
+现在我们从 Hacker News 获得了数据，我们想要展示这些新闻。为此，我们创建一个新的 React 组件和一些渲染新闻的辅助函数：
 
 ```typescript
 function StoryListItem(props: { item: Parser.Item; index: number }) {
@@ -108,7 +108,7 @@ function getComments(item: Parser.Item) {
 }
 ```
 
-To give the list item a nice look, we use a simple number emoji as icon, add the creator's name as subtitle and the points and comments as accessory title. Now we can render the `<StoryListItem>`:
+为了让列表项看起来更漂亮，我们使用一个简单的数字表情符号作为图标，添加创建者的名字作为副标题，添加 points 和评论作为附件标题。现在我们可以渲染 `<StoryListItem>`:
 
 ```typescript
 export default function Command() {
@@ -126,9 +126,9 @@ export default function Command() {
 }
 ```
 
-## Add actions
+## 添加操作
 
-When we select a story in the list, we want to be able to open it in the browser and also copy it's link so that we can share it in our watercooler Slack channel. For this, we create a new React Component:
+当我们在列表中选择一个故事时，我们希望能够在浏览器中打开它并复制它的链接，以便我们可以在 Watercooler Slack 频道中共享它。为此，我们创建一个新的 React 组件：
 
 ```typescript
 function Actions(props: { item: Parser.Item }) {
@@ -152,7 +152,7 @@ function Actions(props: { item: Parser.Item }) {
 }
 ```
 
-The component takes a story and renders an [`<ActionPanel>`](../api-reference/user-interface/action-panel.md) with our required actions. We add the actions to the `<StoryListItem>`:
+该组件采用一个故事并使用我们所需的操作渲染一个 [`<ActionPanel>`](../api-reference/user-interface/action-panel.md)  。我们将操作添加到 `<StoryListItem>`:
 
 ```typescript
 function StoryListItem(props: { item: Parser.Item; index: number }) {
@@ -171,9 +171,9 @@ function StoryListItem(props: { item: Parser.Item; index: number }) {
 }
 ```
 
-## Handle errors
+## 错误处理
 
-Lastly, we want to be a good citizen and handle errors appropriately to guarantee a smooth experience. We'll show a toast whenever our network request fails:
+最后，我们希望适当地处理错误以保证流畅的体验。每当我们的网络请求失败时，我们都会显示一个 toast：
 
 ```typescript
 export default function Command() {
@@ -193,6 +193,6 @@ export default function Command() {
 }
 ```
 
-## Wrapping up
+## 结尾
 
-That's it, you have a working extension to read the frontpage of Hacker News. As next steps, you can add another command to show the jobs feed or add an action to copy a Markdown formatted link.
+就是这样，您就有了一个可以阅读 Hacker News 首页的扩展。作为后续步骤，您可以添加另一个命令来显示作业源或添加一个操作来复制 Markdown 格式的链接。
