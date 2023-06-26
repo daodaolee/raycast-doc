@@ -8,7 +8,7 @@ The Keyboard APIs are useful to make your actions accessible via the keyboard sh
 
 A keyboard shortcut is defined by one or more modifier keys (command, control, etc.) and a single key equivalent (a character or special key).
 
-See [KeyModifier](#keyboard.keymodifier) and [KeyEquivalent](#keyboard.keyequivalent) for supported values.
+See [KeyModifier](keyboard.md#keyboard.keymodifier) and [KeyEquivalent](keyboard.md#keyboard.keyequivalent) for supported values.
 
 #### Example
 
@@ -46,10 +46,10 @@ export default function Command() {
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| key<mark style="color:red;">*</mark> | The key of the keyboard shortcut. | <code>[Keyboard.KeyEquivalent](keyboard.md#keyboard.keyequivalent)</code> |
-| modifiers<mark style="color:red;">*</mark> | The modifier keys of the keyboard shortcut. | <code>[Keyboard.KeyModifier](keyboard.md#keyboard.keymodifier)[]</code> |
+| Property                                    | Description                                 | Type                                                           |
+| ------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------- |
+| key<mark style="color:red;">\*</mark>       | The key of the keyboard shortcut.           | [`Keyboard.KeyEquivalent`](keyboard.md#keyboard.keyequivalent) |
+| modifiers<mark style="color:red;">\*</mark> | The modifier keys of the keyboard shortcut. | [`Keyboard.KeyModifier`](keyboard.md#keyboard.keymodifier)`[]` |
 
 ### Keyboard.KeyEquivalent
 
@@ -130,7 +130,7 @@ KeyEquivalent: "a" |
   "backspace";
 ```
 
-KeyEquivalent of a [Shortcut](#keyboard.shortcut)
+KeyEquivalent of a [Shortcut](keyboard.md#keyboard.shortcut)
 
 ### Keyboard.KeyModifier
 
@@ -138,4 +138,4 @@ KeyEquivalent of a [Shortcut](#keyboard.shortcut)
 KeyModifier: "cmd" | "ctrl" | "opt" | "shift";
 ```
 
-Modifier of a [Shortcut](#keyboard.shortcut)
+Modifier of a [Shortcut](keyboard.md#keyboard.shortcut)

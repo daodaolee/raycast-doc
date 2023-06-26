@@ -6,8 +6,7 @@
 
 A hook that lets you push and pop view components in the navigation stack.
 
-You most likely won't use this hook too often. To push a new component, use the [Push Action](./actions.md#action.push).
-When a user presses `ESC`, we automatically pop to the previous component.
+You most likely won't use this hook too often. To push a new component, use the [Push Action](actions.md#action.push). When a user presses `ESC`, we automatically pop to the previous component.
 
 #### Signature
 
@@ -57,18 +56,17 @@ export default function Command() {
 
 #### Return
 
-A [Navigation](#navigation) object with [Navigation.push](#navigation) and [Navigation.pop](#navigation) functions.
-Use the functions to alter the navigation stack.
+A [Navigation](navigation.md#navigation) object with [Navigation.push](navigation.md#navigation) and [Navigation.pop](navigation.md#navigation) functions. Use the functions to alter the navigation stack.
 
 ## Types
 
 ### Navigation
 
-Return type of the [useNavigation](#usenavigation) hook to perform push and pop actions.
+Return type of the [useNavigation](navigation.md#usenavigation) hook to perform push and pop actions.
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| pop<mark style="color:red;">*</mark> | Pop current view component from the navigation stack. | <code>() => void</code> |
-| push<mark style="color:red;">*</mark> | Push a new view component to the navigation stack. | <code>(component: React.ReactNode) => void</code> |
+| Property                               | Description                                           | Type                                   |
+| -------------------------------------- | ----------------------------------------------------- | -------------------------------------- |
+| pop<mark style="color:red;">\*</mark>  | Pop current view component from the navigation stack. | `() => void`                           |
+| push<mark style="color:red;">\*</mark> | Push a new view component to the navigation stack.    | `(component: React.ReactNode) => void` |

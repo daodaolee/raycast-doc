@@ -10,7 +10,7 @@ Additionally, Toasts can have some actions associated to the action they are abo
 
 ### showToast
 
-Creates and shows a Toast with the given [options](#toast.options).
+Creates and shows a Toast with the given [options](toast.md#toast.options).
 
 #### Signature
 
@@ -68,9 +68,9 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| options<mark style="color:red;">*</mark> | The options to customize the Toast. | <code>[Alert.Options](alert.md#alert.options)</code> |
+| Name                                      | Description                         | Type                                      |
+| ----------------------------------------- | ----------------------------------- | ----------------------------------------- |
+| options<mark style="color:red;">\*</mark> | The options to customize the Toast. | [`Alert.Options`](alert.md#alert.options) |
 
 #### Return
 
@@ -82,28 +82,28 @@ A Promise that resolves with the shown Toast. The Toast can be used to change or
 
 A Toast with a certain style, title, and message.
 
-Use [showToast](#showtoast) to create and show a Toast.
+Use [showToast](toast.md#showtoast) to create and show a Toast.
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| message<mark style="color:red;">*</mark> | An additional message for the Toast. Useful to show more information, e.g. an identifier of a newly created asset. | <code>string</code> |
-| primaryAction<mark style="color:red;">*</mark> | The primary Action the user can take when hovering on the Toast. | <code>[Alert.ActionOptions](alert.md#alert.actionoptions)</code> |
-| secondaryAction<mark style="color:red;">*</mark> | The secondary Action the user can take when hovering on the Toast. | <code>[Alert.ActionOptions](alert.md#alert.actionoptions)</code> |
-| style<mark style="color:red;">*</mark> | The style of a Toast. | <code>[Action.Style](../user-interface/actions.md#action.style)</code> |
-| title<mark style="color:red;">*</mark> | The title of a Toast. Displayed on the top. | <code>string</code> |
+| Property                                          | Description                                                                                                        | Type                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| message<mark style="color:red;">\*</mark>         | An additional message for the Toast. Useful to show more information, e.g. an identifier of a newly created asset. | `string`                                                    |
+| primaryAction<mark style="color:red;">\*</mark>   | The primary Action the user can take when hovering on the Toast.                                                   | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| secondaryAction<mark style="color:red;">\*</mark> | The secondary Action the user can take when hovering on the Toast.                                                 | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| style<mark style="color:red;">\*</mark>           | The style of a Toast.                                                                                              | [`Action.Style`](../user-interface/actions.md#action.style) |
+| title<mark style="color:red;">\*</mark>           | The title of a Toast. Displayed on the top.                                                                        | `string`                                                    |
 
 #### Methods
 
-| Name | Type                                | Description      |
-| :--- | :---------------------------------- | :--------------- |
-| hide | <code>() => Promise&lt;void></code> | Hides the Toast. |
-| show | <code>() => Promise&lt;void></code> | Shows the Toast. |
+| Name | Type                  | Description      |
+| ---- | --------------------- | ---------------- |
+| hide | `() => Promise<void>` | Hides the Toast. |
+| show | `() => Promise<void>` | Shows the Toast. |
 
 ### Toast.Options
 
-The options to create a [Toast](#toast).
+The options to create a [Toast](toast.md#toast).
 
 #### Example
 
@@ -129,38 +129,36 @@ export default async function Command() {
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The title of a Toast. Displayed on the top. | <code>string</code> |
-| message | An additional message for the Toast. Useful to show more information, e.g. an identifier of a newly created asset. | <code>string</code> |
-| primaryAction | The primary Action the user can take when hovering on the Toast. | <code>[Alert.ActionOptions](alert.md#alert.actionoptions)</code> |
-| secondaryAction | The secondary Action the user can take when hovering on the Toast. | <code>[Alert.ActionOptions](alert.md#alert.actionoptions)</code> |
-| style | The style of a Toast. | <code>[Action.Style](../user-interface/actions.md#action.style)</code> |
+| Property                                | Description                                                                                                        | Type                                                        |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| title<mark style="color:red;">\*</mark> | The title of a Toast. Displayed on the top.                                                                        | `string`                                                    |
+| message                                 | An additional message for the Toast. Useful to show more information, e.g. an identifier of a newly created asset. | `string`                                                    |
+| primaryAction                           | The primary Action the user can take when hovering on the Toast.                                                   | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| secondaryAction                         | The secondary Action the user can take when hovering on the Toast.                                                 | [`Alert.ActionOptions`](alert.md#alert.actionoptions)       |
+| style                                   | The style of a Toast.                                                                                              | [`Action.Style`](../user-interface/actions.md#action.style) |
 
 ### Toast.Style
 
 Defines the visual style of the Toast.
 
-Use [Toast.Style.Success](#toast.style) for confirmations and [Toast.Style.Failure](#toast.style) for displaying errors.
-Use [Toast.Style.Animated](#toast.style) when your Toast should be shown until a process is completed.
-You can hide it later by using [Toast.hide](#toast) or update the properties of an existing Toast.
+Use [Toast.Style.Success](toast.md#toast.style) for confirmations and [Toast.Style.Failure](toast.md#toast.style) for displaying errors. Use [Toast.Style.Animated](toast.md#toast.style) when your Toast should be shown until a process is completed. You can hide it later by using [Toast.hide](toast.md#toast) or update the properties of an existing Toast.
 
 #### Enumeration members
 
 | Name     | Value                                         |
-| :------- | :-------------------------------------------- |
+| -------- | --------------------------------------------- |
 | Animated | ![](../../.gitbook/assets/toast-animated.png) |
 | Success  | ![](../../.gitbook/assets/toast-success.png)  |
 | Failure  | ![](../../.gitbook/assets/toast-failure.png)  |
 
 ### Toast.ActionOptions
 
-The options to create a [Toast](#toast) Action.
+The options to create a [Toast](toast.md#toast) Action.
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The title of the action. | <code>string</code> |
-| onAction<mark style="color:red;">*</mark> | A callback called when the action is triggered. | <code>(toast: [Toast](toast.md#toast)) => void</code> |
-| shortcut | The keyboard shortcut for the action. | <code>[Keyboard.Shortcut](../keyboard.md#keyboard.shortcut)</code> |
+| Property                                   | Description                                     | Type                                                    |
+| ------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------- |
+| title<mark style="color:red;">\*</mark>    | The title of the action.                        | `string`                                                |
+| onAction<mark style="color:red;">\*</mark> | A callback called when the action is triggered. | `(toast:` [`Toast`](toast.md#toast)`) => void`          |
+| shortcut                                   | The keyboard shortcut for the action.           | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut) |

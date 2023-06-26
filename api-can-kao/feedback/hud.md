@@ -28,9 +28,9 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The title that will be displayed in the HUD. | <code>string</code> |
+| Name                                    | Description                                  | Type     |
+| --------------------------------------- | -------------------------------------------- | -------- |
+| title<mark style="color:red;">\*</mark> | The title that will be displayed in the HUD. | `string` |
 
 #### Return
 

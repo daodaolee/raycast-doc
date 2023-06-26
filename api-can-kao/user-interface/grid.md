@@ -3,26 +3,25 @@
 The `Grid` component is provided as an alternative to the [List](list.md#list) component when the defining characteristic of an item is an image.
 
 {% hint style="info" %}
-Because its API tries to stick as closely to [List](list.md#list)'s as possible, changing a view from [List](list.md#list) to [Grid](#grid) should be as simple as:
+Because its API tries to stick as closely to [List](list.md#list)'s as possible, changing a view from [List](list.md#list) to [Grid](grid.md#grid) should be as simple as:
 
-- making sure you're using at least version 1.36.0 of the `@raycast/api` package
-- updating your imports from `import { List } from '@raycast/api'` to `import { Grid } from '@raycast/api'`;
-- removing the `isShowingDetail` prop from the top-level `List` component, along with all [List.Item](list.md#list.item)s' `detail` prop
-- renaming all [List.Item](list.md#list.item)s' h`icon` prop to `content`
-- removing all [List.Item](list.md#list.item)s' `accessories`, `accessoryIcon` and `accessoryTitle props; [Grid.Item](#grid.item) does not _currently_ support accessories
-- finally, replacing all usages of `List` with `Grid`.
-  {% endhint %}
+* making sure you're using at least version 1.36.0 of the `@raycast/api` package
+* updating your imports from `import { List } from '@raycast/api'` to `import { Grid } from '@raycast/api'`;
+* removing the `isShowingDetail` prop from the top-level `List` component, along with all [List.Item](list.md#list.item)s' `detail` prop
+* renaming all [List.Item](list.md#list.item)s' h`icon` prop to `content`
+* removing all [List.Item](list.md#list.item)s' `accessories`, `accessoryIcon` and \`accessoryTitle props; [Grid.Item](grid.md#grid.item) does not _currently_ support accessories
+* finally, replacing all usages of `List` with `Grid`.
+{% endhint %}
 
 ![](../../.gitbook/assets/grid.png)
 
 ## Search Bar
 
-The search bar allows users to interact quickly with grid items. By default, [Grid.Items](#grid.item) are displayed if the user's input can be (fuzzy) matched to the item's `title` or `keywords`.
+The search bar allows users to interact quickly with grid items. By default, [Grid.Items](grid.md#grid.item) are displayed if the user's input can be (fuzzy) matched to the item's `title` or `keywords`.
 
 ### Custom filtering
 
-Sometimes, you may not want to rely on Raycast's filtering, but use/implement your own. If that's the case, you can set the `Grid`'s `filtering` [prop](#props) to false, and the items displayed will be independent of the search bar's text.
-Note that `filtering` is also implicitly set to false if an `onSearchTextChange` listener is specified. If you want to specify a change listener and _still_ take advantage of Raycast's built-in filtering, you can explicitly set `filtering` to true.
+Sometimes, you may not want to rely on Raycast's filtering, but use/implement your own. If that's the case, you can set the `Grid`'s `filtering` [prop](grid.md#props) to false, and the items displayed will be independent of the search bar's text. Note that `filtering` is also implicitly set to false if an `onSearchTextChange` listener is specified. If you want to specify a change listener and _still_ take advantage of Raycast's built-in filtering, you can explicitly set `filtering` to true.
 
 ```typescript
 import { useEffect, useState } from "react";
@@ -62,7 +61,7 @@ export default function Command() {
 
 Other times, you may want the content of the search bar to be updated by the extension, for example, you may store a list of the user's previous searches and, on the next visit, allow them to "continue" where they left off.
 
-To do so, you can use the `searchText` [prop](#props).
+To do so, you can use the `searchText` [prop](grid.md#props).
 
 ```typescript
 import { useState } from "react";
@@ -103,13 +102,12 @@ export default function Command() {
 
 Some extensions may benefit from giving users a second filtering dimension. A media file management extension may allow users to view only videos or only images, an image-searching extension may allow switching ssearch engines, etc.
 
-This is where the `searchBarAccessory` [prop](#props) is useful. Pass it a [Grid.Dropdown](#grid.dropdown) component, and it will be displayed on the right-side of the search bar. Invoke it either by using the global shortcut `⌘` `P` or by clicking on it.
+This is where the `searchBarAccessory` [prop](grid.md#props) is useful. Pass it a [Grid.Dropdown](grid.md#grid.dropdown) component, and it will be displayed on the right-side of the search bar. Invoke it either by using the global shortcut `⌘` `P` or by clicking on it.
 
 ## Examples
 
 {% tabs %}
 {% tab title="Grid.tsx" %}
-
 ```jsx
 import { Grid } from "@raycast/api";
 
@@ -122,11 +120,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
 
 {% tab title="GridWithSections.tsx" %}
-
 ```typescript
 import { Grid } from "@raycast/api";
 
@@ -143,11 +139,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
 
 {% tab title="GridWithActions.tsx" %}
-
 ```typescript
 import { ActionPanel, Action, Grid } from "@raycast/api";
 
@@ -167,11 +161,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
 
 {% tab title="GridWithEmptyView.tsx" %}
-
 ```typescript
 import { useEffect, useState } from "react";
 import { Grid, Image } from "@raycast/api";
@@ -198,16 +190,14 @@ export default function CommandWithCustomEmptyView() {
   );
 }
 ```
-
 {% endtab %}
-
 {% endtabs %}
 
 ## API Reference
 
 ### Grid
 
-Displays [Grid.Section](#grid.section)s or [Grid.Item](#grid.item)s.
+Displays [Grid.Section](grid.md#grid.section)s or [Grid.Item](grid.md#grid.item)s.
 
 The grid uses built-in filtering by indexing the title & keywords of its items.
 
@@ -239,24 +229,24 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| actions | A reference to an [ActionPanel](action-panel.md#actionpanel). It will only be shown when there aren't any children. | <code>React.ReactNode</code> | - |
-| aspectRatio | Aspect ratio for the [Grid.Item](grid.md#grid.item) elements. Defaults to 1. | <code>"1"</code> or <code>"3/2"</code> or <code>"2/3"</code> or <code>"4/3"</code> or <code>"3/4"</code> or <code>"16/9"</code> or <code>"9/16"</code> | - |
-| children | Grid sections or items. If [Grid.Item](grid.md#grid.item) elements are specified, a default section is automatically created. | <code>React.ReactNode</code> | - |
-| columns | Column count for the grid's sections. Minimum value is 1, maximum value is 8. | <code>number</code> | 5 |
-| filtering | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering. | <code>boolean</code> or <code>{ keepSectionOrder: boolean }</code> | `false` when `onSearchTextChange` is specified, `true` otherwise. |
-| fit | Fit for the [Grid.Item](grid.md#grid.item) element content. Defaults to "contain" | <code>[Grid.Fit](grid.md#grid.fit)</code> | - |
-| inset | Indicates how much space there should be between a [Grid.Item](grid.md#grid.item)s' content and its borders. The absolute value depends on the value of the `itemSize` prop. | <code>[Grid.Inset](grid.md#grid.inset)</code> | - |
-| isLoading | Indicates whether a loading bar should be shown or hidden below the search bar | <code>boolean</code> | `false` |
-| navigationTitle | The main title for that view displayed in Raycast | <code>string</code> | Command title |
-| searchBarAccessory | [Grid.Dropdown](grid.md#grid.dropdown) that will be shown in the right-hand-side of the search bar. | <code>ReactElement&lt;[List.Dropdown.Props](list.md#props), string></code> | - |
-| searchBarPlaceholder | Placeholder text that will be shown in the search bar. | <code>string</code> | `"Search…"` |
-| searchText | The text that will be displayed in the search bar. | <code>string</code> | - |
-| selectedItemId | Selects the item with the specified id. | <code>string</code> | - |
-| throttle | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | <code>boolean</code> | `false` |
-| onSearchTextChange | Callback triggered when the search bar text changes. | <code>(text: string) => void</code> | - |
-| onSelectionChange | Callback triggered when the item selection in the grid changes. | <code>(id: string) => void</code> | - |
+| Prop                 | Description                                                                                                                                                                                                                                                | Type                                                                      | Default                                                           |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| actions              | A reference to an [ActionPanel](action-panel.md#actionpanel). It will only be shown when there aren't any children.                                                                                                                                        | `React.ReactNode`                                                         | -                                                                 |
+| aspectRatio          | Aspect ratio for the [Grid.Item](grid.md#grid.item) elements. Defaults to 1.                                                                                                                                                                               | `"1"` or `"3/2"` or `"2/3"` or `"4/3"` or `"3/4"` or `"16/9"` or `"9/16"` | -                                                                 |
+| children             | Grid sections or items. If [Grid.Item](grid.md#grid.item) elements are specified, a default section is automatically created.                                                                                                                              | `React.ReactNode`                                                         | -                                                                 |
+| columns              | Column count for the grid's sections. Minimum value is 1, maximum value is 8.                                                                                                                                                                              | `number`                                                                  | 5                                                                 |
+| filtering            | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering.                                                                                 | `boolean` or `{ keepSectionOrder: boolean }`                              | `false` when `onSearchTextChange` is specified, `true` otherwise. |
+| fit                  | Fit for the [Grid.Item](grid.md#grid.item) element content. Defaults to "contain"                                                                                                                                                                          | [`Grid.Fit`](grid.md#grid.fit)                                            | -                                                                 |
+| inset                | Indicates how much space there should be between a [Grid.Item](grid.md#grid.item)s' content and its borders. The absolute value depends on the value of the `itemSize` prop.                                                                               | [`Grid.Inset`](grid.md#grid.inset)                                        | -                                                                 |
+| isLoading            | Indicates whether a loading bar should be shown or hidden below the search bar                                                                                                                                                                             | `boolean`                                                                 | `false`                                                           |
+| navigationTitle      | The main title for that view displayed in Raycast                                                                                                                                                                                                          | `string`                                                                  | Command title                                                     |
+| searchBarAccessory   | [Grid.Dropdown](grid.md#grid.dropdown) that will be shown in the right-hand-side of the search bar.                                                                                                                                                        | `ReactElement<`[`List.Dropdown.Props`](list.md#props)`, string>`          | -                                                                 |
+| searchBarPlaceholder | Placeholder text that will be shown in the search bar.                                                                                                                                                                                                     | `string`                                                                  | `"Search…"`                                                       |
+| searchText           | The text that will be displayed in the search bar.                                                                                                                                                                                                         | `string`                                                                  | -                                                                 |
+| selectedItemId       | Selects the item with the specified id.                                                                                                                                                                                                                    | `string`                                                                  | -                                                                 |
+| throttle             | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | `boolean`                                                                 | `false`                                                           |
+| onSearchTextChange   | Callback triggered when the search bar text changes.                                                                                                                                                                                                       | `(text: string) => void`                                                  | -                                                                 |
+| onSelectionChange    | Callback triggered when the item selection in the grid changes.                                                                                                                                                                                            | `(id: string) => void`                                                    | -                                                                 |
 
 ### Grid.Dropdown
 
@@ -305,24 +295,24 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| tooltip<mark style="color:red;">*</mark> | Tooltip displayed when hovering the dropdown. | <code>string</code> | - |
-| children | Dropdown sections or items. If Dropdown.Item elements are specified, a default section is automatically created. | <code>React.ReactNode</code> | - |
-| defaultValue | The default value of the dropdown. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | <code>string</code> | - |
-| filtering | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering. | <code>boolean</code> or <code>{ keepSectionOrder: boolean }</code> | `false` when `onSearchTextChange` is specified, `true` otherwise. |
-| id | ID of the dropdown. | <code>string</code> | - |
-| isLoading | Indicates whether a loading indicator should be shown or hidden next to the search bar | <code>boolean</code> | `false` |
-| placeholder | Placeholder text that will be shown in the dropdown search field. | <code>string</code> | `"Search…"` |
-| storeValue | Indicates whether the value of the dropdown should be persisted after selection, and restored next time the dropdown is rendered. | <code>boolean</code> | - |
-| throttle | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | <code>boolean</code> | `false` |
-| value | The currently value of the dropdown. | <code>string</code> | - |
-| onChange | Callback triggered when the dropdown selection changes. | <code>(newValue: string) => void</code> | - |
-| onSearchTextChange | Callback triggered when the search bar text changes. | <code>(text: string) => void</code> | - |
+| Prop                                      | Description                                                                                                                                                                                                                                                | Type                                         | Default                                                           |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------- |
+| tooltip<mark style="color:red;">\*</mark> | Tooltip displayed when hovering the dropdown.                                                                                                                                                                                                              | `string`                                     | -                                                                 |
+| children                                  | Dropdown sections or items. If Dropdown.Item elements are specified, a default section is automatically created.                                                                                                                                           | `React.ReactNode`                            | -                                                                 |
+| defaultValue                              | The default value of the dropdown. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering.                                      | `string`                                     | -                                                                 |
+| filtering                                 | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering.                                                                                 | `boolean` or `{ keepSectionOrder: boolean }` | `false` when `onSearchTextChange` is specified, `true` otherwise. |
+| id                                        | ID of the dropdown.                                                                                                                                                                                                                                        | `string`                                     | -                                                                 |
+| isLoading                                 | Indicates whether a loading indicator should be shown or hidden next to the search bar                                                                                                                                                                     | `boolean`                                    | `false`                                                           |
+| placeholder                               | Placeholder text that will be shown in the dropdown search field.                                                                                                                                                                                          | `string`                                     | `"Search…"`                                                       |
+| storeValue                                | Indicates whether the value of the dropdown should be persisted after selection, and restored next time the dropdown is rendered.                                                                                                                          | `boolean`                                    | -                                                                 |
+| throttle                                  | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | `boolean`                                    | `false`                                                           |
+| value                                     | The currently value of the dropdown.                                                                                                                                                                                                                       | `string`                                     | -                                                                 |
+| onChange                                  | Callback triggered when the dropdown selection changes.                                                                                                                                                                                                    | `(newValue: string) => void`                 | -                                                                 |
+| onSearchTextChange                        | Callback triggered when the search bar text changes.                                                                                                                                                                                                       | `(text: string) => void`                     | -                                                                 |
 
 ### Grid.Dropdown.Item
 
-A dropdown item in a [Grid.Dropdown](#grid.dropdown)
+A dropdown item in a [Grid.Dropdown](grid.md#grid.dropdown)
 
 #### Example
 
@@ -348,12 +338,12 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The title displayed for the item. | <code>string</code> | - |
-| value<mark style="color:red;">*</mark> | Value of the dropdown item. Make sure to assign each unique value for each item. | <code>string</code> | - |
-| icon | An optional icon displayed for the item. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
-| keywords | An optional property used for providing additional indexable strings for search. When filtering the items in Raycast, the keywords will be searched in addition to the title. | <code>string[]</code> | The title of its section if any |
+| Prop                                    | Description                                                                                                                                                                   | Type                                                     | Default                         |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------- |
+| title<mark style="color:red;">\*</mark> | The title displayed for the item.                                                                                                                                             | `string`                                                 | -                               |
+| value<mark style="color:red;">\*</mark> | Value of the dropdown item. Make sure to assign each unique value for each item.                                                                                              | `string`                                                 | -                               |
+| icon                                    | An optional icon displayed for the item.                                                                                                                                      | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -                               |
+| keywords                                | An optional property used for providing additional indexable strings for search. When filtering the items in Raycast, the keywords will be searched in addition to the title. | `string[]`                                               | The title of its section if any |
 
 ### Grid.Dropdown.Section
 
@@ -388,19 +378,16 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| children | The item elements of the section. | <code>React.ReactNode</code> | - |
-| title | Title displayed above the section | <code>string</code> | - |
+| Prop     | Description                       | Type              | Default |
+| -------- | --------------------------------- | ----------------- | ------- |
+| children | The item elements of the section. | `React.ReactNode` | -       |
+| title    | Title displayed above the section | `string`          | -       |
 
 ### Grid.EmptyView
 
-A view to display when there aren't any items available. Use to greet users with a friendly message if the
-extension requires user input before it can show any items e.g. when searching for an image, a gif etc.
+A view to display when there aren't any items available. Use to greet users with a friendly message if the extension requires user input before it can show any items e.g. when searching for an image, a gif etc.
 
-Raycast provides a default `EmptyView` that will be displayed if the Grid component either has no children,
-or if it has children, but none of them match the query in the search bar. This too can be overridden by passing an
-empty view alongside the other `Grid.Item`s.
+Raycast provides a default `EmptyView` that will be displayed if the Grid component either has no children, or if it has children, but none of them match the query in the search bar. This too can be overridden by passing an empty view alongside the other `Grid.Item`s.
 
 Note that the `EmptyView` is _never_ displayed if the `Grid`'s `isLoading` property is true and the search bar is empty.
 
@@ -437,19 +424,18 @@ export default function CommandWithCustomEmptyView() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| actions | A reference to an [ActionPanel](action-panel.md#actionpanel). | <code>React.ReactNode</code> | - |
-| description | An optional description for why the empty view is shown. | <code>string</code> | - |
-| icon | An icon displayed in the center of the EmptyView. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
-| title | The main title displayed for the Empty View. | <code>string</code> | - |
+| Prop        | Description                                                   | Type                                                     | Default |
+| ----------- | ------------------------------------------------------------- | -------------------------------------------------------- | ------- |
+| actions     | A reference to an [ActionPanel](action-panel.md#actionpanel). | `React.ReactNode`                                        | -       |
+| description | An optional description for why the empty view is shown.      | `string`                                                 | -       |
+| icon        | An icon displayed in the center of the EmptyView.             | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
+| title       | The main title displayed for the Empty View.                  | `string`                                                 | -       |
 
 ### Grid.Item
 
-A item in the [Grid](#grid).
+A item in the [Grid](grid.md#grid).
 
-This is one of the foundational UI components of Raycast. A grid item represents a single entity. It can be an image, an emoji, a GIF etc. You most likely want to perform actions on this item, so make it clear
-to the user what this item is about.
+This is one of the foundational UI components of Raycast. A grid item represents a single entity. It can be an image, an emoji, a GIF etc. You most likely want to perform actions on this item, so make it clear to the user what this item is about.
 
 #### Example
 
@@ -467,23 +453,23 @@ export default function Command() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| content<mark style="color:red;">*</mark> | An image or color, optionally with a tooltip, representing the content of the grid item. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> or <code>{ color: [Color.ColorLike](colors.md#color.colorlike) }</code> or <code>{ tooltip: string; value: [Image.ImageLike](icons-and-images.md#image.imagelike)</code> or <code>{ color: [Color.ColorLike](colors.md#color.colorlike) } }</code> | - |
-| actions | An [ActionPanel](action-panel.md#actionpanel) that will be updated for the selected grid item. | <code>React.ReactNode</code> | - |
-| id | ID of the item. This string is passed to the `onSelectionChange` handler of the [Grid](grid.md#grid) when the item is selected. Make sure to assign each item a unique ID or a UUID will be auto generated. | <code>string</code> | - |
-| keywords | An optional property used for providing additional indexable strings for search. When filtering the list in Raycast through the search bar, the keywords will be searched in addition to the title. | <code>string[]</code> | - |
-| quickLook | Optional information to preview files with Quick Look. Toggle the preview ith [Action.ToggleQuickLook](actions.md#action.togglequicklook). | <code>{ name: string; path: string }</code> | - |
-| subtitle | An optional subtitle displayed below the title. | <code>string</code> | - |
-| title | An optional title displayed below the content. | <code>string</code> | - |
+| Prop                                      | Description                                                                                                                                                                                                 | Type                                                                                                                                                                                                                                                                                 | Default |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| content<mark style="color:red;">\*</mark> | An image or color, optionally with a tooltip, representing the content of the grid item.                                                                                                                    | [`Image.ImageLike`](icons-and-images.md#image.imagelike) or `{ color:` [`Color.ColorLike`](colors.md#color.colorlike) `}` or `{ tooltip: string; value:` [`Image.ImageLike`](icons-and-images.md#image.imagelike) or `{ color:` [`Color.ColorLike`](colors.md#color.colorlike) `} }` | -       |
+| actions                                   | An [ActionPanel](action-panel.md#actionpanel) that will be updated for the selected grid item.                                                                                                              | `React.ReactNode`                                                                                                                                                                                                                                                                    | -       |
+| id                                        | ID of the item. This string is passed to the `onSelectionChange` handler of the [Grid](grid.md#grid) when the item is selected. Make sure to assign each item a unique ID or a UUID will be auto generated. | `string`                                                                                                                                                                                                                                                                             | -       |
+| keywords                                  | An optional property used for providing additional indexable strings for search. When filtering the list in Raycast through the search bar, the keywords will be searched in addition to the title.         | `string[]`                                                                                                                                                                                                                                                                           | -       |
+| quickLook                                 | Optional information to preview files with Quick Look. Toggle the preview ith [Action.ToggleQuickLook](actions.md#action.togglequicklook).                                                                  | `{ name: string; path: string }`                                                                                                                                                                                                                                                     | -       |
+| subtitle                                  | An optional subtitle displayed below the title.                                                                                                                                                             | `string`                                                                                                                                                                                                                                                                             | -       |
+| title                                     | An optional title displayed below the content.                                                                                                                                                              | `string`                                                                                                                                                                                                                                                                             | -       |
 
 ### Grid.Section
 
-A group of related [Grid.Item](#grid.item).
+A group of related [Grid.Item](grid.md#grid.item).
 
 Sections are a great way to structure your grid. For example, you can group photos taken in the same place or in the same day. This way, the user can quickly access what is most relevant.
 
-Sections can specify their own `columns`, `fit`, `aspectRatio` and `inset` props, separate from what is defined on the main [Grid](#grid) component.
+Sections can specify their own `columns`, `fit`, `aspectRatio` and `inset` props, separate from what is defined on the main [Grid](grid.md#grid) component.
 
 #### Example
 
@@ -491,7 +477,6 @@ Sections can specify their own `columns`, `fit`, `aspectRatio` and `inset` props
 
 {% tabs %}
 {% tab title="GridWithSection.tsx" %}
-
 ```typescript
 import { Grid } from "@raycast/api";
 
@@ -508,10 +493,9 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
-{% tab title="GridWithStyledSection.tsx" %}
 
+{% tab title="GridWithStyledSection.tsx" %}
 ```typescript
 import { Grid, Color } from "@raycast/api";
 
@@ -535,28 +519,26 @@ export default function Command() {
   );
 }
 ```
-
 {% endtab %}
-
 {% endtabs %}
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| aspectRatio | Aspect ratio for the [Grid.Item](grid.md#grid.item) elements. Defaults to 1. | <code>"1"</code> or <code>"3/2"</code> or <code>"2/3"</code> or <code>"4/3"</code> or <code>"3/4"</code> or <code>"16/9"</code> or <code>"9/16"</code> | - |
-| children | The [Grid.Item](grid.md#grid.item) elements of the section. | <code>React.ReactNode</code> | - |
-| columns | Column count for the section. Minimum value is 1, maximum value is 8. | <code>number</code> | 5 |
-| fit | Fit for the [Grid.Item](grid.md#grid.item) element content. Defaults to "contain" | <code>[Grid.Fit](grid.md#grid.fit)</code> | - |
-| inset | Inset for the [Grid.Item](grid.md#grid.item) element content. Defaults to "none". | <code>[Grid.Inset](grid.md#grid.inset)</code> | - |
-| subtitle | An optional subtitle displayed next to the title of the section. | <code>string</code> | - |
-| title | Title displayed above the section. | <code>string</code> | - |
+| Prop        | Description                                                                       | Type                                                                      | Default |
+| ----------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------- |
+| aspectRatio | Aspect ratio for the [Grid.Item](grid.md#grid.item) elements. Defaults to 1.      | `"1"` or `"3/2"` or `"2/3"` or `"4/3"` or `"3/4"` or `"16/9"` or `"9/16"` | -       |
+| children    | The [Grid.Item](grid.md#grid.item) elements of the section.                       | `React.ReactNode`                                                         | -       |
+| columns     | Column count for the section. Minimum value is 1, maximum value is 8.             | `number`                                                                  | 5       |
+| fit         | Fit for the [Grid.Item](grid.md#grid.item) element content. Defaults to "contain" | [`Grid.Fit`](grid.md#grid.fit)                                            | -       |
+| inset       | Inset for the [Grid.Item](grid.md#grid.item) element content. Defaults to "none". | [`Grid.Inset`](grid.md#grid.inset)                                        | -       |
+| subtitle    | An optional subtitle displayed next to the title of the section.                  | `string`                                                                  | -       |
+| title       | Title displayed above the section.                                                | `string`                                                                  | -       |
 
 ## Types
 
 ### Grid.Inset
 
-An enum representing the amount of space there should be between a Grid Item's content and its borders. The absolute value depends on the value of [Grid](#grid)'s or [Grid.Section](#grid.section)'s `columns` prop.
+An enum representing the amount of space there should be between a Grid Item's content and its borders. The absolute value depends on the value of [Grid](grid.md#grid)'s or [Grid.Section](grid.md#grid.section)'s `columns` prop.
 
 #### Enumeration members
 
@@ -568,7 +550,7 @@ An enum representing the amount of space there should be between a Grid Item's c
 
 ### Grid.ItemSize (deprecated)
 
-An enum representing the size of the Grid's child [Grid.Item](#grid.item)s.
+An enum representing the size of the Grid's child [Grid.Item](grid.md#grid.item)s.
 
 #### Enumeration members
 
@@ -580,7 +562,7 @@ An enum representing the size of the Grid's child [Grid.Item](#grid.item)s.
 
 ### Grid.Fit
 
-An enum representing how [Grid.Item](#grid.item)'s content should be fit.
+An enum representing how [Grid.Item](grid.md#grid.item)'s content should be fit.
 
 #### Enumeration members
 

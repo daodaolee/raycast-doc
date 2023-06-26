@@ -28,13 +28,13 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| path | The path of the file or folder to get the applications for. If no path is specified, all installed applications are returned. | <code>[PathLike](utilities.md#pathlike)</code> |
+| Name | Description                                                                                                                   | Type                                |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| path | The path of the file or folder to get the applications for. If no path is specified, all installed applications are returned. | [`PathLike`](utilities.md#pathlike) |
 
 #### Return
 
-An array of [Application](#application).
+An array of [Application](utilities.md#application).
 
 ### getDefaultApplication
 
@@ -59,13 +59,13 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| path<mark style="color:red;">*</mark> | The path of the file or folder to get the default application for. | <code>[PathLike](utilities.md#pathlike)</code> |
+| Name                                   | Description                                                        | Type                                |
+| -------------------------------------- | ------------------------------------------------------------------ | ----------------------------------- |
+| path<mark style="color:red;">\*</mark> | The path of the file or folder to get the default application for. | [`PathLike`](utilities.md#pathlike) |
 
 #### Return
 
-A Promise that resolves with the default [Application](#application) that would open the file. If no application was found, the promise will be rejected.
+A Promise that resolves with the default [Application](utilities.md#application) that would open the file. If no application was found, the promise will be rejected.
 
 ### getFrontmostApplication
 
@@ -90,7 +90,7 @@ export default async function Command() => {
 
 #### Return
 
-A Promise that resolves with the frontmost [Application](#application). If no application was found, the promise will be rejected.
+A Promise that resolves with the frontmost [Application](utilities.md#application). If no application was found, the promise will be rejected.
 
 ### showInFinder
 
@@ -116,9 +116,9 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| path<mark style="color:red;">*</mark> | The path to show in the Finder. | <code>[PathLike](utilities.md#pathlike)</code> |
+| Name                                   | Description                     | Type                                |
+| -------------------------------------- | ------------------------------- | ----------------------------------- |
+| path<mark style="color:red;">\*</mark> | The path to show in the Finder. | [`PathLike`](utilities.md#pathlike) |
 
 #### Return
 
@@ -151,9 +151,9 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| path<mark style="color:red;">*</mark> |  | <code>[PathLike](utilities.md#pathlike)</code> or <code>[PathLike](utilities.md#pathlike)[]</code> |
+| Name                                   | Description | Type                                                                           |
+| -------------------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| path<mark style="color:red;">\*</mark> |             | [`PathLike`](utilities.md#pathlike) or [`PathLike`](utilities.md#pathlike)`[]` |
 
 #### Return
 
@@ -181,10 +181,10 @@ export default async function Command() {
 
 #### Parameters
 
-| Name | Description | Type |
-| :--- | :--- | :--- |
-| target<mark style="color:red;">*</mark> | The file, folder or URL to open. | <code>string</code> |
-| application | The application name to use for opening the file. If no application is specified, the default application as determined by the system is used to open the specified file. Note that you can use the application name, app identifier, or absolute path to the app. | <code>string</code> or <code>[Application](utilities.md#application)</code> |
+| Name                                     | Description                                                                                                                                                                                                                                                        | Type                                                  |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| target<mark style="color:red;">\*</mark> | The file, folder or URL to open.                                                                                                                                                                                                                                   | `string`                                              |
+| application                              | The application name to use for opening the file. If no application is specified, the default application as determined by the system is used to open the specified file. Note that you can use the application name, app identifier, or absolute path to the app. | `string` or [`Application`](utilities.md#application) |
 
 #### Return
 
@@ -196,16 +196,15 @@ A Promise that resolves when the target has been opened.
 
 An object that represents a locally installed application on the system.
 
-It can be used to open files or folders in a specific application. Use [getApplications](#getapplications) or
-[getDefaultApplication](#getdefaultapplication) to get applications that can open a specific file or folder.
+It can be used to open files or folders in a specific application. Use [getApplications](utilities.md#getapplications) or [getDefaultApplication](utilities.md#getdefaultapplication) to get applications that can open a specific file or folder.
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| name<mark style="color:red;">*</mark> | The display name of the application. | <code>string</code> |
-| path<mark style="color:red;">*</mark> | The absolute path to the application bundle, e.g. `/Applications/Raycast.app`, | <code>string</code> |
-| bundleId | The bundle identifier of the application, e.g. `com.raycast.macos`. | <code>string</code> |
+| Property                               | Description                                                                    | Type     |
+| -------------------------------------- | ------------------------------------------------------------------------------ | -------- |
+| name<mark style="color:red;">\*</mark> | The display name of the application.                                           | `string` |
+| path<mark style="color:red;">\*</mark> | The absolute path to the application bundle, e.g. `/Applications/Raycast.app`, | `string` |
+| bundleId                               | The bundle identifier of the application, e.g. `com.raycast.macos`.            | `string` |
 
 ### PathLike
 

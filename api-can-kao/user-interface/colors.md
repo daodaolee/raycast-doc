@@ -2,9 +2,9 @@
 
 Anywhere you can pass a color in a component prop, you can pass either:
 
-- A standard [Color](#color)
-- A [Dynamic](#color.dynamic) Color
-- A [Raw](#color.raw) Color
+* A standard [Color](colors.md#color)
+* A [Dynamic](colors.md#color.dynamic) Color
+* A [Raw](colors.md#color.raw) Color
 
 ## API Reference
 
@@ -39,7 +39,7 @@ export default function Command() {
 #### Enumeration members
 
 | Name          | Dark Theme                                               | Light Theme                                         |
-| :------------ | :------------------------------------------------------- | :-------------------------------------------------- |
+| ------------- | -------------------------------------------------------- | --------------------------------------------------- |
 | Blue          | ![](../../.gitbook/assets/color-dark-blue.png)           | ![](../../.gitbook/assets/color-blue.png)           |
 | Green         | ![](../../.gitbook/assets/color-dark-green.png)          | ![](../../.gitbook/assets/color-green.png)          |
 | Magenta       | ![](../../.gitbook/assets/color-dark-magenta.png)        | ![](../../.gitbook/assets/color-magenta.png)        |
@@ -60,7 +60,7 @@ ColorLike: Color | Color.Dynamic | Color.Raw;
 
 Union type for the supported color types.
 
-When using a [Raw Color](#color.raw), it will be adjusted to achieve high contrast with the Raycast user interface. To disable color adjustment, you need to switch to using a [Dynamic Color](#color.dynamic). However, we recommend leaving color adjustment on, unless your extension depends on exact color reproduction.
+When using a [Raw Color](colors.md#color.raw), it will be adjusted to achieve high contrast with the Raycast user interface. To disable color adjustment, you need to switch to using a [Dynamic Color](colors.md#color.dynamic). However, we recommend leaving color adjustment on, unless your extension depends on exact color reproduction.
 
 #### Example
 
@@ -92,7 +92,7 @@ export default function Command() {
 
 A dynamic color applies different colors depending on the active Raycast theme.
 
-When using a [Dynamic Color](#color.dynamic), it will be adjusted to achieve high contrast with the Raycast user interface. To disable color adjustment, you can set the `adjustContrast` property to `false`. However, we recommend leaving color adjustment on, unless your extension depends on exact color reproduction.
+When using a [Dynamic Color](colors.md#color.dynamic), it will be adjusted to achieve high contrast with the Raycast user interface. To disable color adjustment, you can set the `adjustContrast` property to `false`. However, we recommend leaving color adjustment on, unless your extension depends on exact color reproduction.
 
 #### Example
 
@@ -127,19 +127,19 @@ export default function Command() {
 
 #### Properties
 
-| Property | Description | Type |
-| :--- | :--- | :--- |
-| dark<mark style="color:red;">*</mark> | The color which is used in dark theme. | <code>string</code> |
-| light<mark style="color:red;">*</mark> | The color which is used in light theme. | <code>string</code> |
-| adjustContrast | Enables dynamic contrast adjustment for light and dark theme color. | <code>boolean</code> |
+| Property                                | Description                                                         | Type      |
+| --------------------------------------- | ------------------------------------------------------------------- | --------- |
+| dark<mark style="color:red;">\*</mark>  | The color which is used in dark theme.                              | `string`  |
+| light<mark style="color:red;">\*</mark> | The color which is used in light theme.                             | `string`  |
+| adjustContrast                          | Enables dynamic contrast adjustment for light and dark theme color. | `boolean` |
 
 ### Color.Raw
 
 A color can also be a simple string. You can use any of the following color formats:
 
-- HEX, e.g `#FF0000`
-- Short HEX, e.g. `#F00`
-- RGBA, e.g. `rgb(255, 0, 0)`
-- RGBA Percentage, e.g. `rgb(255, 0, 0, 1.0)`
-- HSL, e.g. `hsla(200, 20%, 33%, 0.2)`
-- Keywords, e.g. `red`
+* HEX, e.g `#FF0000`
+* Short HEX, e.g. `#F00`
+* RGBA, e.g. `rgb(255, 0, 0)`
+* RGBA Percentage, e.g. `rgb(255, 0, 0, 1.0)`
+* HSL, e.g. `hsla(200, 20%, 33%, 0.2)`
+* Keywords, e.g. `red`

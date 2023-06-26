@@ -14,7 +14,6 @@ Typically used as a standalone view or when navigating from a [List](list.md).
 
 {% tabs %}
 {% tab title="Render a markdown string" %}
-
 ```typescript
 import { Detail } from "@raycast/api";
 
@@ -22,11 +21,9 @@ export default function Command() {
   return <Detail markdown="**Hello** _World_!" />;
 }
 ```
-
 {% endtab %}
 
 {% tab title="Render an image from the assets directory" %}
-
 ```typescript
 import { Detail } from "@raycast/api";
 
@@ -34,19 +31,18 @@ export default function Command() {
   return <Detail markdown={`![Image Title](example.png)`} />;
 }
 ```
-
 {% endtab %}
 {% endtabs %}
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| actions | A reference to an [ActionPanel](action-panel.md#actionpanel). | <code>React.ReactNode</code> | - |
-| isLoading | Indicates whether a loading bar should be shown or hidden below the search bar | <code>boolean</code> | `false` |
-| markdown | The CommonMark string to be rendered. | <code>string</code> | - |
-| metadata | The `Detail.Metadata` to be rendered in the right side area | <code>React.ReactNode</code> | - |
-| navigationTitle | The main title for that view displayed in Raycast | <code>string</code> | Command title |
+| Prop            | Description                                                                    | Type              | Default       |
+| --------------- | ------------------------------------------------------------------------------ | ----------------- | ------------- |
+| actions         | A reference to an [ActionPanel](action-panel.md#actionpanel).                  | `React.ReactNode` | -             |
+| isLoading       | Indicates whether a loading bar should be shown or hidden below the search bar | `boolean`         | `false`       |
+| markdown        | The CommonMark string to be rendered.                                          | `string`          | -             |
+| metadata        | The `Detail.Metadata` to be rendered in the right side area                    | `React.ReactNode` | -             |
+| navigationTitle | The main title for that view displayed in Raycast                              | `string`          | Command title |
 
 ### Detail.Metadata
 
@@ -93,9 +89,9 @@ export default function Main() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| children<mark style="color:red;">*</mark> | The elements of the Metadata view. | <code>React.ReactNode</code> | - |
+| Prop                                       | Description                        | Type              | Default |
+| ------------------------------------------ | ---------------------------------- | ----------------- | ------- |
+| children<mark style="color:red;">\*</mark> | The elements of the Metadata view. | `React.ReactNode` | -       |
 
 ### Detail.Metadata.Label
 
@@ -134,11 +130,11 @@ export default function Main() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| title<mark style="color:red;">*</mark> | The title of the item. | <code>string</code> | - |
-| icon | An icon to illustrate the value of the item. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
-| text | The text value of the item. Specifying `color` will display the text in the provided color. Defaults to [Color.SecondaryText](colors.md#color). | <code>string</code> or <code>{ color: [Color](colors.md#color); value: string }</code> | - |
+| Prop                                    | Description                                                                                                                                     | Type                                                                 | Default |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ------- |
+| title<mark style="color:red;">\*</mark> | The title of the item.                                                                                                                          | `string`                                                             | -       |
+| icon                                    | An icon to illustrate the value of the item.                                                                                                    | [`Image.ImageLike`](icons-and-images.md#image.imagelike)             | -       |
+| text                                    | The text value of the item. Specifying `color` will display the text in the provided color. Defaults to [Color.SecondaryText](colors.md#color). | `string` or `{ color:` [`Color`](colors.md#color)`; value: string }` | -       |
 
 ### Detail.Metadata.Link
 
@@ -177,11 +173,11 @@ export default function Main() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| target<mark style="color:red;">*</mark> | The target of the link. | <code>string</code> | - |
-| text<mark style="color:red;">*</mark> | The text value of the item. | <code>string</code> | - |
-| title<mark style="color:red;">*</mark> | The title shown above the item. | <code>string</code> | - |
+| Prop                                     | Description                     | Type     | Default |
+| ---------------------------------------- | ------------------------------- | -------- | ------- |
+| target<mark style="color:red;">\*</mark> | The target of the link.         | `string` | -       |
+| text<mark style="color:red;">\*</mark>   | The text value of the item.     | `string` | -       |
+| title<mark style="color:red;">\*</mark>  | The title shown above the item. | `string` | -       |
 
 ### Detail.Metadata.TagList
 
@@ -222,10 +218,10 @@ export default function Main() {
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| children<mark style="color:red;">*</mark> | The tags contained in the TagList. | <code>React.ReactNode</code> | - |
-| title<mark style="color:red;">*</mark> | The title shown above the item. | <code>string</code> | - |
+| Prop                                       | Description                        | Type              | Default |
+| ------------------------------------------ | ---------------------------------- | ----------------- | ------- |
+| children<mark style="color:red;">\*</mark> | The tags contained in the TagList. | `React.ReactNode` | -       |
+| title<mark style="color:red;">\*</mark>    | The title shown above the item.    | `string`          | -       |
 
 ### Detail.Metadata.TagList.Item
 
@@ -233,12 +229,12 @@ A Tag in a `Detail.Metadata.TagList`.
 
 #### Props
 
-| Prop | Description | Type | Default |
-| :--- | :--- | :--- | :--- |
-| text<mark style="color:red;">*</mark> | The text of the tag. | <code>string</code> | - |
-| color | Changes the text color to the provided color and sets a transparent background with the same color. | <code>[Color.ColorLike](colors.md#color.colorlike)</code> | - |
-| icon | An optional icon in front of the text of the tag. | <code>[Image.ImageLike](icons-and-images.md#image.imagelike)</code> | - |
-| onAction | Callback that is triggered when the item is clicked. | <code>() => void</code> | - |
+| Prop                                   | Description                                                                                         | Type                                                     | Default |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------- |
+| text<mark style="color:red;">\*</mark> | The text of the tag.                                                                                | `string`                                                 | -       |
+| color                                  | Changes the text color to the provided color and sets a transparent background with the same color. | [`Color.ColorLike`](colors.md#color.colorlike)           | -       |
+| icon                                   | An optional icon in front of the text of the tag.                                                   | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
+| onAction                               | Callback that is triggered when the item is clicked.                                                | `() => void`                                             | -       |
 
 ### Detail.Metadata.Separator
 
