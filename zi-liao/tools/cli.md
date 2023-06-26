@@ -1,42 +1,42 @@
 ---
-description: The Raycast CLI allows you to build, develop, and lint your extension.
+description: Raycast CLI 允许您构建、开发和检查您的扩展。
 ---
 
 # CLI
 
-The CLI is part of the `@raycast/api` package and is automatically installed in your extension directory during setup. To get a list of the available CLI commands, run the following command inside your extension directory:
+CLI 是 `@raycast/api` 包的一部分，在安装过程中会自动安装在您的扩展目录中。要获取可用 CLI 命令的列表，请在扩展目录中运行以下命令：
 
-```bash
+```sh
  npx ray -h
 ```
 
 ## Build
 
-`npx ray build` creates an optimized production build of your extension for distribution. This command is used by our CI to publish your extension to the store.
+`npx ray build` 创建扩展的优化生产版本以进行发布。我们的 CI 使用此命令将您的扩展发布到商店。
 
-You can use `npx ray build -e dist` to validate that your extension builds properly.
+您可以使用 `npx ray build -e dist` 验证您的扩展是否正确构建。
 
 ## Development
 
-`npx ray develop` starts your extension in development mode. The mode includes the following:
+`npx ray develop` 在开发模式下启动您的扩展。该模式包括以下内容:
 
-* Extension shows up at the top of the root search for quick access
-* Commands get automatically reloaded when you save your changes (you can toggle auto-reloading via Raycast Preferences > Advanced > "Auto-reload on save")
-* Error overlays include detailed stack traces for faster debugging
-* Log messages are displayed in the terminal
-* Status indicator is visible in the navigation title of the command to signal build errors
-* Imports the extension to Raycast if it wasn't before
+* 扩展程序显示在根搜索的顶部，以便快速访问
+* 保存更改时，Command 会自动重新加载（您可以通过 Raycast Preferences > Advanced > "Auto-reload on save" 切换自动重新加载）
+* 错误覆盖包括详细的堆栈跟踪，以加快调试速度
+* 显示在终端中的日志消息
+* 状态指示器在命令的导航标题中可见，以指示构建错误
+* 将扩展导入到 Raycast（如果之前没有）
 
 ## Lint
 
-`npx ray lint` runs [ESLint](http://eslint.org) for all files in the `src` directory.
+`npx ray lint` 对 `src` 目录中的所有文件运行  [ESLint](http://eslint.org) 。
 
 ## Migrate
 
-`npx ray migrate` [migrates](../../migration/) your extension to the latest version of the `@raycast/api`.
+`npx ray migrate` 将您的扩展 [迁移](https://developers.raycast.com/migration) 到最新版本的  `@raycast/api`
 
 ## Publish
 
-`npx ray publish` verifies, builds, and publishes an extension.
+`npx ray publish` 验证、构建和发布扩展。
 
-If the extension is private (eg. has an `owner` and no public `access`), it will be published to the organization's private store. This command is only available to users that are part of that organization. Learn more about it [here](../../tuan-dui/getting-started.md).
+如果扩展是私有的（例如，有 `owner` 并且没有公共访问 `access`），它将被发布到组织的私有存储中。此命令仅适用于属于该组织的用户。点击 [此处](https://developers.raycast.com/teams/getting-started) 了解详情。

@@ -7,10 +7,8 @@ Raycast supports arguments for your commands so that users can enter values righ
 Arguments are configured in the [manifest](../manifest.md#argument-properties) per command.
 
 {% hint style="info" %}
-
-- **Maximum number of arguments:** 3 (if you have a use case that requires more, please let us know via feedback or in the [Slack community](https://www.raycast.com/community))
-- The order of the arguments specified in the manifest is important and is reflected by the fields shown in Root Search. To provide a better UX, put the required arguments before the optional ones.
-
+* **Maximum number of arguments:** 3 (if you have a use case that requires more, please let us know via feedback or in the [Slack community](https://www.raycast.com/community))
+* The order of the arguments specified in the manifest is important and is reflected by the fields shown in Root Search. To provide a better UX, put the required arguments before the optional ones.
 {% endhint %}
 
 ## Example
@@ -84,10 +82,10 @@ A command receives the values of its arguments via a top-level prop named `argum
 
 Depending on the `type` of the argument, the type of its value will be different.
 
-| Argument type         | Value type          |
-| :-------------------- | :------------------ |
-| <code>text</code>     | <code>string</code> |
-| <code>password</code> | <code>string</code> |
+| Argument type | Value type |
+| ------------- | ---------- |
+| `text`        | `string`   |
+| `password`    | `string`   |
 
 {% hint style="info" %}
 Raycast provides a global TypeScript namespace called `Arguments` which contains the types of the arguments of all the commands of the extensions.

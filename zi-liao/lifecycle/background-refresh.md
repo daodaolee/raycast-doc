@@ -1,11 +1,10 @@
 # Background Refresh
 
-Commands of an extension can be configured to be automatically run in the background, without the user manually opening them.
-Background refresh can be useful for:
+Commands of an extension can be configured to be automatically run in the background, without the user manually opening them. Background refresh can be useful for:
 
-- dynamically updating the subtitle of a command in Raycast root search
-- refreshing menu bar commands
-- other supporting functionality for your main commands
+* dynamically updating the subtitle of a command in Raycast root search
+* refreshing menu bar commands
+* other supporting functionality for your main commands
 
 This guide helps you understand when and how to use background refresh and learn about the constraints.
 
@@ -59,8 +58,8 @@ Raycast auto-terminates the command if it exceeds its maximum execution time. If
 
 For local commands under development, errors are shown as usual via the console. Two developer actions in root search help you to run and debug scheduled commands:
 
-- Run in Background: this immediately runs the command with `environment.launchType` set to `LaunchType.Background`.
-- Show Error: if the command could not be loaded or an uncaught runtime exception was thrown, the full error can be shown in the Raycast error overlay for development. This action is also shown to users of the installed Store command and provides actions to copy and report the error on the production error overlay.
+* Run in Background: this immediately runs the command with `environment.launchType` set to `LaunchType.Background`.
+* Show Error: if the command could not be loaded or an uncaught runtime exception was thrown, the full error can be shown in the Raycast error overlay for development. This action is also shown to users of the installed Store command and provides actions to copy and report the error on the production error overlay.
 
 ![](../../.gitbook/assets/background-refresh-error.png)
 
@@ -78,8 +77,8 @@ When a user installs the command via the Store, background refresh is initially 
 
 ## Best Practices
 
-- Make sure the command is useful both when manually launched by the user or when launched in the background
-- Choose the interval value as high as possible - low values mean the command will run more often and consume more energy
-- If your command performs network requests, check the rate limits of the service and handle errors appropriately (e.g. automatically retry later)
-- Make sure the command finishes as quickly as possible; for menu bar commands, ensure `isLoading` is set to false as early as possible
-- Use defensive programming if state is shared between commands of an extension and handle potential data races and inaccessible data
+* Make sure the command is useful both when manually launched by the user or when launched in the background
+* Choose the interval value as high as possible - low values mean the command will run more often and consume more energy
+* If your command performs network requests, check the rate limits of the service and handle errors appropriately (e.g. automatically retry later)
+* Make sure the command finishes as quickly as possible; for menu bar commands, ensure `isLoading` is set to false as early as possible
+* Use defensive programming if state is shared between commands of an extension and handle potential data races and inaccessible data

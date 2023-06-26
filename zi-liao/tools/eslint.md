@@ -23,7 +23,6 @@ You can check Raycast's ESLint plugin rules directly on the [repository document
 
 You're free to turn on/off rules or add new plugins as you see fit for your extensions. For example, you could add the rule [`@raycast/prefer-placeholders`](https://github.com/raycast/eslint-plugin/blob/main/docs/rules/prefer-placeholders.md) for your extension:
 
-
 ```json
 {
   "root": true,
