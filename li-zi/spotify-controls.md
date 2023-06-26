@@ -1,20 +1,22 @@
 ---
-description: This example shows how to bundle multiple scripts into a single extension.
+description: 此示例演示如何将多个脚本绑定到单个扩展中。
 ---
 
 # Spotify Controls
 
 {% hint style="info" %}
-The source code of the example can be found [here](https://github.com/raycast/extensions/tree/main/extensions/spotify-controls#readme). You can install it [here](https://www.raycast.com/thomas/spotify-controls).
+该示例的源代码可以在 [这里](https://github.com/raycast/extensions/tree/main/extensions/spotify-controls#readme) 找到。您可以在 [此处](https://www.raycast.com/thomas/spotify-controls) 安装它。
 {% endhint %}
 
-This example shows how to build commands that don't show a UI in Raycast. This type of command is useful for interactions with other apps such as skipping songs in Spotify or just simply running some scripts that don't need visual confirmation.
+此示例演示如何构建在 Raycast 中不显示 UI 的命令。这种类型的命令对于与其他应用程序交互非常有用，例如跳过 Spotify 中的歌曲或只是简单地运行一些不需要视觉展示的脚本。
 
-![Example: Control the Spotify macOS app from Raycast](../.gitbook/assets/example-spotify-controls.png)
+![示例：从 Raycast 控制 Spotify macOS 应用程序](../.gitbook/assets/example-spotify-controls.png)
 
-## Control Spotify macOS app
+## 控制 Spotify macOS 应用程序
 
 Spotify's macOS app supports AppleScript. This is great to control the app without opening it. For this, we use the [`run-applescript`](https://www.npmjs.com/package/run-applescript) package. Let's start by toggling play pause:
+
+Spotify 的 macOS 应用程序支持 AppleScript。这非常适合在不打开应用程序的情况下控制它。为此，我们使用 [`run-applescript`](https://www.npmjs.com/package/run-applescript) 包。让我们从切换播放暂停开始：
 
 ```typescript
 import { runAppleScript } from "run-applescript";
@@ -24,11 +26,11 @@ export default async function Command() {
 }
 ```
 
-## Close Raycast main window
+## 关闭 Raycast 主窗口
 
-When performing this command, you'll notice that Raycast toggles the play pause state of the Spotify macOS app but the Raycast main window stays open. Ideally the window closes after you run the command. Then you can carry on with what you did before.
+执行此命令时，您会注意到 Raycast 会切换 Spotify macOS 应用程序的播放暂停状态，但 Raycast 主窗口保持打开状态。理想情况下，该窗口会在运行命令后关闭。然后你就可以继续之前所做的事情。
 
-Here is how you can close the main window:
+以下是关闭主窗口的方法：
 
 ```typescript
 import { closeMainWindow } from "@raycast/api";
@@ -40,6 +42,6 @@ export default async function Command() {
 }
 ```
 
-Notice that we call the `closeMainWindow` function before running the AppleScript. This makes the command feel snappier.
+请注意，我们在运行 AppleScript 之前调用 `closeMainWindow` 函数。
 
-With less than 10 lines of code, you executed a script and controlled the UI of Raycast. As a next step you could add more commands to skip a track.
+只需不到 10 行代码，您就可以执行脚本并控制 Raycast 的 UI。下一步，您可以添加更多命令来跳过曲目。
