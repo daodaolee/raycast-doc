@@ -39,7 +39,7 @@
 * [工具](zi-liao/tools/README.md)
   * [CLI](zi-liao/tools/cli.md)
   * [ESLint](zi-liao/tools/eslint.md)
-  * [VS Code (community tool)](zi-liao/tools/vscode.md)
+  * [VS Code（社区工具）](zi-liao/tools/vscode.md)
 * [File Structure](zi-liao/file-structure.md)
 * [Lifecycle](zi-liao/lifecycle/README.md)
   * [Arguments](zi-liao/lifecycle/arguments.md)

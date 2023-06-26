@@ -1,7 +1,7 @@
 # 工具
 
-Raycast provides several tools to smoothen your experience when building extensions:
+Raycast 提供了多种工具来让您在构建扩展时获得流畅的体验：
 
-* [CLI](cli.md) _- A CLI to build, develop, and lint your extension_
-* [ESLint](eslint.md) _- An ESLint configuration helping you follow best practices as you build your extension_
-* [VS Code (community tool)](vscode.md) _- A VS Code extension to enhance your development experience_
+* [CLI](cli.md) _- 用于构建、开发和检查您的扩展的 CLI_
+* [ESLint](eslint.md) _- ESLint 配置可帮助您在构建扩展时遵循最佳实践_
+* [VS Code (社区工具)](vscode.md) _- VS Code 扩展可增强您的开发体验_
