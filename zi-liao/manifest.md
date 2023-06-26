@@ -1,8 +1,8 @@
 # Manifest
 
-The `package.json` manifest file is a superset of npm's `package.json` file. This way, you only need one file to configure your extension. This document covers only the Raycast specific fields. Refer to [npm's documentation](https://docs.npmjs.com/cli/v7/configuring-npm/package-json) for everything else.
+`package.json`  mainfest 文件是 npm `package.json` 文件的超集。这样，您只需要一个文件来配置您的扩展。本文档仅涵盖 Raycast 特定领域。有关其他内容，请参阅[ npm 的文档](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)。
 
-Here is a typical manifest file:
+这是一个典型的 mainfest 文件：
 
 ```javascript
 {
@@ -24,65 +24,65 @@ Here is a typical manifest file:
 }
 ```
 
-## Extension properties
+## 扩展属性
 
-All Raycast related properties for an extension.
+所有 Raycast 相关的扩展属性。
 
-| Property     | Required | Description                                                                                                                                                                                                                                         |
-| ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name         | Yes      | A unique name for the extension. This is used in the Store link to your extension, so keep it short and URL compatible.                                                                                                                             |
-| title        | Yes      | The title of the extension that is shown to the user in the Store as well as the preferences. Use this title to describe your extension well that users can find it in the Store.                                                                   |
-| description  | Yes      | The full description of the extension shown in the Store.                                                                                                                                                                                           |
-| icon         | Yes      | A reference to an icon file in the assets folder. Use png format with a size of 512 x 512 pixels. To support light and dark theme, add two icons, one with `@dark` as suffix, e.g. `icon.png` and `icon@dark.png`.                                  |
-| author       | Yes      | Your Raycast Store handle (username)                                                                                                                                                                                                                |
-| categories   | Yes      | An array of categories that your extension belongs in.                                                                                                                                                                                              |
-| commands     | Yes      | An array of commands exposed by the extension, see [Command properties](manifest.md#command-properties).                                                                                                                                            |
-| contributors | No       | An array of Raycast store handles (usernames) of people who have contributed to this extension.                                                                                                                                                     |
-| keywords     | No       | An array of keywords for which the extension can be searched for in Raycast.                                                                                                                                                                        |
-| preferences  | No       | Extensions can contribute preferences that are shown in Raycast Preferences > Extensions. You can use preferences for configuration values and passwords or personal access tokens, see [Preference properties](manifest.md#preference-properties). |
-| external     | No       | An Array of package or file names that should be excluded from the build. The package will not be bundled, but the import is preserved and will be evaluated at runtime.                                                                            |
+| 属性           | 必填  | 描述                                                                                                                                                            |
+| ------------ | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name         | Yes | 扩展名的唯一名称。这在指向您的扩展程序的商店链接中使用，因此请保持简短且 URL 兼容。                                                                                                                  |
+| title        | Yes | 在 Store 中向用户显示的扩展程序的标题以及首选项。使用此标题可以很好地描述您的扩展，以便用户可以在商店中找到它。                                                                                                   |
+| description  | Yes | Store 中显示的扩展的完整描述。                                                                                                                                            |
+| icon         | Yes | 对资源文件夹中图标文件的引用。使用 `png` 格式，尺寸为 512 x 512 像素。要支持浅色和深色主题，请添加两个图标，其中一个以 `@dark` 作为后缀，例如`icon.png` 和 `icon@dark.png`。                                             |
+| author       | Yes | 您的 Raycast Store 名称（用户名）                                                                                                                                      |
+| categories   | Yes | 您的扩展程序所属的一系列类别。                                                                                                                                               |
+| commands     | Yes | 扩展公开的命令数组，请参阅 [命令属性](https://developers.raycast.com/information/manifest#command-properties)。                                                                 |
+| contributors | No  | 一个数组，Raycast 存储对此扩展做出贡献的人员的字段（用户名）。                                                                                                                           |
+| keywords     | No  | 可以在 Raycast 中搜索扩展的关键字数组。                                                                                                                                      |
+| preferences  | No  | 扩展可以提供 Raycast Preferences > Extensions 中显示的首选项。您可以使用配置值和密码或个人访问令牌的首选项，请参阅[首选项属性](https://developers.raycast.com/information/manifest#preference-properties)。 |
+| external     | No  | 应从构建中排除的包或文件名的数组。该包不会被捆绑，但导入会被保留并在运行时进行评估。                                                                                                                    |
 
-## Command properties
+## 命令属性
 
-All properties for a command.
+所有命令属性
 
-| Property          | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ----------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name              | Yes      | A unique id for the command. The name directly maps to the entry point file for the command. So a command named "index" would map to `index.ts` (or any other supported TypeScript or JavaScript file extension such as `.tsx`, `.js`, `.jsx)`.                                                                                                                                                                 |
-| title             | Yes      | The display name of the command, shown to the user in Raycast.                                                                                                                                                                                                                                                                                                                                                  |
-| subtitle          | No       | The optional subtitle of the command in the root search. Usually, this is the service or domain that your command is associated with. You can dynamically update this property using [`updateCommandMetadata`](../api-reference/command.md#updatecommandmetadata).                                                                                                                                              |
-| description       | Yes      | It helps users understand what the command does. It will be displayed in the Store and in Preferences.                                                                                                                                                                                                                                                                                                          |
-| icon              | No       | <p>An optional reference to an icon file in the assets folder. Use png format with a size of at least 512 x 512 pixels. To support light and dark theme, add two icons, one with <code>@dark</code> as suffix, e.g. <code>icon.png</code> and <code>icon@dark.png</code>.</p><p>If no icon is specified, the extension icon will be used.</p>                                                                   |
-| mode              | Yes      | A value of `view` indicates that the command will show a main view when performed. `no-view` means that the command does not push a view to the main navigation stack in Raycast. The latter is handy for directly opening a URL or other API functionalities that don't require a user interface. `menu-bar` indicates that this command will return a [Menu Bar Extra](../api-reference/menu-bar-commands.md) |
-| interval          | No       | The value specifies that a `no-view` or `menu-bar` command should be launched in the background every X seconds (s), minutes (m), hours (h) or days (d). Examples: 90s, 1m, 12h, 1d. The minimum value is 1 minute (1m).                                                                                                                                                                                        |
-| keywords          | No       | An optional array of keywords for which the command can be searched in Raycast.                                                                                                                                                                                                                                                                                                                                 |
-| arguments         | No       | An optional array of arguments that are requested from user when command is called, see [Argument properties](manifest.md#argument-properties).                                                                                                                                                                                                                                                                 |
-| preferences       | No       | Commands can optionally contribute preferences that are shown in Raycast Preferences > Extensions when selecting the command. You can use preferences for configuration values and passwords or personal access tokens, see [Preference properties](manifest.md#preference-properties). Commands automatically "inherit" extension preferences and can also override entries with the same `name`.              |
-| disabledByDefault | No       | <p>Specify whether the command should be enabled by default or not. By default, all commands are enabled but there are some cases where you might want to include additional commands and let the user enable them if they need it.</p><p><em>Note that this flag is only used when installing a new extension or when there is a new command.</em></p>                                                         |
+| 属性                | 必填  | 描述                                                                                                                                                                                                     |
+| ----------------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name              | Yes | 命令的唯一 ID。该名称直接映射到命令的入口点文件。因此，名为“index”的命令将映射到 `index.ts`（或任何其他受支持的 TypeScript 或 JavaScript 文件扩展名，例如 `.tsx`、`.js`、`.jsx`）。                                                                              |
+| title             | Yes | 命令的名称，在 Raycast 中向用户显示。                                                                                                                                                                                |
+| subtitle          | No  | 根搜索中命令的可选子标题。通常，这是与您的命令关联的服务或域。您可以使用  [`updateCommandMetadata`](../api-reference/command.md#updatecommandmetadata) 动态更新此属性。                                                                            |
+| description       | Yes | 它可以帮助用户了解该命令的作用。它将显示在 Store 和首选项中。                                                                                                                                                                     |
+| icon              | No  | 对资源文件夹中图标文件的可选引用。使用尺寸至少为 512 x 512 像素的 png 格式。要支持浅色和深色主题，请添加两个图标，其中一个以 `@dark` 作为后缀，例如 `icon.png` 和 `icon@dark.png`。 如果未指定图标，则将使用扩展图标。                                                                 |
+| mode              | Yes | `view` 值表示该命令执行时将显示主视图。 `no-view` 意味着该命令不会将视图推送到 Raycast 中的主导航堆栈。后者可以方便地直接打开 URL 或其他不需要用户界面的 API 功能。 `menu-bar` 表示该命令将返回一个 [Menu Bar Extra](../api-reference/menu-bar-commands.md)                     |
+| interval          | No  | 该值指定应每隔 X 秒 (s)、分钟 (m)、小时 (h) 或天 (d) 在后台启动`no-view` 或者 `menu-bar` 命令。示例：90s、1m、12h、1d。最小值为 1 分钟 (1m)。                                                                                                  |
+| keywords          | No  | 可以在 Raycast 中搜索命令的可选关键字数组。                                                                                                                                                                             |
+| arguments         | No  | 调用命令时用户请求的可选参数数组，请参阅 [Argument 属性](https://developers.raycast.com/information/manifest#argument-properties)。                                                                                           |
+| preferences       | No  | 命令可以选择提供在选择命令时显示在 Raycast Preferences > Extensions 中的首选项。您可以使用配置值和密码或个人访问令牌的首选项，请参阅 [首选项属性](https://developers.raycast.com/information/manifest#preference-properties)。命令自动“继承”扩展首选项，并且还可以覆盖具有相同名称的条目。 |
+| disabledByDefault | No  | <p>指定默认情况下是否启用该命令。默认情况下，所有命令均已启用，但在某些情况下，您可能希望包含其他命令并让用户在需要时启用它们。<br><em>请注意，此标志仅在安装新扩展或有新命令时使用。</em></p>                                                                                              |
 
-## Preference properties
+## 偏好属性
 
-All properties for extension or command-specific preferences. Use the [Preferences API](../api-reference/preferences.md) to access their values.
+扩展或特定于命令的首选项的所有属性。使用 [首选项 API](https://developers.raycast.com/api-reference/preferences) 访问它们的值。
 
-| Property    | Required                                     | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | Yes                                          | A unique id for the preference.                                                                                                                                                                                                                                                                                                               |
-| description | Yes                                          | It helps users understand what the preference does. It will be displayed as a tooltip when hovering over it.                                                                                                                                                                                                                                  |
-| type        | Yes                                          | The preference type. We currently support `"textfield"` and `"password"` (for secure entry), `"checkbox"`, `"dropdown"`, `"appPicker"`, `"file"`, and `"directory"`.                                                                                                                                                                          |
-| required    | Yes                                          | Indicates whether the value is required and must be entered by the user before the extension is usable.                                                                                                                                                                                                                                       |
-| title       | No when `type` is `checkbox`. Yes otherwise. | <p>The display name of the preference shown in Raycast preferences.</p><p>For checkboxes it is shown as a section title above the checkbox itself.</p><p>If you want to group multiple checkboxes into a single section, set the <code>title</code> of the first checkbox and leave the <code>title</code> of the other checkboxes empty.</p> |
-| placeholder | No                                           | Text displayed in the preference's field when no value has been input.                                                                                                                                                                                                                                                                        |
-| default     | No                                           | The optional default value for the field. For textfields, this is a string value; for checkboxes a boolean; for dropdowns the value of an object in the data array; for appPickers an application name, bundle ID or path.                                                                                                                    |
-| data        | Yes when `type` is `dropdown`. No otherwise  | An array of objects with `title` and `value` properties, e.g.: `[{"title": "Item 1", "value": "1"}]`                                                                                                                                                                                                                                          |
-| label       | Yes when `type` is `checkbox`. No otherwise. | Required, checkboxes only: The label of the checkbox. Shown next to the checkbox.                                                                                                                                                                                                                                                             |
+| 属性          | 必填                                  | 描述                                                                                                                          |
+| ----------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| name        | Yes                                 | 首选项的唯一 ID。                                                                                                                  |
+| description | Yes                                 | 它可以帮助用户了解偏好的作用。将鼠标悬停在其上时，它将显示为工具提示。                                                                                         |
+| type        | Yes                                 | 偏好类型。我们目前支持 `"textfield"` 和 `"password"`（用于安全输入）、`"checkbox"`、`"dropdown"`、 `"appPicker"`、 `"file"`和 `"directory"`          |
+| required    | Yes                                 | 指示该值是否是必需的并且必须由用户输入才能使用扩展。                                                                                                  |
+| title       | 当 `type` 为 `checkbox` 时为No，否则为 Yes。 | <p>Raycast 首选项中显示的首选项的显示名称。 对于复选框，它显示为复选框本身上方的部分标题。</p><p>如果要将多个复选框分组到一个部分中，请设置第一个复选框的 <code>title</code> 并将其他复选框的标题留空。</p> |
+| placeholder | No                                  | 未输入值时在首选项字段中显示的文本。                                                                                                          |
+| default     | No                                  | 该字段的可选默认值。对于文本字段，这是一个字符串值；对于复选框，布尔值；对于下拉列表，数据数组中对象的值；对于 appPickers，则是应用程序名称、包 ID 或路径。                                       |
+| data        | 当 `type` 为 `dropdown` 时为Yes，否则为 No。 | 具有 `title` 和 `value` 属性的对象数组，例如：`[{"title": "Item 1", "value": "1"}]`                                                       |
+| label       | 当 `type` 为 `checkbox` 时为Yes，否则为 No。 | 必需，仅限复选框：复选框的标签。显示在复选框旁边。                                                                                                   |
 
-## Argument properties
+## Argument 属性
 
-All properties for command arguments. Use the [Arguments API](lifecycle/arguments.md) to access their values.
+命令 argument 里的所有属性。使用 [Arguments API](https://developers.raycast.com/information/lifecycle/arguments) 来访问它们的值。
 
-| Property    | Required | Description                                                                                                                                                                                                                   |
-| ----------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | Yes      | A unique id for the argument. This value will be used to as the key in the object passed as [top-level prop](lifecycle/arguments.md#arguments).                                                                               |
-| type        | Yes      | The argument type. We currently support `text` and `password` (for secure entry). When the type is `password`, entered text will be replaced with asterisks. Most common use case – passing passwords or secrets to commands. |
-| placeholder | Yes      | Placeholder for the argument's input field.                                                                                                                                                                                   |
-| required    | No       | Indicates whether the value is required and must be entered by the user before the command is opened. Default value for this is `false`.                                                                                      |
+| 属性          | 必填  | 描述                                                                                                          |
+| ----------- | --- | ----------------------------------------------------------------------------------------------------------- |
+| name        | Yes | 参数的唯一 ID。该值将作为[顶级 prop](https://developers.raycast.com/information/lifecycle/arguments#arguments) 传递的对象中的键。 |
+| type        | Yes | 参数类型。我们目前支持 `text` 和 `password`（用于安全输入）。当类型为密码时，输入的文本将替换为星号。最常见的用例 - 将密码或 secrets 传递给命令。                    |
+| placeholder | Yes | 参数输入字段的占位符。                                                                                                 |
+| required    | No  | 指示该值是否是必需的并且必须由用户在打开命令之前输入。该值的默认值为 `false`。                                                                 |
