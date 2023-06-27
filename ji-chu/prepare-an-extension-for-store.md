@@ -249,7 +249,6 @@ Initial version code
 
 ### 导航
 
-* Use the [Navigation API](https://developers.raycast.com/api-reference/user-interface/navigation) for pushing new screens. This will ensure that a user can navigate within your extension the same way as in the rest of the application.
 * 使用 [导航 API](https://developers.raycast.com/api-reference/user-interface/navigation) 跳转新的步骤。这将确保用户可以像在应用程序的其余部分中一样在您的扩展中导航。
 * 避免引入您自己的导航堆栈。当要跳转新步骤时仅替换视图内容的扩展将被拒绝。
 

@@ -39,5 +39,5 @@ npm run dev 在开发模式下启动扩展，具有热重载、错误报告和[�
 🎉 恭喜！您构建了您的第一个扩展。去做想做的吧！
 
 {% hint style="info" %}
-Don't forget to run [`npm run dev`](../zi-liao/tools/cli.md#development) again when you want to change something in your extension.
+当您想要更改扩展中的某些内容时，不要忘记再次运行 `npm run dev` 。
 {% endhint %}

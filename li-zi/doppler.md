@@ -190,6 +190,4 @@ function ShareSecretAction() {
 }
 ```
 
-And there you go. A simple form to enter a secret and get a URL that you can share with others that will "destroy itself" accordingly to your preferences. As next steps, you could use the `<PasteAction>` to paste the link directly to front-most application or add another action that clears the form and let's you create another shareable link.
-
 结束啦。一个简单的表单，用于输入 secret 并获取您可以与其他人共享的 URL，该 URL 将根据您的偏好 “自我销毁”。后续步骤，您可以使用 `<PasteAction>` 将链接直接粘贴到最前面的应用程序，或者添加另一个清除表单的操作，然后让您创建另一个可共享链接。

@@ -165,8 +165,6 @@ function ToggleTodoAction(props: { todo: Todo; onToggle: () => void }) {
 }
 ```
 
-In this case we added the `<ToggleTodoAction>` to the list item. By doing this we can use the `index` to toggle the appropriate todo. We also added an icon to our todo that reflects the `isCompleted` state.
-
 在本例中，我们将  `<ToggleTodoAction>`  添加到列表项。通过这样做，我们可以使用 `index` 来切换适当的 todo。我们还在 todo 中添加了一个反映 `isCompleted` 状态的图标。
 
 ## 删除一个 todo
