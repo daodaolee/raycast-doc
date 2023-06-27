@@ -1,28 +1,30 @@
 # Storage
 
-The storage APIs can be used to store data in Raycast's [local encrypted database](../zi-liao/security.md#data-storage).
+Storage API 可用于将数据存储在 Raycast 的 [本地加密数据库](https://developers.raycast.com/information/security#data-storage) 中。
 
-All commands in an extension have shared access to the stored data. Extensions can _not_ access the storage of other extensions.
+扩展中的所有命令都可以共享对存储数据的访问。扩展程序无法访问其他扩展程序的存储。
 
-Values can be managed through functions such as [`LocalStorage.getItem`](storage.md#localstorage.getitem), [`LocalStorage.setItem`](storage.md#localstorage.setitem), or [`LocalStorage.removeItem`](storage.md#localstorage.removeitem). A typical use case is storing user-related data, for example entered todos.
+可以通过  [`LocalStorage.getItem`](storage.md#localstorage.getitem)、 [`LocalStorage.setItem`](storage.md#localstorage.setitem)或 [`LocalStorage.removeItem`](storage.md#localstorage.removeitem)  等函数来管理值。典型的用例是存储与用户相关的数据，例如输入的待办事项。
 
 {% hint style="info" %}
 The API is not meant to store large amounts of data. For this, use [Node's built-in APIs to write files](https://nodejs.dev/learn/writing-files-with-nodejs), e.g. to the extension's [support directory](environment.md#environment).
+
+这个 API 并不意味着存储大量数据。如果你想，请使用 [Node 的内置 API 来写入文件](https://nodejs.dev/learn/writing-files-with-nodejs)，例如到扩展的 [支持目录](https://developers.raycast.com/api-reference/environment#environment)。
 {% endhint %}
 
-## API Reference
+## API 参考
 
 ### LocalStorage.getItem
 
-Retrieve the stored value for the given key.
+获取给定键的值。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function getItem(key: string): Promise<Value | undefined>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { LocalStorage } from "@raycast/api";
@@ -34,27 +36,27 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                  | Description                                | Type     |
-| ------------------------------------- | ------------------------------------------ | -------- |
-| key<mark style="color:red;">\*</mark> | The key you want to retrieve the value of. | `string` |
+| 名称                                    | 描述         | 类型       |
+| ------------------------------------- | ---------- | -------- |
+| key<mark style="color:red;">\*</mark> | 您想要获取其值的键。 | `string` |
 
-#### Return
+#### 返回
 
-A Promise that resolves with the stored value for the given key. If the key does not exist, `undefined` is returned.
+获取给定键的值，是一个 Promise。如果键不存在，则返回 undefined。
 
 ### LocalStorage.setItem
 
-Stores a value for the given key.
+存储给定键的值。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function setItem(key: string, value: Value): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { LocalStorage } from "@raycast/api";
@@ -66,28 +68,28 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                    | Description                                               | Type                                                  |
-| --------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
-| key<mark style="color:red;">\*</mark>   | The key you want to create or update the value of.        | `string`                                              |
-| value<mark style="color:red;">\*</mark> | The value you want to create or update for the given key. | [`LocalStorage.Value`](storage.md#localstorage.value) |
+| 名称                                      | 描述             | 类型                                                    |
+| --------------------------------------- | -------------- | ----------------------------------------------------- |
+| key<mark style="color:red;">\*</mark>   | 您想要新建或更新其值的键。  | `string`                                              |
+| value<mark style="color:red;">\*</mark> | 您要为给定键新建或更新的值。 | [`LocalStorage.Value`](storage.md#localstorage.value) |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the value is stored.
+存储值，是一个 promise。
 
 ### LocalStorage.removeItem
 
-Removes the stored value for the given key.
+删除给定键的值。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function removeItem(key: string): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { LocalStorage } from "@raycast/api";
@@ -100,27 +102,27 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                  | Description                              | Type     |
-| ------------------------------------- | ---------------------------------------- | -------- |
-| key<mark style="color:red;">\*</mark> | The key you want to remove the value of. | `string` |
+| 名称                                    | 描述      | Type     |
+| ------------------------------------- | ------- | -------- |
+| key<mark style="color:red;">\*</mark> | 删除其值的键。 | `string` |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the value is removed.
+删除值，是一个 promise。
 
 ### LocalStorage.allItems
 
-Retrieve all stored values in the local storage of an extension.
+获取扩展本地存储中的所有存储值。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function allItems(): Promise<Values>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { LocalStorage } from "@raycast/api";
@@ -136,21 +138,21 @@ export default async function Command() {
 }
 ```
 
-#### Return
+#### 返回
 
-A Promise that resolves with an object containing all [Values](storage.md#localstorage.values).
+包含所有 [Values](https://developers.raycast.com/api-reference/storage#localstorage.values) 的对象，是一个 promise。
 
 ### LocalStorage.clear
 
-Removes all stored values of an extension.
+删除所有值，是一个 promise。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function clear(): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { LocalStorage } from "@raycast/api";
@@ -160,23 +162,25 @@ export default async function Command() {
 }
 ```
 
-#### Return
+#### 返回
 
 A Promise that resolves when all values are removed.
 
-## Types
+当所有值都被删除时，promise 为 resolve。
+
+## 类型
 
 ### LocalStorage.Values
 
-Values of local storage items.
+本地存储的值。
 
-For type-safe values, you can define your own interface. Use the keys of the local storage items as the property names.
+对于 type-safe 值，您可以定义自己的接口。使用本地存储项的键作为属性名称。
 
-#### Properties
+#### 属性
 
-| Name           | Type  | Description                             |
-| -------------- | ----- | --------------------------------------- |
-| \[key: string] | `any` | The local storage value of a given key. |
+| 名称             | 类型    | 描述         |
+| -------------- | ----- | ---------- |
+| \[key: string] | `any` | 给定键的本地存储值。 |
 
 ### LocalStorage.Value
 
@@ -184,9 +188,9 @@ For type-safe values, you can define your own interface. Use the keys of the loc
 Value: string | number | boolean;
 ```
 
-Supported storage value types.
+支持的存储值类型。
 
-#### Example
+#### 例子
 
 ```typescript
 import { LocalStorage } from "@raycast/api";
