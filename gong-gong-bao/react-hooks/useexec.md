@@ -1,6 +1,6 @@
-# `useExec`
+# useExec
 
-Hook that executes a command and returns the [AsyncState](#asyncstate) corresponding to the execution of the command. The last value will be kept between command runs.
+Hook that executes a command and returns the [AsyncState](useexec.md#asyncstate) corresponding to the execution of the command. The last value will be kept between command runs.
 
 ## Signature
 
@@ -67,53 +67,52 @@ function useExec<T, U>(
 
 ### Arguments
 
-- `file` is the path to the file to execute.
-- `arguments` is an array of strings to pass as arguments to the file.
+* `file` is the path to the file to execute.
+* `arguments` is an array of strings to pass as arguments to the file.
 
 or
 
-- `command` is the string to execute.
+* `command` is the string to execute.
 
 With a few options:
 
-- `options.shell` is a boolean or a string to tell whether to run the command inside of a shell or not. If `true`, uses `/bin/sh`. A different shell can be specified as a string. The shell should understand the `-c` switch.
+*   `options.shell` is a boolean or a string to tell whether to run the command inside of a shell or not. If `true`, uses `/bin/sh`. A different shell can be specified as a string. The shell should understand the `-c` switch.
 
-  We recommend against using this option since it is:
+    We recommend against using this option since it is:
 
-  - not cross-platform, encouraging shell-specific syntax.
-  - slower, because of the additional shell interpretation.
-  - unsafe, potentially allowing command injection.
+    * not cross-platform, encouraging shell-specific syntax.
+    * slower, because of the additional shell interpretation.
+    * unsafe, potentially allowing command injection.
+* `options.stripFinalNewline` is a boolean to tell the hook to strip the final newline character from the output. By default, it will.
+* `options.cwd` is a string to specify the current working directory of the child process. By default, it will be `process.cwd()`.
+* `options.env` is a key-value pairs to set as the environment of the child process. It will extend automatically from `process.env`.
+* `options.encoding` is a string to specify the character encoding used to decode the `stdout` and `stderr` output. If set to `"buffer"`, then `stdout` and `stderr` will be a `Buffer` instead of a string.
+* `options.input` is a string or a Buffer to write to the `stdin` of the file.
+* `options.timeout` is a number. If greater than `0`, the parent will send the signal `SIGTERM` if the child runs longer than timeout milliseconds. By default, the execution will timeout after 10000ms (eg. 10s).
+* `options.parseOutput` is a function that accepts the output of the child process as an argument and returns the data the hooks will return - see [ParseExecOutputHandler](useexec.md#parseexecoutputhandler). By default, the hook will return `stdout`.
 
-- `options.stripFinalNewline` is a boolean to tell the hook to strip the final newline character from the output. By default, it will.
-- `options.cwd` is a string to specify the current working directory of the child process. By default, it will be `process.cwd()`.
-- `options.env` is a key-value pairs to set as the environment of the child process. It will extend automatically from `process.env`.
-- `options.encoding` is a string to specify the character encoding used to decode the `stdout` and `stderr` output. If set to `"buffer"`, then `stdout` and `stderr` will be a `Buffer` instead of a string.
-- `options.input` is a string or a Buffer to write to the `stdin` of the file.
-- `options.timeout` is a number. If greater than `0`, the parent will send the signal `SIGTERM` if the child runs longer than timeout milliseconds. By default, the execution will timeout after 10000ms (eg. 10s).
-- `options.parseOutput` is a function that accepts the output of the child process as an argument and returns the data the hooks will return - see [ParseExecOutputHandler](#parseexecoutputhandler). By default, the hook will return `stdout`.
+Including the [useCachedPromise](usecachedpromise.md)'s options:
 
-Including the [useCachedPromise](./useCachedPromise.md)'s options:
+* `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Argument dependent on user input](useexec.md#argument-dependent-on-user-input) for more information.
 
-- `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Argument dependent on user input](#argument-dependent-on-user-input) for more information.
+Including the [useCachedState](usecachedstate.md)'s options:
 
-Including the [useCachedState](./useCachedState.md)'s options:
+* `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
 
-- `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
+Including the [usePromise](usepromise.md)'s options:
 
-Including the [usePromise](./usePromise.md)'s options:
-
-- `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-- `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-- `options.onData` is a function called when an execution succeeds.
-- `options.onWillExecute` is a function called when an execution will start.
+* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
+* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
+* `options.onData` is a function called when an execution succeeds.
+* `options.onWillExecute` is a function called when an execution will start.
 
 ### Return
 
-Returns an object with the [AsyncState](#asyncstate) corresponding to the execution of the command as well as a couple of methods to manipulate it.
+Returns an object with the [AsyncState](useexec.md#asyncstate) corresponding to the execution of the command as well as a couple of methods to manipulate it.
 
-- `data`, `error`, `isLoading` - see [AsyncState](#asyncstate).
-- `revalidate` is a method to manually call the function with the same arguments again.
-- `mutate` is a method to wrap an asynchronous update and gives some control over how the `useFetch`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - see [AsyncState](useexec.md#asyncstate).
+* `revalidate` is a method to manually call the function with the same arguments again.
+* `mutate` is a method to wrap an asynchronous update and gives some control over how the `useFetch`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](useexec.md#mutation-and-optimistic-updates) for more information.
 
 ## Example
 

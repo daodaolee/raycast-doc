@@ -1,6 +1,6 @@
-# `useSQL`
+# useSQL
 
-Hook which executes a query on a local SQL database and returns the [AsyncState](#asyncstate) corresponding to the execution of the query. The last value will be kept between command runs.
+Hook which executes a query on a local SQL database and returns the [AsyncState](usesql.md#asyncstate) corresponding to the execution of the query. The last value will be kept between command runs.
 
 ## Signature
 
@@ -24,28 +24,28 @@ function useSQL<T>(
 
 ### Arguments
 
-- `databasePath` is the path to the local SQL database.
-- `query` is the SQL query to run on the database.
+* `databasePath` is the path to the local SQL database.
+* `query` is the SQL query to run on the database.
 
 With a few options:
 
-- `options.permissionPriming` is a string explaining why the extension needs full disk access. For example, the Apple Notes extension uses `"This is required to search your Apple Notes."`. While it is optional, we recommend setting it to help users understand.
+* `options.permissionPriming` is a string explaining why the extension needs full disk access. For example, the Apple Notes extension uses `"This is required to search your Apple Notes."`. While it is optional, we recommend setting it to help users understand.
 
-Including the [usePromise](./usePromise.md)'s options:
+Including the [usePromise](usepromise.md)'s options:
 
-- `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-- `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-- `options.onData` is a function called when an execution succeeds.
-- `options.onWillExecute` is a function called when an execution will start.
+* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
+* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
+* `options.onData` is a function called when an execution succeeds.
+* `options.onWillExecute` is a function called when an execution will start.
 
 ### Return
 
-Returns an object with the [AsyncState](#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
+Returns an object with the [AsyncState](usesql.md#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
 
-- `data`, `error`, `isLoading` - see [AsyncState](#asyncstate).
-- `permissionView` is a React Node that should be returned when present. It will prompt users to grant full disk access (which is required for the hook to work).
-- `revalidate` is a method to manually call the function with the same arguments again.
-- `mutate` is a method to wrap an asynchronous update and gives some control over how the `useSQL`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - see [AsyncState](usesql.md#asyncstate).
+* `permissionView` is a React Node that should be returned when present. It will prompt users to grant full disk access (which is required for the hook to work).
+* `revalidate` is a method to manually call the function with the same arguments again.
+* `mutate` is a method to wrap an asynchronous update and gives some control over how the `useSQL`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](usesql.md#mutation-and-optimistic-updates) for more information.
 
 ## Example
 

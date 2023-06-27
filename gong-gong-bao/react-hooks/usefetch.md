@@ -1,6 +1,6 @@
-# `useFetch`
+# useFetch
 
-Hook which fetches the URL and returns the [AsyncState](#asyncstate) corresponding to the execution of the fetch. The last value will be kept between command runs.
+Hook which fetches the URL and returns the [AsyncState](usefetch.md#asyncstate) corresponding to the execution of the fetch. The last value will be kept between command runs.
 
 ## Signature
 
@@ -24,35 +24,35 @@ function useFetch<T, U>(
 
 ### Arguments
 
-- `url` is the string representation of the URL to fetch.
+* `url` is the string representation of the URL to fetch.
 
 With a few options:
 
-- `options` extends [`RequestInit`](https://github.com/nodejs/undici/blob/v5.7.0/types/fetch.d.ts#L103-L117) allowing you to specify a body, headers, etc. to apply to the request.
-- `options.parseResponse` is a function that accepts the Response as an argument and returns the data the hooks will return. By default, the hook will return `response.json()` if the response has a JSON `Content-Type` header or `response.text()` otherwise.
+* `options` extends [`RequestInit`](https://github.com/nodejs/undici/blob/v5.7.0/types/fetch.d.ts#L103-L117) allowing you to specify a body, headers, etc. to apply to the request.
+* `options.parseResponse` is a function that accepts the Response as an argument and returns the data the hooks will return. By default, the hook will return `response.json()` if the response has a JSON `Content-Type` header or `response.text()` otherwise.
 
-Including the [useCachedPromise](./useCachedPromise.md)'s options:
+Including the [useCachedPromise](usecachedpromise.md)'s options:
 
-- `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Argument dependent on List search text](#argument-dependent-on-list-search-text) for more information.
+* `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Argument dependent on List search text](usefetch.md#argument-dependent-on-list-search-text) for more information.
 
-Including the [useCachedState](./useCachedState.md)'s options:
+Including the [useCachedState](usecachedstate.md)'s options:
 
-- `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
+* `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
 
-Including the [usePromise](./usePromise.md)'s options:
+Including the [usePromise](usepromise.md)'s options:
 
-- `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-- `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-- `options.onData` is a function called when an execution succeeds.
-- `options.onWillExecute` is a function called when an execution will start.
+* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
+* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
+* `options.onData` is a function called when an execution succeeds.
+* `options.onWillExecute` is a function called when an execution will start.
 
 ### Return
 
-Returns an object with the [AsyncState](#asyncstate) corresponding to the execution of the fetch as well as a couple of methods to manipulate it.
+Returns an object with the [AsyncState](usefetch.md#asyncstate) corresponding to the execution of the fetch as well as a couple of methods to manipulate it.
 
-- `data`, `error`, `isLoading` - see [AsyncState](#asyncstate).
-- `revalidate` is a method to manually call the function with the same arguments again.
-- `mutate` is a method to wrap an asynchronous update and gives some control over how the `useFetch`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - see [AsyncState](usefetch.md#asyncstate).
+* `revalidate` is a method to manually call the function with the same arguments again.
+* `mutate` is a method to wrap an asynchronous update and gives some control over how the `useFetch`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](usefetch.md#mutation-and-optimistic-updates) for more information.
 
 ## Example
 

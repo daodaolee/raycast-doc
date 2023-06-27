@@ -4,6 +4,7 @@
 
 ## 链接
 
+* [英文官网](https://developers.raycast.com/)
 * [社区](https://raycast.com/community)
 * [GitHub](https://github.com/raycast/extensions)
 * [Store](https://raycast.com/store)
@@ -79,24 +80,24 @@
   * [Navigation](api-can-kao/user-interface/navigation.md)
 * [窗口 & 搜索栏](api-can-kao/window-and-search-bar.md)
 
-## Utilities
+## 公共包
 
-* [Getting Started](utils-reference/getting-started.md)
-* [Functions](utils-reference/functions/README.md)
-  * [runAppleScript](utils-reference/functions/runAppleScript.md)
-* [Icons](utils-reference/icons/README.md)
-  * [getAvatarIcon](utils-reference/icons/getAvatarIcon.md)
-  * [getFavicon](utils-reference/icons/getFavicon.md)
-  * [getProgressIcon](utils-reference/icons/getProgressIcon.md)
-* [React hooks](utils-reference/react-hooks/README.md)
-  * [useCachedState](utils-reference/react-hooks/useCachedState.md)
-  * [usePromise](utils-reference/react-hooks/usePromise.md)
-  * [useCachedPromise](utils-reference/react-hooks/useCachedPromise.md)
-  * [useFetch](utils-reference/react-hooks/useFetch.md)
-  * [useForm](utils-reference/react-hooks/useForm.md)
-  * [useExec](utils-reference/react-hooks/useExec.md)
-  * [useSQL](utils-reference/react-hooks/useSQL.md)
-  * [useAI](utils-reference/react-hooks/useAI.md)
+* [起步](gong-gong-bao/getting-started.md)
+* [功能](gong-gong-bao/functions/README.md)
+  * [执行 AppleScript](gong-gong-bao/functions/runapplescript.md)
+* [图标](gong-gong-bao/icons/README.md)
+  * [getAvatarIcon](gong-gong-bao/icons/getavataricon.md)
+  * [getFavicon](gong-gong-bao/icons/getfavicon.md)
+  * [getProgressIcon](gong-gong-bao/icons/getprogressicon.md)
+* [React hooks](gong-gong-bao/react-hooks/README.md)
+  * [useCachedState](gong-gong-bao/react-hooks/usecachedstate.md)
+  * [usePromise](gong-gong-bao/react-hooks/usepromise.md)
+  * [useCachedPromise](gong-gong-bao/react-hooks/usecachedpromise.md)
+  * [useFetch](gong-gong-bao/react-hooks/usefetch.md)
+  * [useForm](gong-gong-bao/react-hooks/useform.md)
+  * [useExec](gong-gong-bao/react-hooks/useexec.md)
+  * [useSQL](gong-gong-bao/react-hooks/usesql.md)
+  * [useAI](gong-gong-bao/react-hooks/useai.md)
 
 ***
 

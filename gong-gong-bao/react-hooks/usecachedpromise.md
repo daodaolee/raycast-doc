@@ -1,10 +1,9 @@
-# `useCachedPromise`
+# useCachedPromise
 
-Hook which wraps an asynchronous function or a function that returns a Promise and returns the [AsyncState](#asyncstate) corresponding to the execution of the function. The last value will be kept between command runs.
+Hook which wraps an asynchronous function or a function that returns a Promise and returns the [AsyncState](usecachedpromise.md#asyncstate) corresponding to the execution of the function. The last value will be kept between command runs.
 
 {% hint style="info" %}
-The value needs to be JSON serializable.
-The function is assumed to be constant (eg. changing it won't trigger a revalidation).
+The value needs to be JSON serializable. The function is assumed to be constant (eg. changing it won't trigger a revalidation).
 {% endhint %}
 
 ## Signature
@@ -32,32 +31,32 @@ function useCachedPromise<T, U>(
 
 ### Arguments
 
-- `fn` is an asynchronous function or a function that returns a Promise.
-- `args` is the array of arguments to pass to the function. Every time they change, the function will be executed again. You can omit the array if the function doesn't require any argument.
+* `fn` is an asynchronous function or a function that returns a Promise.
+* `args` is the array of arguments to pass to the function. Every time they change, the function will be executed again. You can omit the array if the function doesn't require any argument.
 
 With a few options:
 
-- `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Promise Argument dependent on List search text](#promise-argument-dependent-on-list-search-text) for more information.
+* `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Promise Argument dependent on List search text](usecachedpromise.md#promise-argument-dependent-on-list-search-text) for more information.
 
-Including the [useCachedState](./useCachedState.md)'s options:
+Including the [useCachedState](usecachedstate.md)'s options:
 
-- `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
+* `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
 
-Including the [usePromise](./usePromise.md)'s options:
+Including the [usePromise](usepromise.md)'s options:
 
-- `options.abortable` is a reference to an [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel a previous call when triggering a new one.
-- `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-- `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-- `options.onData` is a function called when an execution succeeds.
-- `options.onWillExecute` is a function called when an execution will start.
+* `options.abortable` is a reference to an [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel a previous call when triggering a new one.
+* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
+* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
+* `options.onData` is a function called when an execution succeeds.
+* `options.onWillExecute` is a function called when an execution will start.
 
 ### Return
 
-Returns an object with the [AsyncState](#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
+Returns an object with the [AsyncState](usecachedpromise.md#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
 
-- `data`, `error`, `isLoading` - see [AsyncState](#asyncstate).
-- `revalidate` is a method to manually call the function with the same arguments again.
-- `mutate` is a method to wrap an asynchronous update and gives some control over how the `useCachedPromise`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - see [AsyncState](usecachedpromise.md#asyncstate).
+* `revalidate` is a method to manually call the function with the same arguments again.
+* `mutate` is a method to wrap an asynchronous update and gives some control over how the `useCachedPromise`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](usecachedpromise.md#mutation-and-optimistic-updates) for more information.
 
 ## Example
 

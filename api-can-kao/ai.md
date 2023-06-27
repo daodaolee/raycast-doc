@@ -12,7 +12,7 @@ AI API 为开发人员提供了对 AI 功能的无缝访问，无需 API 密钥�
 
 ### AI.ask
 
-向 AI 询问任何你想要的东西，可以在“no-view” 命令、effects 或回调中使用它。在 React 组件中，您可能想使用 [`useAI` util hook](../utils-reference/react-hooks/useAI.md) 代替。
+向 AI 询问任何你想要的东西，可以在“no-view” 命令、effects 或回调中使用它。在 React 组件中，您可能想使用 [`useAI` util hook](../gong-gong-bao/react-hooks/useai.md) 代替。
 
 #### 签名
 
