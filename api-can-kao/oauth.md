@@ -108,8 +108,6 @@ const tokenSet = await client.getTokens();
 
 ## Token 刷新
 
-Since access tokens usually expire, an extension should provide a way to refresh the access token, otherwise users would be logged out or see errors. Some providers require you to add an offline scope so that you get a refresh token. (Twitter, for example, needs the scope `offline.access` or it only returns an access token.) A basic refresh flow could look like this:
-
 由于 access token 通常会过期，因此扩展程序应该提供一种刷新 access token 的方法，否则用户将被注销或看到报错。某些提供商要求您添加离线操作，以便获得刷新 access token。 （例如，Twitter 需要 `Offline.access` 范围，否则它只返回 access token。）基本刷新流程可能如下所示：
 
 ```typescript
@@ -122,8 +120,6 @@ if (tokenSet?.accessToken) {
 }
 // authorize...
 ```
-
-This code would run before starting the authorization flow. It checks the presence of a token set to see whether the user is logged in and then checks whether there is a refresh token and the token set is expired (through the convenience method `isExpired()` on the [TokenSet](oauth.md#oauth.tokenset)). If it is expired, the token is refreshed and updated in the token set. Example using `node-fetch`:
 
 该代码将在启动授权流程之前运行。它会检查 token 是否存在以查看用户是否已登录，然后检查是否存在刷新 token 以及 token 是否已过期（通过 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset) 上的便捷方法 `isExpired()` ）。如果过期，则刷新该 token，并在 token 中进行更新。下面是使用  `node-fetch` 的示例：
 
@@ -153,19 +149,19 @@ async function refreshTokens(refreshToken: string): Promise<OAuth.TokenResponse>
 
 我们提供了[ Google、Twitter 和 Dropbox 的 OAuth 示例集成](https://github.com/raycast/extensions/tree/main/examples/api-examples)，演示了上面所示的整个流程。
 
-## API Reference
+## API 参考
 
-### OAuth.PKCEClient
+### OAuth.PKCEClient.
 
-Use [OAuth.PKCEClient.Options](oauth.md#oauth.pkceclient.options) to configure what's shown on the OAuth overlay.
+使用  [OAuth.PKCEClient.Options](oauth.md#oauth.pkceclient.options)  配置 OAuth 叠加层上显示的内容。
 
-#### Signature
+#### 签名
 
 ```typescript
 constructor(options: OAuth.PKCEClient.Options): OAuth.PKCEClient
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { OAuth } from "@raycast/api";
@@ -178,9 +174,9 @@ const client = new OAuth.PKCEClient({
 });
 ```
 
-#### Methods
+#### 方法
 
-| Method                                                                                                                  |
+| 方法                                                                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------- |
 | [`authorizationRequest(options: AuthorizationRequestOptions): Promise`](oauth.md#oauth.pkceclient-authorizationrequest) |
 | [`authorize(options: AuthorizationRequest \| AuthorizationOptions): Promise`](oauth.md#oauth.pkceclient-authorize)      |
@@ -190,17 +186,17 @@ const client = new OAuth.PKCEClient({
 
 ### OAuth.PKCEClient#authorizationRequest
 
-Creates an authorization request for the provided authorization endpoint, client ID, and scopes. You need to first create the authorization request before calling [authorize](oauth.md#oauth.pkceclient-authorize).
+为提供的授权点、client ID 和 scopes 创建授权请求。在调用  [authorize](oauth.md#oauth.pkceclient-authorize) 之前，您需要先创建授权请求。
 
-The generated code challenge for the PKCE request uses the S256 method.
+PKCE 请求生成的代码变更使用 S256 方法。
 
-#### Signature
+#### 签名
 
 ```typescript
 authorizationRequest(options: AuthorizationRequestOptions): Promise<AuthorizationRequest>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 const authRequest = await client.authorizationRequest({
@@ -210,236 +206,234 @@ const authRequest = await client.authorizationRequest({
 });
 ```
 
-#### Parameters
+#### 参数
 
-| Name    | Type                                                                        | Required | Description                                           |
-| ------- | --------------------------------------------------------------------------- | -------- | ----------------------------------------------------- |
-| options | [`AuthorizationRequestOptions`](oauth.md#oauth.authorizationrequestoptions) | Yes      | The options used to create the authorization request. |
+<table><thead><tr><th width="122">名称</th><th width="322">类型</th><th width="63">必填</th><th>描述</th></tr></thead><tbody><tr><td>options</td><td><a href="oauth.md#oauth.authorizationrequestoptions"><code>AuthorizationRequestOptions</code></a></td><td>Yes</td><td>用于创建授权请求的选项。</td></tr></tbody></table>
 
-#### Return
+#### 返回
 
-A promise for an [AuthorizationRequest](oauth.md#oauth.authorizationrequest) that you can use as input for [authorize](oauth.md#oauth.pkceclient-authorize).
+您可以将其用作  [authorize](oauth.md#oauth.pkceclient-authorize) 输入的 [AuthorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest)  Promise。
 
 ### OAuth.PKCEClient#authorize
 
-Starts the authorization and shows the OAuth overlay in Raycast. As parameter you can either directly use the returned request from [authorizationRequest](oauth.md#oauth.authorizationrequest), or customize the URL by extracting parameters from [AuthorizationRequest](oauth.md#oauth.authorizationrequest) and providing your own URL via [AuthorizationOptions](oauth.md#oauth.authorizationoptions). Eventually the URL will be used to open the authorization page of the provider in the web browser.
+启动授权并在 Raycast 中显示 OAuth 覆盖。作为参数，您可以直接使用 [authorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest) 返回的请求，也可以通过从 [AuthorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest) 中提取参数并通过  [AuthorizationOptions](https://developers.raycast.com/api-reference/oauth#oauth.authorizationoptions) 提供您自己的URL来自定义URL。最终该 URL 将用于在 Web 浏览器中打开提供商的授权页面。
 
-#### Signature
+#### 签名
 
 ```typescript
 authorize(options: AuthorizationRequest | AuthorizationOptions): Promise<AuthorizationResponse>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 const { authorizationCode } = await client.authorize(authRequest);
 ```
 
-#### Parameters
+#### 参数
 
-| Name    | Type                                                                                                                             | Required | Description                    |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------ |
-| options | [`AuthorizationRequest`](oauth.md#oauth.authorizationrequest) `\|` [`AuthorizationOptions`](oauth.md#oauth.authorizationoptions) | Yes      | The options used to authorize. |
+<table><thead><tr><th width="128">名称</th><th width="266">类型</th><th>必填</th><th>描述</th></tr></thead><tbody><tr><td>options</td><td><a href="oauth.md#oauth.authorizationrequest"><code>AuthorizationRequest</code></a> <code>|</code> <a href="oauth.md#oauth.authorizationoptions"><code>AuthorizationOptions</code></a></td><td>Yes</td><td>用于授权的选项。</td></tr></tbody></table>
 
-#### Return
+#### 返回
 
 A promise for an [AuthorizationResponse](oauth.md#oauth.authorizationresponse), which contains the authorization code needed for the token exchange. The promise is resolved when the user was redirected back from the provider's authorization page to the Raycast extension.
 
+[AuthorizationResponse](https://developers.raycast.com/api-reference/oauth#oauth.authorizationresponse) 的 promise，其中包含交换 token 所需的授权代码。当用户从提供商的授权页面重定向回 Raycast 扩展时，promise 变为 resolved。
+
 ### OAuth.PKCEClient#setTokens
 
-Securely stores a [TokenSet](oauth.md#oauth.tokenset) for the provider. Use this after fetching the access token from the provider. If the provider returns a a standard OAuth JSON token response, you can directly pass the [TokenResponse](oauth.md#oauth.tokenresponse). At a minimum, you need to set the `accessToken`, and typically you also set `refreshToken` and `isExpired`.
+安全地存储提供者的 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset)。从提供商获取 access token 后使用此选项。如果提供者返回标准 OAuth JSON 令牌响应，您可以直接传递 [TokenResponse](https://developers.raycast.com/api-reference/oauth#oauth.tokenresponse)。至少，您需要设置 `accessToken`，通常还需要设置 `refreshToken` 和 `isExpired`。
 
-Raycast automatically shows a logout preference for the extension when a token set was saved.
+保存 token 时，Raycast 会自动显示扩展程序的注销首选项。
 
-If you want to make use of the convenience `isExpired()` method, the property `expiresIn` must be configured.
+如果你想使用轻便的 `isExpired()` 方法，则必须配置 `expiresIn` 属性.
 
-#### Signature
+#### 签名
 
 ```typescript
 setTokens(options: TokenSetOptions | TokenResponse): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 await client.setTokens(tokenResponse);
 ```
 
-#### Parameters
+#### 参数
 
-| Name    | Type                                                                                                     | Required | Description                              |
-| ------- | -------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------- |
-| options | [`TokenSetOptions`](oauth.md#oauth.tokensetoptions) `\|` [`TokenResponse`](oauth.md#oauth.tokenresponse) | Yes      | The options used to store the token set. |
+<table><thead><tr><th width="134">名称</th><th>类型</th><th width="160">必填</th><th>描述</th></tr></thead><tbody><tr><td>options</td><td><a href="oauth.md#oauth.tokensetoptions"><code>TokenSetOptions</code></a> <code>|</code> <a href="oauth.md#oauth.tokenresponse"><code>TokenResponse</code></a></td><td>Yes</td><td>用于存储 token 的选项。</td></tr></tbody></table>
 
-#### Return
+#### 返回
 
-A promise that resolves when the token set has been stored.
+当 token 被存储后， promise 变为 resolve。
 
 ### OAuth.PKCEClient#getTokens
 
-Retrieves the stored [TokenSet](oauth.md#oauth.tokenset) for the client. You can use this to initially check whether the authorization flow should be initiated or the user is already logged in and you might have to refresh the access token.
+检索客户端存储的 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset)。您可以使用它来初步检查是否应启动授权流程或用户已登录，或者刷新 access token。
 
-#### Signature
+#### 签名
 
 ```typescript
 getTokens(): Promise<TokenSet | undefined>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 const tokenSet = await client.getTokens();
 ```
 
-#### Return
+#### 返回
 
-A promise that resolves when the token set has been retrieved.
+获取 token 后， promise 变为 resolves。
 
 ### OAuth.PKCEClient#removeTokens
 
-Removes the stored [TokenSet](oauth.md#oauth.tokenset) for the client. Raycast automatically shows a logout preference that removes the token set. Use this method only if you need to provide an additional logout option in your extension or you want to remove the token set because of a migration.
+删除客户端存储的 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset)。 Raycast 自动显示删除 token 的注销首选项。仅当您需要在扩展程序中提供额外的注销选项或者您想要因迁移而删除令牌集时，才使用此方法。
 
-#### Signature
+#### 签名
 
 ```typescript
 removeTokens(): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 await client.removeTokens();
 ```
 
-#### Return
+#### 返回
 
-A promise that resolves when the token set has been removed.
+当 token 被移除后，promise 变为 resolve。
 
-## Types
+## 类型
 
 ### OAuth.PKCEClient.Options
 
-The options for creating a new [PKCEClient](oauth.md#oauth.pkceclient).
+用于创建新 [PKCEClient](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient) 的选项。
 
-#### Properties
+#### 属性
 
-| Property                                         | Description                                                                                                                                                                                                                             | Type                                                                    |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| providerName<mark style="color:red;">\*</mark>   | The name of the provider, displayed in the OAuth overlay.                                                                                                                                                                               | `string`                                                                |
-| redirectMethod<mark style="color:red;">\*</mark> | The redirect method for the OAuth flow. Make sure to set this to the correct method for the provider, see [OAuth.RedirectMethod](oauth.md#oauth.redirectmethod) for more information.                                                   | [`OAuth.RedirectMethod`](oauth.md#oauth.redirectmethod)                 |
-| description                                      | An optional description, shown in the OAuth overlay. You can use this to customize the message for the end user, for example for handling scope changes or other migrations. Raycast shows a default message if this is not configured. | `string`                                                                |
-| providerIcon                                     | An icon displayed in the OAuth overlay. Make sure to provide at least a size of 64x64 pixels.                                                                                                                                           | [`Image.ImageLike`](user-interface/icons-and-images.md#image.imagelike) |
-| providerId                                       | An optional ID for associating the client with a provider. Only set this if you use multiple different clients in your extension.                                                                                                       | `string`                                                                |
+| 名称                                               | 描述                                                                                                                                          | 类型                                                                      |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| providerName<mark style="color:red;">\*</mark>   | 提供者的名称，显示在 OAuth 展示面板中。                                                                                                                     | `string`                                                                |
+| redirectMethod<mark style="color:red;">\*</mark> | OAuth 流的 重定向方法。确保将其设置为提供程序的正确方法，请参阅 [OAuth.RedirectMethod](https://developers.raycast.com/api-reference/oauth#oauth.redirectmethod) 了解更多信息。 | [`OAuth.RedirectMethod`](oauth.md#oauth.redirectmethod)                 |
+| description                                      | 可选描述，显示在 OAuth 展示面板中。您可以使用它来为最终用户自定义消息，例如处理范围更改或其他迁移。如果未配置，Raycast 将显示默认消息。                                                                 | `string`                                                                |
+| providerIcon                                     | OAuth 展示面板中显示的图标。确保提供至少 64x64 像素的大小。                                                                                                        | [`Image.ImageLike`](user-interface/icons-and-images.md#image.imagelike) |
+| providerId                                       | 用于将客户端与提供商关联起来的可选 ID。仅当您在扩展中使用多个不同的客户端时才设置此项。                                                                                               | `string`                                                                |
 
 ### OAuth.RedirectMethod
 
-Defines the supported redirect methods for the OAuth flow. You can choose between web and app-scheme redirect methods, depending on what the provider requires when setting up the OAuth app. For examples on what redirect URI you need to configure, see the docs for each method.
+定义 OAuth 流支持的重定向方法。您可以在 Web 和应用程序方案重定向方法之间进行选择，具体取决于提供商在设置 OAuth 应用程序时的要求。有关需要配置的重定向 URI 的示例，请参阅每种方法的文档。
 
-#### Enumeration members
+#### 枚举成员
 
-| Name   | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Web    | <p>Use this type for a redirect back to the Raycast website, which will then open the extension. In the OAuth app, configure <code>https://raycast.com/redirect?packageName=Extension</code><br>(This is a static redirect URL for all extensions.)<br>If the provider does not accept query parameters in redirect URLs, you can alternatively use <code>https://raycast.com/redirect/extension</code> and then customize the <a href="oauth.md#oauth.authorizationrequest">AuthorizationRequest</a> via its <code>extraParameters</code> property. For example add: <code>extraParameters: { "redirect_uri": "https://raycast.com/redirect/extension" }</code></p> |
-| App    | Use this type for an app-scheme based redirect that directly opens Raycast. In the OAuth app, configure `raycast://oauth?package_name=Extension`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| AppURI | <p>Use this type for a URI-style app scheme that directly opens Raycast. In the OAuth app, configure <code>com.raycast:/oauth?package_name=Extension</code><br>(Note the single slash – Google, for example, would require this flavor for an OAuth app where the Bundle ID is <code>com.raycast</code>)</p>                                                                                                                                                                                                                                                                                                                                                         |
+| 名称     | 值                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Web    | 重定向回 Raycast 网站，然后该网站将打开扩展程序。在 OAuth 应用程序中，配置 `https://raycast.com/redirect?packageName=Extension` （这是所有扩展程序的静态重定向 URL。） 如果提供程序不接受重定向 URL 中的查询参数，您也可以使用 `https://raycast.com/redirect/extension`，然后通过其 `extraParameters` 属性自定义 [AuthorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest)。例如添加： `extraParameters: { "redirect_uri": "https://raycast.com/redirect/extension" }` |
+| App    | 进行基于应用程序方案的重定向，直接打开 Raycast。在 OAuth 应用程序中，配置 `raycast://oauth?package_name=Extension`                                                                                                                                                                                                                                                                                                                                      |
+| AppURI | 用于直接打开 Raycast 的 URI 样式应用程序方案。在 OAuth 应用程序中，配置 `com.raycast:/oauth?package_name=Extension` （请注意单斜线 - 例如，Google 需要这种风格的 OAuth 应用程序，其中 Bundle ID 为 `com.raycast`）                                                                                                                                                                                                                                                            |
 
 ### OAuth.AuthorizationRequestOptions
 
-The options for an authorization request via [authorizationRequest](oauth.md#oauth.authorizationrequest).
+通过 [authorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest) 进行授权请求的选项。
 
-| Property                                   | Description                                                                                                                                                                                                                                                                            | Type                     |
-| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| clientId<mark style="color:red;">\*</mark> | The client ID of the configured OAuth app.                                                                                                                                                                                                                                             | `string`                 |
-| endpoint<mark style="color:red;">\*</mark> | The URL to the authorization endpoint for the OAuth provider.                                                                                                                                                                                                                          | `string`                 |
-| scope<mark style="color:red;">\*</mark>    | A space-delimited list of scopes for identifying the resources to access on the user's behalf. The scopes are typically shown to the user on the provider's consent screen in the browser. Note that some providers require the same scopes be configured in the registered OAuth app. | `string`                 |
-| extraParameters                            | Optional additional parameters for the authorization request. Note that some providers require additional parameters, for example to obtain long-lived refresh tokens.                                                                                                                 | `Record<string, string>` |
+| 属性                                         | 描述                                                                                    | 类型                       |
+| ------------------------------------------ | ------------------------------------------------------------------------------------- | ------------------------ |
+| clientId<mark style="color:red;">\*</mark> | 已配置的 OAuth 应用程序的 client ID。                                                           | `string`                 |
+| endpoint<mark style="color:red;">\*</mark> | OAuth 提供程序的授权点的 URL。                                                                  | `string`                 |
+| scope<mark style="color:red;">\*</mark>    | 以空格分隔的范围列表，用于标识要代表用户访问的资源。范围通常在浏览器中的提供商同意屏幕上向用户显示。请注意，某些提供商要求在注册的 OAuth 应用程序中配置相同的范围。 | `string`                 |
+| extraParameters                            | 授权请求的可选附加参数。请注意，某些提供程序需要额外的参数，例如为了获取长期刷新 token。                                       | `Record<string, string>` |
 
 ### OAuth.AuthorizationRequestURLParams
 
-Values of [AuthorizationRequest](oauth.md#oauth.authorizationrequest). The PKCE client automatically generates the values for you and returns them for [authorizationRequest](oauth.md#oauth.authorizationrequest)
+&#x20;[AuthorizationRequest](oauth.md#oauth.authorizationrequest) 的值。 PKCE客户端自动为您生成值并将其返回给 [authorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest)
 
-| Property                                        | Description                      | Type     |
-| ----------------------------------------------- | -------------------------------- | -------- |
-| codeChallenge<mark style="color:red;">\*</mark> | The PKCE `code_challenge` value. | `string` |
-| codeVerifier<mark style="color:red;">\*</mark>  | The PKCE `code_verifier` value.  | `string` |
-| redirectURI<mark style="color:red;">\*</mark>   | The OAuth `redirect_uri` value.  | `string` |
-| state<mark style="color:red;">\*</mark>         | The OAuth `state` value.         | `string` |
+| 属性                                              | 描述                        | 类型       |
+| ----------------------------------------------- | ------------------------- | -------- |
+| codeChallenge<mark style="color:red;">\*</mark> |  PKCE `code_challenge` 的值 | `string` |
+| codeVerifier<mark style="color:red;">\*</mark>  | PKCE `code_verifier` 的值   | `string` |
+| redirectURI<mark style="color:red;">\*</mark>   | OAuth `redirect_uri` 的值   | `string` |
+| state<mark style="color:red;">\*</mark>         | OAuth `state` 的值          | `string` |
 
 ### OAuth.AuthorizationRequest
 
-The request returned by [authorizationRequest](oauth.md#oauth.authorizationrequest). Can be used as direct input to [authorize](oauth.md#oauth.pkceclient-authorize), or to extract parameters for constructing a custom URL in [AuthorizationOptions](oauth.md#oauth.authorizationoptions).
+&#x20;[authorizationRequest](oauth.md#oauth.authorizationrequest) 返回的请求。可用作授权的直接输入，或提取参数以在 [AuthorizationOptions](https://developers.raycast.com/api-reference/oauth#oauth.authorizationoptions) 中构建自定义 URL。
 
-| Property                                        | Description                            | Type           |
-| ----------------------------------------------- | -------------------------------------- | -------------- |
-| codeChallenge<mark style="color:red;">\*</mark> | The PKCE `code_challenge` value.       | `string`       |
-| codeVerifier<mark style="color:red;">\*</mark>  | The PKCE `code_verifier` value.        | `string`       |
-| redirectURI<mark style="color:red;">\*</mark>   | The OAuth `redirect_uri` value.        | `string`       |
-| state<mark style="color:red;">\*</mark>         | The OAuth `state` value.               | `string`       |
-| toURL<mark style="color:red;">\*</mark>         | Constructs the full authorization URL. | `() => string` |
+| 属性                                              | 描述                        | 类型             |
+| ----------------------------------------------- | ------------------------- | -------------- |
+| codeChallenge<mark style="color:red;">\*</mark> | PKCE `code_challenge` 的值  | `string`       |
+| codeVerifier<mark style="color:red;">\*</mark>  | PKCE `code_verifier` 的值   | `string`       |
+| redirectURI<mark style="color:red;">\*</mark>   | OAuth `redirect_uri` 的值   | `string`       |
+| state<mark style="color:red;">\*</mark>         | OAuth `state` 的值          | `string`       |
+| toURL<mark style="color:red;">\*</mark>         | 构造完整的授权 URL               | `() => string` |
 
-#### Methods
+#### 方法
 
-| Name    | Type           | Description                            |
-| ------- | -------------- | -------------------------------------- |
-| toURL() | `() => string` | Constructs the full authorization URL. |
+| 名称      | 类型             | 描述           |
+| ------- | -------------- | ------------ |
+| toURL() | `() => string` | 构造完整的授权 URL。 |
 
 ### OAuth.AuthorizationOptions
 
-Options for customizing [authorize](oauth.md#oauth.pkceclient-authorize). You can use values from [AuthorizationRequest](oauth.md#oauth.authorizationrequest) to build your own URL.
+用于自定义 [authorize](oauth.md#oauth.pkceclient-authorize) 的选项。您可以使用 [AuthorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest) 中的值来构建您自己的 URL。
 
-| Property                              | Description                 | Type     |
-| ------------------------------------- | --------------------------- | -------- |
-| url<mark style="color:red;">\*</mark> | The full authorization URL. | `string` |
+| 属性                                    | 描述         | 类型       |
+| ------------------------------------- | ---------- | -------- |
+| url<mark style="color:red;">\*</mark> | 完整的授权 URL。 | `string` |
 
 ### OAuth.AuthorizationResponse
 
-The response returned by [authorize](oauth.md#oauth.pkceclient-authorize), containing the authorization code after the provider redirect. You can then exchange the authorization code for an access token using the provider's token endpoint.
+The response returned by, containing the authorization code after the provider redirect. You can then exchange the authorization code for an access token using the provider's token endpoint.
 
-| Property                                            | Description                                     | Type     |
-| --------------------------------------------------- | ----------------------------------------------- | -------- |
-| authorizationCode<mark style="color:red;">\*</mark> | The authorization code from the OAuth provider. | `string` |
+&#x20;[authorize](oauth.md#oauth.pkceclient-authorize) 返回的响应，包含提供者重定向后的授权代码。然后，您可以使用提供商的 token 将授权代码交换为 access token。
+
+| 属性                                                  | 描述                 | 类型       |
+| --------------------------------------------------- | ------------------ | -------- |
+| authorizationCode<mark style="color:red;">\*</mark> | 来自 OAuth 提供商的授权代码。 | `string` |
 
 ### OAuth.TokenSet
 
-Describes the TokenSet created from an OAuth provider's token response. The `accessToken` is the only required parameter but typically OAuth providers also return a refresh token, an expires value, and the scope. Securely store a token set via [setTokens](oauth.md#oauth.pkceclient-settokens) and retrieve it via [getTokens](oauth.md#oauth.pkceclient-gettokens).
+描述从 OAuth 提供者的 token 响应创建的 TokenSet。 accessToken 是唯一必需的参数，但通常 OAuth 提供程序还会返回刷新 token、过期值和范围。通过 [setTokens](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient-settokens) 安全地存储 token 并通过 [getTokens](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient-gettokens) 检索它。
 
-| Property                                      | Description                                                                                                                                                                                                                                                                      | Type            |
-| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| accessToken<mark style="color:red;">\*</mark> | The access token returned by an OAuth token request.                                                                                                                                                                                                                             | `string`        |
-| updatedAt<mark style="color:red;">\*</mark>   | The date when the token set was stored via [OAuth.PKCEClient.setTokens](oauth.md#oauth.pkceclient).                                                                                                                                                                              | `Date`          |
-| isExpired<mark style="color:red;">\*</mark>   | A convenience method for checking whether the access token has expired. The method factors in some seconds of "buffer", so it returns true a couple of seconds before the actual expiration time. This requires the `expiresIn` parameter to be set.                             | `() => boolean` |
-| expiresIn                                     | An optional expires value (in seconds) returned by an OAuth token request.                                                                                                                                                                                                       | `number`        |
-| idToken                                       | An optional id token returned by an identity request (e.g. /me, Open ID Connect).                                                                                                                                                                                                | `string`        |
-| refreshToken                                  | An optional refresh token returned by an OAuth token request.                                                                                                                                                                                                                    | `string`        |
-| scope                                         | The optional space-delimited list of scopes returned by an OAuth token request. You can use this to compare the currently stored access scopes against new access scopes the extension might require in a future version, and then ask the user to re-authorize with new scopes. | `string`        |
+| 属性                                            | 描述                                                                                                             | 类型              |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------- |
+| accessToken<mark style="color:red;">\*</mark> | OAuth token 请求返回的访问令牌。                                                                                         | `string`        |
+| updatedAt<mark style="color:red;">\*</mark>   | 通过 [OAuth.PKCEClient.setTokens](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient) 存储令牌集的日期。 | `Date`          |
+| isExpired<mark style="color:red;">\*</mark>   | 检查访问 token 是否已过期。由于该方法考虑了几秒的“buffer”，所以它在实际过期时间之前几秒就返回 true。需要设置 `expiresIn` 参数。                               | `() => boolean` |
+| expiresIn                                     | OAuth token 请求返回的可选过期值（以秒为单位）。                                                                                 | `number`        |
+| idToken                                       | 由身份请求返回的可选 ID 令牌（例如 /me、Open ID Connect）。                                                                      | `string`        |
+| refreshToken                                  | OAuth token 请求返回的可选刷新token。                                                                                    | `string`        |
+| scope                                         | OAuth token 请求返回的可选的以空格分隔的范围列表。您可以使用它来将当前存储的访问范围与扩展在未来版本中可能需要的新访问范围进行比较，然后要求用户使用新范围重新授权。                       | `string`        |
 
-#### Methods
+#### 方法
 
-| Name        | Type            | Description                                                                                                                                                                                                                                          |
-| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| isExpired() | `() => boolean` | A convenience method for checking whether the access token has expired. The method factors in some seconds of "buffer", so it returns true a couple of seconds before the actual expiration time. This requires the `expiresIn` parameter to be set. |
+| 名称          | 类型              | 描述                                                                                    |
+| ----------- | --------------- | ------------------------------------------------------------------------------------- |
+| isExpired() | `() => boolean` | 检查 access token 是否已过期。由于该方法考虑了几秒的“buffer”，所以它在实际过期时间之前几秒返回了 true。需要设置 `expiresIn` 参数。 |
 
 ### OAuth.TokenSetOptions
 
-Options for a [TokenSet](oauth.md#oauth.tokenset) to store via [setTokens](oauth.md#oauth.pkceclient-settokens).
+通过 [setTokens](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient-settokens) 存储 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset) 的选项。
 
-| Property                                      | Description                                                                       | Type     |
-| --------------------------------------------- | --------------------------------------------------------------------------------- | -------- |
-| accessToken<mark style="color:red;">\*</mark> | The access token returned by an OAuth token request.                              | `string` |
-| expiresIn                                     | An optional expires value (in seconds) returned by an OAuth token request.        | `number` |
-| idToken                                       | An optional id token returned by an identity request (e.g. /me, Open ID Connect). | `string` |
-| refreshToken                                  | An optional refresh token returned by an OAuth token request.                     | `string` |
-| scope                                         | The optional scope value returned by an OAuth token request.                      | `string` |
+| 属性                                            | 描述                                           | 类型       |
+| --------------------------------------------- | -------------------------------------------- | -------- |
+| accessToken<mark style="color:red;">\*</mark> | OAuth token 请求返回的 access token。              | `string` |
+| expiresIn                                     | OAuth token请求返回的可选过期值（以秒为单位）。                | `number` |
+| idToken                                       | 由身份请求返回的可选 ID token（例如 /me、Open ID Connect）。 | `string` |
+| refreshToken                                  | OAuth token 请求返回的可选刷新 token。                 | `string` |
+| scope                                         | OAuth token 请求返回的可选范围值。                      | `string` |
 
 ### OAuth.TokenResponse
 
-Defines the standard JSON response for an OAuth token request. The response can be directly used to store a [TokenSet](oauth.md#oauth.tokenset) via [setTokens](oauth.md#oauth.pkceclient-settokens).
+定义 OAuth token 请求的标准 JSON 响应。响应可以直接用于通过 [setTokens](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient-settokens) 存储 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset)。
 
-| Property                                        | Description                                                                               | Type     |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------------- | -------- |
-| access\_token<mark style="color:red;">\*</mark> | The `access_token` value returned by an OAuth token request.                              | `string` |
-| expires\_in                                     | An optional `expires_in` value (in seconds) returned by an OAuth token request.           | `number` |
-| id\_token                                       | An optional `id_token` value returned by an identity request (e.g. /me, Open ID Connect). | `string` |
-| refresh\_token                                  | An optional `refresh_token` value returned by an OAuth token request.                     | `string` |
-| scope                                           | The optional `scope` value returned by an OAuth token request.                            | `string` |
+| 属性                                              | 描述                                              | 类型       |
+| ----------------------------------------------- | ----------------------------------------------- | -------- |
+| access\_token<mark style="color:red;">\*</mark> | OAuth token 请求返回的 `access_token` 值。             | `string` |
+| expires\_in                                     | OAuth token 请求返回的可选 `expires_in` 值（以秒为单位）。      | `number` |
+| id\_token                                       | 身份请求返回的可选 `id_token` 值（例如 /me、Open ID Connect）。 | `string` |
+| refresh\_token                                  | OAuth token 请求返回的可选`refresh_token` 值。           | `string` |
+| scope                                           | OAuth token 请求返回的可选 `scope`  值。                 | `string` |
