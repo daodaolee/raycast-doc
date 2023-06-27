@@ -2,17 +2,17 @@
 
 ![](../../.gitbook/assets/action-panel.png)
 
-## API Reference
+## API 参考
 
 ### ActionPanel
 
-Exposes a list of [actions](actions.md) that can be performed by the user.
+公开用户可以执行的 [actions](https://developers.raycast.com/api-reference/user-interface/actions) 列表。.
 
-Often items are context-aware, e.g., based on the selected list item. Actions can be grouped into semantic sections and can have keyboard shortcuts assigned.
+通常，项目是上下文感知的，例如，基于所选的列表项目。Actions 带有语义部分，并且可以分配键盘快捷键。
 
-The first and second action become the primary and secondary action. They automatically get the default keyboard shortcuts assigned. In [List](list.md), [Grid](grid.md), and [Detail](detail.md), this is `↵` for the primary and `⌘` `↵` for the secondary action. In [Form](form.md) it's `⌘` `↵` for the primary and `⌘` `⇧` `↵` for the secondary. Keep in mind that while you can specify an alternative shortcut for the primary and secondary actions, it won't be displayed in the Action Panel.
+第一和第二动作成为主要和次要动作。他们会自动分配默认的键盘快捷键。在 [List](list.md),、[Grid](grid.md) and [Detail](detail.md) 中，`↵` 表示主要操作，`⌘` `↵` 表示次要操作。在 [Form](https://developers.raycast.com/api-reference/user-interface/form) 中，主要是 `⌘` `↵`，次要是 `⌘` `⇧` `↵`。请记住，虽然您可以为主要和次要操作指定其他快捷方式，但它不会显示在操作面板中。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Action, List } from "@raycast/api";
@@ -38,20 +38,17 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                                                                                                             | Type                                                           | Default |
-| -------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------- |
-| children | Sections or Actions. If [Action](actions.md#action) elements are specified, a default section is automatically created. | [`ActionPanel.Children`](action-panel.md#actionpanel.children) | -       |
-| title    | The title displayed at the top of the panel                                                                             | `string`                                                       | -       |
+<table><thead><tr><th width="131">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children</td><td>不管是 section 还是 action，如果指定了 <a href="https://developers.raycast.com/api-reference/user-interface/actions#action">Action</a> 元素，则会自动创建默认部分。</td><td><a href="action-panel.md#actionpanel.children"><code>ActionPanel.Children</code></a></td><td>-</td></tr><tr><td>title</td><td>标题显示在面板顶部</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
 ### ActionPanel.Section
 
-A group of visually separated items.
+一组视觉上分开的项。
 
-Use sections when the [ActionPanel](action-panel.md#actionpanel) contains a lot of actions to help guide the user to related actions. For example, create a section for all copy actions.
+当 [ActionPanel](https://developers.raycast.com/api-reference/user-interface/action-panel#actionpanel) 包含大量操作时，请使用部分来帮助引导用户执行相关操作。例如，为所有复制操作创建一个 section。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Action, List } from "@raycast/api";
@@ -83,20 +80,17 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                       | Type                                                                           | Default |
-| -------- | --------------------------------- | ------------------------------------------------------------------------------ | ------- |
-| children | The item elements of the section. | [`ActionPanel.Section.Children`](action-panel.md#actionpanel.section.children) | -       |
-| title    | Title displayed above the section | `string`                                                                       | -       |
+<table><thead><tr><th width="134">名称</th><th>描述</th><th>类型</th><th>默认值</th></tr></thead><tbody><tr><td>children</td><td>section 里的元素。</td><td><a href="action-panel.md#actionpanel.section.children"><code>ActionPanel.Section.Children</code></a></td><td>-</td></tr><tr><td>title</td><td>标题显示在该部分上方</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
 ### ActionPanel.Submenu
 
-A very specific action that replaces the current [ActionPanel](action-panel.md#actionpanel) with its children when selected.
+一个非常具体的操作，在选择时将用其子级替换当前的 [ActionPanel](https://developers.raycast.com/api-reference/user-interface/action-panel#actionpanel)。
 
-This is handy when an action needs to select from a range of options. For example, to add a label to a GitHub pull request or an assignee to a todo.
+当操作需要从一系列选项中进行选择时，这非常方便。例如，向 GitHub 拉取请求添加标签或向待办事项添加受让人。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Action, ActionPanel, Color, Icon, List } from "@raycast/api";
@@ -134,22 +128,11 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                                                                                                                                                                | Type                                                                           | Default                                                           |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| title<mark style="color:red;">\*</mark> | The title displayed for submenu.                                                                                                                                                                                                                           | `string`                                                                       | -                                                                 |
-| autoFocus                               | Indicates whether the ActionPanel.Submenu should be focused automatically when the parent ActionPanel (or Actionpanel.Submenu) opens.                                                                                                                      | `boolean`                                                                      | -                                                                 |
-| children                                | Items of the submenu.                                                                                                                                                                                                                                      | [`ActionPanel.Submenu.Children`](action-panel.md#actionpanel.submenu.children) | -                                                                 |
-| filtering                               | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering.                                                                                 | `boolean` or `{ keepSectionOrder: boolean }`                                   | `false` when `onSearchTextChange` is specified, `true` otherwise. |
-| icon                                    | The icon displayed for the submenu.                                                                                                                                                                                                                        | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                       | -                                                                 |
-| isLoading                               | Indicates whether a loading indicator should be shown or hidden next to the search bar                                                                                                                                                                     | `boolean`                                                                      | `false`                                                           |
-| shortcut                                | The keyboard shortcut for the submenu.                                                                                                                                                                                                                     | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                        | -                                                                 |
-| throttle                                | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | `boolean`                                                                      | `false`                                                           |
-| onOpen                                  | Callback that is triggered when the Submenu is opened.                                                                                                                                                                                                     | `() => void`                                                                   | -                                                                 |
-| onSearchTextChange                      | Callback triggered when the search bar text changes.                                                                                                                                                                                                       | `(text: string) => void`                                                       | -                                                                 |
+<table><thead><tr><th width="169">名称</th><th>描述</th><th>类型</th><th>默认值</th></tr></thead><tbody><tr><td>title<mark style="color:red;">*</mark></td><td>子菜单显示的标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>autoFocus</td><td>当父 ActionPanel（或 Actionpanel.Submenu）打开时，ActionPanel.Submenu 是否应自动获得焦点。</td><td><code>boolean</code></td><td>-</td></tr><tr><td>children</td><td>子菜单的项。</td><td><a href="action-panel.md#actionpanel.submenu.children"><code>ActionPanel.Submenu.Children</code></a></td><td>-</td></tr><tr><td>filtering</td><td>切换 Raycast 过滤。如果为 <code>true</code>，Raycast 将使用搜索栏中的查询来过滤项目。当为 <code>false</code> 时，扩展程序需要负责过滤。</td><td><code>boolean</code> 或 <code>{ keepSectionOrder: boolean }</code></td><td>当指定 <code>onSearchTextChange</code> 时为 <code>false</code>，否则为 <code>true</code>。</td></tr><tr><td>icon</td><td>显示子菜单的图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a></td><td>-</td></tr><tr><td>isLoading</td><td>是否应在搜索栏旁边显示或隐藏 loading  指示器</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>shortcut</td><td>子菜单的键盘快捷键。</td><td><a href="../keyboard.md#keyboard.shortcut"><code>Keyboard.Shortcut</code></a></td><td>-</td></tr><tr><td>throttle</td><td>定义 <code>onSearchTextChange</code> 处理程序是在每次按下键盘时触发还是延迟以限制事件。当将自定义过滤逻辑与异步操作（例如网络请求）结合使用时，建议设置为 <code>true</code>。</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>onOpen</td><td>打开子菜单时触发的回调。</td><td><code>() => void</code></td><td>-</td></tr><tr><td>onSearchTextChange</td><td>当搜索栏文本发生变化时触发回调。</td><td><code>(text: string) => void</code></td><td>-</td></tr></tbody></table>
 
-## Types
+## 类型
 
 ### ActionPanel.Children
 
@@ -157,7 +140,7 @@ export default function Command() {
 ActionPanel.Children: ActionPanel.Section | ActionPanel.Section[] | ActionPanel.Section.Children | null
 ```
 
-Supported children for the [ActionPanel](action-panel.md#actionpanel) component.
+[ActionPanel](https://developers.raycast.com/api-reference/user-interface/action-panel#actionpanel) 组件支持的子组件。
 
 ### ActionPanel.Section.Children
 
@@ -165,7 +148,7 @@ Supported children for the [ActionPanel](action-panel.md#actionpanel) component.
 ActionPanel.Section.Children: Action | Action[] | ReactElement<ActionPanel.Submenu.Props> | ReactElement<ActionPanel.Submenu.Props>[] | null
 ```
 
-Supported children for the [ActionPanel.Section](action-panel.md#actionpanel.section) component.
+[ActionPanel.Section](https://developers.raycast.com/api-reference/user-interface/action-panel#actionpanel.section) 组件支持的子组件。
 
 ### ActionPanel.Submenu.Children
 
@@ -173,4 +156,4 @@ Supported children for the [ActionPanel.Section](action-panel.md#actionpanel.sec
 ActionPanel.Children: ActionPanel.Section | ActionPanel.Section[] | ActionPanel.Section.Children | null
 ```
 
-Supported children for the [ActionPanel.Submenu](action-panel.md#actionpanel.submenu) component.
+[ActionPanel.Submenu](https://developers.raycast.com/api-reference/user-interface/action-panel#actionpanel.submenu) 组件支持的子组件。
