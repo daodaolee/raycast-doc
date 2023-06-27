@@ -1,26 +1,26 @@
 # Preferences
 
-Use the Preferences API to make your extension configurable.
+使用 Preferences API 使您的扩展可配置。
 
-Preferences are configured in the [manifest](../zi-liao/manifest.md#preference-properties) per command or shared in the context of an extension.
+Preferences 在每个命令的 [manifest](https://developers.raycast.com/information/manifest#preference-properties) 中配置或在扩展的上下文中共享。
 
-Required preferences need to be set by the user before a command opens. They are a great way to make sure that the user of your extension has everything set up properly.
+在打开命令之前，用户需要设置所需的首选项。它们是确保扩展程序的用户正确设置所有内容的好方法。
 
-## API Reference
+## API 参考
 
 ### getPreferenceValues
 
-A function to access the preference values that have been passed to the command.
+用于访问已传递给命令的首选项值的函数。
 
-Each preference name is mapped to its value, and the defined default values are used as fallback values.
+每个首选项名称都映射到其值，并且定义的默认值作为备用值。
 
-#### Signature
+#### 签名
 
 ```typescript
 function getPreferenceValues(): { [preferenceName: string]: any };
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { getPreferenceValues } from "@raycast/api";
@@ -37,33 +37,33 @@ export default async function Command() {
 }
 ```
 
-#### Return
+#### 返回
 
-An object with the preference names as property key and the typed value as property value.
+一个对象，其中首选项名称作为属性键，键入的值作为属性值。
 
-Depending on the type of the preference, the type of its value will be different.
+根据首选项的类型，其值的类型会有所不同。
 
-| Preference type | Value type                                |
-| --------------- | ----------------------------------------- |
-| `textfield`     | `string`                                  |
-| `password`      | `string`                                  |
-| `checkbox`      | `boolean`                                 |
-| `dropdown`      | `string`                                  |
-| `appPicker`     | [`Application`](utilities.md#application) |
-| `file`          | `string`                                  |
-| `directory`     | `string`                                  |
+| 首选项类型       | 值类型                                       |
+| ----------- | ----------------------------------------- |
+| `textfield` | `string`                                  |
+| `password`  | `string`                                  |
+| `checkbox`  | `boolean`                                 |
+| `dropdown`  | `string`                                  |
+| `appPicker` | [`Application`](utilities.md#application) |
+| `file`      | `string`                                  |
+| `directory` | `string`                                  |
 
 ### openExtensionPreferences
 
-Opens the extension's preferences screen.
+打开扩展程序的首选项面板。
 
-#### Signature
+#### 签名
 
 ```typescript
 export declare function openExtensionPreferences(): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Action, Detail, openExtensionPreferences } from "@raycast/api";
@@ -84,21 +84,21 @@ export default function Command() {
 }
 ```
 
-#### Return
+#### 返回
 
-A Promise that resolves when the extensions preferences screen is opened.
+打开扩展首选项面板时，promise 为 resolve。
 
 ### openCommandPreferences
 
-Opens the command's preferences screen.
+打开命令的首选项面板。
 
-#### Signature
+#### 签名
 
 ```typescript
 export declare function openCommandPreferences(): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Action, Detail, openCommandPreferences } from "@raycast/api";
@@ -119,30 +119,30 @@ export default function Command() {
 }
 ```
 
-#### Return
+#### 返回
 
-A Promise that resolves when the command's preferences screen is opened.
+打开命令的首选项面板时，promise 为 resolve。
 
-## Types
+## 类型
 
 ### Preferences
 
-A command receives the values of its preferences via the [`getPreferenceValues`](preferences.md#getpreferencevalues) function. It is an object with the preferences' `name` as keys and their values as the property's values.
+命令通过 [`getPreferenceValues`](https://developers.raycast.com/api-reference/preferences#getpreferencevalues) 函数接收其首选项的值。它是一个对象，其中首选项的名称作为键，其值作为属性的值。
 
-Depending on the type of the preference, the type of its value will be different.
+根据首选项的类型，其值的类型会有所不同。
 
-| Preference type | Value type                                |
-| --------------- | ----------------------------------------- |
-| `textfield`     | `string`                                  |
-| `password`      | `string`                                  |
-| `checkbox`      | `boolean`                                 |
-| `dropdown`      | `string`                                  |
-| `appPicker`     | [`Application`](utilities.md#application) |
-| `file`          | `string`                                  |
-| `directory`     | `string`                                  |
+| 首选项类型       | 值类型                                       |
+| ----------- | ----------------------------------------- |
+| `textfield` | `string`                                  |
+| `password`  | `string`                                  |
+| `checkbox`  | `boolean`                                 |
+| `dropdown`  | `string`                                  |
+| `appPicker` | [`Application`](utilities.md#application) |
+| `file`      | `string`                                  |
+| `directory` | `string`                                  |
 
 {% hint style="info" %}
-Raycast provides a global TypeScript namespace called `Preferences` which contains the types of the preferences of all the commands of the extensions.
+Raycast 提供了一个名为 `Preferences` 的全局 TypeScript 命名空间，其中包含扩展的所有命令的首选项类型。
 
-For example, if a command named `show-todos` has some preferences, its `getPreferenceValues`'s return type can be specified with `getPreferenceValues<Preferences.ShowTodos>()`. This will make sure that the types used in the command stay in sync with the manifest.
+例如，如果名为 `show-todos` 的命令有一些首选项，则可以使用 `getPreferenceValues<Preferences.ShowTodos>()` 指定其 `getPreferenceValues` 的返回类型。这将确保命令中使用的类型与 manifest 保持同步。
 {% endhint %}
