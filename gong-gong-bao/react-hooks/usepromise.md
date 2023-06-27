@@ -1,6 +1,6 @@
-# `usePromise`
+# usePromise
 
-Hook which wraps an asynchronous function or a function that returns a Promise and returns the [AsyncState](#asyncstate) corresponding to the execution of the function.
+Hook which wraps an asynchronous function or a function that returns a Promise and returns the [AsyncState](usepromise.md#asyncstate) corresponding to the execution of the function.
 
 {% hint style="info" %}
 The function is assumed to be constant (eg. changing it won't trigger a revalidation).
@@ -29,24 +29,24 @@ function usePromise<T>(
 
 ### Arguments
 
-- `fn` is an asynchronous function or a function that returns a Promise.
-- `args` is the array of arguments to pass to the function. Every time they change, the function will be executed again. You can omit the array if the function doesn't require any argument.
+* `fn` is an asynchronous function or a function that returns a Promise.
+* `args` is the array of arguments to pass to the function. Every time they change, the function will be executed again. You can omit the array if the function doesn't require any argument.
 
 With a few options:
 
-- `options.abortable` is a reference to an [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel a previous call when triggering a new one.
-- `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-- `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-- `options.onData` is a function called when an execution succeeds.
-- `options.onWillExecute` is a function called when an execution will start.
+* `options.abortable` is a reference to an [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel a previous call when triggering a new one.
+* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
+* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
+* `options.onData` is a function called when an execution succeeds.
+* `options.onWillExecute` is a function called when an execution will start.
 
 ### Returns
 
-Returns an object with the [AsyncState](#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
+Returns an object with the [AsyncState](usepromise.md#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
 
-- `data`, `error`, `isLoading` - see [AsyncState](#asyncstate).
-- `revalidate` is a method to manually call the function with the same arguments again.
-- `mutate` is a method to wrap an asynchronous update and gives some control about how the `usePromise`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - see [AsyncState](usepromise.md#asyncstate).
+* `revalidate` is a method to manually call the function with the same arguments again.
+* `mutate` is a method to wrap an asynchronous update and gives some control about how the `usePromise`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](usepromise.md#mutation-and-optimistic-updates) for more information.
 
 ## Example
 

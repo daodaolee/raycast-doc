@@ -18,8 +18,6 @@ Commands 可在 Raycast 的根搜索中使用。它们可以是简单的脚本�
 
 ## Extension
 
-Extensions add functionality to Raycast. They consist of one or many [commands](terminology.md#command) and can be installed from the Store.
-
 Extensions 为 Raycast 添加了功能。它们由一个或多个命令组成，可以从 Store 安装。
 
 ## Manifest

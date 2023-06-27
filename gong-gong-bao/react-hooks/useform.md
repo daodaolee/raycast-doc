@@ -1,4 +1,4 @@
-# `useForm`
+# useForm
 
 Hook that provides a high-level interface to work with Forms, and more particularly, with Form validations. It incorporates all the good practices to provide a great User Experience for your Forms.
 
@@ -28,27 +28,27 @@ function useForm<T extends Form.Values>(props: {
 
 ### Arguments
 
-- `onSubmit` is a callback that will be called when the form is submitted and all validations pass.
+* `onSubmit` is a callback that will be called when the form is submitted and all validations pass.
 
 With a few options:
 
-- `initialValues` are the initial values to set when the Form is first rendered.
-- `validation` are the validation rules for the Form. A validation for a Form item is a function that takes the current value of the item as an argument and must return a string when the validation is failing. We also provide some shorthands for common cases, see [FormValidation](#formvalidation).
+* `initialValues` are the initial values to set when the Form is first rendered.
+* `validation` are the validation rules for the Form. A validation for a Form item is a function that takes the current value of the item as an argument and must return a string when the validation is failing. We also provide some shorthands for common cases, see [FormValidation](useform.md#formvalidation).
 
 ### Return
 
 Returns an object which contains the necessary methods and props to provide a good User Experience in your Form.
 
-- `handleSubmit` is a function to pass to the `onSubmit` prop of the `<Action.SubmitForm>` element. It wraps the initial `onSubmit` argument with some goodies related to the validation.
-- `itemProps` are the props that must be passed to the `<Form.Item>` elements to handle the validations.
+* `handleSubmit` is a function to pass to the `onSubmit` prop of the `<Action.SubmitForm>` element. It wraps the initial `onSubmit` argument with some goodies related to the validation.
+* `itemProps` are the props that must be passed to the `<Form.Item>` elements to handle the validations.
 
 It also contains some additions for easy manipulation of the Form's data.
 
-- `values` is the current values of the Form.
-- `setValue` is a function that can be used to programmatically set the value of a specific field.
-- `setValidationError` is a function that can be used to programmatically set the validation of a specific field.
-- `focus` is a function that can be used to programmatically focus a specific field.
-- `reset` is a function that can be used to reset the values of the Form. Optionally, you can specify the values to set when the Form is reset.
+* `values` is the current values of the Form.
+* `setValue` is a function that can be used to programmatically set the value of a specific field.
+* `setValidationError` is a function that can be used to programmatically set the validation of a specific field.
+* `focus` is a function that can be used to programmatically focus a specific field.
+* `reset` is a function that can be used to reset the values of the Form. Optionally, you can specify the values to set when the Form is reset.
 
 ## Example
 
@@ -126,5 +126,5 @@ Shorthands for common validation cases
 #### Enumeration members
 
 | Name     | Description                                       |
-| :------- | :------------------------------------------------ |
+| -------- | ------------------------------------------------- |
 | Required | Show an error when the value of the item is empty |

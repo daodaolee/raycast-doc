@@ -1,4 +1,4 @@
-# `useCachedState`
+# useCachedState
 
 Hook which returns a stateful value, and a function to update it. It is similar to React's `useState` but the value will be kept between command runs.
 
@@ -20,12 +20,12 @@ function useCachedState<T>(
 
 ### Arguments
 
-- `key` is the unique identifier of the state. This can be used to share the state across components and/or commands (hooks using the same key will share the same state, eg. updating one will update the others).
+* `key` is the unique identifier of the state. This can be used to share the state across components and/or commands (hooks using the same key will share the same state, eg. updating one will update the others).
 
 With a few options:
 
-- `initialState` is the initial value of the state if there aren't any in the Cache yet.
-- `config.cacheNamespace` is a string that can be used to namespace the key.
+* `initialState` is the initial value of the state if there aren't any in the Cache yet.
+* `config.cacheNamespace` is a string that can be used to namespace the key.
 
 ## Example
 
