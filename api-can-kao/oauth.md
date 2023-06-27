@@ -1,38 +1,38 @@
 # OAuth
 
-## Prerequisites
+## 前提
 
-A Raycast extension can use OAuth for authorizing access to a provider's resources on the user's behalf. Since Raycast is a desktop app and the extensions are considered "public", we only support the [PKCE flow](https://datatracker.ietf.org/doc/html/rfc7636) (Proof Key for Code Exchange, pronounced “pixy”). This flow is the official recommendation for native clients that cannot keep a client secret. With PKCE, the client dynamically creates a secret and uses the secret again during code exchange, ensuring that only the client that performed the initial request can exchange the code for the access token (”proof of possession”).
+Raycast 扩展可以使用 OAuth 来授权代表用户访问提供商的资源。由于 Raycast 是一款桌面应用程序，并且扩展被视为“公开”，因此我们仅支持 [PKCE 流程](https://datatracker.ietf.org/doc/html/rfc7636)（代码交换的证明密钥，发音为“pixy”）。此流程是针对无法保守客户端秘密的本机客户端的官方建议。使用 PKCE，客户端动态创建一个秘密，并在代码交换期间再次使用该秘密，确保只有执行初始请求的客户端才能用代码交换访问令牌（“拥有证明”）。
 
-Before considering OAuth, first check if your provider supports PKCE. You can usually find this in the provider's OAuth docs by looking for `code_challenge` and `code_verifier` parameters. Providers such as Google, Twitter, GitLab, Spotify, Zoom, Asana or Dropbox are all PKCE-ready. If you find that your provider does not yet support PKCE, you can often use other forms of authorization such as personal access tokens (usable with Raycast password preferences), or open-source PKCE proxies that "adapt" an OAuth flow to be PKCE-compatible (you would need to operate your own backend service in this case, so this is only recommended for very advanced use cases.)
+在考虑 OAuth 之前，首先检查您的提供商是否支持 PKCE。您通常可以在提供商的 OAuth 文档中查找 `code_challenge` 和 `code_verifier` 参数找到此内容。 Google、Twitter、GitLab、Spotify、Zoom、Asana 或 Dropbox 等提供商均已支持 PKCE。如果您发现您的提供商尚不支持 PKCE，您通常可以使用其他形式的授权，例如个人访问令牌（可与 Raycast 密码首选项一起使用），或将 OAuth 流“调整”为 PKCE 的开源兼容（在这种情况下，您需要操作自己的后端服务，因此仅建议对于非常高级的用例。）
 
-## OAuth Flow
+## OAuth 流程
 
 ![](../.gitbook/assets/oauth-overlay-twitter.png)
 
-The OAuth flow from an extension looks like this:
+扩展程序的 OAuth 流程如下所示：
 
-1. The extension initiates the OAuth flow and starts authorization
-2. Raycast shows the OAuth overlay ("Connect to provider…")
-3. The user opens the provider's consent page in the web browser
-4. After the user consent, the provider redirects back to Raycast
-5. Raycast opens the extension where authorization is completed
+1. 扩展程序启动 OAuth 流程并开始授权
+2. Raycast 显示 OAuth 面板（“连接到提供商...”）
+3. 用户在网络浏览器中打开提供商的同意页面
+4. 用户同意后，提供商重定向回 Raycast
+5. Raycast 打开授权完成
 
-When the flow is complete, the extension has received an access token from the provider and can perform API calls. The API provides functions for securely storing and retrieving token sets, so that an extension can check whether the user is already logged in and whether an expired access token needs to be refreshed. Raycast also automatically shows a logout preference.
+当流程完成之后，扩展程序已从提供商处收到访问令牌，并且可以执行 API 调用。该 API 提供安全存储和检索令牌集的功能，以便扩展程序可以检查用户是否已登录以及是否需要刷新过期的访问令牌。 Raycast 还会自动显示注销首选项。
 
 ![](../.gitbook/assets/oauth-overlay-twitter-success.png)
 
-## OAuth App
+## OAuth 应用程序
 
-You first need to register a new OAuth app with your provider. This is usually done in the provider's developer portal. After registering, you will receive a client ID. You also need to configure a redirect URI, see the next section.
+您首先需要向您的提供商注册一个新的 OAuth 应用程序。这通常在提供商的开发人员导航中完成。注册后，您将收到一个client ID。您还需要配置重定向 URI，请参阅下一节。
 
-Note: Make sure to choose an app type that supports PKCE. Some providers still show you a client secret, which you don't need and should _not_ hardcode in the extension, or support PKCE only for certain types such as "desktop", "native" or "mobile" app types.
+注意：请确保选择支持 PKCE 的应用程序类型。一些提供商仍然向您显示客户端密钥，您不需要也不应该在扩展中硬编码，或者仅针对某些类型（例如“桌面”、“本机”或“移动”应用程序类型）支持 PKCE。
 
-## Authorizing
+## 授权
 
-An extension can initiate the OAuth flow and authorize by using the methods on [OAuth.PKCEClient](oauth.md#oauth.pkceclient).
+扩展可以使用 [OAuth.PKCEClient](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient) 上的方法启动 OAuth 流程并进行授权。
 
-You can create a new client and configure it with a provider name, icon and description that will be shown in the OAuth overlay. You can also choose between different redirect methods; depending on which method you choose, you need to configure this value as redirect URI in your provider's registered OAuth app. (See the [OAuth.RedirectMethod](oauth.md#oauth.redirectmethod) docs for each method to get concrete examples for supported redirect URI.) If you can choose, use `OAuth.RedirectMethod.Web` and enter `https://raycast.com/redirect?packageName=Extension` (whether you have to add the `?packageName=Extension` depends on the provider).
+您可以创建一个新客户端并为其配置提供程序名称、图标和描述，这些内容将显示在 OAuth 面板中。您还可以选择不同的重定向方法；根据您选择的方法，您需要在提供商注册的 OAuth 应用程序中将此值配置为重定向 URI。 （请参阅每种方法的 [OAuth.RedirectMethod](https://developers.raycast.com/api-reference/oauth#oauth.redirectmethod) 文档，以获取支持的重定向 URI 的具体示例。）如果可以选择，请使用 `OAuth.RedirectMethod.Web` 并输入 `https://raycast.com/redirect?packageName=Extension` （无论您是否有添加 `?packageName=Extension` ，这取决于提供商）。
 
 ```typescript
 import { OAuth } from "@raycast/api";
@@ -45,9 +45,9 @@ const client = new OAuth.PKCEClient({
 });
 ```
 
-Next you create an authorization request with the authorization endpoint, client ID, and scope values. You receive all values from your provider's docs and when you register a new OAuth app.
+接下来，您使用授权点、客户端 ID 和范围值创建授权请求。当您注册新的 OAuth 应用程序时，您会收到来自提供商文档的所有内容。
 
-The returned [AuthorizationRequest](oauth.md#oauth.authorizationrequest) contains parameters such as the code challenge, verifier, state and redirect URI as standard OAuth authorization request. You can also customize the authorization URL through [OAuth.AuthorizationOptions](oauth.md#oauth.authorizationoptions) if you need to.
+返回的 [AuthorizationRequest](https://developers.raycast.com/api-reference/oauth#oauth.authorizationrequest) 包含代码变更、验证者、状态和重定向 URI 等参数作为标准 OAuth 授权请求。如果需要，您还可以通过 [OAuth.AuthorizationOptions](https://developers.raycast.com/api-reference/oauth#oauth.authorizationoptions) 自定义授权 URL。
 
 ```typescript
 const authRequest = await client.authorizationRequest({
@@ -57,17 +57,17 @@ const authRequest = await client.authorizationRequest({
 });
 ```
 
-To get the authorization code needed for the token exchange, you call [authorize](oauth.md#oauth.pkceclient-authorize) with the request from the previous step. This call shows the Raycast OAuth overlay and provides the user with an option to open the consent page in the web browser. The authorize promise is resolved after the redirect back to Raycast and into the extension:
+要获取令牌交换所需的授权码，请使用上一步中的请求调用 [authorize](https://developers.raycast.com/api-reference/oauth#oauth.pkceclient-authorize)。此调用显示 Raycast OAuth 面板层，并为用户提供在 Web 浏览器中打开同意页面的选项。授权 promise 在重定向回 Raycast 并进入扩展后变为 resolved ：
 
 ```typescript
 const { authorizationCode } = await client.authorize(authRequest);
 ```
 
 {% hint style="info" %}
-When in development mode, make sure not to trigger auto-reloading (e.g. by saving a file) while you're testing an active OAuth authorization and redirect. This would cause an OAuth state mismatch when you're redirected back into the extension since the client would be reinitialized on reload.
+在开发模式下，确保在测试活动 OAuth 授权和重定向时不要触发自动重新加载（例如通过保存文件）。当您重定向回扩展时，这会导致 OAuth 状态不匹配，因为客户端将在重新加载时重新初始化。
 {% endhint %}
 
-Now that you have received the authorization code, you can exchange this code for an access token using your provider's token endpoint. This token exchange (and the following API calls) can be done with your preferred Node HTTP client library. Example using `node-fetch`:
+现在您已收到授权代码，您可以使用提供商的令牌端点将此代码交换为访问令牌。此令牌交换（以及以下 API 调用）可以使用您首选的 Node HTTP 客户端库来完成。使用  `node-fetch` 获取的示例：
 
 ```typescript
 async function fetchTokens(authRequest: OAuth.AuthorizationRequest, authCode: string): Promise<OAuth.TokenResponse> {
@@ -90,25 +90,27 @@ async function fetchTokens(authRequest: OAuth.AuthorizationRequest, authCode: st
 }
 ```
 
-## Token Storage
+## Token 存储
 
-The PKCE client exposes methods for storing, retrieving and deleting token sets. A [TokenSet](oauth.md#oauth.tokenset) contains an access token and typically also a refresh token, expires value, and the current scope. Since this data is returned by the provider's token endpoint as standard OAuth JSON response, you can directly store the response ([OAuth.TokenResponse](oauth.md#oauth.tokenresponse)) or alternatively use [OAuth.TokenSetOptions](oauth.md#oauth.tokensetoptions):
+PKCE 客户端暴露用于存储、检索和删除 token 的方法。 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset) 包含访问令牌，通常还包含刷新 token、过期值和当前范围。由于此数据由提供者的 token 端作为标准 OAuth JSON 响应返回，因此您可以直接存储响应 ([OAuth.TokenResponse](https://developers.raycast.com/api-reference/oauth#oauth.tokenresponse)) 或使用 [OAuth.TokenSetOptions](https://developers.raycast.com/api-reference/oauth#oauth.tokensetoptions)：
 
 ```typescript
 await client.setTokens(tokenResponse);
 ```
 
-Once the token set is stored, Raycast will automatically show a logout preference for the extension. When the user logs out, the token set gets removed.
+存储 token 后，Raycast 将自动显示扩展程序的注销首选项。当用户注销时，token 将被删除。
 
-The [TokenSet](oauth.md#oauth.tokenset) also enables you to check whether the user is logged in before starting the authorization flow:
+[TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset) 还允许您在开始授权流程之前检查用户是否已登录：
 
 ```typescript
 const tokenSet = await client.getTokens();
 ```
 
-## Token Refresh
+## Token 刷新
 
 Since access tokens usually expire, an extension should provide a way to refresh the access token, otherwise users would be logged out or see errors. Some providers require you to add an offline scope so that you get a refresh token. (Twitter, for example, needs the scope `offline.access` or it only returns an access token.) A basic refresh flow could look like this:
+
+由于 access token 通常会过期，因此扩展程序应该提供一种刷新 access token 的方法，否则用户将被注销或看到报错。某些提供商要求您添加离线操作，以便获得刷新 access token。 （例如，Twitter 需要 `Offline.access` 范围，否则它只返回 access token。）基本刷新流程可能如下所示：
 
 ```typescript
 const tokenSet = await client.getTokens();
@@ -122,6 +124,8 @@ if (tokenSet?.accessToken) {
 ```
 
 This code would run before starting the authorization flow. It checks the presence of a token set to see whether the user is logged in and then checks whether there is a refresh token and the token set is expired (through the convenience method `isExpired()` on the [TokenSet](oauth.md#oauth.tokenset)). If it is expired, the token is refreshed and updated in the token set. Example using `node-fetch`:
+
+该代码将在启动授权流程之前运行。它会检查 token 是否存在以查看用户是否已登录，然后检查是否存在刷新 token 以及 token 是否已过期（通过 [TokenSet](https://developers.raycast.com/api-reference/oauth#oauth.tokenset) 上的便捷方法 `isExpired()` ）。如果过期，则刷新该 token，并在 token 中进行更新。下面是使用  `node-fetch` 的示例：
 
 ```typescript
 async function refreshTokens(refreshToken: string): Promise<OAuth.TokenResponse> {
@@ -145,9 +149,9 @@ async function refreshTokens(refreshToken: string): Promise<OAuth.TokenResponse>
 }
 ```
 
-## Examples
+## 例子
 
-We've provided [OAuth example integrations for Google, Twitter, and Dropbox](https://github.com/raycast/extensions/tree/main/examples/api-examples) that demonstrate the entire flow shown above.
+我们提供了[ Google、Twitter 和 Dropbox 的 OAuth 示例集成](https://github.com/raycast/extensions/tree/main/examples/api-examples)，演示了上面所示的整个流程。
 
 ## API Reference
 
