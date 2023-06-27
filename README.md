@@ -1,5 +1,5 @@
 ---
-description: 开始使用 Raycast API 构建您的完美工具。
+description: 开始使用 Raycast API 构建您的完美扩展。
 ---
 
 # 介绍
@@ -24,8 +24,6 @@ Raycast 平台由两部分组成：
 * **启动方便，灵活扩展：**从简单的脚本开始，添加静态 UI 或使用 React 来肆意挥毫。什么都可以。
 
 ## 预览
-
-A quick overview about where to find what in our docs:
 
 以下是我们文档中对于概述的部分预览：
 
