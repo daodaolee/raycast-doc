@@ -1,38 +1,38 @@
-# Window & Search Bar
+# 窗口 & 搜索栏
 
-## API Reference
+## API 参考
 
 ### clearSearchBar
 
-Clear the text in the search bar.
+清除搜索栏中的文本。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function clearSearchBar(options: { forceScrollToTop: boolean }): Promise<void>;
 ```
 
-#### Parameters
+#### 参数
 
-| Name    | Description                                                                                                       | Type                            |
-| ------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| options | Can be used to force scrolling to the top. Defaults to scrolling to the top after the the search bar was cleared. | `{ forceScrollToTop: boolean }` |
+| 名称      | 描述                        | 类型                              |
+| ------- | ------------------------- | ------------------------------- |
+| options | 可用于强制滚动到顶部。清除搜索栏后默认滚动到顶部。 | `{ forceScrollToTop: boolean }` |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the search bar is cleared.
+是一个 promise，当搜索栏被清除时变为 resolve。
 
 ### closeMainWindow
 
-Closes the main Raycast window.
+关闭 Raycast 主窗口。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function closeMainWindow(options: { clearRootSearch: boolean; popToRootType?: PopToRootType }): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { closeMainWindow } from "@raycast/api";
@@ -44,7 +44,7 @@ export default async function Command() {
 }
 ```
 
-You can use the `popToRootType` parameter to temporarily prevent Raycast from applying the user's "Pop to Root Search" preference in Raycast; for example, when you need to interact with an external system utility and then allow the user to return back to the view command:
+您可以使用 `popToRootType` 参数暂时阻止 Raycast 在 Raycast 中应用用户的 “Pop to Root Search” 首选项；例如，当您需要与外部系统实用程序交互，然后允许用户返回到视图命令时：
 
 ```typescript
 import { closeMainWindow, PopToRootType } from "@raycast/api";
@@ -54,27 +54,27 @@ export default async () => {
 };
 ```
 
-#### Parameters
+#### 参数
 
-| Name    | Description                                                                                                                                                                                                                                                                                                                                  | Type                                                                                                       |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| options | A parameter object with the properties: `clearRootSearch`: clears the text in the root search bar and scrolls to the top; default is `false` `popToRootType`: defines the pop to root behavior ([PopToRootType](window-and-search-bar.md#poptoroottype)); the default is to to respect the user's "Pop to Root Search" preference in Raycast | `{ clearRootSearch: boolean; popToRootType:` [`PopToRootType`](window-and-search-bar.md#poptoroottype) `}` |
+| 名称      | 描述                                                                                                                                                                                                                           | 类型                                                                                                         |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| options | 具有以下属性的参数对象：`clearRootSearch`：清除根搜索栏中的文本并滚动到顶部；默认为 `false` `popToRootType`：定义弹出到根（[PopToRootType](https://developers.raycast.com/api-reference/window-and-search-bar#poptoroottype)）；默认值是在 Raycast 中的“Pop to Root Search”首选项 | `{ clearRootSearch: boolean; popToRootType:` [`PopToRootType`](window-and-search-bar.md#poptoroottype) `}` |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the main window is closed.
+是一个 promise，当主窗口关闭时变为 resolve。
 
 ### popToRoot
 
-Pops the navigation stack back to root search.
+将导航堆栈弹出回根搜索。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function popToRoot(options: { clearSearchBar: boolean }): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { Detail, popToRoot } from "@raycast/api";
@@ -92,26 +92,26 @@ export default function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name    | Description                                                                                    | Type                          |
-| ------- | ---------------------------------------------------------------------------------------------- | ----------------------------- |
-| options | Can be used to clear the search bar. Defaults to clearing the search bar after popped to root. | `{ clearSearchBar: boolean }` |
+| 名称      | 描述                              | 类型                            |
+| ------- | ------------------------------- | ----------------------------- |
+| options | 可用于清除搜索栏。默认情况下，弹出到 root 后清除搜索栏。 | `{ clearSearchBar: boolean }` |
 
-#### Return
+#### 返回
 
-A Promise that resolves when Raycast popped to root.
+是一个 promise，当 Raycast 弹出到 root 时变为 resolve。
 
-## Types
+## 类型
 
 ### PopToRootType
 
-Defines the pop to root behavior when the main window is closed.
+定义主窗口关闭时弹出到根目录的行为。
 
-#### Enumeration members
+#### 枚举成员
 
-| Name      | Description                                                    |
-| --------- | -------------------------------------------------------------- |
-| Default   | Respects the user's "Pop to Root Search" preference in Raycast |
-| Immediate | Immediately pops back to root                                  |
-| Suspended | Prevents Raycast from popping back to root                     |
+| 名称        | 描述                                      |
+| --------- | --------------------------------------- |
+| Default   | 允许用户在 Raycast 中的“Pop to Root Search”首选项 |
+| Immediate | 立即弹回到 root                              |
+| Suspended | 防止 Raycast 弹出回根目录                       |

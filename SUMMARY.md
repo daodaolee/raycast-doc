@@ -77,7 +77,7 @@
   * [Colors](api-can-kao/user-interface/colors.md)
   * [Icons & Images](api-can-kao/user-interface/icons-and-images.md)
   * [Navigation](api-can-kao/user-interface/navigation.md)
-* [Window & Search Bar](api-can-kao/window-and-search-bar.md)
+* [窗口 & 搜索栏](api-can-kao/window-and-search-bar.md)
 
 ## Utilities
 
