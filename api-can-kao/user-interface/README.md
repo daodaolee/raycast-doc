@@ -1,24 +1,23 @@
-# User Interface
+# 用户界面
 
-Raycast uses React for its user interface declaration and renders the supported elements to our native UI. The API comes with a set of UI components that you can use to build your extensions. Think of it as a design system. The high-level components are the following:
+Raycast 使用 React 渲染用户界面，并将支持的元素渲染到我们的本机 UI。该 API 附带了一组 UI 组件，您可以使用它们来构建扩展。可以将其视为一个设计系统。下面是高级组件：
 
-* [List](list.md) to show multiple similar items, f.e. a list of your open todos.
-* [Grid](grid.md) similar to a List but with more legroom to show an image for each item, f.e. a collection of icons.
-* [Detail](detail.md) to present more information, f.e. the details of a GitHub pull request.
-* [Form](form.md) to create new content, f.e. filing a bug report.
+* [List](list.md) 显示多个相似的项目，例如您未完成的待办事项列表。
+* [Grid](grid.md) 类似于 list，但有更多的底部空间来显示每个项目的图像，例如图标的集合。
+* [Detail](detail.md) 提供更多信息，例如 GitHub 拉取请求的详细信息。
+* [Form](form.md) 创建新内容，例如提交错误报告。\
+  每个组件都可以通过 [ActionPanel](https://developers.raycast.com/api-reference/user-interface/action-panel) 提供交互。该面板有一个 [Actions](https://developers.raycast.com/api-reference/user-interface/actions) 列表，其中每个操作都可以与[键盘快捷键](https://developers.raycast.com/api-reference/keyboard)关联。快捷方式允许用户无需使用鼠标即可使用 Raycast。
 
-Each component can provide interaction via an [ActionPanel](action-panel.md). The panel has a list of [Actions](actions.md) where each one can be associated with a [keyboard shortcut](../keyboard.md). Shortcuts allow users to use Raycast without using their mouse.
+## 渲染
 
-## Rendering
+要渲染用户界面，您需要执行以下操作：
 
-To render a user interface, you need to do the following:
+* 在 [`package.json` manifest file](../../zi-liao/manifest.md#command-properties) 中设置 `mode` 为 `view`
+* 从命令输入文件导出 React 组件
 
-* Set the `mode` to `view` in the [`package.json` manifest file](../../zi-liao/manifest.md#command-properties)
-* Export a React component from your command entry file
+从一般经验法则的角度出发，您应该尽快渲染某些内容。这保证了您的命令具有响应能力。如果没有可显示的数据，则可以在顶级组件（例如  [`<Detail>`](detail.md)、 [`<Form>`](form.md)或 [`<List>`](list.md) ）上将 `isLoading` 属性设置为 true。它在 Raycast 顶部显示一个 loading 指示器。
 
-As a general rule of thumb, you should render something as quickly as possible. This guarantees that your command feels responsive. If you don't have data available to show, you can set the `isLoading` prop to `true` on top-level components such as [`<Detail>`](detail.md), [`<Form>`](form.md), or [`<List>`](list.md). It shows a loading indicator at the top of Raycast.
-
-Here is an example that shows a loading indicator for 2 seconds after the command got launched:
+以下示例显示命令启动后 2 秒的 loading 指示器：
 
 ```typescript
 import { List } from "@raycast/api";

@@ -67,7 +67,7 @@
 * [Preferences](api-can-kao/preferences.md)
 * [Storage](api-can-kao/storage.md)
 * [System Utilities](api-can-kao/utilities.md)
-* [User Interface](api-can-kao/user-interface/README.md)
+* [用户界面](api-can-kao/user-interface/README.md)
   * [Action Panel](api-can-kao/user-interface/action-panel.md)
   * [Actions](api-can-kao/user-interface/actions.md)
   * [Detail](api-can-kao/user-interface/detail.md)
