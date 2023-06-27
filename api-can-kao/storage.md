@@ -7,8 +7,6 @@ Storage API 可用于将数据存储在 Raycast 的 [本地加密数据库](http
 可以通过  [`LocalStorage.getItem`](storage.md#localstorage.getitem)、 [`LocalStorage.setItem`](storage.md#localstorage.setitem)或 [`LocalStorage.removeItem`](storage.md#localstorage.removeitem)  等函数来管理值。典型的用例是存储与用户相关的数据，例如输入的待办事项。
 
 {% hint style="info" %}
-The API is not meant to store large amounts of data. For this, use [Node's built-in APIs to write files](https://nodejs.dev/learn/writing-files-with-nodejs), e.g. to the extension's [support directory](environment.md#environment).
-
 这个 API 并不意味着存储大量数据。如果你想，请使用 [Node 的内置 API 来写入文件](https://nodejs.dev/learn/writing-files-with-nodejs)，例如到扩展的 [支持目录](https://developers.raycast.com/api-reference/environment#environment)。
 {% endhint %}
 
