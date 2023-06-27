@@ -69,7 +69,7 @@ description: 了解如何快速通过审核流程
 
 * 商店中发布的扩展需要是 `png` 格式的 512x512px 图标
 * 图标在浅色和深色主题中都应该看起来不错（您可以在 Raycast Preferences → Appearance 中切换主题）
-* 如果您有单独的浅色和深色图标，请参阅 `package.json` [mainfest](https://developers.raycast.com/information/manifest#extension-properties) 文档了解如何配置它们
+* 如果您有单独的浅色和深色图标，请参阅 `package.json` [manifest](https://developers.raycast.com/information/manifest#extension-properties) 文档了解如何配置它们
 * 使用默认 Raycast 图标的扩展将被拒绝
 * 这个 [图标模板](https://www.figma.com/community/file/1030764827259035122/Extensions-Icon-Template) 可以帮助您制作和导出合适的图标
 * 确保删除未使用的资源和图标
@@ -88,7 +88,7 @@ description: 了解如何快速通过审核流程
 
 * 所有扩展都应至少以一个类别发布
 * 类别区分大小写，应遵循 [标题大小写](https://titlecaseconverter.com/rules/) 约定
-* 在 `package.json` [mainfest](https://developers.raycast.com/information/manifest) 文件中添加类别，或在使用 **Create Extension** 命令创建新扩展时选择类别
+* 在 `package.json` [manifest](https://developers.raycast.com/information/manifest) 文件中添加类别，或在使用 **Create Extension** 命令创建新扩展时选择类别
 
 ### 所有类别
 

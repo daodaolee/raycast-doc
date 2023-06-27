@@ -1,8 +1,8 @@
 # Manifest
 
-`package.json`  mainfest 文件是 npm `package.json` 文件的超集。这样，您只需要一个文件来配置您的扩展。本文档仅涵盖 Raycast 特定领域。有关其他内容，请参阅[ npm 的文档](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)。
+`package.json`  manifest 文件是 npm `package.json` 文件的超集。这样，您只需要一个文件来配置您的扩展。本文档仅涵盖 Raycast 特定领域。有关其他内容，请参阅[ npm 的文档](https://docs.npmjs.com/cli/v7/configuring-npm/package-json)。
 
-这是一个典型的 mainfest 文件：
+这是一个典型的 manifest 文件：
 
 ```javascript
 {

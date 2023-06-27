@@ -28,8 +28,6 @@ Raycast for Teams 允许您在私人商店中构建、共享和发现扩展。�
 
 ### 构建入门扩展
 
-After you have created the local repository, navigate into the `getting-started` folder. The folder contains a simple extension with a command that shows a list with a few useful links. Run `npm run dev` in the folder to build the extension and start development mode. Raycast opens and you can see a new Development section in the root search. The section shows all commands that are under active development. You can open the command and open a few links.
-
 创建本地存储库后，导航到 `getting-started` 文件夹。该文件夹包含一个简单的扩展，其中包含一个命令，该命令显示带有一些有用链接的列表。在文件夹中运行 `npm run dev` 以构建扩展并启动开发模式。 打开 Raycast ，您可以在根搜索中看到一个新的 “Development” 部分。该部分显示了正在开发的所有命令。你可以打开命令并打开一些链接。
 
 ![构建入门扩展](../.gitbook/assets/teams-develop-extension.png)

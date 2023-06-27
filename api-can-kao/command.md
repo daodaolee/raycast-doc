@@ -36,10 +36,10 @@ export default async function Command() {
 
 ### updateCommandMetadata
 
-更新当前命令 mainfest 中声明的​​属性值。请注意，目前仅支持 `subtitle`。传递 `null` 以清除自定义 `subtitle`。
+更新当前命令 manifest 中声明的​​属性值。请注意，目前仅支持 `subtitle`。传递 `null` 以清除自定义 `subtitle`。
 
 {% hint style="info" %}
-实际的 mainfest 文件不会被修改，因此只要命令保持安装状态，更新就会适用。
+实际的 manifest 文件不会被修改，因此只要命令保持安装状态，更新就会适用。
 {% endhint %}
 
 #### 签名
@@ -83,9 +83,9 @@ export default async function Command() {
 
 | 名称                                     | 描述                                                                                                          | 类型                                                                   |
 | -------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| name<mark style="color:red;">\*</mark> | 扩展 mainfest 中定义的命令名称                                                                                        | `string`                                                             |
+| name<mark style="color:red;">\*</mark> | 扩展 manifest 中定义的命令名称                                                                                        | `string`                                                             |
 | type<mark style="color:red;">\*</mark> | [LaunchType.UserInitiated](environment.md#launchtype) 或者 [LaunchType.Background](environment.md#launchtype) | [`LaunchType`](environment.md#launchtype)                            |
-| arguments                              | 扩展 mainfest 中定义的参数属性和值的可选对象，例如： `{ "argument1": "value1" }`                                                 | [`Arguments`](../zi-liao/lifecycle/arguments.md#arguments) 或者 `null` |
+| arguments                              | 扩展 manifest 中定义的参数属性和值的可选对象，例如： `{ "argument1": "value1" }`                                                 | [`Arguments`](../zi-liao/lifecycle/arguments.md#arguments) 或者 `null` |
 | context                                | 应传递给命令并可作为`environment.launchContext`访问的自定义数据的任意对象；该对象必须是 JSON 可序列化的（支持日期和缓冲区）                              | [`LaunchContext`](command.md#launchcontext) 或者 `null`                |
 | fallbackText                           | 作为备用文本发送到命令的可选字符串                                                                                           | `string` 或者 `null`                                                   |
 
@@ -95,5 +95,5 @@ export default async function Command() {
 
 | 名称                                                  | 描述                                            | 类型       |
 | --------------------------------------------------- | --------------------------------------------- | -------- |
-| extensionName<mark style="color:red;">\*</mark>     | 从不同的扩展启动命令时，扩展名称（如扩展 mainfest 中定义）是必需的        | `string` |
-| ownerOrAuthorName<mark style="color:red;">\*</mark> | 从不同的扩展程序启动命令时，所有者或作者（如扩展程序 mainfest 中所定义）是必需的 | `string` |
+| extensionName<mark style="color:red;">\*</mark>     | 从不同的扩展启动命令时，扩展名称（如扩展 manifest 中定义）是必需的        | `string` |
+| ownerOrAuthorName<mark style="color:red;">\*</mark> | 从不同的扩展程序启动命令时，所有者或作者（如扩展程序 manifest 中所定义）是必需的 | `string` |

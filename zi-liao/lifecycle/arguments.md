@@ -4,11 +4,11 @@ Raycast 支持命令传递参数，以便用户可以在打开命令之前直接
 
 ![](../../.gitbook/assets/arguments.png)
 
-参数在每个命令的 [mainfest](https://developers.raycast.com/information/manifest#argument-properties) 中配置。
+参数在每个命令的 [manifest](https://developers.raycast.com/information/manifest#argument-properties) 中配置。
 
 {% hint style="info" %}
 * **最大参数数量：**3（如果您有需要更多参数的用例，请通过反馈或在 Slack 社区 中告知我们）
-* mainfest 中指定的参数顺序很重要，并且由根搜索中显示的字段作出反馈。为了提供更好的用户体验，请将必需的参数放在可选参数之前。
+* manifest 中指定的参数顺序很重要，并且由根搜索中显示的字段作出反馈。为了提供更好的用户体验，请将必需的参数放在可选参数之前。
 {% endhint %}
 
 ## 例子
@@ -90,5 +90,5 @@ export default function Todoist(props: LaunchProps<{ arguments: Arguments.MyComm
 {% hint style="info" %}
 Raycast 提供了一个名为 Arguments 的全局 TypeScript 命名空间，其中包含扩展的所有命令的参数类型。
 
-例如，如果名为 show-todos 的命令接受参数，则其 LaunchProps 可以描述为 LaunchProps<{argus: Arguments.ShowTodos }>。这将确保命令中使用的类型与 mainfest 保持同步。
+例如，如果名为 show-todos 的命令接受参数，则其 LaunchProps 可以描述为 LaunchProps<{argus: Arguments.ShowTodos }>。这将确保命令中使用的类型与 manifest 保持同步。
 {% endhint %}
