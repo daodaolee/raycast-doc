@@ -1,20 +1,20 @@
 # System Utilities
 
-This set of utilities exposes some of Raycast's native functionality to allow deep integration into the user's setup. For example, you can use the Application APIs to check if a desktop application is installed and then provide an action to deep-link into it.
+该公共包暴露了 Raycast 的一些本机功能，以允许深度集成到用户的设置中。例如，您可以使用应用程序 API 检查是否安装了桌面应用程序，然后提供一个操作来深层链接到该应用程序。
 
-## API Reference
+## API 参考
 
 ### getApplications
 
-Returns all applications that can open the file.
+返回可以打开该文件的所有应用程序。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function getApplications(path?: PathLike): Promise<Application[]>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { getApplications } from "@raycast/api";
@@ -26,27 +26,27 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name | Description                                                                                                                   | Type                                |
-| ---- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| path | The path of the file or folder to get the applications for. If no path is specified, all installed applications are returned. | [`PathLike`](utilities.md#pathlike) |
+| 名称   | 描述                                       | 类型                                  |
+| ---- | ---------------------------------------- | ----------------------------------- |
+| path | 要获取应用程序的文件或文件夹的路径。如果未指定路径，则返回所有已安装的应用程序。 | [`PathLike`](utilities.md#pathlike) |
 
-#### Return
+#### 返回
 
-An array of [Application](utilities.md#application).
+一个 [Application](utilities.md#application) 数组。
 
 ### getDefaultApplication
 
-Returns the default application that the file would be opened with.
+返回打开文件的默认应用程序。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function getDefaultApplication(path: PathLike): Promise<Application>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { getDefaultApplication } from "@raycast/api";
@@ -57,27 +57,27 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                   | Description                                                        | Type                                |
-| -------------------------------------- | ------------------------------------------------------------------ | ----------------------------------- |
-| path<mark style="color:red;">\*</mark> | The path of the file or folder to get the default application for. | [`PathLike`](utilities.md#pathlike) |
+| 名称                                     | 描述                   | 类型                                  |
+| -------------------------------------- | -------------------- | ----------------------------------- |
+| path<mark style="color:red;">\*</mark> | 要获取默认应用程序的文件或文件夹的路径。 | [`PathLike`](utilities.md#pathlike) |
 
-#### Return
+#### 返回
 
-A Promise that resolves with the default [Application](utilities.md#application) that would open the file. If no application was found, the promise will be rejected.
+打开文件的默认  [Application](utilities.md#application) ， 是一个 Promise。如果没有找到，promise 为 rejected。
 
 ### getFrontmostApplication
 
-Returns the frontmost application.
+返回最前面的应用程序。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function getFrontmostApplication(): Promise<Application>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { getFrontmostApplication } from "@raycast/api";
@@ -88,21 +88,21 @@ export default async function Command() => {
 };
 ```
 
-#### Return
+#### 返回
 
-A Promise that resolves with the frontmost [Application](utilities.md#application). If no application was found, the promise will be rejected.
+最前面的  [Application](utilities.md#application)，是一个 Promise。如果没有找到，promise 为 rejected。
 
 ### showInFinder
 
-Shows a file or directory in the Finder.
+在 Finder 中显示文件或目录。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function showInFinder(path: PathLike): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { showInFinder } from "@raycast/api";
@@ -114,27 +114,27 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                   | Description                     | Type                                |
-| -------------------------------------- | ------------------------------- | ----------------------------------- |
-| path<mark style="color:red;">\*</mark> | The path to show in the Finder. | [`PathLike`](utilities.md#pathlike) |
+| 名称                                     | 描述               | 类型                                  |
+| -------------------------------------- | ---------------- | ----------------------------------- |
+| path<mark style="color:red;">\*</mark> | 在 Finder 中显示的路径。 | [`PathLike`](utilities.md#pathlike) |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the item is revealed in the Finder.
+是一个 promise，当该项目在 Finder 中显示时状态为 resolve。
 
 ### trash
 
-Moves a file or directory to the Trash.
+将文件或目录移至废纸篓。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function trash(path: PathLike | PathLike[]): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { trash } from "@raycast/api";
@@ -149,27 +149,27 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                   | Description | Type                                                                           |
-| -------------------------------------- | ----------- | ------------------------------------------------------------------------------ |
-| path<mark style="color:red;">\*</mark> |             | [`PathLike`](utilities.md#pathlike) or [`PathLike`](utilities.md#pathlike)`[]` |
+| 名称                                     |  描述 | 类型                                                                            |
+| -------------------------------------- | --- | ----------------------------------------------------------------------------- |
+| path<mark style="color:red;">\*</mark> |     | [`PathLike`](utilities.md#pathlike) 或 [`PathLike`](utilities.md#pathlike)`[]` |
 
-#### Return
+#### 返回
 
-A Promise that resolves when all files are moved to the trash.
+是一个promise，当所有文件都移至垃圾箱时状态为 resolve。
 
 ### open
 
-Opens a target with the default application or specified application.
+使用默认应用程序或指定应用程序打开目标。
 
-#### Signature
+#### 签名
 
 ```typescript
 async function open(target: string, application?: Application | string): Promise<void>;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { open } from "@raycast/api";
@@ -179,32 +179,33 @@ export default async function Command() {
 }
 ```
 
-#### Parameters
+#### 参数
 
-| Name                                     | Description                                                                                                                                                                                                                                                        | Type                                                  |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| target<mark style="color:red;">\*</mark> | The file, folder or URL to open.                                                                                                                                                                                                                                   | `string`                                              |
-| application                              | The application name to use for opening the file. If no application is specified, the default application as determined by the system is used to open the specified file. Note that you can use the application name, app identifier, or absolute path to the app. | `string` or [`Application`](utilities.md#application) |
+| 名称                                       | 描述                                                                                | 类型                                                   |
+| ---------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| target<mark style="color:red;">\*</mark> | 要打开的文件、文件夹或 URL。                                                                  | `string`                                             |
+| application                              | 用于打开文件的应用程序名称。如果没有指定应用程序，则使用系统确定的默认应用程序打开指定的文件。请注意，您可以使用应用程序名称、应用程序标识符或应用程序的绝对路径。 | `string` 或 [`Application`](utilities.md#application) |
 
-#### Return
+#### 返回
 
-A Promise that resolves when the target has been opened.
+是一个 promise，当目标被打开时变为 resolve。
 
-## Types
+## 类型
 
 ### Application
 
-An object that represents a locally installed application on the system.
+代表系统上本地安装的应用程序对象。
 
-It can be used to open files or folders in a specific application. Use [getApplications](utilities.md#getapplications) or [getDefaultApplication](utilities.md#getdefaultapplication) to get applications that can open a specific file or folder.
+它可用于在特定应用程序中打开文件或文件夹。使用 [getApplications](https://developers.raycast.com/api-reference/utilities#getapplications) 或 [getDefaultApplication](https://developers.raycast.com/api-reference/utilities#getdefaultapplication) 获取可以打开特定文件或文件夹的应用程序。
 
-#### Properties
+#### 属性
 
-| Property                               | Description                                                                    | Type     |
-| -------------------------------------- | ------------------------------------------------------------------------------ | -------- |
-| name<mark style="color:red;">\*</mark> | The display name of the application.                                           | `string` |
-| path<mark style="color:red;">\*</mark> | The absolute path to the application bundle, e.g. `/Applications/Raycast.app`, | `string` |
-| bundleId                               | The bundle identifier of the application, e.g. `com.raycast.macos`.            | `string` |
+| 名称                                     | 描述                                         | 类型       |
+| -------------------------------------- | ------------------------------------------ | -------- |
+| name<mark style="color:red;">\*</mark> | 应用程序的显示名称。                                 | `string` |
+| path<mark style="color:red;">\*</mark> | 应用程序包的绝对路径，例如 `/Applications/Raycast.app`, | `string` |
+| bundleId                               | 应用程序的包标识符，例如`com.raycast.macos`。           | `string` |
+|                                        |                                            |          |
 
 ### PathLike
 
@@ -212,4 +213,4 @@ It can be used to open files or folders in a specific application. Use [getAppli
 PathLike: string | Buffer | URL;
 ```
 
-Supported path types.
+支持的路径类型。
