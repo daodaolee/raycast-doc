@@ -1,27 +1,21 @@
----
-description: >-
-  The de-facto user interface in Raycast. Ideal to present similar data such as
-  to-dos or files.
----
-
 # List
 
-Our `List` component provides great user experience out of the box:
+我们的 `List` 组件提供了开箱即用的用户体验：
 
-* Use built-in filtering for best performance.
-* Group-related items in sections with titles and subtitles.
-* Show loading indicator for longer operations.
-* Use the search query for typeahead experiences, optionally throttled.
+* 使用内置过滤以获得最佳性能。&#x20;
+* 将相关项分组到带有标题和子标题的 section 中。
+* 给长久操作项显示 loading 指示器。&#x20;
+* 在限制范围内，使用搜索查询代替单个输入查询。
 
 ![](../../.gitbook/assets/list.png)
 
-## Search Bar
+## 搜索栏
 
-The search bar allows users to interact quickly with list items. By default, [List.Items](list.md#list.item) are displayed if the user's input can be (fuzzy) matched to the item's `title` or `keywords`.
+搜索栏允许用户与列表项快速交互。默认情况下，如果用户的输入可以与项目的 `title` 或 `keyword`（模糊）匹配，则显示 [List.Items](list.md#list.item) 。
 
-### Custom filtering
+### 自定义过滤
 
-Sometimes, you may not want to rely on Raycast's filtering, but use/implement your own. If that's the case, you can set the `List`'s `filtering` [prop](list.md#props) to false, and the items displayed will be independent of the search bar's text. Note that `filtering` is also implicitly set to false if an `onSearchTextChange` listener is specified. If you want to specify a change listener and _still_ take advantage of Raycast's built-in filtering, you can explicitly set `filtering` to true.
+有时，您可能不想依赖 Raycast 的过滤，而是 使用/实现 您自己的过滤。如果是这种情况，您可以将列表的过滤属性设置为 `false`，这时显示的项目将独立于搜索栏的文本。请注意，如果指定了 `onSearchTextChange` 侦听器，过滤也会隐式设置为 `false`。如果您想指定更改侦听器并仍然利用 Raycast 的内置过滤功能，则需要显式将过滤设置为 `true`。
 
 ```typescript
 import { useEffect, useState } from "react";
@@ -60,11 +54,11 @@ export default function Command() {
 }
 ```
 
-### Programmatically updating the search bar
+### 用编程的方式更新搜索栏
 
-Other times, you may want the content of the search bar to be updated by the extension, for example, you may store a list of the user's previous searches and, on the next visit, allow them to "continue" where they left off.
+在其他时候，您可能希望扩展程序更新搜索栏的内容，例如，您可以存储用户之前的搜索列表，并在下次访问时允许他们从上次中断的地方“继续”。
 
-To do so, you can use the `searchText` [prop](list.md#props).
+为此，您可以使用 `searchText` 属性。
 
 ```typescript
 import { useEffect, useState } from "react";
@@ -98,13 +92,13 @@ export default function Command() {
 }
 ```
 
-### Dropdown
+### 下拉菜单
 
-Some extensions may benefit from giving users a second filtering dimension. A todo extension may allow users to use different groups, a newspaper-reading extension may want to allow quickly switching categories, etc.
+某些扩展可能会为用户提供第二个过滤维度，比如待办事项扩展可能允许用户使用不同的组，阅读报纸扩展可能希望允许快速切换类别等。
 
-This is where the `searchBarAccessory` [prop](list.md#props) is useful. Pass it a [List.Dropdown](list.md#list.dropdown) component, and it will be displayed on the right-side of the search bar. Invoke it either by using the global shortcut `⌘` `P` or by clicking on it.
+这就是 `searchBarAccessory` 属性有用的地方。向其传递一个 [List.Dropdown](list.md#list.dropdown) 组件，它将显示在搜索栏的右侧。通过使用全局快捷键 `⌘` `P` 或单击它来调用它。
 
-## Examples
+## 例子
 
 {% tabs %}
 {% tab title="List.tsx" %}
@@ -269,15 +263,15 @@ export default function CommandWithCustomEmptyView() {
 {% endtab %}
 {% endtabs %}
 
-## API Reference
+## API 参考
 
 ### List
 
-Displays [List.Section](list.md#list.section) or [List.Item](list.md#list.item).
+参考 [List.Section](list.md#list.section) 或 [List.Item](list.md#list.item).
 
-The list uses built-in filtering by indexing the title of list items and additionally keywords.
+该列表通过对列表项的标题和附加关键字建立索引来使用内置过滤。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -294,29 +288,15 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                 | Description                                                                                                                                                                                                                                                | Type                                                             | Default                                                           |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------- |
-| actions              | A reference to an [ActionPanel](action-panel.md#actionpanel). It will only be shown when there aren't any children.                                                                                                                                        | `React.ReactNode`                                                | -                                                                 |
-| children             | List sections or items. If [List.Item](list.md#list.item) elements are specified, a default section is automatically created.                                                                                                                              | `React.ReactNode`                                                | -                                                                 |
-| filtering            | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering.                                                                                 | `boolean` or `{ keepSectionOrder: boolean }`                     | `false` when `onSearchTextChange` is specified, `true` otherwise. |
-| isLoading            | Indicates whether a loading bar should be shown or hidden below the search bar                                                                                                                                                                             | `boolean`                                                        | `false`                                                           |
-| isShowingDetail      | Whether the List should have an area on the right side of the items to show additional details about the selected item.                                                                                                                                    | `boolean`                                                        | -                                                                 |
-| navigationTitle      | The main title for that view displayed in Raycast                                                                                                                                                                                                          | `string`                                                         | Command title                                                     |
-| searchBarAccessory   | [List.Dropdown](list.md#list.dropdown) that will be shown in the right-hand-side of the search bar.                                                                                                                                                        | `ReactElement<`[`List.Dropdown.Props`](list.md#props)`, string>` | -                                                                 |
-| searchBarPlaceholder | Placeholder text that will be shown in the search bar.                                                                                                                                                                                                     | `string`                                                         | `"Search…"`                                                       |
-| searchText           | The text that will be displayed in the search bar.                                                                                                                                                                                                         | `string`                                                         | -                                                                 |
-| selectedItemId       | Selects the item with the specified id.                                                                                                                                                                                                                    | `string`                                                         | -                                                                 |
-| throttle             | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | `boolean`                                                        | `false`                                                           |
-| onSearchTextChange   | Callback triggered when the search bar text changes.                                                                                                                                                                                                       | `(text: string) => void`                                         | -                                                                 |
-| onSelectionChange    | Callback triggered when the item selection in the list changes.                                                                                                                                                                                            | `(id: string) => void`                                           | -                                                                 |
+<table><thead><tr><th width="175">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>actions</td><td>对 <a href="action-panel.md#actionpanel">ActionPanel</a> 的引用。仅当没有任何子项时才会显示。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>children</td><td>列出 section 或 item。如果指定了  <a href="list.md#list.item">List.Item</a> 元素，则会自动创建默认部分。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>filtering</td><td>切换 Raycast 过滤。如果为 <code>true</code>，Raycast 将使用搜索栏中的查询来过滤项目。当为 <code>false</code> 时，扩展程序需要负责过滤。</td><td><code>boolean</code> or <code>{ keepSectionOrder: boolean }</code></td><td>当指定  <code>onSearchTextChange</code> 时为 <code>false</code>，否则为 <code>true</code>。</td></tr><tr><td>isLoading</td><td>是否在搜索栏下方显示或隐藏 loading</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>isShowingDetail</td><td>列表是否应在项目右侧有一个区域以显示有关所选项的其他详细信息。</td><td><code>boolean</code></td><td>-</td></tr><tr><td>navigationTitle</td><td>Raycast 中显示的该视图的主标题</td><td><code>string</code></td><td>Command title</td></tr><tr><td>searchBarAccessory</td><td><a href="list.md#list.dropdown">List.Dropdown</a> 将显示在搜索栏的右侧。</td><td><code>ReactElement&#x3C;</code><a href="list.md#props"><code>List.Dropdown.Props</code></a><code>, string></code></td><td>-</td></tr><tr><td>searchBarPlaceholder</td><td>显示在搜索栏中的占位符文本。</td><td><code>string</code></td><td><code>"Search…"</code></td></tr><tr><td>searchText</td><td>显示在搜索栏中的文本。</td><td><code>string</code></td><td>-</td></tr><tr><td>selectedItemId</td><td>选择具有指定 id 的项。</td><td><code>string</code></td><td>-</td></tr><tr><td>throttle</td><td><code>onSearchTextChange</code> 处理程序是在每次按下键盘时触发还是延迟以限制事件。当自定义过滤逻辑与异步操作（例如网络请求）结合使用时，建议设置为 <code>true</code>。</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>onSearchTextChange</td><td>当搜索栏文本发生变化时触发回调。</td><td><code>(text: string) => void</code></td><td>-</td></tr><tr><td>onSelectionChange</td><td>当列表中的项选择发生变化时触发回调。</td><td><code>(id: string) => void</code></td><td>-</td></tr></tbody></table>
 
 ### List.Dropdown
 
-A dropdown menu that will be shown in the right-hand-side of the search bar.
+显示在搜索栏右侧的下拉菜单。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -365,28 +345,15 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                      | Description                                                                                                                                                                                                                                                | Type                                         | Default                                                           |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------- |
-| tooltip<mark style="color:red;">\*</mark> | Tooltip displayed when hovering the dropdown.                                                                                                                                                                                                              | `string`                                     | -                                                                 |
-| children                                  | Dropdown sections or items. If Dropdown.Item elements are specified, a default section is automatically created.                                                                                                                                           | `React.ReactNode`                            | -                                                                 |
-| defaultValue                              | The default value of the dropdown. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering.                                      | `string`                                     | -                                                                 |
-| filtering                                 | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering.                                                                                 | `boolean` or `{ keepSectionOrder: boolean }` | `false` when `onSearchTextChange` is specified, `true` otherwise. |
-| id                                        | ID of the dropdown.                                                                                                                                                                                                                                        | `string`                                     | -                                                                 |
-| isLoading                                 | Indicates whether a loading indicator should be shown or hidden next to the search bar                                                                                                                                                                     | `boolean`                                    | `false`                                                           |
-| placeholder                               | Placeholder text that will be shown in the dropdown search field.                                                                                                                                                                                          | `string`                                     | `"Search…"`                                                       |
-| storeValue                                | Indicates whether the value of the dropdown should be persisted after selection, and restored next time the dropdown is rendered.                                                                                                                          | `boolean`                                    | -                                                                 |
-| throttle                                  | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | `boolean`                                    | `false`                                                           |
-| value                                     | The currently value of the dropdown.                                                                                                                                                                                                                       | `string`                                     | -                                                                 |
-| onChange                                  | Callback triggered when the dropdown selection changes.                                                                                                                                                                                                    | `(newValue: string) => void`                 | -                                                                 |
-| onSearchTextChange                        | Callback triggered when the search bar text changes.                                                                                                                                                                                                       | `(text: string) => void`                     | -                                                                 |
+<table><thead><tr><th width="168">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>tooltip<mark style="color:red;">*</mark></td><td>鼠标悬停在下拉菜单上时显示提示。</td><td><code>string</code></td><td>-</td></tr><tr><td>children</td><td>下拉部分或 item。如果指定了 <code>Dropdown.Item</code> 元素，则会自动创建默认部分。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>defaultValue</td><td>下拉列表的默认值。请记住，<code>defaultValue</code> 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 <code>defaultValue</code>。</td><td><code>string</code></td><td>-</td></tr><tr><td>filtering</td><td>切换 Raycast 过滤。如果为 <code>true</code>，Raycast 将使用搜索栏中的查询来过滤项目。当为 <code>false</code> 时，扩展程序需要负责过滤。</td><td><code>boolean</code> or <code>{ keepSectionOrder: boolean }</code></td><td>当指定 <code>onSearchTextChange</code> 时为 <code>false</code>，否则为 <code>true</code>。</td></tr><tr><td>id</td><td>下拉列表的 ID。</td><td><code>string</code></td><td>-</td></tr><tr><td>isLoading</td><td>是否应在搜索栏旁边显示或隐藏 loading 指示器</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>placeholder</td><td>显示在下拉搜索字段中的占位符文本。</td><td><code>string</code></td><td><code>"Search…"</code></td></tr><tr><td>storeValue</td><td>下拉列表的值是否应在选择后保留，并在下次渲染下拉列表时恢复。</td><td><code>boolean</code></td><td>-</td></tr><tr><td>throttle</td><td>定义 <code>onSearchTextChange</code> 处理程序是在每次按下键盘时触发还是延迟以限制事件。当将自定义过滤逻辑与异步操作（例如网络请求）结合使用时，建议设置为 <code>true</code>。</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>value</td><td>下拉菜单的当前值。</td><td><code>string</code></td><td>-</td></tr><tr><td>onChange</td><td>当下拉选择发生变化时触发回调。</td><td><code>(newValue: string) => void</code></td><td>-</td></tr><tr><td>onSearchTextChange</td><td>当搜索栏文本发生变化时触发回调。</td><td><code>(text: string) => void</code></td><td>-</td></tr></tbody></table>
 
 ### List.Dropdown.Item
 
-A dropdown item in a [List.Dropdown](list.md#list.dropdown)
+[List.Dropdown](list.md#list.dropdown) 中的下拉项
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -408,22 +375,17 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                                                                                   | Type                                                     | Default                         |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------- |
-| title<mark style="color:red;">\*</mark> | The title displayed for the item.                                                                                                                                             | `string`                                                 | -                               |
-| value<mark style="color:red;">\*</mark> | Value of the dropdown item. Make sure to assign each unique value for each item.                                                                                              | `string`                                                 | -                               |
-| icon                                    | An optional icon displayed for the item.                                                                                                                                      | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -                               |
-| keywords                                | An optional property used for providing additional indexable strings for search. When filtering the items in Raycast, the keywords will be searched in addition to the title. | `string[]`                                               | The title of its section if any |
+<table><thead><tr><th width="145">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>title<mark style="color:red;">*</mark></td><td>显示的标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>value<mark style="color:red;">*</mark></td><td>下拉项的值。确保为每个项目分配每个唯一值。</td><td><code>string</code></td><td>-</td></tr><tr><td>icon</td><td>该项的可选图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a></td><td>-</td></tr><tr><td>keywords</td><td>一个可选属性，用于提供额外的可索引字符串以供搜索。在 Raycast 中过滤项目时，除了标题之外还会搜索关键字。</td><td><code>string[]</code></td><td>The title of its section if any</td></tr></tbody></table>
 
 ### List.Dropdown.Section
 
-Visually separated group of dropdown items.
+分离的下拉项组。
 
-Use sections to group related menu items together.
+使用 section 将相关菜单项分到一个组。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -448,24 +410,21 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                       | Type              | Default |
-| -------- | --------------------------------- | ----------------- | ------- |
-| children | The item elements of the section. | `React.ReactNode` | -       |
-| title    | Title displayed above the section | `string`          | -       |
+<table><thead><tr><th width="142">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children</td><td>section 项</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>title</td><td>显示在该部分上方的标题</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
 ### List.EmptyView
 
-A view to display when there aren't any items available. Use to greet users with a friendly message if the extension requires user input before it can show any list items e.g. when searching for a package, an article etc.
+当没有任何可用项目时显示的视图。
 
-Raycast provides a default `EmptyView` that will be displayed if the List component either has no children, or if it has children, but none of them match the query in the search bar. This too can be overridden by passing an empty view alongside the other `List.Item`s.
+Raycast 提供了一个默认的 `EmptyView`，如果 List 组件没有子组件，或者有子组件，但没有一个与搜索栏中的查询匹配，则将显示该 `EmptyView`。也可以通过与其他 `List.Item` 一起传递空视图来覆盖。
 
-Note that the `EmptyView` is _never_ displayed if the `List`'s `isLoading` property is true and the search bar is empty.
+请注意，如果 List 的 `isLoading` 属性为 `true` 并且搜索栏为空，则永远不会显示 `EmptyView`。
 
-![List EmptyView illustration](../../.gitbook/assets/list-empty-view.png)
+![列表为空的插图](../../.gitbook/assets/list-empty-view.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { useEffect, useState } from "react";
@@ -490,22 +449,22 @@ export default function CommandWithCustomEmptyView() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop        | Description                                                   | Type                                                     | Default |
-| ----------- | ------------------------------------------------------------- | -------------------------------------------------------- | ------- |
-| actions     | A reference to an [ActionPanel](action-panel.md#actionpanel). | `React.ReactNode`                                        | -       |
-| description | An optional description for why the empty view is shown.      | `string`                                                 | -       |
-| icon        | An icon displayed in the center of the EmptyView.             | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
-| title       | The main title displayed for the Empty View.                  | `string`                                                 | -       |
+| 名称          | 描述                                                | 类型                                                       | 默认 |
+| ----------- | ------------------------------------------------- | -------------------------------------------------------- | -- |
+| actions     | 对 [ActionPanel](action-panel.md#actionpanel) 的引用。 | `React.ReactNode`                                        | -  |
+| description | 空视图的可选描述。                                         | `string`                                                 | -  |
+| icon        | 在 EmptyView 中心的图标。                                | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
+| title       | 空视图的主标题。                                          | `string`                                                 | -  |
 
 ### List.Item
 
-A item in the [List](list.md#list).
+[List](list.md#list) 中的一项
 
-This is one of the foundational UI components of Raycast. A list item represents a single entity. It can be a GitHub pull request, a file, or anything else. You most likely want to perform actions on this item, so make it clear to the user what this list item is about.
+这是 Raycast 的基本 UI 组件之一。列表项代表单个实体。它可以是 GitHub PR、文件或其他任何内容。您很可能想要对此项目执行操作，因此请让用户清楚该列表项的含义。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Icon, List } from "@raycast/api";
@@ -519,29 +478,17 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                                                                                                                 | Type                                                                                                                                                 | Default |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| title<mark style="color:red;">\*</mark> | The main title displayed for that item, optionally with a tooltip.                                                                                                                                          | `string` or `{ tooltip: string; value: string }`                                                                                                     | -       |
-| accessories                             | An optional array of [List.Item.Accessory](list.md#list.item.accessory) items displayed on the right side in a List.Item.                                                                                   | [`List.Item.Accessory`](list.md#list.item.accessory)`[]`                                                                                             | -       |
-| actions                                 | An [ActionPanel](action-panel.md#actionpanel) that will be updated for the selected list item.                                                                                                              | `React.ReactNode`                                                                                                                                    | -       |
-| detail                                  | The `List.Item.Detail` to be rendered in the right side area when the parent List is showing details and the item is selected.                                                                              | `React.ReactNode`                                                                                                                                    | -       |
-| icon                                    | An optional icon displayed for the list item.                                                                                                                                                               | [`Image.ImageLike`](icons-and-images.md#image.imagelike) or `{ tooltip: string; value:` [`Image.ImageLike`](icons-and-images.md#image.imagelike) `}` | -       |
-| id                                      | ID of the item. This string is passed to the `onSelectionChange` handler of the [List](list.md#list) when the item is selected. Make sure to assign each item a unique ID or a UUID will be auto generated. | `string`                                                                                                                                             | -       |
-| keywords                                | An optional property used for providing additional indexable strings for search. When filtering the list in Raycast through the search bar, the keywords will be searched in addition to the title.         | `string[]`                                                                                                                                           | -       |
-| quickLook                               | Optional information to preview files with Quick Look. Toggle the preview with [Action.ToggleQuickLook](actions.md#action.togglequicklook).                                                                 | `{ name: string; path: string }`                                                                                                                     | -       |
-| subtitle                                | An optional subtitle displayed next to the main title, optionally with a tooltip.                                                                                                                           | `string` or `{ tooltip: string; value: string }`                                                                                                     | -       |
+<table><thead><tr><th width="160">名称</th><th width="253">描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>title<mark style="color:red;">*</mark></td><td>显示的主标题，可以选择带有提示。</td><td><code>string</code> 或 <code>{ tooltip: string; value: string }</code></td><td>-</td></tr><tr><td>accessories</td><td>显示在 List.Item 右侧的可选 <a href="list.md#list.item.accessory">List.Item.Accessory</a> 项数组。</td><td><a href="list.md#list.item.accessory"><code>List.Item.Accessory</code></a><code>[]</code></td><td>-</td></tr><tr><td>actions</td><td>将为所选列表项更新的 ActionPanel。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>detail</td><td>当父列表显示详细信息并且选择该项目时，List.Item.Detail 将在右侧区域呈现。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>icon</td><td>列表项的可选图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a> 或 <code>{ tooltip: string; value:</code> <a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a> <code>}</code></td><td>-</td></tr><tr><td>id</td><td>当选择该项时，此字符串将传递到列表的 <code>onSelectionChange</code> 处理。确保为每个项目分配一个唯一的 ID，否则将自动生成 UUID。</td><td><code>string</code></td><td>-</td></tr><tr><td>keywords</td><td>一个可选属性，用于提供额外的可索引字符串以供搜索。当通过搜索栏过滤 Raycast 中的列表时，除了标题之外还会搜索关键字。</td><td><code>string[]</code></td><td>-</td></tr><tr><td>quickLook</td><td>使用 “Quick Look” 预览文件的可选信息。使用 <a href="actions.md#action.togglequicklook">Action.ToggleQuickLook</a> 切换预览。</td><td><code>{ name: string; path: string }</code></td><td>-</td></tr><tr><td>subtitle</td><td>主标题旁边的可选子标题，可以选择带有提示。</td><td><code>string</code> 或 <code>{ tooltip: string; value: string }</code></td><td>-</td></tr></tbody></table>
 
 ### List.Item.Detail
 
-A Detail view that will be shown in the right-hand-side of the `List`.
+在列表右侧的详细信息视图。 显示时，建议不要在 `List.Item` 上显示任何附件，最好将这些附加信息显示在 `List.Item.Detail` 视图中。
 
-When shown, it is recommended not to show any accessories on the `List.Item` and instead bring those additional information in the `List.Item.Detail` view.
+![列表详细说明](../../.gitbook/assets/list-detail.png)
 
-![List-detail illustration](../../.gitbook/assets/list-detail.png)
-
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -561,25 +508,19 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop      | Description                                                                                                                   | Type              | Default |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------- |
-| isLoading | Indicates whether a loading bar should be shown or hidden above the detail                                                    | `boolean`         | `false` |
-| markdown  | The CommonMark string to be rendered in the right side area when the parent List is showing details and the item is selected. | `string`          | -       |
-| metadata  | The `List.Item.Detail.Metadata` to be rendered in the bottom side of the `List.Item.Detail`                                   | `React.ReactNode` | -       |
+<table><thead><tr><th width="166">名称</th><th width="244">描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>isLoading</td><td>是否应在详细信息上方显示或隐藏 loading 栏</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>markdown</td><td>当父列表显示详细信息并且选择该项时，要在右侧区域呈现的 <code>CommonMark</code> 字符串。</td><td><code>string</code></td><td>-</td></tr><tr><td>metadata</td><td>要在 <code>List.Item.Detail</code> 底部呈现的 <code>List.Item.Detail.Metadata</code></td><td><code>React.ReactNode</code></td><td>-</td></tr></tbody></table>
 
 ### List.Item.Detail.Metadata
 
-A Metadata view that will be shown in the bottom side of the `List.Item.Detail`.
+在 `List.Item.Detail` 底部的元数据视图。 使用它来显示有关 `List.Item` 内容的附加结构化数据。
 
-Use it to display additional structured data about the content of the `List.Item`.
-
-#### Example
+#### 例子
 
 {% tabs %}
 {% tab title="Metadata + Markdown" %}
-![List Detail-metadata illustration](../../.gitbook/assets/list-detail-metadata-split.png)
+![列表详细信息-元数据说明](../../.gitbook/assets/list-detail-metadata-split.png)
 
 ```typescript
 import { List } from "@raycast/api";
@@ -624,7 +565,7 @@ There is a plant seed on its back right from the day this Pokémon is born. The 
 ```
 {% endtab %}
 
-{% tab title="Metadata Standalone" %}
+{% tab title="单独的 Metadata" %}
 ![List Detail-metadata illustration](../../.gitbook/assets/list-detail-metadata-standalone.png)
 
 ```typescript
@@ -666,19 +607,17 @@ export default function Metadata() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                       | Description                        | Type              | Default |
-| ------------------------------------------ | ---------------------------------- | ----------------- | ------- |
-| children<mark style="color:red;">\*</mark> | The elements of the Metadata view. | `React.ReactNode` | -       |
+<table><thead><tr><th width="142">名称</th><th width="230">描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children<mark style="color:red;">*</mark></td><td>元数据视图的元素。</td><td><code>React.ReactNode</code></td><td>-</td></tr></tbody></table>
 
 ### List.Item.Detail.Metadata.Label
 
-A title with, optionally, an icon and/or text to its right.
+标题的右侧可以选择带有图标 和/或 文本。
 
 ![List Detail-metadata-label illustration](../../.gitbook/assets/list-detail-metadata-label.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -703,21 +642,17 @@ export default function Metadata() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                                                     | Type                                                                 | Default |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ------- |
-| title<mark style="color:red;">\*</mark> | The title of the item.                                                                                                                          | `string`                                                             | -       |
-| icon                                    | An icon to illustrate the value of the item.                                                                                                    | [`Image.ImageLike`](icons-and-images.md#image.imagelike)             | -       |
-| text                                    | The text value of the item. Specifying `color` will display the text in the provided color. Defaults to [Color.SecondaryText](colors.md#color). | `string` or `{ color:` [`Color`](colors.md#color)`; value: string }` | -       |
+<table><thead><tr><th width="174">名称</th><th width="269">描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>title<mark style="color:red;">*</mark></td><td>该项的标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>icon</td><td>该项的图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a></td><td>-</td></tr><tr><td>text</td><td>该项的文本。指定颜色将以提供的颜色显示文本。默认为 <a href="colors.md#color">Color.SecondaryText</a>。</td><td><code>string</code> 或 <code>{ color:</code> <a href="colors.md#color"><code>Color</code></a><code>; value: string }</code></td><td>-</td></tr></tbody></table>
 
 ### List.Item.Detail.Metadata.Link
 
-An item to display a link.
+显示链接的项。
 
-![List Detail-metadata-link illustration](../../.gitbook/assets/list-detail-metadata-link.png)
+![列表详细信息-元数据-链接说明](../../.gitbook/assets/list-detail-metadata-link.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -746,21 +681,21 @@ export default function Metadata() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                     | Description                     | Type     | Default |
-| ---------------------------------------- | ------------------------------- | -------- | ------- |
-| target<mark style="color:red;">\*</mark> | The target of the link.         | `string` | -       |
-| text<mark style="color:red;">\*</mark>   | The text value of the item.     | `string` | -       |
-| title<mark style="color:red;">\*</mark>  | The title shown above the item. | `string` | -       |
+| 名称                                       | 描述        | 类型       | 默认 |
+| ---------------------------------------- | --------- | -------- | -- |
+| target<mark style="color:red;">\*</mark> | 链接的目标。    | `string` | -  |
+| text<mark style="color:red;">\*</mark>   | 项目的文本。    | `string` | -  |
+| title<mark style="color:red;">\*</mark>  | 在项目上方的标题。 | `string` | -  |
 
 ### List.Item.Detail.Metadata.TagList
 
-A list of [`Tags`](list.md#list.item.detail.metadata.taglist.item) displayed in a row.
+单行显示的  [`Tags`](list.md#list.item.detail.metadata.taglist.item)  列表。
 
-![List Detail-metadata-tag-list illustration](../../.gitbook/assets/list-detail-metadata-tag-list.png)
+![列表详细信息-元数据-标签-列表插图](../../.gitbook/assets/list-detail-metadata-tag-list.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -787,33 +722,33 @@ export default function Metadata() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                       | Description                        | Type              | Default |
-| ------------------------------------------ | ---------------------------------- | ----------------- | ------- |
-| children<mark style="color:red;">\*</mark> | The tags contained in the TagList. | `React.ReactNode` | -       |
-| title<mark style="color:red;">\*</mark>    | The title shown above the item.    | `string`          | -       |
+| 名称                                         | 描述                | 类型                | 默认 |
+| ------------------------------------------ | ----------------- | ----------------- | -- |
+| children<mark style="color:red;">\*</mark> | TagList 中包含的 tag。 | `React.ReactNode` | -  |
+| title<mark style="color:red;">\*</mark>    | 在项目上方的标题。         | `string`          | -  |
 
 ### List.Item.Detail.Metadata.TagList.Item
 
-A Tag in a `List.Item.Detail.Metadata.TagList`.
+`List.Item.Detail.Metadata.TagList` 中的 tag。
 
-#### Props
+#### 参数
 
-| Prop                                   | Description                                                                                         | Type                                                     | Default |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------- |
-| text<mark style="color:red;">\*</mark> | The text of the tag.                                                                                | `string`                                                 | -       |
-| color                                  | Changes the text color to the provided color and sets a transparent background with the same color. | [`Color.ColorLike`](colors.md#color.colorlike)           | -       |
-| icon                                   | An optional icon in front of the text of the tag.                                                   | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
-| onAction                               | Callback that is triggered when the item is clicked.                                                | `() => void`                                             | -       |
+| 名称                                     | 描述                          | 类型                                                       | 默认 |
+| -------------------------------------- | --------------------------- | -------------------------------------------------------- | -- |
+| text<mark style="color:red;">\*</mark> | tag 的文本。                    | `string`                                                 | -  |
+| color                                  | 将文本颜色更改为提供的颜色，并设置相同颜色的透明背景。 | [`Color.ColorLike`](colors.md#color.colorlike)           | -  |
+| icon                                   | 标签文本前面的可选图标。                | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
+| onAction                               | 单击该项时触发的回调。                 | `() => void`                                             | -  |
 
 ### List.Item.Detail.Metadata.Separator
 
-A metadata item that shows a separator line. Use it for grouping and visually separating metadata items.
+显示分隔线的元数据项。使用它来分组和直观地分隔元数据项。
 
-![List Detail-metadata-separator illustration](../../.gitbook/assets/list-detail-metadata-separator.png)
+![列表详细信息-元数据-分隔符说明](../../.gitbook/assets/list-detail-metadata-separator.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -842,11 +777,11 @@ export default function Metadata() {
 
 ### List.Section
 
-A group of related [List.Item](list.md#list.item).
+[List.Item](list.md#list.item).
 
-Sections are a great way to structure your list. For example, group GitHub issues with the same status and order them by priority. This way, the user can quickly access what is most relevant.
+section 是构建列表的好方法。例如，将具有相同状态的 GitHub 问题分组并按优先级排序。这样，用户可以快速访问最相关的内容。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -865,33 +800,29 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                                                      | Type              | Default |
-| -------- | ---------------------------------------------------------------- | ----------------- | ------- |
-| children | The [List.Item](list.md#list.item) elements of the section.      | `React.ReactNode` | -       |
-| subtitle | An optional subtitle displayed next to the title of the section. | `string`          | -       |
-| title    | Title displayed above the section.                               | `string`          | -       |
+<table><thead><tr><th width="180">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children</td><td>section 的 <a href="list.md#list.item">List.Item</a> </td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>subtitle</td><td>在该 section 标题旁边的可选子标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>title</td><td>该 section 上方的标题。</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
-## Types
+## 类型
 
 ### List.Item.Accessory
 
-An interface describing an accessory view in a `List.Item`.
+描述 `List.Item` 中的附件视图的接口。
 
-![List.Item accessories illustration](../../.gitbook/assets/list-item-accessories.png)
+![List.Item 装饰图](../../.gitbook/assets/list-item-accessories.png)
 
-#### Properties
+#### 属性
 
-| Property                              | Description                                                                                                                                                                                                                                                                                                                                                                                        | Type                                                                                                                                                           |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tag<mark style="color:red;">\*</mark> | A string or Date that will be used as the label, optionally colored. The date is formatted relatively to the current time (for example `new Date()` will be displayed as `"now"`, yesterday's Date will be displayed as "1d", etc.). Color changes the text color to the provided color and sets a transparent background with the same color. Defaults to [Color.SecondaryText](colors.md#color). | `string` or `Date` or `undefined` or `null` or `{ color:` [`Color.ColorLike`](colors.md#color.colorlike)`; value: string` or `Date` or `undefined` or `null }` |
-| text                                  | An optional text that will be used as the label, optionally colored. Color changes the text color to the provided color. Defaults to [Color.SecondaryText](colors.md#color).                                                                                                                                                                                                                       | `string` or `null` or `{ color:` [`Color`](colors.md#color)`; value: string` or `undefined` or `null }`                                                        |
-| date                                  | An optional Date that will be used as the label, optionally colored. The date is formatted relatively to the current time (for example `new Date()` will be displayed as `"now"`, yesterday's Date will be displayed as "1d", etc.). Color changes the text color to the provided color. Defaults to [Color.SecondaryText](colors.md#color).                                                       | `Date` or `null` or `{ color:` [`Color`](colors.md#color)`; value: Date` or `undefined` or `null }`                                                            |
-| icon                                  | An optional [Image.ImageLike](icons-and-images.md#image.imagelike) that will be used as the icon.                                                                                                                                                                                                                                                                                                  | [`Image.ImageLike`](icons-and-images.md#image.imagelike) or `null`                                                                                             |
-| tooltip                               | An optional tooltip shown when the accessory is hovered.                                                                                                                                                                                                                                                                                                                                           | `string` or `null`                                                                                                                                             |
+| 名称                                    | 描述                                                                                                                                                     | 类型                                                                                                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tag<mark style="color:red;">\*</mark> |  label 的字符串或日期，可以选择颜色。日期的格式相对于当前时间（例如 `new Date()` 将显示为“`now`”，昨天的日期将显示为“1d”等）。颜色会把文本更改为提供的颜色，并设置相同颜色的透明背景。默认为 [Color.SecondaryText](colors.md#color)。 | `string` 或 `Date` 或 `undefined` 或 `null` 或 `{ color:` [`Color.ColorLike`](colors.md#color.colorlike)`; value: string` 或 `Date` 或 `undefined` 或 `null }` |
+| text                                  |  label 的可选文本，可以选择颜色。颜色将文本颜色更改为提供的颜色。默认为 [Color.SecondaryText](colors.md#color).                                                                        | `string` 或 `null` 或 `{ color:` [`Color`](colors.md#color)`; value: string` 或 `undefined` 或 `null }`                                                     |
+| date                                  | 将用作 label 的可选日期，可以设置颜色。日期的格式相对于当前时间（例如 `new Date()` 将显示为“`now`”，昨天的日期将显示为“1d”等）。颜色会把文本更改为提供的颜色。 默认为 [Color.SecondaryText](colors.md#color).            | `Date` 或 `null` 或 `color:` [`Color`](colors.md#color)`; value: Date` 或 `undefined` 或 `null }`                                                           |
+| icon                                  | 图标的可选 [Image.ImageLike](icons-and-images.md#image.imagelike)。                                                                                          | [`Image.ImageLike`](icons-and-images.md#image.imagelike) 或 `null`                                                                                       |
+| tooltip                               | 当附件悬停时显示的提示。                                                                                                                                           | `string` 或 `null`                                                                                                                                       |
 
-#### Example
+#### 例子
 
 ```typescript
 import { Color, Icon, List } from "@raycast/api";
