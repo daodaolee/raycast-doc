@@ -772,7 +772,7 @@ export default function Metadata() {
 
 ### List.Section
 
-[List.Item](list.md#list.item).
+一组 [List.Item](list.md#list.item).
 
 section 是构建列表的好方法。例如，将具有相同状态的 GitHub 问题分组并按优先级排序。这样，用户可以快速访问最相关的内容。
 
