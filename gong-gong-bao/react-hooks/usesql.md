@@ -1,8 +1,8 @@
 # useSQL
 
-Hook which executes a query on a local SQL database and returns the [AsyncState](usesql.md#asyncstate) corresponding to the execution of the query. The last value will be kept between command runs.
+一个钩子，它在本地 SQL 数据库上执行查询并返回与查询执行相对应的 [AsyncState](usesql.md#asyncstate) 。命令运行期间会保留最后一个值。
 
-## Signature
+## 签名
 
 ```ts
 function useSQL<T>(
@@ -22,32 +22,32 @@ function useSQL<T>(
 };
 ```
 
-### Arguments
+### 参数
 
-* `databasePath` is the path to the local SQL database.
-* `query` is the SQL query to run on the database.
+* `databasePath`是本地 SQL 数据库的路径。
+* `query` 是在数据库上运行的 SQL 查询。
 
-With a few options:
+有几个配置项：
 
-* `options.permissionPriming` is a string explaining why the extension needs full disk access. For example, the Apple Notes extension uses `"This is required to search your Apple Notes."`. While it is optional, we recommend setting it to help users understand.
+* `options.permissionPriming` 是一个字符串，用来解释为什么扩展需要完全磁盘访问。例如，Apple Notes 扩展使用 “这是搜索您的 Apple Notes 所必需的”。虽然它是可选的，但我们建议设置它以帮助用户理解。
 
-Including the [usePromise](usepromise.md)'s options:
+包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
 
-* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-* `options.onData` is a function called when an execution succeeds.
-* `options.onWillExecute` is a function called when an execution will start.
+* `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
+* `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。
+* `options.onData` 是执行成功时调用的函数。
+* `options.onWillExecute` 是一个在执行开始时调用的函数。
 
-### Return
+### 返回
 
-Returns an object with the [AsyncState](usesql.md#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
+返回一个对象，其 [AsyncState](usesql.md#asyncstate) 对应于函数的执行以及操作它的几个方法。
 
-* `data`, `error`, `isLoading` - see [AsyncState](usesql.md#asyncstate).
-* `permissionView` is a React Node that should be returned when present. It will prompt users to grant full disk access (which is required for the hook to work).
-* `revalidate` is a method to manually call the function with the same arguments again.
-* `mutate` is a method to wrap an asynchronous update and gives some control over how the `useSQL`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](usesql.md#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - 查看 [AsyncState](usesql.md#asyncstate).
+* `permissionView`是一个 React Node，当它存在时应该返回。它将提示用户授予完全磁盘访问权限（这是钩子运行所必需的）。
+* `revalidate`是一种使用相同参数再次手动调用函数的方法。
+* \`mutate\` 是一种包装异步更新的方法，在更新过程中对 `useSQL` 的数据进行操作。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
 
-## Example
+## 例子
 
 ```tsx
 import { useSQL } from "@raycast/utils";
@@ -78,13 +78,13 @@ const Demo = () => {
 };
 ```
 
-## Mutation and Optimistic Updates
+## 变更和优化更新
 
-In an optimistic update, the UI behaves as though a change was successfully completed before receiving confirmation from the server that it was - it is being optimistic that it will eventually get the confirmation rather than an error. This allows for a more responsive user experience.
+在优化更新中，UI 的行为就像在收到服务器的确认之前就成功拿到结果了一样 - 它认为它最终会得到正常的返回结果而不是错误。这可以提供更灵敏的用户体验。
 
-You can specify an `optimisticUpdate` function to mutate the data in order to reflect the change introduced by the asynchronous update.
+您可以指定一个`optimisticUpdate` 函数来改变数据，从而异步更新引入的更改。
 
-When doing so, you can specify a `rollbackOnError` function to mutate back the data if the asynchronous update fails. If not specified, the data will be automatically rolled back to its previous value (before the optimistic update).
+执行此操作时，您可以指定 `rollbackOnError` 函数，以便在异步更新失败时恢复数据。如果不指定，数据将自动回滚到之前的值（优化更新之前）。
 
 ```tsx
 import { Detail, ActionPanel, Action, showToast, Toast } from "@raycast/api";
@@ -148,11 +148,11 @@ const Demo = () => {
 };
 ```
 
-## Types
+## 类型
 
 ### AsyncState
 
-An object corresponding to the execution state of the function.
+与函数的执行状态对应的对象。
 
 ```ts
 // Initial State
@@ -186,7 +186,7 @@ An object corresponding to the execution state of the function.
 
 ### MutatePromise
 
-A method to wrap an asynchronous update and gives some control about how the `useSQL`'s data should be updated while the update is going through.
+一种包装异步更新的方法，可以控制在更新过程中如何更新 `useSQL` 数据
 
 ```ts
 export type MutatePromise<T> = (

@@ -1,12 +1,12 @@
 # useCachedState
 
-Hook which returns a stateful value, and a function to update it. It is similar to React's `useState` but the value will be kept between command runs.
+返回一个有状态值的钩子，以及一个更新它的函数。它类似于 React 的 `useState`，但该值将在命令运行之间保留。
 
 {% hint style="info" %}
-The value needs to be JSON serializable.
+该值需要是 JSON 可序列化的。
 {% endhint %}
 
-## Signature
+## 签名
 
 ```ts
 function useCachedState<T>(
@@ -18,16 +18,16 @@ function useCachedState<T>(
 ): [T, (newState: T | ((prevState: T) => T)) => void];
 ```
 
-### Arguments
+### 参数
 
-* `key` is the unique identifier of the state. This can be used to share the state across components and/or commands (hooks using the same key will share the same state, eg. updating one will update the others).
+* `key` 是 state 的唯一标识符。这可用于跨组件 和/或 命令共享状态（使用相同密钥的钩子将共享相同的状态，例如更新一个将更新其他）。
 
-With a few options:
+有几个配置项：
 
-* `initialState` is the initial value of the state if there aren't any in the Cache yet.
-* `config.cacheNamespace` is a string that can be used to namespace the key.
+* 如果缓存中还没有任何状态，则 `initialState` 是状态的初始值。
+* `config.cacheNamespace` 是一个命名空间键的字符串。
 
-## Example
+## 例子
 
 ```tsx
 import { List, ActionPanel, Action } from "@raycast/api";

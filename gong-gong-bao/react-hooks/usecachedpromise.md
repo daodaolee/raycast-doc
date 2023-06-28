@@ -1,12 +1,12 @@
 # useCachedPromise
 
-Hook which wraps an asynchronous function or a function that returns a Promise and returns the [AsyncState](usecachedpromise.md#asyncstate) corresponding to the execution of the function. The last value will be kept between command runs.
+一个钩子，它包装一个异步函数或返回 Promise 的函数，并返回与函数执行相对应的 [AsyncState](usecachedpromise.md#asyncstate)。命令运行期间会保留最后一个值。
 
 {% hint style="info" %}
-The value needs to be JSON serializable. The function is assumed to be constant (eg. changing it won't trigger a revalidation).
+该值需要是 JSON 可序列化的。该函数被假定为不可变的（例如，更改它不会触发重新验证）。
 {% endhint %}
 
-## Signature
+## 签名
 
 ```ts
 type Result<T> = `type of the returned value of the returned Promise`;
@@ -29,36 +29,36 @@ function useCachedPromise<T, U>(
 };
 ```
 
-### Arguments
+### 参数
 
-* `fn` is an asynchronous function or a function that returns a Promise.
-* `args` is the array of arguments to pass to the function. Every time they change, the function will be executed again. You can omit the array if the function doesn't require any argument.
+* `fn` 是一个异步函数或返回 Promise 的函数。
+* `args` 是传递给函数的参数数组。每次它们发生变化时，该函数都会再次执行。如果函数不需要任何参数，则可以省略该数组。
 
-With a few options:
+有几个配置项：
 
-* `options.keepPreviousData` is a boolean to tell the hook to keep the previous results instead of returning the initial value if there aren't any in the cache for the new arguments. This is particularly useful when used for data for a List to avoid flickering. See [Promise Argument dependent on List search text](usecachedpromise.md#promise-argument-dependent-on-list-search-text) for more information.
+* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅[依赖于列表搜索文本的 Promise 参数](https://developers.raycast.com/utilities/react-hooks/usecachedpromise#promise-argument-dependent-on-list-search-text)。
 
-Including the [useCachedState](usecachedstate.md)'s options:
+包括 [useCachedState](https://developers.raycast.com/utilities/react-hooks/usecachedstate) 的选项：
 
-* `options.initialData` is the initial value of the state if there aren't any in the Cache yet.
+* `options.initialData` 是状态的初始值（如果缓存中还没有任何状态）。
 
-Including the [usePromise](usepromise.md)'s options:
+包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
 
-* `options.abortable` is a reference to an [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel a previous call when triggering a new one.
-* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-* `options.onData` is a function called when an execution succeeds.
-* `options.onWillExecute` is a function called when an execution will start.
+* `options.abortable` 是对 [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) 的引用，用于在触发新调用时取消先前的调用。
+* `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
+* `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。
+* `options.onData` 是执行成功时调用的函数。
+* `options.onWillExecute` 是一个在执行开始时调用的函数。
 
-### Return
+### 返回
 
-Returns an object with the [AsyncState](usecachedpromise.md#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
+返回一个对象，其  [AsyncState](usecachedpromise.md#asyncstate)  对应于函数的执行以及操作它的几个方法。
 
-* `data`, `error`, `isLoading` - see [AsyncState](usecachedpromise.md#asyncstate).
-* `revalidate` is a method to manually call the function with the same arguments again.
-* `mutate` is a method to wrap an asynchronous update and gives some control over how the `useCachedPromise`'s data should be updated while the update is going through. By default, the data will be revalidated (eg. the function will be called again) after the update is done. See [Mutation and Optimistic Updates](usecachedpromise.md#mutation-and-optimistic-updates) for more information.
+* `data`, `error`, `isLoading` - 查看 [AsyncState](usecachedpromise.md#asyncstate).
+* `revalidate` 是一个用相同参数再次手动调用函数的方法。
+* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
 
-## Example
+## 例子
 
 ```tsx
 import { Detail, ActionPanel, Action } from "@raycast/api";
@@ -92,11 +92,11 @@ const Demo = () => {
 };
 ```
 
-## Promise Argument dependent on List search text
+## 取决于列表搜索文本的 Promise 参数
 
-By default, when an argument passed to the hook changes, the function will be executed again and the cache's value for those arguments will be returned immediately. This means that in the case of new arguments that haven't been used yet, the initial data will be returned.
+默认情况下，当传递给钩子的参数发生更改时，该函数将再次执行，并且这些参数的缓存值将立即返回。这意味着在尚未使用新参数的情况下，将返回初始数据。
 
-This behaviour can cause some flickering (initial data -> fetched data -> arguments change -> initial data -> fetched data, etc.). To avoid that, we can set `keepPreviousData` to `true` and the hook will keep the latest fetched data if the cache is empty for the new arguments (initial data -> fetched data -> arguments change -> fetched data).
+此行为可能会导致一些闪烁（初始数据 -> 获取的数据 -> 参数更改 -> 初始数据 -> 获取的数据等）。为了避免这种情况，我们可以将 `keepPreviousData` 设置为 `true`，如果新参数的缓存为空（初始数据 -> 获取的数据 -> 参数更改 -> 获取的数据），钩子将保留最新获取的数据。
 
 ```tsx
 import { useState } from "react";
@@ -128,13 +128,13 @@ const Demo = () => {
 };
 ```
 
-## Mutation and Optimistic Updates
+## 变更和优化更新
 
-In an optimistic update, the UI behaves as though a change was successfully completed before receiving confirmation from the server that it was - it is being optimistic that it will eventually get the confirmation rather than an error. This allows for a more responsive user experience.
+在优化更新中，UI 的行为就像在收到服务器的确认之前就成功拿到结果了一样 - 它认为它最终会得到正常的返回结果而不是错误。这可以提供更灵敏的用户体验。
 
-You can specify an `optimisticUpdate` function to mutate the data in order to reflect the change introduced by the asynchronous update.
+您可以指定一个`optimisticUpdate` 函数来改变数据，从而异步更新引入的更改。
 
-When doing so, you can specify a `rollbackOnError` function to mutate back the data if the asynchronous update fails. If not specified, the data will be automatically rolled back to its previous value (before the optimistic update).
+执行此操作时，您可以指定 `rollbackOnError` 函数，以便在异步更新失败时恢复数据。如果不指定，数据将自动回滚到之前的值（优化更新之前）。
 
 ```tsx
 import { Detail, ActionPanel, Action, showToast, Toast } from "@raycast/api";
@@ -190,11 +190,11 @@ const Demo = () => {
 };
 ```
 
-## Types
+## 类型
 
 ### AsyncState
 
-An object corresponding to the execution state of the function.
+与函数的执行状态对应的对象。
 
 ```ts
 // Initial State
@@ -228,7 +228,7 @@ An object corresponding to the execution state of the function.
 
 ### MutatePromise
 
-A method to wrap an asynchronous update and gives some control about how the `useCachedPromise`'s data should be updated while the update is going through.
+一种包装异步更新的方法，可以控制在更新过程中如何更新 `useCachedPromise` 数据
 
 ```ts
 export type MutatePromise<T> = (

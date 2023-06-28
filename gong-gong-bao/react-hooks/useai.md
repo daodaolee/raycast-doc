@@ -1,8 +1,8 @@
 # useAI
 
-Hook which asks the AI to answer a prompt and returns the [AsyncState](useai.md#asyncstate) corresponding to the execution of the query.
+一个钩子，要求 AI 回答问题并返回与查询执行相对应的 [AsyncState](useai.md#asyncstate) 。
 
-## Signature
+## 签名
 
 ```ts
 function useAI(
@@ -21,31 +21,31 @@ function useAI(
 };
 ```
 
-### Arguments
+### 参数
 
-* `prompt` is the prompt to ask the AI.
+* `prompt`是询问AI的提示。
 
-With a few options:
+有几个配置项：
 
-* `options.creativity` is a number between 0 and 2 to control the creativity of the answer. Concrete tasks, such as fixing grammar, require less creativity while open-ended questions, such as generating ideas, require more.
-* `options.model` is a string determining which AI model will be used to answer.
-* `options.stream` is a boolean controlling whether to stream the answer or only update the data when the entire answer has been received. By default, the `data` will be streamed.
+* `options.creativity` 是一个 0 到 2 之间的数字，用于控制答案的多变性。具体任务（例如修复语法）需要较少的多变性，而开放式问题（例如产生想法）则需要更多的多变性。
+* \`options.model\` 是一个字符串，决定使用哪个 AI 模型来回答。
+* `options.stream` 是一个布尔值，表示是流式传输答案还是仅在收到整个答案时更新数据。默认情况下，数据将被流式传输。
 
-Including the [usePromise](usepromise.md)'s options:
+包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
 
-* `options.execute` is a boolean to indicate whether to actually execute the function or not. This is useful for cases where one of the function's arguments depends on something that might not be available right away (for example, depends on some user inputs). Because React requires every hook to be defined on the render, this flag enables you to define the hook right away but wait until you have all the arguments ready to execute the function.
-* `options.onError` is a function called when an execution fails. By default, it will log the error and show a generic failure toast with an action to retry.
-* `options.onData` is a function called when an execution succeeds.
-* `options.onWillExecute` is a function called when an execution will start.
+* `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
+* `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。
+* `options.onData` 是执行成功时调用的函数。
+* `options.onWillExecute` 是一个在执行开始时调用的函数。
 
-### Return
+### 返回
 
-Returns an object with the [AsyncState](useai.md#asyncstate) corresponding to the execution of the function as well as a couple of methods to manipulate it.
+返回一个对象，其  [AsyncState](useai.md#asyncstate)  对应于函数的执行以及操作它的几个方法。
 
-* `data`, `error`, `isLoading` - see [AsyncState](useai.md#asyncstate).
-* `revalidate` is a method to manually call the function with the same arguments again.
+* `data`, `error`, `isLoading` - 查看 [AsyncState](useai.md#asyncstate).
+* `revalidate` 是一个用相同参数再次手动调用函数的方法。
 
-## Example
+## 例子
 
 ```tsx
 import { Detail } from "@raycast/api";
@@ -58,11 +58,11 @@ export default function Command() {
 }
 ```
 
-## Types
+## 类型
 
 ### AsyncState
 
-An object corresponding to the execution state of the function.
+与函数的执行状态对应的对象。
 
 ```ts
 // Initial State

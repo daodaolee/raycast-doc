@@ -1,8 +1,8 @@
 # useForm
 
-Hook that provides a high-level interface to work with Forms, and more particularly, with Form validations. It incorporates all the good practices to provide a great User Experience for your Forms.
+Hook 提供了一个高级接口来处理表单，更具体地说，处理表单验证。它融合了所有最佳实践，为您的表单提供出色的用户体验。
 
-## Signature
+## 签名
 
 ```ts
 function useForm<T extends Form.Values>(props: {
@@ -26,31 +26,31 @@ function useForm<T extends Form.Values>(props: {
 };
 ```
 
-### Arguments
+### 参数
 
-* `onSubmit` is a callback that will be called when the form is submitted and all validations pass.
+* `onSubmit` 是一个回调，当提交表单并且所有验证通过时将调用该回调。
 
-With a few options:
+有几个配置项：
 
-* `initialValues` are the initial values to set when the Form is first rendered.
-* `validation` are the validation rules for the Form. A validation for a Form item is a function that takes the current value of the item as an argument and must return a string when the validation is failing. We also provide some shorthands for common cases, see [FormValidation](useform.md#formvalidation).
+* `initialValues` 是首次渲染表单时要设置的初始值。
+* `validation` 是表单的验证规则。表单项的验证是一个函数，它将项的当前值作为参数，并且在验证失败时必须返回一个字符串。我们还提供了一些常见情况的简写，请参阅  [FormValidation](useform.md#formvalidation)。
 
-### Return
+### 返回
 
-Returns an object which contains the necessary methods and props to provide a good User Experience in your Form.
+返回一个对象，其中包含在表单中提供良好用户体验所需的方法和参数。
 
-* `handleSubmit` is a function to pass to the `onSubmit` prop of the `<Action.SubmitForm>` element. It wraps the initial `onSubmit` argument with some goodies related to the validation.
-* `itemProps` are the props that must be passed to the `<Form.Item>` elements to handle the validations.
+* `handleSubmit` 是一个传递给 `<Action.SubmitForm>` 元素的 `onSubmit` 属性的函数。它用一些与验证相关的东西包装了最初的 `onSubmit` 参数。
+* `itemProps` 是必须传递给 `<Form.Item>` 元素以处理验证的 props。
 
-It also contains some additions for easy manipulation of the Form's data.
+它还包含一些用于轻松操作表单数据的附加内容。
 
-* `values` is the current values of the Form.
-* `setValue` is a function that can be used to programmatically set the value of a specific field.
-* `setValidationError` is a function that can be used to programmatically set the validation of a specific field.
-* `focus` is a function that can be used to programmatically focus a specific field.
-* `reset` is a function that can be used to reset the values of the Form. Optionally, you can specify the values to set when the Form is reset.
+* `values` 是表单的当前值。
+* `setValue` 是一个可用于以函数式的方式设置特定字段的值的函数。
+* `setValidationError` 是一个可用于以函数式的方式设置特定字段的验证的函数。
+* `focus` 是一个可用于以函数式的方式聚焦的函数。
+* `reset` 是一个可用于重置表单值的函数。或者，您可以指定重置表单时要设置的值。
 
-## Example
+## 例子
 
 ```tsx
 import { Action, ActionPanel, Form, showToast, Toast } from "@raycast/api";
@@ -117,14 +117,14 @@ export default function Main() {
 }
 ```
 
-## Types
+## 类型
 
 ### FormValidation
 
-Shorthands for common validation cases
+常见验证案例的简写
 
-#### Enumeration members
+#### 枚举成员
 
-| Name     | Description                                       |
-| -------- | ------------------------------------------------- |
-| Required | Show an error when the value of the item is empty |
+| 名称       | 描述          |
+| -------- | ----------- |
+| Required | 当项的值为空时显示错误 |
