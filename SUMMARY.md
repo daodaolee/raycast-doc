@@ -5,7 +5,7 @@
 ## 链接
 
 * [官网](https://www.raycast.com/)
-* [官网文档](https://developers.raycast.com/)
+* [官网 API 文档](https://developers.raycast.com/)
 * [社区](https://raycast.com/community)
 * [GitHub](https://github.com/raycast/extensions)
 * [Store](https://raycast.com/store)
