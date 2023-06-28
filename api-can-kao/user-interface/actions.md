@@ -1,16 +1,16 @@
 # Actions
 
-Our API includes a few built-in actions that can be used for common interactions, such as opening a link or copying some content to the clipboard. By using them, you make sure to follow our human interface guidelines. If you need something custom, use the [`Action`](actions.md#action) component. All built-in actions are just abstractions on top of it.
+我们的 API 包括一些可用于常见交互的内置操作，例如打开链接或将某些内容复制到剪贴板。通过使用它们，您确保遵循我们的人机界面指南。如果您需要自定义内容，请使用 [`Action`](actions.md#action) 组件。所有内置操作都只是其之上的抽象。
 
-## API Reference
+## API 参考
 
 ### Action
 
-A context-specific action that can be performed by the user.
+用户可以执行的特定于上下文的操作。&#x20;
 
-Assign keyboard shortcuts to items to make it easier for users to perform frequently used actions.
+为项目分配键盘快捷键，以便用户更轻松地执行常用操作。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Action, List } from "@raycast/api";
@@ -34,24 +34,24 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                              | Type                                                          | Default                                         |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- | ----------------------------------------------- |
-| title<mark style="color:red;">\*</mark> | The title displayed for the Action.                                                                                      | `string`                                                      | -                                               |
-| autoFocus                               | Indicates whether the Action should be focused automatically when the parent ActionPanel (or Actionpanel.Submenu) opens. | `boolean`                                                     | -                                               |
-| icon                                    | The icon displayed for the Action.                                                                                       | [`Image.ImageLike`](icons-and-images.md#image.imagelike)      | -                                               |
-| shortcut                                | The keyboard shortcut for the Action.                                                                                    | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)       | -                                               |
-| style                                   | Defines the visual style of the Action.                                                                                  | [`Alert.ActionStyle`](../feedback/alert.md#alert.actionstyle) | [Action.Style.Regular](actions.md#action.style) |
-| onAction                                | Callback that is triggered when the Action is selected.                                                                  | `() => void`                                                  | -                                               |
+| 名称                                      | 描述                                                        | 类型                                                            | 默认                                              |
+| --------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------- |
+| title<mark style="color:red;">\*</mark> | Action 显示的标题。                                             | `string`                                                      | -                                               |
+| autoFocus                               | 当父 ActionPanel（或 Actionpanel.Submenu）打开时，Action 是否自动获得焦点。 | `boolean`                                                     | -                                               |
+| icon                                    | Action 显示的图标。                                             | [`Image.ImageLike`](icons-and-images.md#image.imagelike)      | -                                               |
+| shortcut                                | Action 的键盘快捷键。                                            | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)       | -                                               |
+| style                                   | Action 的样式。                                               | [`Alert.ActionStyle`](../feedback/alert.md#alert.actionstyle) | [Action.Style.Regular](actions.md#action.style) |
+| onAction                                | Action 触发的回调。                                             | `() => void`                                                  | -                                               |
 
 ### Action.CopyToClipboard
 
-Action that copies the content to the clipboard.
+将内容复制到剪贴板的操作。&#x20;
 
-The main window is closed, and a HUD is shown after the content was copied to the clipboard.
+主窗口关闭，内容复制到剪贴板后会显示 HUD。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Action, Detail } from "@raycast/api";
@@ -70,24 +70,24 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                      | Description                                                                         | Type                                                                                                | Default                                    |
-| ----------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| content<mark style="color:red;">\*</mark> | The contents that will be copied to the clipboard.                                  | `string` or `number` or [`Clipboard.Content`](../clipboard.md#clipboard.content)                    | -                                          |
-| icon                                      | A optional icon displayed for the Action.                                           | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                            | [Icon.Clipboard](icons-and-images.md#icon) |
-| shortcut                                  | The keyboard shortcut for the Action.                                               | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                             | -                                          |
-| title                                     | An optional title for the Action.                                                   | `string`                                                                                            | `"Copy to Clipboard"`                      |
-| transient                                 | Indicates whether the content should be copied to the clipboard temporarily or not. | `boolean`                                                                                           | false                                      |
-| onCopy                                    | Callback when the content was copied to clipboard.                                  | `(content: string \| number \|` [`Clipboard.Content`](../clipboard.md#clipboard.content)`) => void` | -                                          |
+| 名称                                        | 描述              | 类型                                                                                                  | 默认                                         |
+| ----------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| content<mark style="color:red;">\*</mark> | 将复制到剪贴板的内容。     | `string` 或 `number` 或[`Clipboard.Content`](../clipboard.md#clipboard.content)                       | -                                          |
+| icon                                      | Action 显示的可选图标。 | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                            | [Icon.Clipboard](icons-and-images.md#icon) |
+| shortcut                                  | Aciton 的键盘快捷键。  | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                             | -                                          |
+| title                                     | Action 的可选标题。   | `string`                                                                                            | `"Copy to Clipboard"`                      |
+| transient                                 | 是否应将内容暂时复制到剪贴板。 | `boolean`                                                                                           | false                                      |
+| onCopy                                    | 内容复制到剪贴板时的回调。   | `(content: string \| number \|` [`Clipboard.Content`](../clipboard.md#clipboard.content)`) => void` | -                                          |
 
 ### Action.Open
 
-An action to open a file or folder with a specific application, just as if you had double-clicked the file's icon.
+使用特定应用程序打开文件或文件夹的操作，就像双击文件的图标一样。&#x20;
 
-The main window is closed after the file is opened.
+文件打开后主窗口关闭。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -106,24 +106,24 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                     | Description                                       | Type                                                     | Default                                 |
-| ---------------------------------------- | ------------------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
-| target<mark style="color:red;">\*</mark> | The file, folder or URL to open.                  | `string`                                                 | -                                       |
-| title<mark style="color:red;">\*</mark>  | The title for the Action.                         | `string`                                                 | -                                       |
-| application                              | The application name to use for opening the file. | `string` or [`Application`](../utilities.md#application) | -                                       |
-| icon                                     | The icon displayed for the Action.                | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Finder](icons-and-images.md#icon) |
-| shortcut                                 | The keyboard shortcut for the Action.             | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                       |
-| onOpen                                   | Callback when the file or folder was opened.      | `(target: string) => void`                               | -                                       |
+| 名称                                       | 描述               | 类型                                                       | 默认                                      |
+| ---------------------------------------- | ---------------- | -------------------------------------------------------- | --------------------------------------- |
+| target<mark style="color:red;">\*</mark> | 要打开的文件、文件夹或 URL。 | `string`                                                 | -                                       |
+| title<mark style="color:red;">\*</mark>  | Action 的标题。      | `string`                                                 | -                                       |
+| application                              | 用于打开文件的应用程序名称。   | `string` 或 [`Application`](../utilities.md#application)  | -                                       |
+| icon                                     | Action 显示的图标。    | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Finder](icons-and-images.md#icon) |
+| shortcut                                 | Action 的键盘快捷键。   | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                       |
+| onOpen                                   | 文件或文件夹打开时的回调。    | `(target: string) => void`                               | -                                       |
 
 ### Action.OpenInBrowser
 
-Action that opens a URL in the default browser.
+在默认浏览器中打开 URL 的操作。&#x20;
 
-The main window is closed after the URL is opened in the browser.
+在浏览器中打开 URL 后，主窗口将关闭。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -142,23 +142,23 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                  | Description                                      | Type                                                     | Default                                |
-| ------------------------------------- | ------------------------------------------------ | -------------------------------------------------------- | -------------------------------------- |
-| url<mark style="color:red;">\*</mark> | The URL to open.                                 | `string`                                                 | -                                      |
-| icon                                  | The icon displayed for the Action.               | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Globe](icons-and-images.md#icon) |
-| shortcut                              | The optional keyboard shortcut for the Action.   | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                      |
-| title                                 | An optional title for the Action.                | `string`                                                 | `"Open in Browser"`                    |
-| onOpen                                | Callback when the URL was opened in the browser. | `(url: string) => void`                                  | -                                      |
+| 名称                                    | 描述                          | 类型                                                       | 默认                                     |
+| ------------------------------------- | --------------------------- | -------------------------------------------------------- | -------------------------------------- |
+| url<mark style="color:red;">\*</mark> | 要打开的网址。                     | `string`                                                 | -                                      |
+| icon                                  | Action 显示的图标。               | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Globe](icons-and-images.md#icon) |
+| shortcut                              | Action 的可选键盘快捷键。            | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                      |
+| title                                 | <p>Action</p><p> 的可选标题。</p> | `string`                                                 | `"Open in Browser"`                    |
+| onOpen                                | 在浏览器中打开 URL 时的回调。           | `(url: string) => void`                                  | -                                      |
 
 ### Action.OpenWith
 
-Action that opens a file or folder with a specific application.
+使用特定应用程序打开文件或文件夹的操作。&#x20;
 
-The action opens a sub-menu with all applications that can open the file or folder. The main window is closed after the file is opened in the specified application.
+该操作将打开一个子菜单，其中包含可以打开该文件或文件夹的所有应用程序。在指定应用程序中打开文件后，主窗口将关闭。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -180,23 +180,23 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                   | Description                                  | Type                                                     | Default                                 |
-| -------------------------------------- | -------------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
-| path<mark style="color:red;">\*</mark> | The path to open.                            | `string`                                                 | -                                       |
-| icon                                   | The icon displayed for the Action.           | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Upload](icons-and-images.md#icon) |
-| shortcut                               | The keyboard shortcut for the Action.        | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                       |
-| title                                  | The title for the Action.                    | `string`                                                 | `"Open With"`                           |
-| onOpen                                 | Callback when the file or folder was opened. | `(path: string) => void`                                 | -                                       |
+| Prop                                   | Description    | Type                                                     | Default                                 |
+| -------------------------------------- | -------------- | -------------------------------------------------------- | --------------------------------------- |
+| path<mark style="color:red;">\*</mark> | 要打开的路径。        | `string`                                                 | -                                       |
+| icon                                   | Action 显示的图标。  | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Upload](icons-and-images.md#icon) |
+| shortcut                               | Action 的键盘快捷键。 | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                       |
+| title                                  | Action 的标题。    | `string`                                                 | `"Open With"`                           |
+| onOpen                                 | 文件或文件夹打开时的回调。  | `(path: string) => void`                                 | -                                       |
 
 ### Action.Paste
 
-Action that pastes the content to the front-most applications.
+将内容粘贴到最前置的应用程序的操作。&#x20;
 
-The main window is closed after the content is pasted to the front-most application.
+将内容粘贴到最前置的应用程序后，主窗口将关闭。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -215,21 +215,21 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                      | Description                                                           | Type                                                                                                | Default                                    |
-| ----------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| content<mark style="color:red;">\*</mark> | The contents that will be pasted to the frontmost application.        | `string` or `number` or [`Clipboard.Content`](../clipboard.md#clipboard.content)                    | -                                          |
-| icon                                      | The icon displayed for the Action.                                    | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                            | [Icon.Clipboard](icons-and-images.md#icon) |
-| shortcut                                  | The keyboard shortcut for the Action.                                 | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                             | -                                          |
-| title                                     | An optional title for the Action.                                     | `string`                                                                                            | `"Paste in Active App"`                    |
-| onPaste                                   | Callback when the content was pasted into the front-most application. | `(content: string \| number \|` [`Clipboard.Content`](../clipboard.md#clipboard.content)`) => void` | -                                          |
+| 名称                                        | 描述                  | 类型                                                                                                  | 默认                                         |
+| ----------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| content<mark style="color:red;">\*</mark> | 将粘贴到最前置的应用程序的内容。    | `string` 或 `number` 或[`Clipboard.Content`](../clipboard.md#clipboard.content)                       | -                                          |
+| icon                                      | Action 显示的图标。       | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                            | [Icon.Clipboard](icons-and-images.md#icon) |
+| shortcut                                  | Action 的键盘快捷键。      | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                             | -                                          |
+| title                                     | Action 的可选标题。       | `string`                                                                                            | `"Paste in Active App"`                    |
+| onPaste                                   | 将内容粘贴到最前置的应用程序时的回调。 | `(content: string \| number \|` [`Clipboard.Content`](../clipboard.md#clipboard.content)`) => void` | -                                          |
 
 ### Action.Push
 
-Action that pushes a new view to the navigation stack.
+将新 view 推送到导航堆栈的操作。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -256,23 +256,23 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                     | Description                                                  | Type                                                     | Default |
-| ---------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- | ------- |
-| target<mark style="color:red;">\*</mark> | The target view that will be pushed to the navigation stack. | `React.ReactNode`                                        | -       |
-| title<mark style="color:red;">\*</mark>  | The title displayed for the Action.                          | `string`                                                 | -       |
-| icon                                     | The icon displayed for the Action.                           | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
-| shortcut                                 | The keyboard shortcut for the Action.                        | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -       |
-| onPush                                   | Callback when the target view was pushed.                    | `() => void`                                             | -       |
+| 名称                                       | 描述                | 类型                                                       | 默认 |
+| ---------------------------------------- | ----------------- | -------------------------------------------------------- | -- |
+| target<mark style="color:red;">\*</mark> | 将推送到导航堆栈的目标 view。 | `React.ReactNode`                                        | -  |
+| title<mark style="color:red;">\*</mark>  | Action 显示的标题。     | `string`                                                 | -  |
+| icon                                     | Action 显示的图标。     | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
+| shortcut                                 | Action 显示的快捷键     | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -  |
+| onPush                                   | 推送目标 view 时的回调。   | `() => void`                                             | -  |
 
 ### Action.ShowInFinder
 
-Action that shows a file or folder in the Finder.
+在 Finder 中显示文件或文件夹的操作。&#x20;
 
-The main window is closed after the file or folder is revealed in the Finder.
+文件或文件夹在 Finder 中显示后，主窗口将关闭。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -294,21 +294,21 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                   | Description                                               | Type                                                       | Default                                 |
-| -------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------- |
-| path<mark style="color:red;">\*</mark> | The path to open.                                         | [`PathLike`](../utilities.md#pathlike)                     | -                                       |
-| icon                                   | A optional icon displayed for the Action.                 | [`Image.ImageLike`](icons-and-images.md#image.imagelike)   | [Icon.Finder](icons-and-images.md#icon) |
-| shortcut                               | The keyboard shortcut for the Action.                     | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)    | -                                       |
-| title                                  | An optional title for the Action.                         | `string`                                                   | `"Show in Finder"`                      |
-| onShow                                 | Callback when the file or folder was shown in the Finder. | `(path:` [`PathLike`](../utilities.md#pathlike)`) => void` | -                                       |
+| 名称                                     | 描述                      | 类型                                                         | 默认                                      |
+| -------------------------------------- | ----------------------- | ---------------------------------------------------------- | --------------------------------------- |
+| path<mark style="color:red;">\*</mark> | 要打开的路径。                 | [`PathLike`](../utilities.md#pathlike)                     | -                                       |
+| icon                                   | Action 显示的可选图标。         | [`Image.ImageLike`](icons-and-images.md#image.imagelike)   | [Icon.Finder](icons-and-images.md#icon) |
+| shortcut                               | Action 显示的快捷键           | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)    | -                                       |
+| title                                  | Action 的可选标题。           | `string`                                                   | `"Show in Finder"`                      |
+| onShow                                 | 文件或文件夹显示在 Finder 中时的回调。 | `(path:` [`PathLike`](../utilities.md#pathlike)`) => void` | -                                       |
 
 ### Action.SubmitForm
 
-Action that adds a submit handler for capturing form values.
+添加用于捕获表单值的提交处理程序的操作。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
@@ -328,20 +328,20 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                                                                                               | Type                                                                                             | Default         |
-| -------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
-| icon     | The icon displayed for the Action.                                                                        | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                         | -               |
-| shortcut | The keyboard shortcut for the Action.                                                                     | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                          | -               |
-| title    | The title displayed for the Action.                                                                       | `string`                                                                                         | `"Submit Form"` |
-| onSubmit | Callback when the Form was submitted. The handler receives a the values object containing the user input. | `(input:` [`Form.Values`](form.md#form.values)`) => boolean \| void \| Promise<boolean \| void>` | -               |
+| 名称       | 描述                          | 类型                                                                                               | 默认              |
+| -------- | --------------------------- | ------------------------------------------------------------------------------------------------ | --------------- |
+| icon     | Action 显示的图标。               | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                         | -               |
+| shortcut | Action 显示的快捷键               | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                          | -               |
+| title    | Action 显示的标题                | `string`                                                                                         | `"Submit Form"` |
+| onSubmit | 表单提交时的回调。该处理程序接收包含用户输入的值对象。 | `(input:` [`Form.Values`](form.md#form.values)`) => boolean \| void \| Promise<boolean \| void>` | -               |
 
 ### Action.Trash
 
-Action that moves a file or folder to the Trash.
+将文件或文件夹移至废纸篓的操作。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -363,21 +363,21 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                      | Type                                                                                                      | Default                                |
-| --------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| paths<mark style="color:red;">\*</mark> | The item or items to move to the trash.          | [`PathLike`](../utilities.md#pathlike) or [`PathLike`](../utilities.md#pathlike)`[]`                      | -                                      |
-| icon                                    | A optional icon displayed for the Action.        | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                                  | [Icon.Trash](icons-and-images.md#icon) |
-| shortcut                                | The optional keyboard shortcut for the Action.   | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                                   | -                                      |
-| title                                   | An optional title for the Action.                | `string`                                                                                                  | `"Move to Trash"`                      |
-| onTrash                                 | Callback when all items were moved to the trash. | `(paths:` [`PathLike`](../utilities.md#pathlike) `\|` [`PathLike`](../utilities.md#pathlike)`[]) => void` | -                                      |
+| 名称                                      | 描述               | 类型                                                                                                        | 默认                                     |
+| --------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| paths<mark style="color:red;">\*</mark> | 要移至垃圾箱的一个或多个项。   | [`PathLike`](../utilities.md#pathlike) or [`PathLike`](../utilities.md#pathlike)`[]`                      | -                                      |
+| icon                                    | Action 显示的可选图标。  | [`Image.ImageLike`](icons-and-images.md#image.imagelike)                                                  | [Icon.Trash](icons-and-images.md#icon) |
+| shortcut                                | Action 的可选键盘快捷键。 | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)                                                   | -                                      |
+| title                                   | Action 的可选标题。    | `string`                                                                                                  | `"Move to Trash"`                      |
+| onTrash                                 | 当所有项目都移至垃圾箱时回调。  | `(paths:` [`PathLike`](../utilities.md#pathlike) `\|` [`PathLike`](../utilities.md#pathlike)`[]) => void` | -                                      |
 
 ### Action.CreateSnippet
 
-Action that navigates to the the Create Snippet command with some or all of the fields prefilled.
+导航到 “Create Snippet” 命令并预填充字段的操作
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -396,20 +396,20 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                      | Description                                                                                                                               | Type                                                     | Default |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------- |
-| snippet<mark style="color:red;">\*</mark> |                                                                                                                                           | [`Snippet`](actions.md#snippet)                          | -       |
-| icon                                      | A optional icon displayed for the Action. See [Image.ImageLike](icons-and-images.md#image.imagelike) for the supported formats and types. | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
-| shortcut                                  | The keyboard shortcut for the Action.                                                                                                     | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -       |
-| title                                     | An optional title for the Action.                                                                                                         | `string`                                                 | -       |
+| 名称                                        | 描述                                                                                    | 类型                                                       | 默认 |
+| ----------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------- | -- |
+| snippet<mark style="color:red;">\*</mark> |                                                                                       | [`Snippet`](actions.md#snippet)                          | -  |
+| icon                                      | Action 显示的可选图标。有关支持的格式和类型，请参阅 [Image.ImageLike](icons-and-images.md#image.imagelike)。 | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
+| shortcut                                  | Action 的快捷键                                                                           | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -  |
+| title                                     | Action 的标题                                                                            | `string`                                                 | -  |
 
 ### Action.CreateQuicklink
 
-Action that navigates to the the Create Quicklink command with some or all of the fields prefilled.
+导航到 “Create Quicklink” 命令并预填充字段的操作。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Detail, Action } from "@raycast/api";
@@ -428,20 +428,20 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                        | Description                                                                                                                               | Type                                                     | Default |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------- |
-| quicklink<mark style="color:red;">\*</mark> | The [Quicklink](actions.md#quicklink) to create.                                                                                          | [`Quicklink`](actions.md#quicklink)                      | -       |
-| icon                                        | A optional icon displayed for the Action. See [Image.ImageLike](icons-and-images.md#image.imagelike) for the supported formats and types. | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
-| shortcut                                    | The keyboard shortcut for the Action.                                                                                                     | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -       |
-| title                                       | An optional title for the Action.                                                                                                         | `string`                                                 | -       |
+| 名称                                          | 描述                                                                                     | 类型                                                       | 默认 |
+| ------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------- | -- |
+| quicklink<mark style="color:red;">\*</mark> | 要创建的 [Quicklink](actions.md#quicklink) 。                                               | [`Quicklink`](actions.md#quicklink)                      | -  |
+| icon                                        | Action 显示的可选图标。有关支持的格式和类型，请参阅 [Image.ImageLike](icons-and-images.md#image.imagelike) 。 | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
+| shortcut                                    | Action 的快捷键                                                                            | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -  |
+| title                                       | Action 的可选标题。                                                                          | `string`                                                 | -  |
 
 ### Action.ToggleQuickLook
 
-Action that toggles the Quick Look to preview a file.
+切换 “Quick Look” 以预览文件的操作。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, List, Action } from "@raycast/api";
@@ -463,19 +463,19 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                           | Type                                                     | Default                              |
-| -------- | ------------------------------------- | -------------------------------------------------------- | ------------------------------------ |
-| icon     | The icon displayed for the Action.    | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Eye](icons-and-images.md#icon) |
-| shortcut | The keyboard shortcut for the Action. | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                    |
-| title    | The title for the Action.             | `string`                                                 | `"Quick Look"`                       |
+| 名称       | 描述             | 类型                                                       | 默认                                   |
+| -------- | -------------- | -------------------------------------------------------- | ------------------------------------ |
+| icon     | Action 显示的图标.  | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | [Icon.Eye](icons-and-images.md#icon) |
+| shortcut | Action 的键盘快捷键。 | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)  | -                                    |
+| title    | Action 的标题。    | `string`                                                 | `"Quick Look"`                       |
 
 ### Action.PickDate
 
-Action to pick a date.
+选择日期的 Action。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, List, Action } from "@raycast/api";
@@ -496,53 +496,53 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                       | Description                                           | Type                                                      | Default                                   |
-| ------------------------------------------ | ----------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------- |
-| title<mark style="color:red;">\*</mark>    | A title for the Action.                               | `string`                                                  | -                                         |
-| onChange<mark style="color:red;">\*</mark> | Callback when the Date was picked                     | `(date: Date) => void`                                    | -                                         |
-| icon                                       | A optional icon displayed for the Action.             | [`Image.ImageLike`](icons-and-images.md#image.imagelike)  | [Icon.Calendar](icons-and-images.md#icon) |
-| max                                        | The maximum date (inclusive) allowed for selection.   | `Date`                                                    | -                                         |
-| min                                        | The minimum date (inclusive) allowed for selection.   | `Date`                                                    | -                                         |
-| shortcut                                   | The keyboard shortcut for the Action.                 | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)   | -                                         |
-| type                                       | Indicates what types of date components can be picked | [`Action.PickDate.Type`](actions.md#action.pickdate.type) | -                                         |
+| 名称                                         | 描述              | 类型                                                        | 默认                                        |
+| ------------------------------------------ | --------------- | --------------------------------------------------------- | ----------------------------------------- |
+| title<mark style="color:red;">\*</mark>    | Action 的标题.     | `string`                                                  | -                                         |
+| onChange<mark style="color:red;">\*</mark> | 选择日期时的回调        | `(date: Date) => void`                                    | -                                         |
+| icon                                       | Action 显示的可选图标。 | [`Image.ImageLike`](icons-and-images.md#image.imagelike)  | [Icon.Calendar](icons-and-images.md#icon) |
+| max                                        | 允许选择的最长日期（含）。   | `Date`                                                    | -                                         |
+| min                                        | 允许选择的最短日期（含）。   | `Date`                                                    | -                                         |
+| shortcut                                   | Action 的键盘快捷键。  | [`Keyboard.Shortcut`](../keyboard.md#keyboard.shortcut)   | -                                         |
+| type                                       | 可以选择哪些类型的日期组件   | [`Action.PickDate.Type`](actions.md#action.pickdate.type) | -                                         |
 
-## Types
+## 类型
 
 ### Snippet
 
-#### Properties
+#### 属性
 
-| Property                               | Description                         | Type     |
-| -------------------------------------- | ----------------------------------- | -------- |
-| text<mark style="color:red;">\*</mark> | The snippet contents.               | `string` |
-| keyword                                | The keyword to trigger the snippet. | `string` |
-| name                                   | The snippet name.                   | `string` |
+| 名称                                     | 描述          | Type     |
+| -------------------------------------- | ----------- | -------- |
+| text<mark style="color:red;">\*</mark> | 代码片段内容。     | `string` |
+| keyword                                | 触发代码片段的关键字。 | `string` |
+| name                                   | 代码片段名称。     | `string` |
 
 ### Quicklink
 
-#### Properties
+#### 属性
 
-| Property                               | Description                                                                                              | Type                                                     |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| link<mark style="color:red;">\*</mark> | The URL or file path, optionally including placeholders such as in "https://google.com/search?q={Query}" | `string`                                                 |
-| application                            | The application that the quicklink should be opened in.                                                  | `string` or [`Application`](../utilities.md#application) |
-| name                                   | The quicklink name                                                                                       | `string`                                                 |
+| 名称                                     | 描述                                                          | 类型                                                      |
+| -------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
+| link<mark style="color:red;">\*</mark> | URL 或文件路径，可以选择包含占位符，例如“https://google.com/search?q={Query}” | `string`                                                |
+| application                            | 在其中打开快速链接的应用程序。                                             | `string` 或 [`Application`](../utilities.md#application) |
+| name                                   | 快链名称                                                        | `string`                                                |
 
 ### Action.Style
 
-Defines the visual style of the Action.
+定义操作的样式。
 
-Use [Action.Style.Regular](actions.md#action.style) for displaying a regular actions. Use [Action.Style.Destructive](actions.md#action.style) when your action has something that user should be careful about. Use the confirmation [Alert](../feedback/alert.md) if the action is doing something that user cannot revert.
+使用 [Action.Style.Regular](actions.md#action.style) 显示常规操作。当您的操作包含用户应该注意的内容时，请使用  [Action.Style.Destructive](actions.md#action.style) 。如果操作正在执行用户无法恢复的操作，请使用 [Alert](../feedback/alert.md)。
 
 ### Action.PickDate.Type
 
-The types of date components the user can pick with an `Action.PickDate`.
+用户可以使用  `Action.PickDate` 选择日期组件的类型。
 
-#### Enumeration members
+#### 枚举成员
 
-| Name     | Description                                                      |
-| -------- | ---------------------------------------------------------------- |
-| DateTime | Hour and second can be picked in addition to year, month and day |
-| Date     | Only year, month, and day can be picked                          |
+| 名称       | 描述                 |
+| -------- | ------------------ |
+| DateTime | 除了年、月、日之外，还可以选择时、秒 |
+| Date     | 只能选择年、月、日          |
