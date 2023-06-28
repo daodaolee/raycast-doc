@@ -412,7 +412,7 @@ export default function Command() {
 
 #### 参数
 
-<table><thead><tr><th width="142">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children</td><td>section 项</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>title</td><td>显示在该部分上方的标题</td><td><code>string</code></td><td>-</td></tr></tbody></table>
+<table><thead><tr><th width="142">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children</td><td>section 项</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>title</td><td>该 section 上方的标题</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
 ### List.EmptyView
 
@@ -451,12 +451,7 @@ export default function CommandWithCustomEmptyView() {
 
 #### 参数
 
-| 名称          | 描述                                                | 类型                                                       | 默认 |
-| ----------- | ------------------------------------------------- | -------------------------------------------------------- | -- |
-| actions     | 对 [ActionPanel](action-panel.md#actionpanel) 的引用。 | `React.ReactNode`                                        | -  |
-| description | 空视图的可选描述。                                         | `string`                                                 | -  |
-| icon        | 在 EmptyView 中心的图标。                                | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
-| title       | 空视图的主标题。                                          | `string`                                                 | -  |
+<table><thead><tr><th>名称</th><th>描述</th><th width="205">类型</th><th>默认</th></tr></thead><tbody><tr><td>actions</td><td>对 <a href="action-panel.md#actionpanel">ActionPanel</a> 的引用。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>description</td><td>空视图的可选描述。</td><td><code>string</code></td><td>-</td></tr><tr><td>icon</td><td>在 EmptyView 中心的图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a></td><td>-</td></tr><tr><td>title</td><td>空视图的主标题。</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
 ### List.Item
 
@@ -644,7 +639,7 @@ export default function Metadata() {
 
 #### 参数
 
-<table><thead><tr><th width="174">名称</th><th width="269">描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>title<mark style="color:red;">*</mark></td><td>该项的标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>icon</td><td>该项的图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a></td><td>-</td></tr><tr><td>text</td><td>该项的文本。指定颜色将以提供的颜色显示文本。默认为 <a href="colors.md#color">Color.SecondaryText</a>。</td><td><code>string</code> 或 <code>{ color:</code> <a href="colors.md#color"><code>Color</code></a><code>; value: string }</code></td><td>-</td></tr></tbody></table>
+<table><thead><tr><th width="128">名称</th><th width="269">描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>title<mark style="color:red;">*</mark></td><td>该项的标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>icon</td><td>该项的图标。</td><td><a href="icons-and-images.md#image.imagelike"><code>Image.ImageLike</code></a></td><td>-</td></tr><tr><td>text</td><td>该项的文本。指定颜色将以提供的颜色显示文本。默认为 <a href="colors.md#color">Color.SecondaryText</a>。</td><td><code>string</code> 或 <code>{ color:</code> <a href="colors.md#color"><code>Color</code></a><code>; value: string }</code></td><td>-</td></tr></tbody></table>
 
 ### List.Item.Detail.Metadata.Link
 
