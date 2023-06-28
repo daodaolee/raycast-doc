@@ -1,12 +1,12 @@
 # Icons & Images
 
-## API Reference
+## API 参考
 
 ### Icon
 
-List of built-in icons that can be used for actions or list items.
+可用于 action 或 list 项的内置图标列表。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Icon, List } from "@raycast/api";
@@ -20,7 +20,7 @@ export default function Command() {
 }
 ```
 
-#### Enumeration members
+#### 枚举成员
 
 |                <p><img src="../../.gitbook/assets/icon-add-person-16.svg" alt=""><br>AddPerson</p>                |             <p><img src="../../.gitbook/assets/icon-airplane-16.svg" alt=""><br>Airplane</p>             |         <p><img src="../../.gitbook/assets/icon-airplane-filled-16.svg" alt=""><br>AirplaneFilled</p>         |
 | :---------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -136,11 +136,11 @@ export default function Command() {
 
 ### Image.Mask
 
-Available masks that can be used to change the shape of an image.
+可用于更改图像形状的蒙版。
 
-Can be handy to shape avatars or other items in a list.
+可以方便地塑造头像或列表中的其他项。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Image, List } from "@raycast/api";
@@ -160,26 +160,26 @@ export default function Command() {
 }
 ```
 
-#### Enumeration members
+#### 枚举成员
 
-| Name             | Value              |
+| 名称               | 值                  |
 | ---------------- | ------------------ |
 | Circle           | "circle"           |
 | RoundedRectangle | "roundedRectangle" |
 
-## Types
+## 类型
 
 ### Image
 
-Display different types of images, including network images or bundled assets.
+显示不同类型的图像，包括网络图像或捆绑的资源。&#x20;
 
-Apply image transforms to the source, such as a `mask` or a `tintColor`.
+将图像变换成代码，例如 `mask` 或 `tintColor`。
 
 {% hint style="info" %}
-Tip: Suffix your local assets with `@dark` to automatically provide a dark theme option, eg: `icon.png` and `icon@dark.png`.
+提示：为本地资源添加 `@dark` 后缀，以自动提供深色主题选项，例如：`icon.png` 和 `icon@dark.png`。
 {% endhint %}
 
-#### Example
+#### 例子
 
 ```typescript
 // Built-in icon
@@ -199,20 +199,20 @@ const icon = "icon.png";
 const icon = { source: { light: "https://example.com/icon-light.png", dark: "https://example.com/icon-dark.png" } };
 ```
 
-#### Properties
+#### 属性
 
-| Property                                 | Description                                                                                         | Type                                                   |
-| ---------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| source<mark style="color:red;">\*</mark> | The [Image.Source](icons-and-images.md#image.source) of the image.                                  | [`Image.Source`](icons-and-images.md#image.source)     |
-| fallback                                 | [Image.Fallback](icons-and-images.md#image.fallback) image, in case `source` can't be loaded.       | [`Image.Fallback`](icons-and-images.md#image.fallback) |
-| mask                                     | A [Image.Mask](icons-and-images.md#image.mask) to apply to the image.                               | [`Image.Mask`](icons-and-images.md#image.mask)         |
-| tintColor                                | A [Color.ColorLike](colors.md#color.colorlike) to tint all the non-transparent pixels of the image. | [`Color.ColorLike`](colors.md#color.colorlike)         |
+| 名称                                       | 描述                                                                        | 类型                                                     |
+| ---------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------ |
+| source<mark style="color:red;">\*</mark> | 图像的  [Image.Source](icons-and-images.md#image.source) 。                   | [`Image.Source`](icons-and-images.md#image.source)     |
+| fallback                                 | [Image.Fallback](icons-and-images.md#image.fallback)  图像，以防无法加载 `source`。 | [`Image.Fallback`](icons-and-images.md#image.fallback) |
+| mask                                     | 图像的  [Image.Mask](icons-and-images.md#image.mask) 。                       | [`Image.Mask`](icons-and-images.md#image.mask)         |
+| tintColor                                | [Color.ColorLike](colors.md#color.colorlike) 对图像的所有非透明像素进行着色。             | [`Color.ColorLike`](colors.md#color.colorlike)         |
 
 ### FileIcon
 
-An icon as it's used in the Finder.
+Finder 中使用的图标。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -226,11 +226,11 @@ export default function Command() {
 }
 ```
 
-#### Properties
+#### 属性
 
-| Property                                   | Description                                        | Type     |
-| ------------------------------------------ | -------------------------------------------------- | -------- |
-| fileIcon<mark style="color:red;">\*</mark> | The path to a file or folder to get its icon from. | `string` |
+| 名称                                         | 描述                 | 类型       |
+| ------------------------------------------ | ------------------ | -------- |
+| fileIcon<mark style="color:red;">\*</mark> | 从中获取其图标的文件或文件夹的路径。 | `string` |
 
 ### Image.ImageLike
 
@@ -238,9 +238,9 @@ export default function Command() {
 ImageLike: URL | Asset | Icon | FileIcon | Image;
 ```
 
-Union type for the supported image types.
+支持的图像类型的联合类型。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Icon, Image, List } from "@raycast/api";
@@ -270,11 +270,11 @@ export default function Command() {
 Image.Source: URL | Asset | Icon | { light: URL | Asset; dark: URL | Asset }
 ```
 
-The source of an [Image](icons-and-images.md#image). Can be either a remote URL, a local file resource, a built-in [Icon](icons-and-images.md#icon) or a single emoji.
+图像的来源。可以是远程 URL、本地文件资源、内置图标或单个 [Icon](icons-and-images.md#icon) 符号。
 
-For consistency, it's best to use the built-in [Icon](icons-and-images.md#icon) in lists, the Action Panel, and other places. If a specific icon isn't built-in, you can reference custom ones from the `assets` folder of the extension by file name, e.g. `my-icon.png`. Alternatively, you can reference an absolute HTTPS URL that points to an image or use an emoji. You can also specify different remote or local assets for light and dark theme.
+为了保持一致性，最好在列表、操作面板和其他地方使用内置图标。如果特定图标不是内置的，您可以按文件名从扩展的 `assets` 文件夹中引用自定义图标，例如  `my-icon.png`。或者，您可以引用指向图像的绝对 HTTPS URL 或使用表情符号。您还可以为浅色和深色主题指定不同的远程或本地资源。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Icon, List } from "@raycast/api";
@@ -305,9 +305,9 @@ export default function Command() {
 Image.Fallback: Asset | Icon | { light: Asset; dark: Asset }
 ```
 
-A fallback [Image](icons-and-images.md#image) that will be displayed in case the source image cannot be loaded. Can be either a local file resource, a built-in [Icon](icons-and-images.md#icon), a single emoji, or a theme-aware asset. Any specified `mask` or `tintColor` will also apply to the fallback image.
+无法加载源图像时将显示的备用图像。可以是本地文件资源、内置图标、单个表情符号或主题识别资源。任何指定的 `mask` 或 `tintColor` 也将应用于备用图像。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -329,9 +329,9 @@ export default function Command() {
 
 ### Image.URL
 
-Image is a string representing a URL.
+表示 URL 的字符串。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";
@@ -347,9 +347,9 @@ export default function Command() {
 
 ### Image.Asset
 
-Image is a string representing an asset from the `assets/` folder
+Image 是一个字符串，表示来自 `assets/` 文件夹的资源。
 
-#### Example
+#### 例子
 
 ```typescript
 import { List } from "@raycast/api";

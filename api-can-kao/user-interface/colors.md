@@ -1,20 +1,20 @@
 # Colors
 
-Anywhere you can pass a color in a component prop, you can pass either:
+任何可以在组件属性中传递颜色的地方，都可以传递：
 
-* A standard [Color](colors.md#color)
-* A [Dynamic](colors.md#color.dynamic) Color
-* A [Raw](colors.md#color.raw) Color
+* 标准 [Color](colors.md#color)
+* [动态](https://developers.raycast.com/api-reference/user-interface/colors#color.dynamic) Color
+* [原始](https://developers.raycast.com/api-reference/user-interface/colors#color.raw) Color
 
-## API Reference
+## API 参考
 
 ### Color
 
-The standard colors. Use those colors for consistency.
+标准颜色。使用这些颜色以保持一致性。&#x20;
 
-The colors automatically adapt to the Raycast theme (light or dark).
+颜色自动适应 Raycast 主题（浅色或深色）。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Color, Icon, List } from "@raycast/api";
@@ -36,9 +36,9 @@ export default function Command() {
 }
 ```
 
-#### Enumeration members
+#### 枚举成员
 
-| Name          | Dark Theme                                               | Light Theme                                         |
+| 名称            | 深色 Theme                                                 | 浅色 Theme                                            |
 | ------------- | -------------------------------------------------------- | --------------------------------------------------- |
 | Blue          | ![](../../.gitbook/assets/color-dark-blue.png)           | ![](../../.gitbook/assets/color-blue.png)           |
 | Green         | ![](../../.gitbook/assets/color-dark-green.png)          | ![](../../.gitbook/assets/color-green.png)          |
@@ -50,7 +50,7 @@ export default function Command() {
 | PrimaryText   | ![](../../.gitbook/assets/color-dark-primary-text.png)   | ![](../../.gitbook/assets/color-primary-text.png)   |
 | SecondaryText | ![](../../.gitbook/assets/color-dark-secondary-text.png) | ![](../../.gitbook/assets/color-secondary-text.png) |
 
-## Types
+## 类型
 
 ### Color.ColorLike
 
@@ -58,11 +58,11 @@ export default function Command() {
 ColorLike: Color | Color.Dynamic | Color.Raw;
 ```
 
-Union type for the supported color types.
+支持的颜色类型的联合类型。&#x20;
 
-When using a [Raw Color](colors.md#color.raw), it will be adjusted to achieve high contrast with the Raycast user interface. To disable color adjustment, you need to switch to using a [Dynamic Color](colors.md#color.dynamic). However, we recommend leaving color adjustment on, unless your extension depends on exact color reproduction.
+使用 [原始颜色](https://developers.raycast.com/api-reference/user-interface/colors#color.raw) 时，将对其进行调整以实现与 Raycast 用户界面的高对比度。要禁用颜色调整，您需要切换到使用 [动态颜色](colors.md#api-can-kao)。但是，我们建议保留颜色调整，除非您的扩展依赖于精确的颜色。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Color, Icon, List } from "@raycast/api";
@@ -90,11 +90,11 @@ export default function Command() {
 
 ### Color.Dynamic
 
-A dynamic color applies different colors depending on the active Raycast theme.
+动态颜色根据活动的 Raycast 主题应用不同的颜色。&#x20;
 
-When using a [Dynamic Color](colors.md#color.dynamic), it will be adjusted to achieve high contrast with the Raycast user interface. To disable color adjustment, you can set the `adjustContrast` property to `false`. However, we recommend leaving color adjustment on, unless your extension depends on exact color reproduction.
+使用 [动态颜色](https://developers.raycast.com/api-reference/user-interface/colors#color.dynamic) 时，将对其进行调整以实现与 Raycast 用户界面的高对比度。要禁用颜色调整，可以将 `adjustmentContrast` 属性设置为 `false`。但是，我们建议保留颜色调整，除非您的扩展依赖于精确的颜色。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Icon, List } from "@raycast/api";
@@ -125,21 +125,21 @@ export default function Command() {
 }
 ```
 
-#### Properties
+#### 属性
 
-| Property                                | Description                                                         | Type      |
-| --------------------------------------- | ------------------------------------------------------------------- | --------- |
-| dark<mark style="color:red;">\*</mark>  | The color which is used in dark theme.                              | `string`  |
-| light<mark style="color:red;">\*</mark> | The color which is used in light theme.                             | `string`  |
-| adjustContrast                          | Enables dynamic contrast adjustment for light and dark theme color. | `boolean` |
+| 名称                                      | 描述                   | Type      |
+| --------------------------------------- | -------------------- | --------- |
+| dark<mark style="color:red;">\*</mark>  | 深色主题中使用的颜色。          | `string`  |
+| light<mark style="color:red;">\*</mark> | 浅色主题中使用的颜色。          | `string`  |
+| adjustContrast                          | 启用浅色和深色主题颜色的动态对比度调整。 | `boolean` |
 
 ### Color.Raw
 
-A color can also be a simple string. You can use any of the following color formats:
+颜色也可以是简单的字符串。您可以使用以下任意颜色格式：
 
 * HEX, e.g `#FF0000`
-* Short HEX, e.g. `#F00`
+* 短 HEX, e.g. `#F00`
 * RGBA, e.g. `rgb(255, 0, 0)`
-* RGBA Percentage, e.g. `rgb(255, 0, 0, 1.0)`
+* RGBA 百分比, e.g. `rgb(255, 0, 0, 1.0)`
 * HSL, e.g. `hsla(200, 20%, 33%, 0.2)`
-* Keywords, e.g. `red`
+* 关键字, e.g. `red`

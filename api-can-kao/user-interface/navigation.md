@@ -1,20 +1,18 @@
 # Navigation
 
-## API Reference
+## API 参考
 
 ### useNavigation
 
-A hook that lets you push and pop view components in the navigation stack.
+一个钩子，可让您在导航堆栈中推送和弹出视图组件。 您很可能不会经常使用这个钩子。要推送新组件，请使用推送操作。当用户按 ESC 时，我们会自动弹出到上一个组件。
 
-You most likely won't use this hook too often. To push a new component, use the [Push Action](actions.md#action.push). When a user presses `ESC`, we automatically pop to the previous component.
-
-#### Signature
+#### 签名
 
 ```typescript
 function useNavigation(): Navigation;
 ```
 
-#### Example
+#### 例子
 
 ```typescript
 import { Action, ActionPanel, Detail, useNavigation } from "@raycast/api";
@@ -54,19 +52,19 @@ export default function Command() {
 }
 ```
 
-#### Return
+#### 返回
 
-A [Navigation](navigation.md#navigation) object with [Navigation.push](navigation.md#navigation) and [Navigation.pop](navigation.md#navigation) functions. Use the functions to alter the navigation stack.
+具有 [Navigation.push](navigation.md#navigation) 和 [Navigation.pop](navigation.md#navigation) 功能的导航对象。使用这些函数可以更改导航堆栈。
 
-## Types
+## 类型
 
 ### Navigation
 
-Return type of the [useNavigation](navigation.md#usenavigation) hook to perform push and pop actions.
+用于执行推送和弹出操作的 [useNavigation](navigation.md#usenavigation) 钩子的返回类型。
 
-#### Properties
+#### 属性
 
-| Property                               | Description                                           | Type                                   |
-| -------------------------------------- | ----------------------------------------------------- | -------------------------------------- |
-| pop<mark style="color:red;">\*</mark>  | Pop current view component from the navigation stack. | `() => void`                           |
-| push<mark style="color:red;">\*</mark> | Push a new view component to the navigation stack.    | `(component: React.ReactNode) => void` |
+| 名称                                     | 描述              | 类型                                     |
+| -------------------------------------- | --------------- | -------------------------------------- |
+| pop<mark style="color:red;">\*</mark>  | 从导航堆栈中弹出当前视图组件。 | `() => void`                           |
+| push<mark style="color:red;">\*</mark> | 将新的视图组件推送到导航堆栈。 | `(component: React.ReactNode) => void` |
