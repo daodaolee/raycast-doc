@@ -1,32 +1,32 @@
 # Form
 
-Our `Form` component provides great user experience to collect some data from a user and submit it for extensions needs.
+我们的  `Form`  组件提供了出色的用户体验，可以从用户那里收集一些数据并提交以满足扩展需求。
 
 ![](../../.gitbook/assets/example-doppler-share-secrets.png)
 
-## Two Types of Items: Controlled vs. Uncontrolled
+## 两种类型：受控与不受控
 
-Items in React can be one of two types: controlled or uncontrolled.
+React 中的项可以是以下两种类型之一：受控或不受控。
 
-An uncontrolled item is the simpler of the two. It's the closest to a plain HTML input. React puts it on the page, and Raycast keeps track of the rest. Uncontrolled inputs require less code, but make it harder to do certain things.
+不受控的项是两者中较简单的一个。它最接近纯 HTML 输入。 React 将其放在页面上，Raycast 跟踪其余部分。不受控的输入需要更少的代码，但会使执行某些操作变得更加困难。
 
-With a controlled item, YOU explicitly control the `value` that the item displays. You have to write code to respond to changes with defining `onChange` callback, store the current `value` somewhere, and pass that value back to the item to be displayed. It's a feedback loop with your code in the middle. It's more manual work to wire these up, but they offer the most control.
+对于受控，您可以明确控制该项显示的 `value` 。您必须编写代码来通过定义  `onChange`  回调来响应更改，将当前值存储在某处，并将该值传递回要显示的项。这是你的代码中的一种回馈循环。想连接起来这些需要更多的工作，不过它们提供了够多的可控性。
 
-You can take look at these two styles below under each of the supported items.
+您可以在每个支持的项下查看下面这两种样式。
 
-## Validation
+## 校验
 
-Before submitting data, it is important to ensure all required form controls are filled out, in the correct format.
+在提交数据之前，确保以正确的格式填写所有必需的表单控件非常重要。
 
-In Raycast, validation can be fully controlled from the API. To keep the same behavior as we have natively, the proper way of usage is to validate a `value` in the `onBlur` callback, update the `error` of the item and keep track of updates with the `onChange` callback to drop the `error` value.
+在 Raycast 中，可以通过 API 完全控制验证。为了保持与本机相同的行为，正确的使用方法是验证 `onBlur` 回调中的值，更新条目的错误并使用 `onChange` 回调跟踪更新从而删除错误的值。
 
 ![](../../.gitbook/assets/form-validation.png)
 
 {% hint style="info" %}
-Keep in mind that if the Form has any errors, the [`Action.SubmitForm`](actions.md#action.submitform) `onSubmit` callback won't be triggered.
+请记住，表单有任何错误，都不会触发 [`Action.SubmitForm`](actions.md#action.submitform) onSubmit 回调。
 {% endhint %}
 
-#### Example
+#### 例子
 
 ```typescript
 import { Form } from "@raycast/api";
@@ -93,23 +93,23 @@ function validatePassword(value: string): boolean {
 }
 ```
 
-## Drafts
+## 草稿
 
-Drafts are a mechanism to preserve filled-in inputs (but not yet submitted) when an end-user exits the command. To enable this mechanism, set the `enableDrafts` prop on your Form and populate the initial values of the Form with the [top-level prop `draftValues`](../../zi-liao/lifecycle/#launchprops).
+草稿是一种在最终用户退出命令时保留已填写的输入（但尚未提交）的机制。要启用此机制，请在表单上设置 `enableDrafts` 属性，并使用顶级属性 [`draftValues`](../../zi-liao/lifecycle/#launchprops) 填充表单的初始值。
 
 ![](../../.gitbook/assets/form-drafts.png)
 
 {% hint style="info" %}
-* Drafts for forms nested in navigation are not supported yet. In this case, you will see a warning about it.
-* Drafts won't preserve the [`Form.Password`](form.md#form.passwordfield)'s values.
-* Drafts will be dropped once [`Action.SubmitForm`](actions.md#action.submitform) is triggered.
-* If you call [`popToRoot()`](../window-and-search-bar.md#poptoroot), drafts won't be preserved or updated.
+* 尚不支持嵌套在导航中的表单草稿。在这种情况下，您将看到一条警告。
+* 草稿不会保留  [`Form.Password`](form.md#form.passwordfield) 的值。
+* 一旦  [`Action.SubmitForm`](actions.md#action.submitform) 被触发，草稿就会被丢弃。
+* 如果您调用  [`popToRoot()`](../window-and-search-bar.md#poptoroot)，草稿将不会被保留或更新。
 {% endhint %}
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled Form" %}
+{% tab title="不受控 Form" %}
 ```typescript
 import { Form, ActionPanel, Action, popToRoot, LaunchProps } from "@raycast/api";
 
@@ -145,7 +145,7 @@ export default function Command(props: LaunchProps<{ draftValues: TodoValues }>)
 ```
 {% endtab %}
 
-{% tab title="Controlled Form" %}
+{% tab title="受控 Form" %}
 ```typescript
 import { Form, ActionPanel, Action, popToRoot, LaunchProps } from "@raycast/api";
 import { useState } from "react";
@@ -187,32 +187,32 @@ export default function Command(props: LaunchProps<{ draftValues: TodoValues }>)
 {% endtab %}
 {% endtabs %}
 
-## API Reference
+## API 参数
 
 ### Form
 
-Shows a list of form items such as [Form.TextField](form.md#form.textfield), [Form.Checkbox](form.md#form.checkbox) or [Form.Dropdown](form.md#form.dropdown).
+显示表单项的列表，例如 [Form.TextField](form.md#form.textfield), [Form.Checkbox](form.md#form.checkbox) 或 [Form.Dropdown](form.md#form.dropdown).
 
-#### Props
+#### 参数
 
-| Prop            | Description                                                                         | Type              | Default       |
-| --------------- | ----------------------------------------------------------------------------------- | ----------------- | ------------- |
-| actions         | A reference to an [ActionPanel](action-panel.md#actionpanel).                       | `React.ReactNode` | -             |
-| children        | The Form.Item elements of the form.                                                 | `React.ReactNode` | -             |
-| enableDrafts    | Defines whether the Form.Items values will be preserved when user exits the screen. | `boolean`         | `false`       |
-| isLoading       | Indicates whether a loading bar should be shown or hidden below the search bar      | `boolean`         | `false`       |
-| navigationTitle | The main title for that view displayed in Raycast                                   | `string`          | Command title |
+| 名称              | 描述                                                | 类型                | 默认            |
+| --------------- | ------------------------------------------------- | ----------------- | ------------- |
+| actions         | 对 [ActionPanel](action-panel.md#actionpanel) 的引用。 | `React.ReactNode` | -             |
+| children        | 表单的 Form.Item 元素。                                 | `React.ReactNode` | -             |
+| enableDrafts    | 当用户退出屏幕时是否保留 Form.Items 值。                        | `boolean`         | `false`       |
+| isLoading       | 是否应在搜索栏下方显示或隐藏 loading 栏                          | `boolean`         | `false`       |
+| navigationTitle | Raycast 中显示的该视图的主标题                               | `string`          | Command title |
 
 ### Form.TextField
 
-A form item with a text field for input.
+带有用于输入的文本字段的表单项。
 
 ![](../../.gitbook/assets/form-textfield.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled text field" %}
+{% tab title="不受控 text field" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -232,7 +232,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled text field" %}
+{% tab title="受控 text field" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -256,40 +256,40 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                 | Description                                                                                                                                                                                                       | Type                                 | Default |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                              | `string`                             | -       |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                             | `boolean`                            | -       |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | `string`                             | -       |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                      | `string`                             | -       |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                              | `string`                             | -       |
-| placeholder                          | Placeholder text shown in the text field.                                                                                                                                                                         | `string`                             | -       |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                        | `boolean`                            | -       |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                 | `string`                             | -       |
-| value                                | The current value of the item.                                                                                                                                                                                    | `string`                             | -       |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                | `(event: FormEvent<string>) => void` | -       |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                        | `(newValue: string) => void`         | -       |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                   | `(event: FormEvent<string>) => void` | -       |
+| 名称                                   | 描述                                                                              | 类型                                   | 默认 |
+| ------------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------ | -- |
+| id<mark style="color:red;">\*</mark> | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                     | `string`                             | -  |
+| autoFocus                            | 表单渲染后项是否应自动获得焦点。                                                                | `boolean`                            | -  |
+| defaultValue                         | 项的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。 | `string`                             | -  |
+| error                                | 显示表单项验证问题的可选错误消息。如果存在 `error` ，表单项将以红色边框突出显示，并在右侧显示错误消息。                        | `string`                             | -  |
+| info                                 | 用于描述表单项的可选信息消息。它显示在条目的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                              | `string`                             | -  |
+| placeholder                          | 文本字段中显示的占位符文本。                                                                  | `string`                             | -  |
+| storeValue                           | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                        | `boolean`                            | -  |
+| title                                | 显示在项的左侧标题。                                                                      | `string`                             | -  |
+| value                                | 当前项的值                                                                           | `string`                             | -  |
+| onBlur                               | 当项失去焦点时将触发的回调。                                                                  | `(event: FormEvent<string>) => void` | -  |
+| onChange                             | 当项的 `value` 发生变化时会触发的回调。                                                        | `(newValue: string) => void`         | -  |
+| onFocus                              | 当项获得焦点时，应该调用将触发的回调。                                                             | `(event: FormEvent<string>) => void` | -  |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.PasswordField
 
-A form item with a secure text field for password-entry in which the entered characters must be kept secret.
+具有用于输入密码的安全文本字段的表单项，其中输入的字符必须保密。
 
 ![](../../.gitbook/assets/form-password.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled password field" %}
+{% tab title="不受控 password field" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -309,7 +309,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled password field" %}
+{% tab title="受控 password field" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -333,40 +333,40 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                 | Description                                                                                                                                                                                                       | Type                                 | Default |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                              | `string`                             | -       |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                             | `boolean`                            | -       |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | `string`                             | -       |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                      | `string`                             | -       |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                              | `string`                             | -       |
-| placeholder                          | Placeholder text shown in the password field.                                                                                                                                                                     | `string`                             | -       |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                        | `boolean`                            | -       |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                 | `string`                             | -       |
-| value                                | The current value of the item.                                                                                                                                                                                    | `string`                             | -       |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                | `(event: FormEvent<string>) => void` | -       |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                        | `(newValue: string) => void`         | -       |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                   | `(event: FormEvent<string>) => void` | -       |
+| 名称                                   | 描述                                                                               | 类型                                   | 默认 |
+| ------------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------ | -- |
+| id<mark style="color:red;">\*</mark> | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                      | `string`                             | -  |
+| autoFocus                            | 表单渲染后项是否应自动获得焦点。                                                                 | `boolean`                            | -  |
+| defaultValue                         | 条目的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。 | `string`                             | -  |
+| error                                | 显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。                                | `string`                             | -  |
+| info                                 | 用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                                | `string`                             | -  |
+| placeholder                          | 密码字段中显示的占位符文本。                                                                   | `string`                             | -  |
+| storeValue                           | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                         | `boolean`                            | -  |
+| title                                | 显示在项的左侧标题。                                                                       | `string`                             | -  |
+| value                                | 当前项的值                                                                            | `string`                             | -  |
+| onBlur                               | 当项失去焦点时将触发的回调。                                                                   | `(event: FormEvent<string>) => void` | -  |
+| onChange                             | 当项的值发生变化时会触发的回调。                                                                 | `(newValue: string) => void`         | -  |
+| onFocus                              | 当项获得焦点时，应该调用将触发的回调。                                                              | `(event: FormEvent<string>) => void` | -  |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦该项。                               |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.TextArea
 
-A form item with a text area for input. The item supports multiline text entry.
+带有用于输入的文本区域的表单项。该项支持多行文本输入。
 
 ![](../../.gitbook/assets/form-textarea.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled text area" %}
+{% tab title="不受控 text area" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -389,7 +389,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled text area" %}
+{% tab title="受控 text area" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -413,41 +413,41 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                 | Description                                                                                                                                                                                                                                     | Type                                 | Default |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                                                            | `string`                             | -       |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                                                           | `boolean`                            | -       |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering.                               | `string`                             | -       |
-| enableMarkdown                       | Whether markdown will be highlighted in the TextArea or not. When enabled, markdown shortcuts starts to work for the TextArea (pressing `⌘ + B` will add `**bold**` around the selected text, `⌘ + I` will make the selected text italic, etc.) | `boolean`                            | `false` |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                                                    | `string`                             | -       |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                                                            | `string`                             | -       |
-| placeholder                          | Placeholder text shown in the text area.                                                                                                                                                                                                        | `string`                             | -       |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                                                      | `boolean`                            | -       |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                                               | `string`                             | -       |
-| value                                | The current value of the item.                                                                                                                                                                                                                  | `string`                             | -       |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                                              | `(event: FormEvent<string>) => void` | -       |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                                                      | `(newValue: string) => void`         | -       |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                                                 | `(event: FormEvent<string>) => void` | -       |
+| 名称                                   | 描述                                                                                                              | 类型                                   | 默认      |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------- |
+| id<mark style="color:red;">\*</mark> | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                                                     | `string`                             | -       |
+| autoFocus                            | 表单渲染后项是否应自动获得焦点。                                                                                                | `boolean`                            | -       |
+| defaultValue                         | 条目的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。                                | `string`                             | -       |
+| enableMarkdown                       | Markdown 是否会在 TextArea 中突出显示。启用后，Markdown 快捷方式开始对 TextArea 起作用（按 `⌘ + B` 将在所选文本周围添加 **粗体**，`⌘ + I` 将使所选文本变为斜体等） | `boolean`                            | `false` |
+| error                                | 显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。                                                               | `string`                             | -       |
+| info                                 | 用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                                                               | `string`                             | -       |
+| placeholder                          | 文本区域中显示的占位符文本。                                                                                                  | `string`                             | -       |
+| storeValue                           | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                                                        | `boolean`                            | -       |
+| title                                | 显示在项的左侧标题。                                                                                                      | `string`                             | -       |
+| value                                | 当前项的值                                                                                                           | `string`                             | -       |
+| onBlur                               | 当项失去焦点时将触发的回调。                                                                                                  | `(event: FormEvent<string>) => void` | -       |
+| onChange                             | 当项的 `value` 发生变化时会触发的回调。                                                                                        | `(newValue: string) => void`         | -       |
+| onFocus                              | 当项获得焦点时，应该调用将触发的回调。                                                                                             | `(event: FormEvent<string>) => void` | -       |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.Checkbox
 
-A form item with a checkbox.
+带有复选框的表单项。
 
 ![](../../.gitbook/assets/form-checkbox.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled checkbox" %}
+{% tab title="不受控 checkbox" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -467,7 +467,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled checkbox" %}
+{% tab title="受控 checkbox" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -491,40 +491,40 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                                                                                                                       | Type                                  | Default |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------- |
-| id<mark style="color:red;">\*</mark>    | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                              | `string`                              | -       |
-| label<mark style="color:red;">\*</mark> | The label displayed on the right side of the checkbox.                                                                                                                                                            | `string`                              | -       |
-| autoFocus                               | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                             | `boolean`                             | -       |
-| defaultValue                            | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | `boolean`                             | -       |
-| error                                   | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                      | `string`                              | -       |
-| info                                    | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                              | `string`                              | -       |
-| storeValue                              | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                        | `boolean`                             | -       |
-| title                                   | The title displayed on the left side of the item.                                                                                                                                                                 | `string`                              | -       |
-| value                                   | The current value of the item.                                                                                                                                                                                    | `boolean`                             | -       |
-| onBlur                                  | The callback that will be triggered when the item loses its focus.                                                                                                                                                | `(event: FormEvent<boolean>) => void` | -       |
-| onChange                                | The callback which will be triggered when the `value` of the item changes.                                                                                                                                        | `(newValue: boolean) => void`         | -       |
-| onFocus                                 | The callback which will be triggered should be called when the item is focused.                                                                                                                                   | `(event: FormEvent<boolean>) => void` | -       |
+| 名称                                      | 描述                                                                               | 类型                                    | 默认 |
+| --------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------- | -- |
+| id<mark style="color:red;">\*</mark>    | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                      | `string`                              | -  |
+| label<mark style="color:red;">\*</mark> | 显示在复选框右侧的标签。                                                                     | `string`                              | -  |
+| autoFocus                               | 表单渲染后项是否应自动获得焦点。                                                                 | `boolean`                             | -  |
+| defaultValue                            | 条目的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。 | `boolean`                             | -  |
+| error                                   | 显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。                                | `string`                              | -  |
+| info                                    | 用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                                | `string`                              | -  |
+| storeValue                              | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                         | `boolean`                             | -  |
+| title                                   | 显示在项的左侧标题。                                                                       | `string`                              | -  |
+| value                                   | 当前项的值                                                                            | `boolean`                             | -  |
+| onBlur                                  | 当项失去焦点时将触发的回调。                                                                   | `(event: FormEvent<boolean>) => void` | -  |
+| onChange                                | 当项的 `value` 发生变化时会触发的回调。                                                         | `(newValue: boolean) => void`         | -  |
+| onFocus                                 | 当项获得焦点时，应该调用将触发的回调。                                                              | `(event: FormEvent<boolean>) => void` | -  |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.DatePicker
 
-A form item with a date picker.
+带有日期选择器的表单项。
 
 ![](../../.gitbook/assets/form-datepicker.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled date picker" %}
+{% tab title="不受控 date picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -544,7 +544,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled date picker" %}
+{% tab title="受控 date picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -570,29 +570,29 @@ export default function Command() {
 
 #### Props
 
-| Prop                                 | Description                                                                                                                                                                                                       | Type                                                   | Default |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                              | `string`                                               | -       |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                             | `boolean`                                              | -       |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | `Date`                                                 | -       |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                      | `string`                                               | -       |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                              | `string`                                               | -       |
-| max                                  | The maximum date (inclusive) allowed for selection.                                                                                                                                                               | `Date`                                                 | -       |
-| min                                  | The minimum date (inclusive) allowed for selection.                                                                                                                                                               | `Date`                                                 | -       |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                        | `boolean`                                              | -       |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                 | `string`                                               | -       |
-| type                                 | Indicates what types of date components can be picked                                                                                                                                                             | [`Form.DatePicker.Type`](form.md#form.datepicker.type) | -       |
-| value                                | The current value of the item.                                                                                                                                                                                    | `Date`                                                 | -       |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                | `(event: FormEvent<Date \| null>) => void`             | -       |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                        | `(newValue: Date \| null) => void`                     | -       |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                   | `(event: FormEvent<Date \| null>) => void`             | -       |
+| Prop                                 | Description                                                                      | Type                                                   | Default |
+| ------------------------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------ | ------- |
+| id<mark style="color:red;">\*</mark> | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                      | `string`                                               | -       |
+| autoFocus                            | 表单渲染后项是否应自动获得焦点。                                                                 | `boolean`                                              | -       |
+| defaultValue                         | 条目的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。 | `Date`                                                 | -       |
+| error                                | 显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。                                | `string`                                               | -       |
+| info                                 | 用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                                | `string`                                               | -       |
+| max                                  | 允许选择的最长日期（含）。                                                                    | `Date`                                                 | -       |
+| min                                  | 允许选择的最短日期（含）。                                                                    | `Date`                                                 | -       |
+| storeValue                           | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                         | `boolean`                                              | -       |
+| title                                | 显示在项的左侧标题。                                                                       | `string`                                               | -       |
+| type                                 | 可以选择哪些类型的日期组件                                                                    | [`Form.DatePicker.Type`](form.md#form.datepicker.type) | -       |
+| value                                | 当前项的值                                                                            | `Date`                                                 | -       |
+| onBlur                               | 当项失去焦点时将触发的回调。                                                                   | `(event: FormEvent<Date \| null>) => void`             | -       |
+| onChange                             | 当项的 `value` 发生变化时会触发的回调。                                                         | `(newValue: Date \| null) => void`                     | -       |
+| onFocus                              | 当项获得焦点时，应该调用将触发的回调。                                                              | `(event: FormEvent<Date \| null>) => void`             | -       |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.Dropdown
 
@@ -600,10 +600,10 @@ A form item with a dropdown menu.
 
 ![](../../.gitbook/assets/form-dropdown.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled dropdown" %}
+{% tab title="不受控 dropdown" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -627,7 +627,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled dropdown" %}
+{% tab title="受控 dropdown" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -663,40 +663,22 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                 | Description                                                                                                                                                                                                                                                | Type                                         | Default                                                           |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                                                                       | `string`                                     | -                                                                 |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                                                                      | `boolean`                                    | -                                                                 |
-| children                             | Sections or items. If [Form.Dropdown.Item](form.md#form.dropdown.item) elements are specified, a default section is automatically created.                                                                                                                 | `React.ReactNode`                            | -                                                                 |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering.                                          | `string`                                     | -                                                                 |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                                                               | `string`                                     | -                                                                 |
-| filtering                            | Toggles Raycast filtering. When `true`, Raycast will use the query in the search bar to filter the items. When `false`, the extension needs to take care of the filtering.                                                                                 | `boolean` or `{ keepSectionOrder: boolean }` | `false` when `onSearchTextChange` is specified, `true` otherwise. |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                                                                       | `string`                                     | -                                                                 |
-| isLoading                            | Indicates whether a loading indicator should be shown or hidden next to the search bar                                                                                                                                                                     | `boolean`                                    | `false`                                                           |
-| placeholder                          | Placeholder text that will be shown in the dropdown search field.                                                                                                                                                                                          | `string`                                     | `"Search…"`                                                       |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                                                                 | `boolean`                                    | -                                                                 |
-| throttle                             | Defines whether the `onSearchTextChange` handler will be triggered on every keyboard press or with a delay for throttling the events. Recommended to set to `true` when using custom filtering logic with asynchronous operations (e.g. network requests). | `boolean`                                    | `false`                                                           |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                                                          | `string`                                     | -                                                                 |
-| value                                | The current value of the item.                                                                                                                                                                                                                             | `string`                                     | -                                                                 |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                                                         | `(event: FormEvent<string>) => void`         | -                                                                 |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                                                                 | `(newValue: string) => void`                 | -                                                                 |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                                                            | `(event: FormEvent<string>) => void`         | -                                                                 |
-| onSearchTextChange                   | Callback triggered when the search bar text changes.                                                                                                                                                                                                       | `(text: string) => void`                     | -                                                                 |
+<table><thead><tr><th width="154">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>id<mark style="color:red;">*</mark></td><td>表单项的 ID。确保为每个表单项分配一个唯一的 ID。</td><td><code>string</code></td><td>-</td></tr><tr><td>autoFocus</td><td>表单渲染后项是否应自动获得焦点。</td><td><code>boolean</code></td><td>-</td></tr><tr><td>children</td><td>内容为 Sections 或是item。如果指定了 <a href="form.md#form.dropdown.item">Form.Dropdown.Item</a> 元素，则会自动创建默认部分。</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>defaultValue</td><td>条目的默认值。请记住，<code>defaultValue</code> 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 <code>defaultValue</code>。</td><td><code>string</code></td><td>-</td></tr><tr><td>error</td><td>显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。</td><td><code>string</code></td><td>-</td></tr><tr><td>filtering</td><td>切换 Raycast filtering。如果为 <code>true</code>，Raycast 将使用搜索栏中的查询来过滤项目。当为 <code>false</code> 时，扩展程序需要负责过滤。</td><td><code>boolean</code> 或 <code>{ keepSectionOrder: boolean }</code></td><td>当指定 <code>onSearchTextChange</code> 时为 <code>false</code>，否则为 <code>true</code>。</td></tr><tr><td>info</td><td>用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。</td><td><code>string</code></td><td>-</td></tr><tr><td>isLoading</td><td>是否应在搜索栏旁边显示或隐藏 loading 指示器</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>placeholder</td><td>显示在下拉搜索字段中的占位符文本。</td><td><code>string</code></td><td><code>"Search…"</code></td></tr><tr><td>storeValue</td><td>提交后是否应保留项的值，并在下次渲染表单时恢复。</td><td><code>boolean</code></td><td>-</td></tr><tr><td>throttle</td><td><code>onSearchTextChange</code> 处理程序是在每次按下键盘时触发还是延迟以限制事件。当将自定义过滤逻辑与异步操作（例如网络请求）结合使用时，建议设置为 <code>true</code>。</td><td><code>boolean</code></td><td><code>false</code></td></tr><tr><td>title</td><td>显示在项的左侧标题。</td><td><code>string</code></td><td>-</td></tr><tr><td>value</td><td>当前项的值</td><td><code>string</code></td><td>-</td></tr><tr><td>onBlur</td><td>当项失去焦点时将触发的回调。</td><td><code>(event: FormEvent&#x3C;string>) => void</code></td><td>-</td></tr><tr><td>onChange</td><td>当项的 <code>value</code> 发生变化时会触发的回调。</td><td><code>(newValue: string) => void</code></td><td>-</td></tr><tr><td>onFocus</td><td>当项获得焦点时调用将触发的回调。</td><td><code>(event: FormEvent&#x3C;string>) => void</code></td><td>-</td></tr><tr><td>onSearchTextChange</td><td>当项获得焦点时，应该调用将触发的回调。</td><td><code>(text: string) => void</code></td><td>-</td></tr></tbody></table>
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.Dropdown.Item
 
-A dropdown item in a [Form.Dropdown](form.md#form.dropdown)
+[Form.Dropdown](form.md#form.dropdown) 的项
 
-#### Example
+#### 例子
 
 ```typescript
 import { Action, ActionPanel, Form, Icon } from "@raycast/api";
@@ -718,22 +700,22 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                                                                                                                                   | Type                                                     | Default                         |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------- |
-| title<mark style="color:red;">\*</mark> | The title displayed for the item.                                                                                                                                             | `string`                                                 | -                               |
-| value<mark style="color:red;">\*</mark> | Value of the dropdown item. Make sure to assign each unique value for each item.                                                                                              | `string`                                                 | -                               |
-| icon                                    | A optional icon displayed for the item.                                                                                                                                       | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -                               |
-| keywords                                | An optional property used for providing additional indexable strings for search. When filtering the items in Raycast, the keywords will be searched in addition to the title. | `string[]`                                               | The title of its section if any |
+| Prop                                    | Description                                              | Type                                                     | Default                         |
+| --------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | ------------------------------- |
+| title<mark style="color:red;">\*</mark> | 显示的标题。                                                   | `string`                                                 | -                               |
+| value<mark style="color:red;">\*</mark> | 下拉项的值。确保为每个项目分配每个唯一值。                                    | `string`                                                 | -                               |
+| icon                                    | 该项显示的可选图标。                                               | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -                               |
+| keywords                                | 一个可选属性，用于提供额外的可索引字符串以供搜索。在 Raycast 中过滤项目时，除了标题之外还会搜索关键字。 | `string[]`                                               | The title of its section if any |
 
 ### Form.Dropdown.Section
 
-Visually separated group of dropdown items.
+视觉上分离的下拉项组。&#x20;
 
-Use sections to group related menu items together.
+使用 sections 将相关的菜单项分组在一起。
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
@@ -762,23 +744,20 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop     | Description                       | Type              | Default |
-| -------- | --------------------------------- | ----------------- | ------- |
-| children | The item elements of the section. | `React.ReactNode` | -       |
-| title    | Title displayed above the section | `string`          | -       |
+<table><thead><tr><th width="174">名称</th><th>描述</th><th>类型</th><th>默认</th></tr></thead><tbody><tr><td>children</td><td>子项</td><td><code>React.ReactNode</code></td><td>-</td></tr><tr><td>title</td><td>显示在该部分上方的标题</td><td><code>string</code></td><td>-</td></tr></tbody></table>
 
 ### Form.TagPicker
 
-A form item with a tag picker that allows the user to select multiple items.
+带有标签选择器的表单项，允许用户选择多个项目。
 
 ![](../../.gitbook/assets/form-tagpicker.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled tag picker" %}
+{% tab title="不受控 tag picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 
@@ -802,7 +781,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled tag picker" %}
+{% tab title="受控 tag picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -834,36 +813,36 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                 | Description                                                                                                                                                                                                       | Type                                   | Default |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                              | `string`                               | -       |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                             | `boolean`                              | -       |
-| children                             | The list of tags.                                                                                                                                                                                                 | `React.ReactNode`                      | -       |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | `string[]`                             | -       |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                      | `string`                               | -       |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                              | `string`                               | -       |
-| placeholder                          | Placeholder text shown in the token field.                                                                                                                                                                        | `string`                               | -       |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                        | `boolean`                              | -       |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                 | `string`                               | -       |
-| value                                | The current value of the item.                                                                                                                                                                                    | `string[]`                             | -       |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                | `(event: FormEvent<string[]>) => void` | -       |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                        | `(newValue: string[]) => void`         | -       |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                   | `(event: FormEvent<string[]>) => void` | -       |
+| 名称                                   | 描述                                                                               | 类型                                     | 默认 |
+| ------------------------------------ | -------------------------------------------------------------------------------- | -------------------------------------- | -- |
+| id<mark style="color:red;">\*</mark> | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                      | `string`                               | -  |
+| autoFocus                            | 表单渲染后项是否应自动获得焦点。                                                                 | `boolean`                              | -  |
+| children                             | tag 的子项.                                                                         | `React.ReactNode`                      | -  |
+| defaultValue                         | 条目的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。 | `string[]`                             | -  |
+| error                                | 显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。                                | `string`                               | -  |
+| info                                 | 用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                                | `string`                               | -  |
+| placeholder                          | token 字段中显示的占位符文本。                                                               | `string`                               | -  |
+| storeValue                           | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                         | `boolean`                              | -  |
+| title                                | 显示在项的左侧标题。                                                                       | `string`                               | -  |
+| value                                | 当前项的值                                                                            | `string[]`                             | -  |
+| onBlur                               | 当项失去焦点时将触发的回调。                                                                   | `(event: FormEvent<string[]>) => void` | -  |
+| onChange                             | 当项的 `value` 发生变化时会触发的回调。                                                         | `(newValue: string[]) => void`         | -  |
+| onFocus                              | 当项获得焦点时，应该调用将触发的回调。                                                              | `(event: FormEvent<string[]>) => void` | -  |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.TagPicker.Item
 
-A tag picker item in a [Form.TagPicker](form.md#form.tagpicker).
+[Form.TagPicker](form.md#form.tagpicker) 的子项
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Color, Form, Icon, Action } from "@raycast/api";
@@ -887,21 +866,21 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                    | Description                                                       | Type                                                     | Default |
-| --------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------- | ------- |
-| title<mark style="color:red;">\*</mark> | The display title of the tag.                                     | `string`                                                 | -       |
-| value<mark style="color:red;">\*</mark> | Value of the tag. Make sure to assign unique value for each item. | `string`                                                 | -       |
-| icon                                    | An icon to show in the tag.                                       | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -       |
+| 名称                                      | 描述                 | 类型                                                       | 默认 |
+| --------------------------------------- | ------------------ | -------------------------------------------------------- | -- |
+| title<mark style="color:red;">\*</mark> | 标签的名称.             | `string`                                                 | -  |
+| value<mark style="color:red;">\*</mark> | 标签的值。确保为每个项分配唯一的值。 | `string`                                                 | -  |
+| icon                                    | 标签中显示的图标。          | [`Image.ImageLike`](icons-and-images.md#image.imagelike) | -  |
 
 ### Form.Separator
 
-A form item that shows a separator line. Use for grouping and visually separating form items.
+显示分隔线的表单项。用于对表单项进行分组并在视觉上分隔表单项。
 
 ![](../../.gitbook/assets/form-separator.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
@@ -925,20 +904,20 @@ export default function Command() {
 
 ### Form.FilePicker
 
-A form item with a button to open a dialog to pick some files and/or some directories (depending on its props).
+带有按钮的表单项，用于打开对话框以选择某些文件 和/或 某些目录（取决于其属性）。
 
 {% hint style="info" %}
-While the user picked some items that existed, it might be possible for them to be deleted or changed when the `onSubmit` callback is called. Hence you should always make sure that the items exist before acting on them!
+当用户选择了一些已存在的项目时，当调用 `onSubmit` 回调时，它们可能会被删除或更改。因此，在对其进行操作之前，您应该始终确保这些项目存在！
 {% endhint %}
 
 ![](../../.gitbook/assets/form-filepicker-multiple.png)
 
 ![Single Selection](../../.gitbook/assets/form-filepicker-single.png)
 
-#### Example
+#### 例子
 
 {% tabs %}
-{% tab title="Uncontrolled file picker" %}
+{% tab title="不受控 file picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import fs from "fs";
@@ -965,7 +944,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Single selection file picker" %}
+{% tab title="单选 selection file picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import fs from "fs";
@@ -995,7 +974,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Directory picker" %}
+{% tab title="目录 picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import fs from "fs";
@@ -1025,7 +1004,7 @@ export default function Command() {
 ```
 {% endtab %}
 
-{% tab title="Controlled file picker" %}
+{% tab title="受控 file picker" %}
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
 import { useState } from "react";
@@ -1049,42 +1028,42 @@ export default function Command() {
 {% endtab %}
 {% endtabs %}
 
-#### Props
+#### 参数
 
-| Prop                                 | Description                                                                                                                                                                                                       | Type                                   | Default |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- | ------- |
-| id<mark style="color:red;">\*</mark> | ID of the form item. Make sure to assign each form item a unique id.                                                                                                                                              | `string`                               | -       |
-| allowMultipleSelection               | Indicates whether the user can select multiple items or only one.                                                                                                                                                 | `boolean`                              | `true`  |
-| autoFocus                            | Indicates whether the item should be focused automatically once the form is rendered.                                                                                                                             | `boolean`                              | -       |
-| canChooseDirectories                 | Indicates whether it's possible to choose a directory.                                                                                                                                                            | `boolean`                              | `false` |
-| canChooseFiles                       | Indicates whether it's possible to choose a file.                                                                                                                                                                 | `boolean`                              | `true`  |
-| defaultValue                         | The default value of the item. Keep in mind that `defaultValue` will be configured once per component lifecycle. This means that if a user changes the value, `defaultValue` won't be configured on re-rendering. | `string[]`                             | -       |
-| error                                | An optional error message to show the form item validation issues. If the `error` is present, the Form Item will be highlighted with red border and will show an error message on the right.                      | `string`                               | -       |
-| info                                 | An optional info message to describe the form item. It appears on the right side of the item with an info icon. When the icon is hovered, the info message is shown.                                              | `string`                               | -       |
-| showHiddenFiles                      | Indicates whether the file picker displays files that are normally hidden from the user.                                                                                                                          | `boolean`                              | `false` |
-| storeValue                           | Indicates whether the value of the item should be persisted after submitting, and restored next time the form is rendered.                                                                                        | `boolean`                              | -       |
-| title                                | The title displayed on the left side of the item.                                                                                                                                                                 | `string`                               | -       |
-| value                                | The current value of the item.                                                                                                                                                                                    | `string[]`                             | -       |
-| onBlur                               | The callback that will be triggered when the item loses its focus.                                                                                                                                                | `(event: FormEvent<string[]>) => void` | -       |
-| onChange                             | The callback which will be triggered when the `value` of the item changes.                                                                                                                                        | `(newValue: string[]) => void`         | -       |
-| onFocus                              | The callback which will be triggered should be called when the item is focused.                                                                                                                                   | `(event: FormEvent<string[]>) => void` | -       |
+| 名称                                   | 描述                                                                               | 类型                                     | 默认      |
+| ------------------------------------ | -------------------------------------------------------------------------------- | -------------------------------------- | ------- |
+| id<mark style="color:red;">\*</mark> | 表单项的 ID。确保为每个表单项分配一个唯一的 ID。                                                      | `string`                               | -       |
+| allowMultipleSelection               | 指示用户是否可以选择多个项或仅选择一项。                                                             | `boolean`                              | `true`  |
+| autoFocus                            | 表单渲染后项是否应自动获得焦点。                                                                 | `boolean`                              | -       |
+| canChooseDirectories                 | 是否可以选择目录。                                                                        | `boolean`                              | `false` |
+| canChooseFiles                       | 是否可以选择文件。                                                                        | `boolean`                              | `true`  |
+| defaultValue                         | 条目的默认值。请记住，`defaultValue` 将在每个组件生命周期配置一次。这意味着如果用户更改该值，则重新渲染时不会配置 `defaultValue`。 | `string[]`                             | -       |
+| error                                | 显示表单项验证问题的可选错误消息。如果存在错误，表单项将以红色边框突出显示，并在右侧显示错误消息。                                | `string`                               | -       |
+| info                                 | 用于描述表单项的可选信息消息。它显示在项的右侧，并带有一个信息图标。当图标悬停时，将显示信息消息。                                | `string`                               | -       |
+| showHiddenFiles                      | 文件选择器是否显示通常对用户隐藏的文件。                                                             | `boolean`                              | `false` |
+| storeValue                           | 提交后是否应保留项的值，并在下次渲染表单时恢复。                                                         | `boolean`                              | -       |
+| title                                | 显示在项的左侧标题。                                                                       | `string`                               | -       |
+| value                                | 当前项的值                                                                            | `string[]`                             | -       |
+| onBlur                               | 当项失去焦点时将触发的回调。                                                                   | `(event: FormEvent<string[]>) => void` | -       |
+| onChange                             | 当项的 `value` 发生变化时会触发的回调。                                                         | `(newValue: string[]) => void`         | -       |
+| onFocus                              | 当项获得焦点时，应该调用将触发的回调。                                                              | `(event: FormEvent<string[]>) => void` | -       |
 
-#### Methods (Imperative API)
+#### 方法（命令式 API）
 
-| Name  | Signature    | Description                                                                |
-| ----- | ------------ | -------------------------------------------------------------------------- |
-| focus | `() => void` | Makes the item request focus.                                              |
-| reset | `() => void` | Resets the form item to its initial value, or `defaultValue` if specified. |
+| 名称    | 签名           | 描述                                  |
+| ----- | ------------ | ----------------------------------- |
+| focus | `() => void` | 聚焦某项                                |
+| reset | `() => void` | 将表单项重置为其初始值，或 `defaultValue`（如果指定）。 |
 
 ### Form.Description
 
-A form item with a simple text label.
+带有简单文本标签的表单项。&#x20;
 
-Do _not_ use this component to show validation messages for other form fields.
+不要使用此组件来显示其他表单字段的验证消息。
 
 ![](../../.gitbook/assets/form-description.png)
 
-#### Example
+#### 例子
 
 ```typescript
 import { ActionPanel, Form, Action } from "@raycast/api";
@@ -1107,25 +1086,25 @@ export default function Command() {
 }
 ```
 
-#### Props
+#### 参数
 
-| Prop                                   | Description                                                   | Type     | Default |
-| -------------------------------------- | ------------------------------------------------------------- | -------- | ------- |
-| text<mark style="color:red;">\*</mark> | Text that will be displayed in the middle.                    | `string` | -       |
-| title                                  | The display title of the left side from the description item. | `string` | -       |
+| 名称                                     | 描述          | 类型       | 默认 |
+| -------------------------------------- | ----------- | -------- | -- |
+| text<mark style="color:red;">\*</mark> | 显示在中间的文本。   | `string` | -  |
+| title                                  | 描述项左侧的显示标题。 | `string` | -  |
 
-## Types
+## 类型
 
 #### Form.Event
 
-Some Form.Item callbacks (like `onFocus` and `onBlur`) can return a `Form.Event` object that you can use in a different ways.
+某些 Form.Item 回调（例如 `onFocus` 和 `onBlur`）可以返回可以以不同方式使用的 `Form.Event` 对象。
 
-| Property                                 | Description                                              | Type                                         |
-| ---------------------------------------- | -------------------------------------------------------- | -------------------------------------------- |
-| target<mark style="color:red;">\*</mark> | An interface containing target data related to the event | `{ id: string; value: any }`                 |
-| type<mark style="color:red;">\*</mark>   | A type of event                                          | [`Form.Event.Type`](form.md#form.event.type) |
+| 属性                                       | 描述              | 类型                                           |
+| ---------------------------------------- | --------------- | -------------------------------------------- |
+| target<mark style="color:red;">\*</mark> | 包含与事件相关的目标数据的接口 | `{ id: string; value: any }`                 |
+| type<mark style="color:red;">\*</mark>   | 事件类型            | [`Form.Event.Type`](form.md#form.event.type) |
 
-#### Example
+#### 例子
 
 ```typescript
 import { Form } from "@raycast/api";
@@ -1156,15 +1135,15 @@ function logEvent(event: Form.Event<string[] | string>) {
 
 #### Form.Event.Type
 
-The different types of [`Form.Event`](form.md#form.event). Can be `"focus"` or `"blur"`.
+不同类型的 [`Form.Event`](form.md#form.event)。可以是 `"focus"` 或 `"blur"`。
 
 ### Form.Values
 
-Values of items in the form.
+表单项的值。
 
-For type-safe form values, you can define your own interface. Use the ID's of the form items as the property name.
+对于类型安全的表单值，您可以定义自己的接口。使用表单项的 ID 作为属性名称。
 
-#### Example
+#### 例子
 
 ```typescript
 import { Form, Action, ActionPanel } from "@raycast/api";
@@ -1194,31 +1173,29 @@ export default function Command() {
 }
 ```
 
-#### Properties
+#### 属性
 
-| Name              | Type  | Required | Description                     |
-| ----------------- | ----- | -------- | ------------------------------- |
-| \[itemId: string] | `any` | Yes      | The form value of a given item. |
+<table><thead><tr><th>名称</th><th>类型</th><th width="102">必填</th><th>描述</th></tr></thead><tbody><tr><td>[itemId: string]</td><td><code>any</code></td><td>Yes</td><td>给定项的表单值。</td></tr></tbody></table>
 
 ### Form.DatePicker.Type
 
-The types of date components the user can pick with a `Form.DatePicker`.
+用户可以使用 `Form.DatePicker` 选择日期组件的类型。
 
-#### Enumeration members
+#### 枚举成员
 
-| Name     | Description                                                      |
-| -------- | ---------------------------------------------------------------- |
-| DateTime | Hour and second can be picked in addition to year, month and day |
-| Date     | Only year, month, and day can be picked                          |
+| 名称       | 描述                 |
+| -------- | ------------------ |
+| DateTime | 除了年、月、日之外，还可以选择时、秒 |
+| Date     | 只能选择年、月、日          |
 
 ***
 
-## Imperative API
+## 命令式API
 
-You can use React's [useRef](https://reactjs.org/docs/hooks-reference.html#useref) hook to create variables which have access to imperative APIs (such as `.focus()` or `.reset()`) exposed by the native form items.
+您可以使用 React 的 [useRef](https://reactjs.org/docs/hooks-reference.html#useref)  钩子来创建可以访问本机表单项公开的命令式 API（例如 `.focus()` 或 `.reset()`）的变量。
 
 {% hint style="info" %}
-The imperative APIs require version 1.33.0 or higher of the `@raycast/api` package.
+命令式 API 需要 1.33.0 或更高版本的 `@raycast/api` 包。
 {% endhint %}
 
 ```typescript
