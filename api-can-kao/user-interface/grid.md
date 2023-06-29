@@ -17,13 +17,9 @@
 
 ## 搜索栏
 
-The search bar allows users to interact quickly with grid items. By default,  are displayed if the user's input can be (fuzzy) matched to the item's
-
 搜索栏允许用户与 grid 项快速交互。默认情况下，如果用户的输入可以与项目的 `title` 或 `keywords`（模糊）匹配，则显示 [Grid.Items](grid.md#grid.item)。
 
 ### 自定义过滤
-
-Sometimes, you may not want to rely on Raycast's filtering, but use/implement your own. If that's the case, you can set the `Grid`'s `filtering` [prop](grid.md#props) to false, and the items displayed will be independent of the search bar's text. Note that `filtering` is also implicitly set to false if an `onSearchTextChange` listener is specified. If you want to specify a change listener and _still_ take advantage of Raycast's built-in filtering, you can explicitly set `filtering` to true.
 
 有时，您可能不想依赖 Raycast 的过滤，而是 使用/实现 您自己的过滤。如果是这种情况，您可以将 Grid 的过滤属性设置为 `false`，并且显示的项将独立于搜索栏。请注意，如果指定了 `onSearchTextChange` 侦听器，过滤也会隐式设置为 `false`。如果您想指定更改侦听器并仍然利用 Raycast 的内置过滤功能，则可以显式将过滤设置为 `true`。
 
@@ -408,8 +404,6 @@ export default function CommandWithCustomEmptyView() {
 ### Grid.Item
 
 [Grid](grid.md#grid) 中的一项
-
-This is one of the foundational UI components of Raycast. A grid item represents a single entity. It can be an image, an emoji, a GIF etc. You most likely want to perform actions on this item, so make it clear to the user what this item is about.
 
 这是 Raycast 的基本 UI 组件之一。grid 项代表单个实体。它可以是图像、表情符号、GIF 等。
 

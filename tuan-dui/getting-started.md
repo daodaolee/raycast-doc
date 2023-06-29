@@ -33,7 +33,7 @@ Raycast for Teams 允许您在私人商店中构建、共享和发现扩展。�
 ![构建入门扩展](../.gitbook/assets/teams-develop-extension.png)
 
 {% hint style="info" %}
-有关如何创建扩展的更详细指南，请参阅 [创建您的第一个扩展](https://developers.raycast.com/basics/create-your-first-extension)。
+有关如何创建扩展的更详细指南，请参阅 [创建您的第一个扩展](../ji-chu/create-your-first-extension.md)。
 {% endhint %}
 
 ### 发布该扩展
@@ -48,4 +48,4 @@ Raycast for Teams 允许您在私人商店中构建、共享和发现扩展。�
 
 使用 Raycast 中的 “Copy Organization Invite Link” 命令来共享对您的组织的访问权限。将链接发送给您的队友。当有人加入您的组织时，您会收到一封电子邮件。您可以使用 “Manage Organization” 命令查看谁属于您的组织、重置邀请链接并编辑您的组织详细信息。
 
-下一步，请按照 [本指南](https://developers.raycast.com/teams/collaborate-on-private-extensions) 将本地存储库推送到源代码控制系统。这使您可以与队友就扩展进行协作。
+下一步，请按照 [本指南](collaborate-on-private-extensions.md) 将本地存储库推送到源代码控制系统。这使您可以与队友就扩展进行协作。

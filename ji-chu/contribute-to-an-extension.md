@@ -18,4 +18,4 @@ description: 了解如何导入扩展以与他人协作。
 
 ![打开已导入的扩展](../.gitbook/assets/basics-open-command.png) ![图标列表命令](../.gitbook/assets/basics-icon-list.png)
 
-您会在根搜索的顶部看到您 fork 出的扩展，并且可以打开其命令。完成编辑扩展后，请确保将自己添加到其 [清单](https://developers.raycast.com/information/manifest#extension-properties) 的贡献者部分，然后运行 `​​npx @raycast/api@latestpublish`。
+您会在根搜索的顶部看到您 fork 出的扩展，并且可以打开其命令。完成编辑扩展后，请确保将自己添加到其 [manifest](../zi-liao/manifest.md) 的贡献者部分，然后运行 `​​npx @raycast/api@latestpublish`。

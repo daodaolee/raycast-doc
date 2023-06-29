@@ -8,7 +8,7 @@ description: 本指南介绍了如何查找和修复扩展中的错误。
 
 ## Console
 
-使用 `console` 进行简单的调试，例如记录变量、函数调用或其他有用的消息。在 [开发模式](https://developers.raycast.com/information/tools/cli#development) 下，所有日志都显示在终端中。这里有一些例子：
+使用 `console` 进行简单的调试，例如记录变量、函数调用或其他有用的消息。在 [开发模式](../zi-liao/tools/cli.md#development) 下，所有日志都显示在终端中。这里有一些例子：
 
 ```typescript
 console.log("Hello World"); // Prints: Hello World
@@ -39,7 +39,7 @@ console.error(error); // Prints: Boom 💥
 
 ![开发模式下未处理的异常](../.gitbook/assets/basics-unhandled-exception.png)
 
-在开发过程中，我们会显示堆栈跟踪并添加一个操作来跳转到错误，以便于修复它。在生产中，仅显示错误消息。您应该为所有预期的错误 [显示一个 toast](https://developers.raycast.com/api-reference/feedback/toast#showtoast)，例如失败的网络请求。
+在开发过程中，我们会显示堆栈跟踪并添加一个操作来跳转到错误，以便于修复它。在生产中，仅显示错误消息。您应该为所有预期的错误 [显示一个 toast](../api-can-kao/feedback/toast.md)，例如失败的网络请求。
 
 ## React Developer Tools
 

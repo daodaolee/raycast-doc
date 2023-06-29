@@ -4,14 +4,14 @@ description: 了解如何与我们的社区分享您的扩展。
 
 # 发布一个扩展
 
-在发布扩展程序之前，请查看 [如何为发布做准备](https://developers.raycast.com/basics/prepare-an-extension-for-store)。确保遵循指南是帮助您的扩展通过审核的最佳方式。
+在发布扩展程序之前，请查看 [如何为发布做准备](prepare-an-extension-for-store.md)。确保遵循指南是帮助您的扩展通过审核的最佳方式。
 
 ### 验证您的扩展
 
 打开终端，导航到扩展目录，然后运行 ​​`npm run build` 来打包您的扩展。保证该命令顺利完成且没有任何错误。
 
 {% hint style="info" %}
-npm run build 验证您的扩展以进行打包，而无需将其发布到商店。在 [这里](https://developers.raycast.com/information/tools/cli#build) 阅读更多相关信息。
+`npm run build` 验证您的扩展以进行打包，而无需将其发布到商店。在 [这里](../zi-liao/tools/cli.md#build) 阅读更多相关信息。
 {% endhint %}
 
 ### 发布您的扩展

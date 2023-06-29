@@ -69,7 +69,7 @@ description: 了解如何快速通过审核流程
 
 * 商店中发布的扩展需要是 `png` 格式的 512x512px 图标
 * 图标在浅色和深色主题中都应该看起来不错（您可以在 Raycast Preferences → Appearance 中切换主题）
-* 如果您有单独的浅色和深色图标，请参阅 `package.json` [manifest](https://developers.raycast.com/information/manifest#extension-properties) 文档了解如何配置它们
+* 如果您有单独的浅色和深色图标，请参阅 `package.json` [manifest](../zi-liao/manifest.md) 文档了解如何配置它们
 * 使用默认 Raycast 图标的扩展将被拒绝
 * 这个 [图标模板](https://www.figma.com/community/file/1030764827259035122/Extensions-Icon-Template) 可以帮助您制作和导出合适的图标
 * 确保删除未使用的资源和图标
@@ -88,7 +88,7 @@ description: 了解如何快速通过审核流程
 
 * 所有扩展都应至少以一个类别发布
 * 类别区分大小写，应遵循 [标题大小写](https://titlecaseconverter.com/rules/) 约定
-* 在 `package.json` [manifest](https://developers.raycast.com/information/manifest) 文件中添加类别，或在使用 **Create Extension** 命令创建新扩展时选择类别
+* 在 `package.json` [manifest](../zi-liao/manifest.md) 文件中添加类别，或在使用 **Create Extension** 命令创建新扩展时选择类别
 
 ### 所有类别
 
@@ -151,7 +151,7 @@ description: 了解如何快速通过审核流程
 
 * 通过扩展元数据中的 `CHANGELOG.md` 文件，让用户可以更轻松地准确查看扩展的每个版本之间所做的更改
   * 要将版本历史记录添加到您的扩展，请将 `CHANGELOG.md` 文件添加到您的扩展的根文件夹
-* 查看带有 [屏幕截图和更改日志文件](https://developers.raycast.com/basics/prepare-an-extension-for-store#adding-screenshots) 的扩展文件结构
+* 查看带有 [屏幕截图和更改日志文件](prepare-an-extension-for-store.md#tian-jia-ping-mu-jie-tu) 的扩展文件结构
 * 对于每次更改，请提供有关最新更新的清晰的描述性信息，提供标题作为 h2 标头，后跟日期时间戳 YYYY-MM-DD
   * 确保您的更改标题位于方括号内
   * 用连字符分隔标题和日期 `-` 以及连字符两侧的空格
@@ -200,7 +200,7 @@ Initial version code
 
 * **当您为现有扩展做出贡献而不是创建新扩展时**
   * 您想对已经发布的扩展进行一些小的改进，例如额外的操作、新的偏好、用户体验改进等。通常，这是一个不显着的变化。
-  * 您想要添加一个简单的命令来补充现有扩展而不更改扩展标题或描述，例如您想为 Spotify 添加“喜欢当前曲目”命令。当已经有 [Spotify Controls](https://www.raycast.com/thomas/spotify-controls) 扩展时，仅仅为此创建一个全新的扩展是没有意义的。
+  * 您想要添加一个简单的命令来补充现有扩展而不更改扩展标题或描述，例如您想为 Spotify 添加“喜欢当前曲目”命令。当已经安装了 [Spotify Controls](https://www.raycast.com/thomas/spotify-controls) 扩展，仅仅为此创建一个全新的扩展是没有意义的。
   * **重要提示：**如果您的更改很重要，那么在投入大量时间之前联系扩展的作者是有意义的。未经作者签字，我们无法合并重要的贡献。
 * **当您考虑创建一个新扩展而不是为现有扩展做出贡献时**
   * 对现有扩展的更改将是重大的，并且可能会破坏其他人的工作流程。如果您想继续合作路径，请咨询作者。
@@ -230,7 +230,7 @@ Initial version code
 
 ![打开命令时将显示所需的首选项](../.gitbook/assets/required-preferences-2.png)
 
-* 使用 [首选项API](https://developers.raycast.com/api-reference/preferences) 让您的用户配置您的扩展名或提供诸如API令牌之类的凭据
+* 使用[ 首选项API](../api-can-kao/preferences.md) 让您的用户配置您的扩展名或提供诸如API token 之类的凭据
   * 当使用 `required: true` 时，Raycast 将要求用户在继续扩展之前设置首选项。请参阅此处的[示例](https://github.com/raycast/extensions/blob/main/extensions/gitlab/package.json#L150)。
 * 您不应该构建单独的命令来配置您的扩展。如果您找不到某些 API 来实现您想要的首选项设置，请提交带有 feature request 的 [GitHub issue](https://github.com/raycast/extensions/issues)。
 
@@ -249,7 +249,7 @@ Initial version code
 
 ### 导航
 
-* 使用 [导航 API](https://developers.raycast.com/api-reference/user-interface/navigation) 跳转新的步骤。这将确保用户可以像在应用程序的其余部分中一样在您的扩展中导航。
+* 使用 [导航 API](../api-can-kao/user-interface/navigation.md) 跳转新的步骤。这将确保用户可以像在应用程序的其余部分中一样在您的扩展中导航。
 * 避免引入您自己的导航堆栈。当要跳转新步骤时仅替换视图内容的扩展将被拒绝。
 
 ### 空状态
@@ -257,7 +257,7 @@ Initial version code
 * 当您使用空元素数组更新列表时，将显示“无结果”视图。避免引入自己的 UI 来实现类似的效果（例如显示列表项）。
   * **已知问题：**有时，当搜索查询为空时，您无法显示任何内容，并且当您打开扩展程序时（通常在搜索命令中），扩展程序会显示“No results”。我们计划提供一个 API 来改善这种体验。与此同时，您可能需要考虑引入一些在空状态下可能有用的部分 - 例如建议或最近访问的项目。
 * **常见错误** - 启动时“闪烁空状态视图”
-  * 如果您尝试在真实的数据（例如来自网络或磁盘）获取之前渲染空列表，则在打开扩展时您可能会看到闪烁的“No results”视图。为了防止这种情况，请确保在获取要显示的数据之前不要返回空的项目列表。同时，您可以显示 loading 指示器。请参阅 [此示例](https://developers.raycast.com/information/best-practices#show-loading-indicator)。
+  * 如果您尝试在真实的数据（例如来自网络或磁盘）获取之前渲染空列表，则在打开扩展时您可能会看到闪烁的“No results”视图。为了防止这种情况，请确保在获取要显示的数据之前不要返回空的项目列表。同时，您可以显示 loading 指示器。请参阅 [此示例](../zi-liao/best-practices.md#xian-shi-loading-zhi-shi-qi)。
 
 ### 导航标题
 
