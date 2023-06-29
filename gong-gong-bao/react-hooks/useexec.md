@@ -89,17 +89,17 @@ function useExec<T, U>(
 * `options.encoding` 是一个字符串，用于指定用于解码 `stdout` 和 `stderr` 输出的字符编码。如果设置为“buffer”，则 `stdout` 和 `stderr` 将是 Buffer 而不是字符串。
 * `options.input` 是要写入文件的 `stdin` 字符串或 buffer。
 * `options.timeout` 是一个数字。如果大于 0，则当子进程运行时间超过超时毫秒时，父进程将发送信号 `SIGTERM`。默认情况下，执行将在 10000 毫秒（例如 10 秒）后超时。
-* `options.parseOutput` 是一个函数，它接受子进程的输出作为参数，并返回钩子将返回的数据 - 请参阅 [ParseExecOutputHandler](https://developers.raycast.com/utilities/react-hooks/useexec#parseexecoutputhandler)。默认情况下，该钩子将返回 `stdout`
+* `options.parseOutput` 是一个函数，它接受子进程的输出作为参数，并返回钩子将返回的数据 - 请参阅 [ParseExecOutputHandler](useexec.md#parseexecoutputhandler)。默认情况下，该钩子将返回 `stdout`
 
 包括 [useCachedPromise](usecachedpromise.md) 的选项:
 
-* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅 [依赖于用户输入的参数](https://developers.raycast.com/utilities/react-hooks/useexec#argument-dependent-on-user-input)。
+* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅 [依赖于用户输入的参数](useexec.md#yi-lai-yu-yong-hu-shu-ru-de-can-shu)。
 
-包括 [useCachedState](https://developers.raycast.com/utilities/react-hooks/usecachedstate) 的选项：
+包括 [useCachedState](usecachedstate.md) 的选项：
 
 * `options.initialData` 是状态的初始值（如果缓存中还没有任何状态）。
 
-包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
+包括 [usePromise](usepromise.md) 的选项：
 
 * `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
 * `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。
@@ -112,7 +112,7 @@ function useExec<T, U>(
 
 * `data`, `error`, `isLoading` - 查看 [AsyncState](useexec.md#asyncstate).
 * `revalidate` 是一个用相同参数再次手动调用函数的方法。
-* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
+* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](useexec.md#bian-geng-he-you-hua-geng-xin)。
 
 ## 例子
 

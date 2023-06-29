@@ -596,7 +596,7 @@ export default function Command() {
 
 ### Form.Dropdown
 
-A form item with a dropdown menu.
+带有下拉菜单的表单项。
 
 ![](../../.gitbook/assets/form-dropdown.png)
 
@@ -1192,7 +1192,7 @@ export default function Command() {
 
 ## 命令式API
 
-您可以使用 React 的 [useRef](https://reactjs.org/docs/hooks-reference.html#useref)  钩子来创建可以访问本机表单项公开的命令式 API（例如 `.focus()` 或 `.reset()`）的变量。
+您可以使用 React 的 [useRef](https://reactjs.org/docs/hooks-reference.html#useref) 钩子来创建可以访问本机表单项公开的命令式 API（例如 `.focus()` 或 `.reset()`）的变量。
 
 {% hint style="info" %}
 命令式 API 需要 1.33.0 或更高版本的 `@raycast/api` 包。

@@ -56,9 +56,9 @@ export default async () => {
 
 #### 参数
 
-| 名称      | 描述                                                                                                                                                                                                                           | 类型                                                                                                         |
-| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| options | 具有以下属性的参数对象：`clearRootSearch`：清除根搜索栏中的文本并滚动到顶部；默认为 `false` `popToRootType`：定义弹出到根（[PopToRootType](https://developers.raycast.com/api-reference/window-and-search-bar#poptoroottype)）；默认值是在 Raycast 中的“Pop to Root Search”首选项 | `{ clearRootSearch: boolean; popToRootType:` [`PopToRootType`](window-and-search-bar.md#poptoroottype) `}` |
+| 名称      | 描述                                                                                                                                                                                 | 类型                                                                                                         |
+| ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| options | 具有以下属性的参数对象：`clearRootSearch`：清除根搜索栏中的文本并滚动到顶部；默认为 `false` `popToRootType`：定义弹出到根（[PopToRootType](window-and-search-bar.md#poptoroottype)）；默认值是在 Raycast 中的“Pop to Root Search”首选项 | `{ clearRootSearch: boolean; popToRootType:` [`PopToRootType`](window-and-search-bar.md#poptoroottype) `}` |
 
 #### 返回
 

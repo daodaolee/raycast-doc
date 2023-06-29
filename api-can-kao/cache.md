@@ -8,8 +8,6 @@
 
 `Cache` 类提供 CRUD 样式的方法（get、set、remove）来基于键同步更新和检索数据。数据必须是字符串，由客户端决定使用哪种序列化格式。典型的用例是使用 `JSON.stringify` 和 `JSON.parse`。
 
-By default, the cache is shared between the commands of an extension. Use [Cache.Options](cache.md#cache.options) to configure a `namespace` per command if needed (for example, set it to [`environment.commandName`](environment.md)).
-
 默认情况下，缓存在扩展的命令之间共享。如果需要，请使用 [Cache.Options](cache.md#cache.options) 为每个命令配置命名空间（例如，将其设置为 [`environment.commandName`](environment.md)）。
 
 #### 签名
@@ -92,7 +90,7 @@ has(key: string): boolean
 
 ### Cache#set
 
-设置给定 key 的数据。如果数据超出配置的容量，则最近最少使用的条目将被删除。这也会通知注册订阅者（请参阅 [subscribe](cache.md#cache-subscribe)）。
+设置给定 key 的数据。如果数据超出配置的容量，则最近最少使用的条目将被删除。这也会通知注册订阅者（请参考 [subscribe](cache.md#cache-subscribe)）。
 
 #### 签名
 
@@ -109,7 +107,7 @@ set(key: string, data: string)
 
 ### Cache#remove
 
-删除给定键的数据。这也会通知注册订阅者（请参阅 [subscribe](cache.md#cache-subscribe)）。如果删除了键的数据，则返回 `true`，否则返回 `false`。
+删除给定键的数据。这也会通知注册订阅者（请参考 [subscribe](cache.md#cache-subscribe)）。如果删除了键的数据，则返回 `true`，否则返回 `false`。
 
 #### 签名
 
@@ -119,9 +117,7 @@ remove(key: string): boolean
 
 ### Cache#clear
 
-Clears all stored data. This also notifies registered subscribers (see [subscribe](cache.md#cache-subscribe)) unless the `notifySubscribers` option is set to `false`.
-
-清除所有存储的数据。这也会通知注册订阅者（请参阅 [subscribe](cache.md#cache-subscribe)），除非 `notifySubscribers` 选项设置为 `false`。
+清除所有存储的数据。这也会通知注册订阅者（请参考 [subscribe](cache.md#cache-subscribe)），除非 `notifySubscribers` 选项设置为 `false`。
 
 #### 签名
 
@@ -166,7 +162,7 @@ subscribe(subscriber: Cache.Subscriber): Cache.Subscription
 
 ### Cache.Subscriber
 
-[订阅](https://developers.raycast.com/api-reference/cache#cache-subscribe) 参数的函数。
+订阅参数的函数。
 
 ```typescript
 type Subscriber = (key: string | undefined, data: string | undefined) => void;
@@ -174,8 +170,9 @@ type Subscriber = (key: string | undefined, data: string | undefined) => void;
 
 ### Cache.Subscription
 
-[订阅](https://developers.raycast.com/api-reference/cache#cache-subscribe) 返回的函数。
+订阅返回的函数。
 
 ```typescript
 type Subscription = () => void;
 ```
+

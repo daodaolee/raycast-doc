@@ -31,15 +31,15 @@ function useFetch<T, U>(
 * `options` 扩展了 [`RequestInit`](https://github.com/nodejs/undici/blob/v5.7.0/types/fetch.d.ts#L103-L117)  ，允许指定要应用于请求的 body、headers 等。
 * `options.parseResponse` 是一个函数，它接受 Response 作为参数并返回钩子将返回的数据。默认情况下，如果响应带有 JSON `Content-Type` 标头，则挂钩将返回 `response.json()`，否则返回 `response.text()`。
 
-包括 [useCachedPromise](https://developers.raycast.com/utilities/react-hooks/usecachedpromise) 的选项：
+包括 [useCachedPromise](usecachedpromise.md) 的选项：
 
-* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅 [依赖于列表搜索文本的参数](https://developers.raycast.com/utilities/react-hooks/usefetch#argument-dependent-on-list-search-text)。
+* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅 [依赖于列表搜索文本的参数](usefetch.md#yi-lai-yu-lie-biao-sou-suo-wen-ben-de-can-shu)。
 
-包括 [useCachedState](https://developers.raycast.com/utilities/react-hooks/usecachedpromise) 的选项：
+包括 [useCachedState](usecachedstate.md) 的选项：
 
 * `options.initialData` 是状态的初始值（如果缓存中还没有任何状态）。
 
-包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
+包括 [usePromise](usepromise.md) 的选项：
 
 * `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
 * `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。
@@ -52,7 +52,7 @@ function useFetch<T, U>(
 
 * `data`, `error`, `isLoading` - 查看 [AsyncState](usefetch.md#asyncstate).
 * `revalidate` 是一个用相同参数再次手动调用函数的方法。
-* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
+* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](usefetch.md#bian-geng-he-you-hua-geng-xin)。
 
 ## 例子
 

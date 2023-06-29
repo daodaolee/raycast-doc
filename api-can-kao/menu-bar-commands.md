@@ -4,7 +4,7 @@
 
 ## 起步
 
-如果您还没有扩展，请按照 [入门](https://developers.raycast.com/basics/getting-started) 指南操作，然后返回此页面。现在您的扩展已准备就绪，让我们打开其 `package.json` 文件并向其 `commands` 数组添加一个新条目，确保其 `mode` 属性设置为 `menu-bar`。对于本指南，我们添加以下内容：
+如果您还没有扩展，请按照 [入门](../ji-chu/getting-started.md) 指南操作，然后返回此页面。现在您的扩展已准备就绪，让我们打开其 `package.json` 文件并向其 `commands` 数组添加一个新条目，确保其 `mode` 属性设置为 `menu-bar`。对于本指南，我们添加以下内容：
 
 ```JSON
 {
@@ -17,7 +17,7 @@
 ```
 
 {% hint style="info" %}
-查看 manifest 文件文档中的 [命令属性条目](https://developers.raycast.com/information/manifest#command-properties)，以获取有关每个属性的更多详细信息。
+查看 manifest 文件文档中的 [命令属性条目](../zi-liao/manifest.md#ming-ling-shu-xing)，以获取有关每个属性的更多详细信息。
 {% endhint %}
 
 在扩展 `src/` 文件夹中创建 `github-pull-requests.tsx` 并添加以下内容：
@@ -90,7 +90,7 @@ macOS 对于是否显示给定的额外菜单栏拥有最终决定权。如果�
 
 ### 按设定的时间间隔
 
-如果您的 `menu-bar` 命令使用并且激活了 [后台刷新](https://developers.raycast.com/information/lifecycle/background-refresh)，Raycast 将按设定的时间间隔运行该命令。在您的命令中，您可以使用  `environment.launchType` 来检查它是在后台启动还是由用户启动。
+如果您的 `menu-bar` 命令使用并且激活了 [后台刷新](../zi-liao/lifecycle/background-refresh.md)，Raycast 将按设定的时间间隔运行该命令。在您的命令中，您可以使用  `environment.launchType` 来检查它是在后台启动还是由用户启动。
 
 {% hint style="info" %}
 为了简化测试，配置为在后台运行的命令在开发模式下有一个额外的操作:<img src="../.gitbook/assets/menu-bar-run-in-background.png" alt="Menu Bar Command - Run in Background" data-size="original">
@@ -110,7 +110,7 @@ macOS 对于是否显示给定的额外菜单栏拥有最终决定权。如果�
 
 ## 最佳实践
 
-* 充分利用 [缓存 API](https://developers.raycast.com/api-reference/cache) 和我们的 [公共包](https://developers.raycast.com/utilities/getting-started)，以提供快速反馈并确保操作处理程序按预期工作
+* 充分利用 [缓存 API](cache.md) 和我们的 [公共包](../gong-gong-bao/getting-started.md)，以提供快速反馈并确保操作处理程序按预期工作
 * 确保命令完成执行后将 `isLoading` 设置为 false
 * 避免在 `MenuBarExtra`, `MenuBarExtra.Submenu` 或 `MenuBarExtra.Item` 中设置长标题
 * 不要将相同的 `MenuBarExtra.Items` 放在同一级别（`MenuBarExtra` 的直接子项或同一子菜单中），因为它们的 `onAction` 处理程序将无法正确执行

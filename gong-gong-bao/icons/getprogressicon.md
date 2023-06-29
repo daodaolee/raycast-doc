@@ -22,7 +22,7 @@ function getProgressIcon(
 * `options.background` 是 Raycast `Color` 或进度图标背景颜色的十六进制表示形式。默认情况下，如果 Raycast 的外观较暗，则为 `white`；如果外观较亮，则为 `light`。
 * `options.backgroundOpacity` 是进度图标背景的不透明度。默认情况下，该值为 `0.1`。
 
-返回可在 Raycast 期望的地方使用的 [Image.Asset](https://developers.raycast.com/api-reference/user-interface/icons-and-images)。
+返回可在 Raycast 期望的地方使用的 [Image.Asset](../../api-can-kao/user-interface/icons-and-images.md#image.asset)。
 
 ## Example
 

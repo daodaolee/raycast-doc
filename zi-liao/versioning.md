@@ -14,7 +14,7 @@
 
 如果您愿意，您可以在扩展中提供一个 `changelog.md` 文件，并在每次更新时提供详细的更改。用户可以在扩展详细信息屏幕、版本历史记录下以及 [raycast.com/store](https://raycast.com/store) 上查看这些更改。
 
-您可以在 [此处](https://developers.raycast.com/basics/prepare-an-extension-for-store#version-history) 了解有关版本历史记录的更多信息、如何将其添加到您的扩展以及最佳外观所需的格式。
+您可以在 [此处](../ji-chu/prepare-an-extension-for-store.md#ban-ben-li-shi) 了解有关版本历史记录的更多信息、如何将其添加到您的扩展以及最佳外观所需的格式。
 
 ## API演变
 

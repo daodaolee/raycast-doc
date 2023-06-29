@@ -4,7 +4,7 @@ Raycast 支持命令传递参数，以便用户可以在打开命令之前直接
 
 ![](../../.gitbook/assets/arguments.png)
 
-参数在每个命令的 [manifest](https://developers.raycast.com/information/manifest#argument-properties) 中配置。
+参数在每个命令的 [manifest](../manifest.md) 中配置。
 
 {% hint style="info" %}
 * **最大参数数量：**3（如果您有需要更多参数的用例，请通过反馈或在 Slack 社区 中告知我们）

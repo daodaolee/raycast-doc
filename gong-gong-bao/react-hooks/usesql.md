@@ -31,7 +31,7 @@ function useSQL<T>(
 
 * `options.permissionPriming` 是一个字符串，用来解释为什么扩展需要完全磁盘访问。例如，Apple Notes 扩展使用 “这是搜索您的 Apple Notes 所必需的”。虽然它是可选的，但我们建议设置它以帮助用户理解。
 
-包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
+包括 [usePromise](usepromise.md) 的选项：
 
 * `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
 * `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。
@@ -45,7 +45,7 @@ function useSQL<T>(
 * `data`, `error`, `isLoading` - 查看 [AsyncState](usesql.md#asyncstate).
 * `permissionView`是一个 React Node，当它存在时应该返回。它将提示用户授予完全磁盘访问权限（这是钩子运行所必需的）。
 * `revalidate`是一种使用相同参数再次手动调用函数的方法。
-* \`mutate\` 是一种包装异步更新的方法，在更新过程中对 `useSQL` 的数据进行操作。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
+* \`mutate\` 是一种包装异步更新的方法，在更新过程中对 `useSQL` 的数据进行操作。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](usesql.md#bian-geng-he-you-hua-geng-xin)。
 
 ## 例子
 

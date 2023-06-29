@@ -31,7 +31,7 @@ function useAI(
 * \`options.model\` 是一个字符串，决定使用哪个 AI 模型来回答。
 * `options.stream` 是一个布尔值，表示是流式传输答案还是仅在收到整个答案时更新数据。默认情况下，数据将被流式传输。
 
-包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
+包括 [usePromise](usepromise.md) 的选项：
 
 * `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
 * `options.onError` 是执行失败时调用的函数。默认情况下，它将记录错误并显示失败 toast 以及重试操作。

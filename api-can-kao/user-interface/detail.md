@@ -132,7 +132,7 @@ export default function Main() {
 
 显示链接的项目。
 
-![Detail-metadata-link illustration](../../.gitbook/assets/detail-metadata-link.png)
+![详细元数据链接说明](../../.gitbook/assets/detail-metadata-link.png)
 
 #### 例子
 

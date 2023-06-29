@@ -196,7 +196,7 @@ export default async function Command() {
 
 代表系统上本地安装的应用程序对象。
 
-它可用于在特定应用程序中打开文件或文件夹。使用 [getApplications](https://developers.raycast.com/api-reference/utilities#getapplications) 或 [getDefaultApplication](https://developers.raycast.com/api-reference/utilities#getdefaultapplication) 获取可以打开特定文件或文件夹的应用程序。
+它可用于在特定应用程序中打开文件或文件夹。使用 [getApplications](utilities.md#getapplications) 或 [getDefaultApplication](utilities.md#getdefaultapplication) 获取可以打开特定文件或文件夹的应用程序。
 
 #### 属性
 

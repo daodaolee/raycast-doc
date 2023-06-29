@@ -102,4 +102,5 @@
 
 ***
 
+* [迁移](qian-yi.md)
 * [FAQ](faq.md)

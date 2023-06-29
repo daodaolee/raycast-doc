@@ -10,7 +10,7 @@
 
 ### showToast
 
-创建并显示具有给定 [选项](https://developers.raycast.com/api-reference/feedback/toast#toast.options) 的 Toast。
+创建并显示具有给定 [选项](toast.md#toast.options) 的 Toast。
 
 #### 签名
 
@@ -82,7 +82,7 @@ export default async function Command() {
 
 具有特定样式、标题和消息的 Toast。
 
-使用 [showToast](https://developers.raycast.com/api-reference/feedback/toast#showtoast) 创建并显示 Toast。
+使用 [showToast](toast.md#showtoast) 创建并显示 Toast。
 
 #### 属性
 
@@ -103,7 +103,7 @@ export default async function Command() {
 
 ### Toast.Options
 
-创建 Toast 的 [选项](https://developers.raycast.com/api-reference/feedback/toast#toast)。
+创建 Toast 的配置项。
 
 #### 例子
 
@@ -141,7 +141,7 @@ export default async function Command() {
 
 定义 Toast 的样式。
 
-使用 [Toast.Style.Success](https://developers.raycast.com/api-reference/feedback/toast#toast.style) 进行确认，使用 [Toast.Style.Failure](https://developers.raycast.com/api-reference/feedback/toast#toast.style) 显示错误。当您的 Toast 显示到进程完成时，请使用 [Toast.Style.Animated](https://developers.raycast.com/api-reference/feedback/toast#toast.style)。您可以稍后使用 [Toast.hide](https://developers.raycast.com/api-reference/feedback/toast#toast) 隐藏它或更新现有 Toast 的属性。
+使用 [Toast.Style.Success](toast.md#toast.style) 进行确认，使用 [Toast.Style.Failure](toast.md#toast.style) 显示错误。当您的 Toast 显示到进程完成时，请使用 [Toast.Style.Animated](toast.md#toast.style)。您可以稍后使用 Toast.hide 隐藏它或更新现有 Toast 的属性。
 
 #### 枚举成员
 
@@ -153,7 +153,7 @@ export default async function Command() {
 
 ### Toast.ActionOptions
 
-用于创建 [Toast](https://developers.raycast.com/api-reference/feedback/toast#toast) 操作的选项。
+用于创建 Toast 操作的选项。
 
 #### 属性
 

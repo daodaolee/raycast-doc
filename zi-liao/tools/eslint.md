@@ -2,8 +2,6 @@
 
 Raycast 可以使用 CLI 的 lint 命令 (`ray lint`) 轻松对扩展进行 lint 检测。
 
-Raycast provides by default an [opinionated ESLint configuration](https://github.com/raycast/eslint-config/blob/main/index.js) that includes everything you need to lint your Raycast extensions. The default configuration is as simple as this:
-
 Raycast 默认提供一个 [ESLint 配置](https://github.com/raycast/eslint-config/blob/main/index.js)，其中包括检查 Raycast 扩展所需的一切。默认配置非常简单：
 
 ```json

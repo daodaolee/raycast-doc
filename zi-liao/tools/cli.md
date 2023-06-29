@@ -33,10 +33,10 @@ CLI 是 `@raycast/api` 包的一部分，在安装过程中会自动安装在您
 
 ## Migrate
 
-`npx ray migrate` 将您的扩展 [迁移](https://developers.raycast.com/migration) 到最新版本的  `@raycast/api`
+`npx ray migrate` 将您的扩展 [迁移](../../qian-yi.md) 到最新版本的  `@raycast/api`
 
 ## Publish
 
 `npx ray publish` 验证、构建和发布扩展。
 
-如果扩展是私有的（例如，有 `owner` 并且没有公共访问 `access`），它将被发布到组织的私有存储中。此命令仅适用于属于该组织的用户。点击 [此处](https://developers.raycast.com/teams/getting-started) 了解详情。
+如果扩展是私有的（例如，有 `owner` 并且没有公共访问 `access`），它将被发布到组织的私有存储中。此命令仅适用于属于该组织的用户。点击 [此处](../../tuan-dui/getting-started.md) 了解详情。

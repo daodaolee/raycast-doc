@@ -12,7 +12,7 @@ Raycast 使用 React 渲染用户界面，并将支持的元素渲染到我们�
 
 要渲染用户界面，您需要执行以下操作：
 
-* 在 [`package.json` manifest file](../../zi-liao/manifest.md#command-properties) 中设置 `mode` 为 `view`
+* 在 `package.json` manifest file 中设置 `mode` 为 `view`
 * 从命令输入文件导出 React 组件
 
 从一般经验法则的角度出发，您应该尽快渲染某些内容。这保证了您的命令具有响应能力。如果没有可显示的数据，则可以在顶级组件（例如  [`<Detail>`](detail.md)、 [`<Form>`](form.md)或 [`<List>`](list.md) ）上将 `isLoading` 属性设置为 true。它在 Raycast 顶部显示一个 loading 指示器。

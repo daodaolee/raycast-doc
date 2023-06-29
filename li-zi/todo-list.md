@@ -347,4 +347,4 @@ function DeleteTodoAction(props: { onDelete: () => void }) {
 }
 ```
 
-这就是一个示例。您在 Raycast 中创建了一个 todo 列表，就是这么简单。作为后续步骤，您可以将  `<CreateTodoForm>` 提取到单独的命令中。然后，您还可以从 Raycast 的根搜索创建 todo，甚至可以分配全局热键来打开表单。此外，todo 不会保留。如果您关闭命令并重新打开它，它们就会消失。想要保留的话，您可以使用 [storage](https://developers.raycast.com/api-reference/storage) 或将其 [写入光盘](https://developers.raycast.com/api-reference/environment#environment)。
+这就是一个示例。您在 Raycast 中创建了一个 todo 列表，就是这么简单。作为后续步骤，您可以将  `<CreateTodoForm>` 提取到单独的命令中。然后，您还可以从 Raycast 的根搜索创建 todo，甚至可以分配全局热键来打开表单。此外，todo 不会保留。如果您关闭命令并重新打开它，它们就会消失。想要保留的话，您可以使用 [storage](../api-can-kao/storage.md) 或将其 [写入文件](../api-can-kao/environment.md) 中。

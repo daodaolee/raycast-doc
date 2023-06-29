@@ -197,7 +197,7 @@ export default function CommandWithCustomEmptyView() {
 
 ### Grid
 
-展示 [Grid.Section](grid.md#grid.section)s 或 [Grid.Item](grid.md#grid.item)s.
+展示 [Grid.Section](grid.md#grid.section) 或 [Grid.Item](grid.md#grid.item).
 
 grid 通过索引其项的标题和关键字来使用内置过滤。
 

@@ -2,7 +2,7 @@
 
 使用 Preferences API 使您的扩展可配置。
 
-Preferences 在每个命令的 [manifest](https://developers.raycast.com/information/manifest#preference-properties) 中配置或在扩展的上下文中共享。
+Preferences 在每个命令的 [manifest](../zi-liao/manifest.md) 中配置或在扩展的上下文中共享。
 
 在打开命令之前，用户需要设置所需的首选项。它们是确保扩展程序的用户正确设置所有内容的好方法。
 
@@ -127,7 +127,7 @@ export default function Command() {
 
 ### Preferences
 
-命令通过 [`getPreferenceValues`](https://developers.raycast.com/api-reference/preferences#getpreferencevalues) 函数接收其首选项的值。它是一个对象，其中首选项的名称作为键，其值作为属性的值。
+命令通过 [`getPreferenceValues`](preferences.md#getpreferencevalues) 函数接收其首选项的值。它是一个对象，其中首选项的名称作为键，其值作为属性的值。
 
 根据首选项的类型，其值的类型会有所不同。
 

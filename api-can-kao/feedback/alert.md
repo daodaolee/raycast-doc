@@ -8,7 +8,7 @@
 
 ### confirmAlert
 
-创建并显示带有给定 [选项](https://developers.raycast.com/api-reference/feedback/alert#alert.options) 的确认告警。
+创建并显示带有给定 [选项](alert.md#alert.options) 的确认告警。
 
 #### 签名
 
@@ -95,7 +95,7 @@ export default async function Command() {
 
 定义告警操作的视觉样式。
 
-使用 [Alert.ActionStyle.Default](alert.md#alert.actionstyle) 确认  positive 操作。使用 [Alert.ActionStyle.Destructive](https://developers.raycast.com/api-reference/feedback/alert#alert.actionstyle) 确认 destructive  操作（例如删除文件）。
+使用 [Alert.ActionStyle.Default](alert.md#alert.actionstyle) 确认  positive 操作。使用 [Alert.ActionStyle.Destructive](alert.md#alert.actionstyle) 确认 destructive  操作（例如删除文件）。
 
 #### 枚举成员
 

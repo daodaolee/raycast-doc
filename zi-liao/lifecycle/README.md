@@ -35,10 +35,10 @@ export default async function Command() {
 * 用户在根搜索中搜索该命令并执行它
 * 用户注册该命令的别名并按下它
 * 另一个命令通过 [`launchCommand`](../../api-can-kao/command.md#launchcommand) 启动该命令
-* 该命令在 [后台](https://developers.raycast.com/information/lifecycle/background-refresh) 启动
-* [表单的草稿](https://developers.raycast.com/api-reference/user-interface/form#drafts) 已保存并由用户执行
+* 该命令在 [后台](background-refresh.md) 启动
+* [表单的草稿](../../api-can-kao/user-interface/form.md#cao-gao) 已保存并由用户执行
 * 用户将该命令注册为 [fallback 命令](https://manual.raycast.com/fallback-commands)，并在根搜索中没有结果时执行它
-* 用户单击 [深度链接](https://developers.raycast.com/information/lifecycle/deeplinks)
+* 用户单击 [深度链接](deeplinks.md)
 
 根据命令的启动方式，会不同的参数传递给导出的默认函数。
 

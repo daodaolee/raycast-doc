@@ -44,5 +44,5 @@ extension
 * **.prettierrc** 包含 [Prettier](https://prettier.io/) 格式化代码的默认规则。我们建议设置 [VS Code 扩展](https://prettier.io/docs/en/editors.html#visual-studio-code) 以保持代码美观。
 * **node\_modules** 包含所有已安装的依赖项。您不应对此文件夹进行任何手动更改。
 * **package-lock.json** 是由 npm 生成的用于安装依赖项的文件。您不应对此文件进行任何手动更改。
-* **package.json** 是 [清单文件](https://developers.raycast.com/information/manifest)，其中包含有关扩展的元数据，例如其标题、命令及其依赖项。
+* **package.json** 是一个 [manifest 文件](manifest.md)，其中包含有关扩展的元数据，例如其标题、命令及其依赖项。
 * **tsconfig.json** 将您的项目配置为使用 TypeScript。您很可能不必编辑此文件。

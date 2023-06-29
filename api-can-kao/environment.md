@@ -104,7 +104,7 @@ export default async function Command() {
 
 #### 返回
 
-使用 [选定的文件系统项](https://developers.raycast.com/api-reference/environment#filesystemitem) 解析的 Promise。如果 Finder 不是最前面的应用程序，则 Promise 将被 rejected。
+使用 [选定的文件系统项](environment.md#filesystemitem) 解析的 Promise。如果 Finder 不是最前面的应用程序，则 Promise 将被 rejected。
 
 ### getSelectedText
 
@@ -144,7 +144,7 @@ export default async function Command() {
 
 ### FileSystemItem
 
-保存有关文件系统项的数据。使用 [getSelectedFinderItems](https://developers.raycast.com/api-reference/environment#getselectedfinderitems) 方法检索值。
+保存有关文件系统项的数据。使用 [getSelectedFinderItems](environment.md#getselectedfinderitems) 方法检索值。
 
 #### 属性
 

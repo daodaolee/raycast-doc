@@ -36,13 +36,13 @@ function useCachedPromise<T, U>(
 
 有几个配置项：
 
-* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅[依赖于列表搜索文本的 Promise 参数](https://developers.raycast.com/utilities/react-hooks/usecachedpromise#promise-argument-dependent-on-list-search-text)。
+* `options.keepPreviousData` 是一个布尔值，告诉钩子保留以前的结果，而不是在缓存中没有新参数的情况下返回初始值。当用于列表的数据以避免闪烁时，这特别有用。有关详细信息，请参阅[依赖于列表搜索文本的 Promise 参数](usecachedpromise.md#yi-lai-yu-lie-biao-sou-suo-wen-ben-de-promise-can-shu)。
 
-包括 [useCachedState](https://developers.raycast.com/utilities/react-hooks/usecachedstate) 的选项：
+包括 [useCachedState](usecachedstate.md) 的选项：
 
 * `options.initialData` 是状态的初始值（如果缓存中还没有任何状态）。
 
-包括 [usePromise](https://developers.raycast.com/utilities/react-hooks/usepromise) 的选项：
+包括 [usePromise](usepromise.md) 的选项：
 
 * `options.abortable` 是对 [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) 的引用，用于在触发新调用时取消先前的调用。
 * `options.execute` 是一个布尔值，指示是否实际执行该函数。 React 要求在渲染器上定义每个钩子，所以此标志使您能够在当前定义钩子，但要等到所有参数准备好才能执行该函数。
@@ -56,7 +56,7 @@ function useCachedPromise<T, U>(
 
 * `data`, `error`, `isLoading` - 查看 [AsyncState](usecachedpromise.md#asyncstate).
 * `revalidate` 是一个用相同参数再次手动调用函数的方法。
-* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
+* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](usecachedpromise.md#bian-geng-he-you-hua-geng-xin)。
 
 ## 例子
 
@@ -92,7 +92,7 @@ const Demo = () => {
 };
 ```
 
-## 取决于列表搜索文本的 Promise 参数
+## 依赖于列表搜索文本的 Promise 参数
 
 默认情况下，当传递给钩子的参数发生更改时，该函数将再次执行，并且这些参数的缓存值将立即返回。这意味着在尚未使用新参数的情况下，将返回初始数据。
 

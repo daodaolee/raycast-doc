@@ -1,13 +1,13 @@
 # Storage
 
-Storage API 可用于将数据存储在 Raycast 的 [本地加密数据库](https://developers.raycast.com/information/security#data-storage) 中。
+Storage API 可用于将数据存储在 Raycast 的 [本地加密数据库](../zi-liao/security.md#shu-ju-cun-chu) 中。
 
 扩展中的所有命令都可以共享对存储数据的访问。扩展程序无法访问其他扩展程序的存储。
 
 可以通过  [`LocalStorage.getItem`](storage.md#localstorage.getitem)、 [`LocalStorage.setItem`](storage.md#localstorage.setitem)或 [`LocalStorage.removeItem`](storage.md#localstorage.removeitem)  等函数来管理值。典型的用例是存储与用户相关的数据，例如输入的待办事项。
 
 {% hint style="info" %}
-这个 API 并不意味着存储大量数据。如果你想，请使用 [Node 的内置 API 来写入文件](https://nodejs.dev/learn/writing-files-with-nodejs)，例如到扩展的 [支持目录](https://developers.raycast.com/api-reference/environment#environment)。
+这个 API 并不意味着存储大量数据。如果你想，请使用 [Node 的内置 API 来写入文件](https://nodejs.dev/learn/writing-files-with-nodejs)，例如到扩展的 [支持目录](environment.md#environment)。
 {% endhint %}
 
 ## API 参考
@@ -138,7 +138,7 @@ export default async function Command() {
 
 #### 返回
 
-包含所有 [Values](https://developers.raycast.com/api-reference/storage#localstorage.values) 的对象，是一个 promise。
+包含所有 Values 的对象，是一个 promise。
 
 ### LocalStorage.clear
 

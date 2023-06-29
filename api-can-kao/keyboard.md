@@ -8,7 +8,7 @@ Keyboard API 可帮助您通过键盘快捷键执行操作。快捷键可帮助�
 
 键盘快捷键由一个或多个修饰键（command、control等）和一个等效键（字符或特殊键）定义。
 
-有关支持的值，请参阅 [KeyModifier](https://developers.raycast.com/api-reference/keyboard#keyboard.keymodifier) 和 [KeyEquivalent](https://developers.raycast.com/api-reference/keyboard#keyboard.keyequivalent)。
+有关支持的值，请参阅 [KeyModifier](keyboard.md#keyboard.keymodifier) 和 [KeyEquivalent](keyboard.md#keyboard.keyequivalent)。
 
 #### 例子
 
@@ -130,7 +130,7 @@ KeyEquivalent: "a" |
   "backspace";
 ```
 
-[快捷键](https://developers.raycast.com/api-reference/keyboard#keyboard.shortcut) 的等效键
+[快捷键](keyboard.md#keyboard.shortcut) 的等效键
 
 ### Keyboard.KeyModifier
 
@@ -138,4 +138,4 @@ KeyEquivalent: "a" |
 KeyModifier: "cmd" | "ctrl" | "opt" | "shift";
 ```
 
-[快捷键](https://developers.raycast.com/api-reference/keyboard#keyboard.shortcut) 修饰符
+[快捷键](keyboard.md#keyboard.shortcut) 修饰符

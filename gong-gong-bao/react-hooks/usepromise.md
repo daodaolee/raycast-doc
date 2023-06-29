@@ -46,7 +46,7 @@ function usePromise<T>(
 
 * `data`, `error`, `isLoading` - 查看 [AsyncState](usepromise.md#asyncstate)。
 * `revalidate` 是一个用相同参数再次手动调用函数的方法。
-* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](https://developers.raycast.com/utilities/react-hooks/usepromise#mutation-and-optimistic-updates)。
+* `mutate` 是一个包装异步更新的方法，可以控制在更新过程中如何更新 `usePromise` 数据。默认情况下，更新完成后数据将重新验证（例如，该函数将再次调用）。有关更多信息，请参阅 [变更和优化更新](usepromise.md#bian-geng-he-you-hua-geng-xin)。
 
 ## 例子
 

@@ -1,6 +1,6 @@
 # HUD
 
-当用户执行的操作会产生关闭 Raycast 的副作用时（例如在 [Clipboard](https://developers.raycast.com/api-reference/clipboard) 中复制某些内容时），您可以使用 HUD 来确认该操作是否正常工作。
+当用户执行的操作会产生关闭 Raycast 的副作用时（例如在 [Clipboard](../clipboard.md) 中复制某些内容时），您可以使用 HUD 来确认该操作是否正常工作。
 
 ![](../../.gitbook/assets/hud.png)
 

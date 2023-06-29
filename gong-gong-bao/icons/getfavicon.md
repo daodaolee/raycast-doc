@@ -20,11 +20,11 @@ function getFavicon(
 ```
 
 * `name` 是主题名称的字符串。
-* `options.fallback`是一个 [Image.Fallback](https://developers.raycast.com/api-reference/user-interface/icons-and-images#image.fallback) 图标，以防找不到 Favicon。默认情况下，后备将为 `Icon.Link`。
+* `options.fallback`是一个 [Image.Fallback](../../api-can-kao/user-interface/icons-and-images.md#image.fallback) 图标，以防找不到 Favicon。默认情况下，后备将为 `Icon.Link`。
 * `options.size`是返回的图标的大小。默认情况下，它是 64 像素。
-* `options.mask` 是应用于图标的 [Image.Mask](https://developers.raycast.com/api-reference/user-interface/icons-and-images#image.mask) 的大小。
+* `options.mask` 是应用于图标的 [Image.Mask](../../api-can-kao/user-interface/icons-and-images.md#image.mask) 的大小。
 
-返回一个可以在 Raycast 需要的地方使用的 [Image.ImageLike](https://developers.raycast.com/api-reference/user-interface/icons-and-images)。
+返回一个可以在 Raycast 需要的地方使用的 [Image.ImageLike](../../api-can-kao/user-interface/icons-and-images.md#image.imagelike)。
 
 ## 例子
 

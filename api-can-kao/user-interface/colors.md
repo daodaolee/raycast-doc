@@ -3,8 +3,8 @@
 任何可以在组件属性中传递颜色的地方，都可以传递：
 
 * 标准 [Color](colors.md#color)
-* [动态](https://developers.raycast.com/api-reference/user-interface/colors#color.dynamic) Color
-* [原始](https://developers.raycast.com/api-reference/user-interface/colors#color.raw) Color
+* [动态](colors.md#color.dynamic) Color
+* [原始](colors.md#color.raw) Color
 
 ## API 参考
 
@@ -60,7 +60,7 @@ ColorLike: Color | Color.Dynamic | Color.Raw;
 
 支持的颜色类型的联合类型。&#x20;
 
-使用 [原始颜色](https://developers.raycast.com/api-reference/user-interface/colors#color.raw) 时，将对其进行调整以实现与 Raycast 用户界面的高对比度。要禁用颜色调整，您需要切换到使用 [动态颜色](colors.md#api-can-kao)。但是，我们建议保留颜色调整，除非您的扩展依赖于精确的颜色。
+使用 [原始颜色](colors.md#color.raw) 时，将对其进行调整以实现与 Raycast 用户界面的高对比度。要禁用颜色调整，您需要切换到使用 [动态颜色](colors.md#color.dynamic)。但是，我们建议保留颜色调整，除非您的扩展依赖于精确的颜色。
 
 #### 例子
 
@@ -92,7 +92,7 @@ export default function Command() {
 
 动态颜色根据活动的 Raycast 主题应用不同的颜色。&#x20;
 
-使用 [动态颜色](https://developers.raycast.com/api-reference/user-interface/colors#color.dynamic) 时，将对其进行调整以实现与 Raycast 用户界面的高对比度。要禁用颜色调整，可以将 `adjustmentContrast` 属性设置为 `false`。但是，我们建议保留颜色调整，除非您的扩展依赖于精确的颜色。
+使用 [动态颜色](colors.md#color.dynamic) 时，将对其进行调整以实现与 Raycast 用户界面的高对比度。要禁用颜色调整，可以将 `adjustmentContrast` 属性设置为 `false`。但是，我们建议保留颜色调整，除非您的扩展依赖于精确的颜色。
 
 #### 例子
 

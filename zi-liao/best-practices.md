@@ -45,7 +45,7 @@ export default function Command() {
 
 * 如果命令需要运行时依赖项才能运行（例如需要用户安装的应用程序），请展示有用的消息。
   * 如果您的扩展与应用程序紧密耦合，例如在 Safari 中搜索选项卡或使用 AppleScript 控制 Spotify，代码检查没必要是那么严格，因为用户很可能因为没有本地安装依赖项从而不会安装扩展。
-* 如果扩展中只有某些功能需要运行时依赖项，请考虑仅在安装依赖项后才提供此功能。通常，[这是](https://developers.raycast.com/information/terminology#action) 最佳情况，例如在桌面应用程序而不是浏览器中打开 URL。
+* 如果扩展中只有某些功能需要运行时依赖项，请考虑仅在安装依赖项后才提供此功能。通常，[这是](terminology.md) 最佳使用方式，例如在桌面应用程序而不是浏览器中打开 URL。
 
 ### 显示 loading 指示器
 
